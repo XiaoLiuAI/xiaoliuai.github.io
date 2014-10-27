@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://xiaoliuai.github.io/sitemap.xml 
