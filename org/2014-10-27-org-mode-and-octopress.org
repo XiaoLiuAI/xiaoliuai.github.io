@@ -1,0 +1,66 @@
+#+TITLE: Org-mode and Octopress
+#+DATE: 2014-10-27
+#+SETUPFILE: ~/Emacs/org/org-sty/setupfile.org
+#+JEKYLL_CATEGORIES: org blog emacs octopress
+#+JEKYLL_PUBLISHED: true
+
+* Writing Blog Using Org-mode and Octopress
+  After the installation  and the configuration of jekyll along with
+  the org-mode. I tried to find some configurations to facilitate the
+  creation of org files (create file with date in front of file name,
+  insert heads, etc.) I did not realize the existence of relative
+  emacs packages in elpa and asked google for solutions. My
+  inefficient search key-words let the google returns undisired
+  answser: the *octopress*. Octopress is based on the jekyll, but
+  provide richer blog settings. Finally, I migrated to octopress and
+  use it to manager my github pages.
+
+* Octopress Installation
+  Installation of octopress is little complexe since it requires low
+  version ruby.
+
+** Installation of old version ruby with rbenv
+   You can following the instructions on the [[http://octopress.org/docs/setup/rbenv][official manual]].
+
+** Setup the octopress
+   My setup expierence is basically the same with the [[http://octopress.org/docs/setup/][official
+   manual]]. However, after the installation, I replaced the octopress
+   directory to =~/WorkSpace/xiaoliuai.github.io= because it actually
+   becomes the repository of my github pages (*magnific!*). So I
+   suggest to clone the octopress git repository into the directory
+   with the same name of the repository of your github pages at the
+   beginning.
+
+*** Setup
+    - Copy octopress repository (_I suggest to clone shallow copy with
+      option =depth=_)
+      #+begin_src sh
+      git clone git://github.com/imathis/octopress.git octopress
+      cd octopress
+      #+end_src
+    - Install dependencies
+      #+begin_src sh
+      gem install bundler
+      rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command
+      bundle install
+      #+end_src
+    - Install the default theme (_I suggest to ignore this step and
+      install the 3rd-party theme directly_)
+      #+begin_src sh
+      rake install
+      #+end_src
+    - Install the 3rd-party theme (optional)
+    - Add 3rd-party tools (optional)
+
+*** Dirctory structure comments
+
+* Emacs Configuration
+
+** Org-octopress package
+
+** TODO [0/3]
+
+   - [ ] tags
+   - [ ] automatically inserted categories
+   - [ ] functions of contents in setupfile.org
+{{{more}}}

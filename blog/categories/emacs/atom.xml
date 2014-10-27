@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: org | 记往开来]]></title>
-  <link href="http://xiaoliuai.github.io/blog/categories/org/atom.xml" rel="self"/>
+  <title><![CDATA[Category: emacs | 记往开来]]></title>
+  <link href="http://xiaoliuai.github.io/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://xiaoliuai.github.io/"/>
   <updated>2014-10-27T23:43:50+01:00</updated>
   <id>http://xiaoliuai.github.io/</id>
