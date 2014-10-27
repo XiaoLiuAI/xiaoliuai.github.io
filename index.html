@@ -92,6 +92,190 @@
       <div class="span9">
   
   
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/27/org-jekyll/">Xiao Liu&#8217;s First Blog</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-27T00:00:00+01:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+This is my first blog that is generated using org-mode, jekyll and is
+published on GitHub.
+I made this page following the instructions on <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">org-jekyll</a>.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Initialize the first blog</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Install necessary softwares <b>org-mode</b> in <b>emacs</b>, <b>jekyll</b>.</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Note that the built-in org-mode in emacs might be outdated, the best
+solution is to remove the built-in org-mode and reinstall it from
+the package manager via <code>M-x list-packages</code>. Jekyll can be installed
+through <b>RubyGem</b>. On my OSX, the ruby and gem are preinstalled, so
+<code>gem install jekyll</code> works for me.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Initialize the web folder by jekyll.</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+As my final goal is posting the blog to GitHub, the working folder
+of my blog is <code>xiaoliuai.github.io</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">jekyll new xiaoliuai.github.io
+cd xiaoliuai.github.io
+jekyll serve
+</pre>
+</div>
+<p>
+Then you can see the portal page by opening <code>localhost:4000</code> in
+your web browser.
+</p>
+
+<p>
+<i>Directoy system &#x2026;</i>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> From org-mode to jekyll</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> Configuration of emacs org setting</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #52676f;">(</span><span style="color: #259185;">"blog-org"</span>
+ <span style="color: #5859b7;">:base-directory</span> <span style="color: #259185;">"~/Emacs/org/blog"</span>
+ <span style="color: #5859b7;">:base-extension</span> <span style="color: #259185;">"org"</span>
+
+ <span style="color: #5859b7;">:publishing-directory</span> <span style="color: #259185;">"~/WorkSpace/xiaoliuai.github.io/"</span>
+ <span style="color: #5859b7;">:recursive</span> t
+ <span style="color: #5859b7;">:publishing-function</span> org-html-publish-to-html
+ <span style="color: #5859b7;">:headline-levels</span> 4
+ <span style="color: #5859b7;">:html-extension</span> <span style="color: #259185;">"html"</span>
+ <span style="color: #5859b7;">:body-only</span> t <span style="color: #81908f; font-style: italic;">;; </span><span style="color: #81908f; font-style: italic;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
+ <span style="color: #5859b7;">:with-toc</span> nil <span style="color: #81908f; font-style: italic;">;; </span><span style="color: #81908f; font-style: italic;">don't export toc, it clobbers the YAML front matter</span>
+ <span style="color: #52676f;">)</span>
+<span style="color: #52676f;">(</span><span style="color: #259185;">"blog-static"</span>
+ <span style="color: #5859b7;">:base-directory</span> <span style="color: #259185;">"~/Emacs/org/blog"</span>
+ <span style="color: #5859b7;">:base-extension</span> <span style="color: #259185;">"css</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">js</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">png</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">jpg</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">gif</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">pdf</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">mp3</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">swf</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">gz</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">txt</span><span style="color: #5859b7; font-weight: bold;">\\</span><span style="color: #c61b6e; font-weight: bold;">|</span><span style="color: #259185;">el"</span>
+ <span style="color: #5859b7;">:publishing-directory</span> <span style="color: #259185;">"~/WorkSpace/xiaoliuai.github.io/"</span>
+ <span style="color: #5859b7;">:recursive</span> t
+ <span style="color: #5859b7;">:publishing-function</span> org-publish-attachment
+ <span style="color: #52676f;">)</span>
+<span style="color: #52676f;">(</span><span style="color: #259185;">"blog"</span><span style="color: #5859b7;">:components</span> <span style="color: #259185;">(</span><span style="color: #259185;">"blog-org"</span> <span style="color: #259185;">"blog-static"</span><span style="color: #259185;">)</span><span style="color: #52676f;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> The head inserted into the org file for blog.</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #81908f; font-style: italic;">#+STARTUP: showall indent</span>
+<span style="color: #81908f; font-style: italic;">#+STARTUP: hidestars</span>
+<span style="color: #81908f; font-style: italic;">#+BEGIN_HTML</span>
+<span style="color: #bd3612;">---</span>
+<span style="color: #bd3612;">layout: default</span>
+<span style="color: #bd3612;">title: Xiao Liu's First Blog</span>
+<span style="color: #bd3612;">excerpt: First blog with org-mode, jekyll.</span>
+<span style="color: #bd3612;">categories:</span>
+<span style="color: #bd3612;">    - org</span>
+<span style="color: #bd3612;">---</span>
+<span style="color: #81908f; font-style: italic;">#+END_HTML</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> Comments</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+The two lines with comments form the main differences to ordinary
+html exportation. Jekyll will read the body of html files
+generated by org-mode and add it&#8217;s own heads to specify the
+styles. Org-mode will export the table of contents (TOC) at the
+beginning of exported html file, hence mask the YAML Front
+Matter. <a href="http://ccom.uprrp.edu/~humberto//blog/2013/11/03/org-jekyll-is-awesome/">Disable the TOC</a> can sovle this problem. However, there
+might be other solutions to change the position of TOC.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Build the server.</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+
+<pre class="src src-bash">cd xiaoliuai.github.io
+jekyll build
+jekyll serve
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Future work <code>[0/3]</code></h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> This blog is generated manually with many copy paste
+operations. The next step after successfully display this blog is
+setting automatic tools (YASnippet) to generate the blog files
+with date and insert the configured headers.
+</li>
+
+<li><code>[&#xa0;]</code> In <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">org-jekyll</a>, YAML markup is mentioned many times. I have to
+study into it when I have time.
+</li>
+
+<li><code>[&#xa0;]</code> Complete this blog into a full manual of org-jekyll-emacs
+relative settings.
+</li>
+</ul>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
+  
   <ul class="pager">
     
     <li><a href="/blog/archives">Blog Archives</a></li>
@@ -103,6 +287,10 @@
     <section class="well">
   <ul id="recent_posts" class="nav nav-list">
     <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/27/org-jekyll/">Xiao Liu&#8217;s First Blog</a>
+      </li>
     
   </ul>
 </section>
