@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://xiaoliuai.github.io
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: 记往开来
+subtitle: A note book for digusting knowledge.
+author: Xiao Liu
 simple_search: https://www.google.com/search
 description:
 
@@ -27,7 +27,8 @@ email:
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
 root: /
-permalink: /blog/:year/:month/:day/:title/
+permalink: /blog/:year-:month-:day-:title.html
+# permalink: /blog/:year/:month/:day/:title/
 source: source
 destination: public
 plugins: plugins
