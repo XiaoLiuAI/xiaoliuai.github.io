@@ -11,23 +11,23 @@
   creation of org files (create file with date in front of file name,
   insert heads, etc.) I did not realize the existence of relative
   emacs packages in elpa and asked google for solutions. My
-  inefficient search key-words let the google returns undisired
-  answser: the *octopress*. Octopress is based on the jekyll, but
+  inefficient search key-words let the google returns undesired
+  answer: the *octopress*. Octopress is based on the jekyll, but
   provide richer blog settings. Finally, I migrated to octopress and
   use it to manager my github pages.
 
 * Octopress Installation
-  Installation of octopress is little complexe since it requires low
+  Installation of octopress is little complex since it requires low
   version ruby.
 
 ** Installation of old version ruby with rbenv
    You can following the instructions on the [[http://octopress.org/docs/setup/rbenv][official manual]].
 
 ** Setup the octopress
-   My setup expierence is basically the same with the [[http://octopress.org/docs/setup/][official
+   My setup experience is basically the same with the [[http://octopress.org/docs/setup/][official
    manual]]. However, after the installation, I replaced the octopress
    directory to =~/WorkSpace/xiaoliuai.github.io= because it actually
-   becomes the repository of my github pages (*magnific!*). So I
+   becomes the repository of my github pages (*magnificent!*). So I
    suggest to clone the octopress git repository into the directory
    with the same name of the repository of your github pages at the
    beginning.
@@ -53,7 +53,7 @@
     - Install the 3rd-party theme (optional)
     - Add 3rd-party tools (optional)
 
-*** Dirctory structure comments
+*** Directory structure comments
 
 * Emacs Configuration
 
@@ -61,8 +61,8 @@
    The package can be installed from elpa, but it does not support the
    tags. Hence, I modified the ox-jekyll.el file, duplicated all the
    variables and expressions contain =categories= and then replace
-   them by =tags=. After reopen emacs, it successfully export the tags
-   into html files under _posts.
+   them by =tags=. After reopening emacs, it successfully exports the tags
+   into HTML files under _posts.
 
 ** TODO [0/3]
 
