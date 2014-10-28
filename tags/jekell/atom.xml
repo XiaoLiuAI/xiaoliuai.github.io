@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
+<title><![CDATA[Tag: jekell | 记往开来]]></title>
+<link href="http://xiaoliuai.github.io/tags/jekell/atom.xml" rel="self"/>
+<link href="http://xiaoliuai.github.io/"/>
+<updated>2014-10-28T14:35:33+01:00</updated>
+<id>http://xiaoliuai.github.io/</id>
+<author>
+<name><![CDATA[Xiao Liu]]></name>
 
-  <title><![CDATA[Category: jekyll | 记往开来]]></title>
-  <link href="http://xiaoliuai.github.io/blog/categories/jekyll/atom.xml" rel="self"/>
-  <link href="http://xiaoliuai.github.io/"/>
-  <updated>2014-10-27T23:43:50+01:00</updated>
-  <id>http://xiaoliuai.github.io/</id>
-  <author>
-    <name><![CDATA[Xiao Liu]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+</author>
+<generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Writing Blog Using Org-mode and Jekyll]]></title>
-    <link href="http://xiaoliuai.github.io/blog/2014-10-27-writing-blog-using-org-mode-and-jekyll.html"/>
-    <updated>2014-10-27T00:00:00+01:00</updated>
-    <id>http://xiaoliuai.github.io/blog/writing-blog-using-org-mode-and-jekyll</id>
-    <content type="html"><![CDATA[<p>
+<entry>
+<title type="html"><![CDATA[Writing Blog Using Org-mode and Jekyll]]></title>
+<link href="http://xiaoliuai.github.io/blog/2014-10-27-writing-blog-using-org-mode-and-jekyll.html"/>
+<updated>2014-10-27T00:00:00+01:00</updated>
+<id>http://xiaoliuai.github.io/blog/writing-blog-using-org-mode-and-jekyll</id>
+<content type="html"><![CDATA[<p>
 This is my first blog that is generated using org-mode, jekyll and is
 published on GitHub.
 I made this page following the instructions on <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">org-jekyll</a>.
@@ -222,6 +220,6 @@ relative settings.
 </div>
 
 ]]></content>
-  </entry>
-  
+</entry>
+
 </feed>

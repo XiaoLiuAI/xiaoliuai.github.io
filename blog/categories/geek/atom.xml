@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: org | 记往开来]]></title>
-  <link href="http://xiaoliuai.github.io/blog/categories/org/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Geek | 记往开来]]></title>
+  <link href="http://xiaoliuai.github.io/blog/categories/geek/atom.xml" rel="self"/>
   <link href="http://xiaoliuai.github.io/"/>
-  <updated>2014-10-27T23:43:50+01:00</updated>
+  <updated>2014-10-28T14:35:33+01:00</updated>
   <id>http://xiaoliuai.github.io/</id>
   <author>
     <name><![CDATA[Xiao Liu]]></name>
@@ -251,6 +251,7 @@ relative settings.
 <li><a href="#sec-3-2">3.2. <span class="todo TODO">TODO</span> <code>[0/3]</code></a></li>
 </ul>
 </li>
+<li><a href="#sec-4">4. 博客美化,定制</a></li>
 </ul>
 </div>
 </div>
@@ -362,6 +363,15 @@ install the 3rd-party theme directly_)
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-sec-3-1" class="outline-3">
 <h3 id="sec-3-1"><span class="section-number-3">3.1</span> Org-octopress package</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The package can be installed from elpa, but it does not support the
+tags. Hence, I modified the ox-jekyll.el file, duplicated all the
+variables and expressions contain <code>categories</code> and then replace
+them by <code>tags</code>. After reopen emacs, it successfully export the tags
+into html files under _posts.
+</p>
+</div>
 </div>
 
 <div id="outline-container-sec-3-2" class="outline-3">
@@ -379,6 +389,23 @@ install the 3rd-party theme directly_)
 
 </p>
 </div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 博客美化,定制</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+我的博客美化定制基本上照抄<a href="http://snatic.tk/blog/2014/08/12/customize-your-octopress-blog/">Octopress折腾之路(2)</a>和 <a href="http://snatic.tk/blog/2014/08/15/add-tag-list-for-your-octopress/">Octopress折腾之路
+(4)</a>,还没抄完,汗.
+Mac上面的octopress对于原版的tag插件兼容不太
+好,<a href="http://fatestigma.github.io/blog/2014/05/05/tags-in-octopress/">这篇博文</a>里提到可以使用tag插件的<a href="https://github.com/robbyedwards/octopress-tag-cloud/issues/1">Issues</a>里面给出的解决方案:修改
+<code>plugins/tag_clound.rg</code> 文件.在我所使用的版本中,需要修改的文件是
+<code>plugins/tag_list.el</code>.
+</p>
 </div>
 </div>
 
