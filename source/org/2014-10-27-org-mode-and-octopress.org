@@ -1,0 +1,80 @@
+#+TITLE: Org-mode and Octopress
+#+DATE: 2014-10-27
+#+SETUPFILE: ~/Emacs/org/org-sty/setupfile.org
+#+JEKYLL_CATEGORIES: Geek
+#+JEKYLL_TAGS: org blog emacs octopress
+#+JEKYLL_PUBLISHED: true
+
+* Writing Blog Using Org-mode and Octopress
+  After the installation  and the configuration of jekyll along with
+  the org-mode. I tried to find some configurations to facilitate the
+  creation of org files (create file with date in front of file name,
+  insert heads, etc.) I did not realize the existence of relative
+  emacs packages in elpa and asked google for solutions. My
+  inefficient search key-words let the google returns undisired
+  answser: the *octopress*. Octopress is based on the jekyll, but
+  provide richer blog settings. Finally, I migrated to octopress and
+  use it to manager my github pages.
+
+* Octopress Installation
+  Installation of octopress is little complexe since it requires low
+  version ruby.
+
+** Installation of old version ruby with rbenv
+   You can following the instructions on the [[http://octopress.org/docs/setup/rbenv][official manual]].
+
+** Setup the octopress
+   My setup expierence is basically the same with the [[http://octopress.org/docs/setup/][official
+   manual]]. However, after the installation, I replaced the octopress
+   directory to =~/WorkSpace/xiaoliuai.github.io= because it actually
+   becomes the repository of my github pages (*magnific!*). So I
+   suggest to clone the octopress git repository into the directory
+   with the same name of the repository of your github pages at the
+   beginning.
+
+*** Setup
+    - Copy octopress repository (_I suggest to clone shallow copy with
+      option =depth=_)
+      #+begin_src sh
+      git clone git://github.com/imathis/octopress.git octopress
+      cd octopress
+      #+end_src
+    - Install dependencies
+      #+begin_src sh
+      gem install bundler
+      rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command
+      bundle install
+      #+end_src
+    - Install the default theme (_I suggest to ignore this step and
+      install the 3rd-party theme directly_)
+      #+begin_src sh
+      rake install
+      #+end_src
+    - Install the 3rd-party theme (optional)
+    - Add 3rd-party tools (optional)
+
+*** Dirctory structure comments
+
+* Emacs Configuration
+
+** Org-octopress package
+   The package can be installed from elpa, but it does not support the
+   tags. Hence, I modified the ox-jekyll.el file, duplicated all the
+   variables and expressions contain =categories= and then replace
+   them by =tags=. After reopen emacs, it successfully export the tags
+   into html files under _posts.
+
+** TODO [0/3]
+
+   - [ ] tags
+   - [ ] automatically inserted categories
+   - [ ] functions of contents in setupfile.org
+{{{more}}}
+
+* 博客美化,定制
+  我的博客美化定制基本上照抄[[http://snatic.tk/blog/2014/08/12/customize-your-octopress-blog/][Octopress折腾之路(2)]]和 [[http://snatic.tk/blog/2014/08/15/add-tag-list-for-your-octopress/][Octopress折腾之路
+  (4)]],还没抄完,汗.
+  Mac上面的octopress对于原版的tag插件兼容不太
+  好,[[http://fatestigma.github.io/blog/2014/05/05/tags-in-octopress/][这篇博文]]里提到可以使用tag插件的[[https://github.com/robbyedwards/octopress-tag-cloud/issues/1][Issues]]里面给出的解决方案:修改
+  =plugins/tag_clound.rg= 文件.在我所使用的版本中,需要修改的文件是
+  =plugins/tag_list.el=.
