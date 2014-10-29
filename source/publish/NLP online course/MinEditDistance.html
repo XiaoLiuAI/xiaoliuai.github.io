@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Minimun Edit Distance</title>
+<!-- 2014-10-29 Wed 18:05 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Minimun Edit Distance</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Edit distance from string to string</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Min Edit Distance (MED)</a></li>
+<li><a href="#sec-1-2">1.2. Get the path</a></li>
+<li><a href="#sec-1-3">1.3. Weighted MED</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Align gene sequence</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Test to myself</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Edit distance from string to string</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The edit distance from string <code>str1</code> to string <code>str2</code> is used to
+measure the cost of modifying <code>str1</code> to make it equals to <code>str2</code>. It
+is used in spelling correction and coreference of named entities such
+as "U.S.A" to "USA". 
+</p>
+
+<p>
+Define three edit actions: insertion, deletion and substitution; the
+edit distance is the weighted sum of number of operations. The costs
+of insertion and deletion are usually set to one while the cost of
+substitution is set to two since the substitution can be thought as a
+combination of deletion and insertion.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Min Edit Distance (MED)</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Min Edit Distance (MED) is computed through a dynamic programming
+process, which is very similar to computing the maximum probability of
+Hidden Markov model. MED is sometimes
+called Levenshtein distance. See below the algorithm used to compute
+the MED. 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #728a05;">def</span> <span style="color: #a57705;">med</span>(str1, str2):
+    <span style="color: #5859b7;">len1</span>, <span style="color: #5859b7;">len2</span> = <span style="color: #5859b7;">len</span>(str1)+1, <span style="color: #5859b7;">len</span>(str2)+1
+    <span style="color: #81908f; font-style: italic;"># </span><span style="color: #81908f; font-style: italic;">init the distance table</span>
+    <span style="color: #5859b7;">D</span>=[[0]*len2 <span style="color: #728a05;">for</span> i <span style="color: #728a05;">in</span> <span style="color: #5859b7;">range</span>(len1)]
+    <span style="color: #5859b7;">D</span>[0]=<span style="color: #5859b7;">range</span>(len2)
+    <span style="color: #728a05;">for</span> i <span style="color: #728a05;">in</span> <span style="color: #5859b7;">range</span>(len1):
+        D[i][0]=i
+
+    <span style="color: #728a05;">for</span> i <span style="color: #728a05;">in</span> <span style="color: #5859b7;">range</span>(1, len1):
+        <span style="color: #728a05;">for</span> j <span style="color: #728a05;">in</span> <span style="color: #5859b7;">range</span>(1, len2):
+            <span style="color: #5859b7;">d1</span> = D[i-1][j]+1 <span style="color: #81908f; font-style: italic;"># </span><span style="color: #81908f; font-style: italic;">deletion</span>
+            <span style="color: #5859b7;">d2</span> = D[i][j-1]+1 <span style="color: #81908f; font-style: italic;"># </span><span style="color: #81908f; font-style: italic;">insertion</span>
+            <span style="color: #5859b7;">d3</span> = 2 <span style="color: #728a05;">if</span> str1[i-1]!=str2[j-1] <span style="color: #728a05;">else</span> 0 <span style="color: #81908f; font-style: italic;"># </span><span style="color: #81908f; font-style: italic;">substitution if not equal, 0 else.</span>
+            D[i][j] = <span style="color: #5859b7;">min</span>([d1, d2, d3])
+    <span style="color: #728a05;">return</span> D[len1][len2]
+</pre>
+</div>
+<p>
+One can interpret the update step as the cost of aligning the $i$th
+character of <code>str1</code> to the $j$th character of <code>str2</code>. However, since
+the strings change all the time, it is not easy to understand the
+process. I think the step from <code>D[i-1][j]</code> to <code>D[i][j]</code> means when
+\(i-1\) of <code>str1</code> is aligned to \(j\) of <code>str2</code>, we delete the \(i\) of
+<code>str1</code>. The step from <code>D[i][j-1]</code> to <code>D[i][j]</code> means when \(i\) of
+<code>str1</code> is aligned to \(j-1\) of <code>str2</code>, we insert a character so that
+the \(j\) of <code>str2</code> is aligned from the state that \(i\) is aligned. The
+step from <code>D[i-1][j-1]</code> to <code>D[i][j]</code> means, \(i-1\) and \(j-1\) is
+aligned, we substitute \(i\) and \(j\) if they are different.
+</p>
+
+<p>
+Note that even we say <code>D[i][j]</code> means the alignment of \(i\) and \(j\),
+there are three concrete conditions: \(i\) is deleted, inserted a
+character for \(j\), change the value of \(i\) to the value of \(j\). So it
+should be explained by "after modification of the \(i\) in <code>str1</code>, the
+modified part of <code>str1</code> is equal to the part of <code>str2</code> from start to
+\(j\)". 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Get the path</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+It is very similar to finding the hidden units of Markov Machine. We
+have to save the pointers from next state to last state during the
+update. For example, <code>p[i][j]=(i-1,j)</code> when <code>d1</code> is the minimum.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Weighted MED</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Replacing the weight of deletion, insertion and substitution by a
+weight related to the character. Those weights are used in both
+initialization and updating. The weights are computed from
+statistics. For spelling errors, one can create a table that counts
+the number of an editing action for each character (to each
+character).
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Align gene sequence</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Aligning gene sequence, searching overlap and max match pattern can
+be seen as three variations of the MED problem by modifying the
+initialization and updating values.
+</p>
+
+<p>
+From the point of view of gene alignment, deletion can be seen as
+inserting a blank space behind the \(j\) of <code>str2</code> and insertion can be
+seen as a blank space being inserted to <code>str1</code>.
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Test to myself</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Can you remember and implement the algorithms used to solve the three
+questions mentioned in this section?
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2014-10-29 Wed 18:05</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>emacs配置</title>
+<!-- 2014-10-29 Wed 18:06 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">emacs配置</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. emacs使用贴士</a></li>
+<li><a href="#sec-2">2. purcell</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 优点</a></li>
+<li><a href="#sec-2-2">2.2. 自定义</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. 配置</a></li>
+<li><a href="#sec-2-2-2">2.2.2. 要安装的包</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3">2.3. 缺点</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. prelude</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 优点</a></li>
+<li><a href="#sec-3-2">3.2. 自定义</a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. 要安装的包</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3">3.3. 缺点</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. schulte</a>
+<ul>
+<li><a href="#sec-4-1">4.1. 优点</a></li>
+<li><a href="#sec-4-2">4.2. 缺点</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+目前我从github上fork了2个配置（purcell和prelude),同时还clone了一个配置
+（Eric Schulte）。
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> emacs使用贴士</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>运行临时代码的方式有两种,一是将代码写入*scratch*,然后
+<code>eval-buffer</code>,快捷键为 <code>C-x,C-e</code>.二是用命令 <code>eval-expression</code> 直接
+书写和运行命令,就像shell一样,快捷键为 <code>M-:</code>
+</li>
+<li>新的Emacs集成了org,cedet之类的工具,但是,由于版本等方面的原因,这些
+集成的工具非常不方便使用.
+<ul class="org-ul">
+<li>emacs24中集成的org是7.9版,而最新的是8.x版.我已经针对8.x版进行了
+个人配置,而这些配置在旧版不能正常工作.所能采取的办法就是在包管理
+器重先删除org,然后再安装org.
+</li>
+<li>如果想把emacs打造成一个IDE,ecb和cedet是常用的工具.但是新版的
+emacs只集成一个改版的cedet.这个cedet不能很好地支持ecb.对应方法是
+自己下载最新的cedet,手动编译并且在emacs的配置文件一开头手动载入
+自己编译的cedet.我采用这个配置<a href="http://rex-shen.net/%E9%85%8D%E7%BD%AEemacs%E4%B8%BAcc%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%9A%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEcedet/">安装配置cedet</a>
+<div class="org-src-container">
+
+<pre class="src src-bash">cd .emacs.d
+mkdir 3rd-party; cd 3rd-party
+git clone http://git.randomsample.de/cedet.git
+cd cedet
+subl Makefile # modify the variable EMACS=/path/to/emacs
+make
+
+# compile contrib (optional)
+cd contrib
+subl Makefile # modify the variable EMACS=/path/to/emacs
+make
+</pre>
+</div>
+<p>
+配置 <code>.emacs.d/init.el</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #81908f; font-style: italic;">;; </span><span style="color: #81908f; font-style: italic;">load cedet. It is very important to load cedet early, before Emacs loads the builtin cedet-eieio.</span>
+<span style="color: #52676f;">(</span>load-file <span style="color: #259185;">"~/.emacs.d/3rd-party/cedet/cedet-devel-load.el"</span><span style="color: #52676f;">)</span>
+
+<span style="color: #81908f; font-style: italic;">; </span><span style="color: #81908f; font-style: italic;">load other programs that work with cedet but not copyright compliant with FSF</span>
+<span style="color: #52676f;">(</span>load-file <span style="color: #259185;">"~/.emacs.d/3rd-party/cedet/contrib/cedet-contrib-load.el"</span><span style="color: #52676f;">)</span>
+
+<span style="color: #81908f; font-style: italic;">; </span><span style="color: #81908f; font-style: italic;">enable semantic</span>
+<span style="color: #52676f;">(</span>semantic-mode 1<span style="color: #52676f;">)</span>
+<span style="color: #52676f;">(</span>semantic-load-enable-minimum-features<span style="color: #52676f;">)</span>
+<span style="color: #52676f;">(</span>semantic-load-enable-code-helpers<span style="color: #52676f;">)</span>
+</pre>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> purcell</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 优点</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>自动保存上次的桌面
+</li>
+<li>预先配置了ido,用来匹配补全命令和文件名,buffer名
+</li>
+<li>预装了smex,默认与ido同时启动
+</li>
+<li>预装了非常多的东西，光是编译就要十分钟左右
+</li>
+<li>针对Mac系统进行了键位映射，cmd和option互换了
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 自定义</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> 配置</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<ul class="org-ul">
+<li>将init-editing-utils.el中的save-interprogram-paste-before-kill改为
+nil.否则会出现复制粘贴无法使用的问题
+</li>
+<li>使用类似prelude的方式加载自定义elisp文件,自定义文件都位于
+lisp/personal文件夹下。
+<p>
+#+begin_src elisp
+</p>
+</li>
+</ul>
+<p>
+;; load the personal settings
+(defvar personal-dir (expand-file-name "lisp/personal" user-emacs-directory))
+(when (file-exists-p personal-dir)
+  (message "Loading personal configuration files in %s&#x2026;" personal-dir)
+  (mapc 'load (directory-files personal-dir 't "^[^#].*el$")))
+</p>
+
+<p>
+(defvar current-user
+      (getenv
+       (if (equal system-type 'windows-nt) "USERNAME" "USER")))
+(message "Purcell is ready to do thy bidding, Master %s!" current-user)
+</p>
+<p>
+#+end_src elisp
+</p>
+
+<ul class="org-ul">
+<li>自动断行问题
+</li>
+
+<li>颜色配置问题
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> 要安装的包</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<ul class="org-ul">
+<li>添加库到package manager.
+<div class="org-src-container">
+
+<pre class="src src-elisp">M-: <span style="color: #52676f;">(</span>add-to-list <span style="color: #728a05;">'</span><span style="color: #2075c7;">package-archives</span> <span style="color: #728a05;">'</span><span style="color: #259185;">(</span><span style="color: #259185;">"marmalade"</span> . <span style="color: #259185;">"http://marmalade-repo.org/packages/"</span><span style="color: #259185;">)</span><span style="color: #52676f;">)</span>
+M-x package-install <span style="color: #52676f;">[</span>RET<span style="color: #52676f;">]</span> marmalade-demo
+</pre>
+</div>
+</li>
+<li>安装monokai颜色主题,运行以下代码.
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #52676f;">(</span><span style="color: #728a05;">progn</span>
+  <span style="color: #259185;">(</span>package-refresh-contents<span style="color: #259185;">)</span>
+  <span style="color: #259185;">(</span>package-install <span style="color: #728a05;">'</span><span style="color: #2075c7;">monokai-theme</span><span style="color: #259185;">)</span><span style="color: #52676f;">)</span>
+</pre>
+</div>
+</li>
+<li>helm, add <code>(require 'helm)</code> into gneral-init.el
+</li>
+<li>projectil
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 缺点</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>与el-get冲突,原因是预装了scratch包.据说可以通过手工把el-get中跟
+scratch冲突的内容去掉.
+</li>
+<li>中文自动断行有问题.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> prelude</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 优点</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>不与el-get冲突
+</li>
+<li>有时会给出emacs使用小贴士
+</li>
+<li>预装了projutil
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 自定义</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> 要安装的包</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<ul class="org-ul">
+<li>auto-complete
+</li>
+<li>添加库到package manager.
+<div class="org-src-container">
+
+<pre class="src src-elisp">M-: <span style="color: #52676f;">(</span>add-to-list <span style="color: #728a05;">'</span><span style="color: #2075c7;">package-archives</span> <span style="color: #728a05;">'</span><span style="color: #259185;">(</span><span style="color: #259185;">"marmalade"</span> . <span style="color: #259185;">"http://marmalade-repo.org/packages/"</span><span style="color: #259185;">)</span><span style="color: #52676f;">)</span>
+M-x package-install <span style="color: #52676f;">[</span>RET<span style="color: #52676f;">]</span> marmalade-demo
+</pre>
+</div>
+</li>
+<li>安装monokai颜色主题,运行以下代码.
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #52676f;">(</span><span style="color: #728a05;">progn</span>
+  <span style="color: #259185;">(</span>package-refresh-contents<span style="color: #259185;">)</span>
+  <span style="color: #259185;">(</span>package-install <span style="color: #728a05;">'</span><span style="color: #2075c7;">monokai-theme</span><span style="color: #259185;">)</span><span style="color: #52676f;">)</span>
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 缺点</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>自定义org-remember时需要声明=(require 'org-remember)=,=(require 'remember)=.
+</li>
+<li>在mac系统下中文输入法有输入后必需打空格或者标点(逗号,句号)才能继续
+输入中文的问题.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> schulte</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 优点</h3>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 缺点</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>自定义org-remember时 <b>不</b> 需要声明=(require
+'org-remember)=,=(require 'remember)=.
+</li>
+<li>在mac系统下中文输入法有输入后必需打空格或者标点(逗号,句号)才能继续
+输入中文的问题.
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2014-10-29 Wed 18:06</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Exercises for program assignment during interview</title>
+<!-- 2014-10-29 Wed 18:05 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Exercises for program assignment during interview</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. General points</a>
+<ul>
+<li><a href="#sec-1-1">1.1. basic skills about programming</a></li>
+<li><a href="#sec-1-2">1.2. high quality code</a></li>
+<li><a href="#sec-1-3">1.3. analyze problem, improve the algorithm (time and space)</a></li>
+<li><a href="#sec-1-4">1.4. communication skill</a></li>
+<li><a href="#sec-1-5">1.5. conclusion</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. basic skills</a>
+<ul>
+<li><a href="#sec-2-1">2.1. language</a></li>
+<li><a href="#sec-2-2">2.2. data structure</a></li>
+<li><a href="#sec-2-3">2.3. algorithm</a></li>
+<li><a href="#sec-2-4">2.4. robust</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> General points</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> basic skills about programming</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+To get the offer, one has to have robust programming skills including
+comprehension of programming language, data structure and common
+algorithms.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> high quality code</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+robust code, detection of point, boundary of variables
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> analyze problem, improve the algorithm (time and space)</h3>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> communication skill</h3>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> conclusion</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+I read the book for interview. As short term goal, I focus on the
+programming skills and robust code.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> basic skills</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> language</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The employer usually use C/C++ as the target language during the
+interview programming assignment. 
+C/C++ is complex, I summarize the cases I read from the book below.
+</p>
+<ul class="org-ul">
+<li>construct function.
+<ul class="org-ul">
+<li>the construct function can receive an object of its own type. One
+have to declare the object as const reference to avoid the
+recurrence construction because the C++ will copy the object when
+the argument is a variable instead of reference of variable. In
+this case, the copy operation will invoke the constructor again,
+which leads to the recurrence construction. 
+</li>
+</ul>
+</li>
+<li>= operator
+<ul class="org-ul">
+<li>the return value should be reference of its own,
+which is *this.
+</li>
+<li>input argument is declared as reference. *In fact, the reference
+is always preferable is there is not other constraint, because
+pass variable will cost a copy operation.
+</li>
+<li>detect if the input argument is itself.
+</li>
+<li>release memory before allocating new. Optional: lock.
+</li>
+</ul>
+</li>
+<li>singleton
+<ul class="org-ul">
+<li>private constructor, static instance. better to initialize the
+instance during declaration.
+</li>
+</ul>
+</li>
+<li>boundary problem in while loop of arrays using pointer.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> data structure</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+this is a review of what I learned 6 years ago, which concerns the
+array, character chain, list, tree, pipe, etc.
+</p>
+<ul class="org-ul">
+<li>difference between array and pointer in C/C++. the pointer can
+point to the address of array, however, it is not an array,
+which contain the size information. In addition, the array
+argument is actually a pointer. That means, when you pass an
+array to a function and invoke sizeof() to the argument inside
+the function, you will not get the length of array. So the
+length of array is an obligated parameter for C/C++ to travel an
+array.
+</li>
+<li>array algorithms
+<ul class="org-ul">
+<li>search ordered array
+</li>
+</ul>
+</li>
+<li>character chain
+<ul class="org-ul">
+<li>pay attention to the size of character array since the last
+character is '\0'
+</li>
+<li>replace character should begin from the end to avoid
+repeatedly moving the characters.
+</li>
+<li>character chain in character array is not constant, while
+assign character chain to pointer will assign a
+constant. Hence, character array will allocate new memory
+while character pointer will assign to the same memory.
+</li>
+</ul>
+</li>
+<li>List
+<ul class="org-ul">
+<li>pointer of pointer permit the function to modify the head of
+list 
+</li>
+<li>detect if the pointer to head is NULL or the pointer to the
+pointer to head is NULL
+</li>
+<li>pay attention to the head when implementing the list operation.
+</li>
+<li>do not forget to release the memory during the deletion of
+list element. Assign NULL to the pointer that point to the
+deleted memory.
+</li>
+<li>use std::stack to avoid recursive function since too many
+recursive level will crash the program. 
+</li>
+</ul>
+</li>
+<li>Tree
+<ul class="org-ul">
+<li>binary tree, massive pointer operation
+<ul class="org-ul">
+<li>reconstruct binary from two array, which are generated from
+the binary tree using specific order.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>stack (first in, end out)
+<ul class="org-ul">
+<li>use two stacks to implement pipe. <br  />
+       Initialize stack1, stake2.<br  />
+       append: new to stack1<br  />
+       get: if stack2 is empty, move stack1 to stack2, get from stack2<br  />
+       <b>draw graph to analyze the problem</b>
+</li>
+</ul>
+</li>
+<li>pipe (first in, first out)
+<ul class="org-ul">
+<li>use two pipes to implement stack.<br  />
+       Initialize pipe1, pipe2.<br  />
+       append: if pipe1.size()==0: add to pipe1; else add to pipe2<br  />
+       get: move elements from non-empty pipe to empty pipe, but
+return the last one.
+</li>
+</ul>
+</li>
+<li>conclusion
+<ul class="org-ul">
+<li>pay attention to the size of the container, not enough or too
+small including empty and unity.
+</li>
+<li>pay attention to the pointer of current node and the pointer
+of next since both of them can be NULL.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> algorithm</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+the common algorithms include ordering and search with common data structures.
+</p>
+<ul class="org-ul">
+<li>sorting of array
+<dl class="org-dl">
+<dt> quick sorting </dt><dd>select a number, then put smaller number to left
+and larger numbers to right. 
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #2075c7;">int</span> <span style="color: #a57705;">partition</span>(<span style="color: #2075c7;">int</span> <span style="color: #5859b7;">data</span>[], <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">length</span>, <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">start</span>, <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">end</span>){
+<span style="color: #2075c7;">int</span> <span style="color: #5859b7;">index</span> = RandomInRang(start, end);
+Swap(&amp;data[index], &amp;data[end]);
+
+<span style="color: #2075c7;">int</span> <span style="color: #5859b7;">small</span> = start -1;
+<span style="color: #728a05;">for</span>( index = start; index &lt; end; ++index){
+    <span style="color: #728a05;">if</span> (data[index]&lt;data[end]){
+        ++ small;
+        <span style="color: #728a05;">if</span> (small != index)
+            Swap(&amp;data[index], &amp;data[small]);
+    }
+}
+
+++ small;
+Swap(&amp;data[small], &amp;data[end]);
+
+<span style="color: #728a05;">return</span> small;}
+</pre>
+</div>
+<p>
+quick sorting can be done by recursively invoking the
+partition function. In addition, the partition function can be
+used to find the $k$th large number in the array or the k
+smallest/largest number. 
+</p>
+</dd>
+<dt> other sorting tasks </dt><dd>put array into two parts, each part contains one kind of
+element defined by function <code>template&lt;T&gt; bool criterion(T
+       element)</code>
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #728a05;">template</span>&lt;T&gt; <span style="color: #2075c7;">void</span> <span style="color: #a57705;">TwoParts</span>(T[] list, <span style="color: #2075c7;">unsigned</span> <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">length</span>, <span style="color: #2075c7;">bool</span> (*<span style="color: #5859b7;">func</span>)(T)){
+    <span style="color: #2075c7;">T</span>* <span style="color: #5859b7;">headPointer</span> = list;
+    <span style="color: #2075c7;">T</span>* <span style="color: #5859b7;">tailPointer</span> = list+length-1;
+    <span style="color: #728a05;">while</span>(headPointer &lt; tailPointer){
+        <span style="color: #728a05;">while</span>(func(*headPointer))
+            headPointer++;
+        <span style="color: #728a05;">while</span>(<span style="color: #2075c7;">!</span>func(*tailPointer))
+            tailPointer++;
+        <span style="color: #2075c7;">T</span> <span style="color: #5859b7;">swap</span> = *headPointer;
+        *headPointer = *tailPointer;
+        *tailPointer = swap;
+    }
+}
+</pre>
+</div>
+</dd>
+</dl>
+</li>
+<li>search ordered array
+O(log(n)), use binary search, which treats the middle element to
+narrow the search range. However, should pay attention to the
+condition when many elements are the same.
+</li>
+<li>bit operation
+<ul class="org-ul">
+<li>integer power of number. first, consider the negative power and
+zero cases. Second, use bit operation on the power number to
+quickly get the result \(a^n=(a^{n/2})^2\). 
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #2075c7;">double</span> <span style="color: #a57705;">powerWithUnsignedExponent</span>(<span style="color: #2075c7;">double</span> <span style="color: #5859b7;">base</span>, <span style="color: #2075c7;">unsigned</span> <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">exponent</span>){
+<span style="color: #728a05;">if</span> (exponent == 0)
+    <span style="color: #728a05;">return</span> 1;
+<span style="color: #728a05;">if</span> (exponent == 1)
+    <span style="color: #728a05;">return</span> base;
+
+<span style="color: #2075c7;">double</span> <span style="color: #5859b7;">result</span> = powerWithUnsignedExponent(base, exponent&gt;&gt;1);
+result *= result;
+<span style="color: #728a05;">if</span> (exponent &amp; 0x1)
+    result *= base;
+<span style="color: #728a05;">return</span> result;
+</pre>
+</div>
+</li>
+
+<li>find the last bit that is 1 by <code>a ^ (a-1)</code>. First, <code>a-1</code> will
+change the bits until the last 1; then xor operation will put
+the changed bits into 0. 
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #2075c7;">double</span> <span style="color: #a57705;">numberOfOne</span>(<span style="color: #2075c7;">int</span> <span style="color: #5859b7;">n</span>){
+    <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">count</span> = 0;
+    <span style="color: #728a05;">while</span> (n){
+        count ++;
+        n = n&amp;(n-1);
+    <span style="color: #728a05;">return</span> count;
+</pre>
+</div>
+</li>
+</ul>
+</li>
+<li>Fibonacci, model problem into Fibonacci problem
+<ul class="org-ul">
+<li>A frog can jump one stair or two stair. How many methods when a
+frog jump to n stair?
+When the first step is one stair, the rest possible methods is
+the methods to jump (n-1) stairs. When the first step is two
+stair, the rest possible methods is the methods to jump (n-1)
+stairs. So, it is \(f(n) = f(n-1)+f(n-2)\), a Fibonacci function.
+</li>
+<li>An extension: if the frog can jump to \(n\) stairs, how many methods
+does it have? 
+Analysis: for stair one, there is one methods, for stair two,
+there are two methods, for stair three, there are
+two+one+one. For stair n, there is
+\(f(n)=f(n-1)+f(n-2)+...+f(0)\) where \(f(0)=1\). 
+\(f(n)=f(n-2)+...+f(0)+f(n-2)+...+f(0)=...=2^{(n-1)}\). Heavily
+reply on the mathematical induction method.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> robust</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>cannot use <code>d==0</code> for double type.
+</li>
+<li>divide 0
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #2075c7;">int</span> <span style="color: #a57705;">PowerWithUnsignedExponent</span>(<span style="color: #2075c7;">double</span> <span style="color: #5859b7;">base</span>, <span style="color: #2075c7;">unsigned</span> <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">exponent</span>){
+    <span style="color: #728a05;">if</span> (exponent == 0)
+        <span style="color: #728a05;">return</span> 1;
+    <span style="color: #728a05;">if</span> (exponent == 1)
+        <span style="color: #728a05;">return</span> base;
+
+    <span style="color: #2075c7;">double</span> <span style="color: #5859b7;">result</span> = PowerWithUnsignedExponent(base, exponent &gt;&gt; 1);
+    result *= result;
+    <span style="color: #728a05;">if</span> (exponent &amp; 0x1 ==1)
+        result *= base;
+
+    <span style="color: #728a05;">return</span> result;
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2014-10-29 Wed 18:05</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Summary of Reviews for Paper of  BMC Bioinformatics</title>
+<!-- 2014-10-29 Wed 18:05 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Summary of Reviews for Paper of  BMC Bioinformatics</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. English Rephrasing Comments</a></li>
+<li><a href="#sec-2">2. Details Enrichment Comments</a></li>
+<li><a href="#sec-3">3. Arguable Comments</a></li>
+<li><a href="#sec-4">4. Complement Comments</a></li>
+<li><a href="#sec-5">5. Format Comments</a></li>
+<li><a href="#sec-6">6. Reports</a>
+<ul>
+<li><a href="#sec-6-1">6.1. Coarse Tokenization</a>
+<ul>
+<li><a href="#sec-6-1-1">6.1.1. Selection Dependency path</a></li>
+<li><a href="#sec-6-1-2">6.1.2. Test Experiments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This document contains the summary of reviews for the paper I
+submitted to the BMC Bioinformatics (BioNLP special issue). <a href="https://drive.google.com/file/d/1oP0sATDlknWhkAFxdS6cobacrZc3kcbsQh4ouI4vey8FJ6SZlCbHiBf2ilI51empVprZPTJlWTAaYwhW/edit?usp=sharing">Please find
+the reviews shared on Google doc</a>. I divide the reviews into five
+groups: 1) English rephrasing, 2) details enrichment, 3) arguable
+comments, 4) complement, 5) format. English rephrasing section
+contains the comments that require the author to rephrase English
+descriptions. Details enrichment section contains the requirements of
+adding details of experiments, references, etc. Arguable comments are
+different opinions of reviewers. Complement section includes
+requirements of completing our application and generalizing it to all
+the tasks. Format comments section focuses on the conflicts between
+our current paper and the BMC journal format.<br  />
+</p>
+
+<p>
+<font color='red'> I add my explanation in <b>bold</b> at the
+beginning of each section, and my comments in <font color='green'>/green
+italic/</font> style after the list items.  The issues
+that are <del>crossed by lines</del> are solved. For the issues followed by an
+<span class="underline">underlined sentence</span>, I know how to solve them, but have not taken
+action.* </font>
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> English Rephrasing Comments</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>The English rephrasing comments are the easiest to deal with.</b>
+<b>I list all of this kind of comments in this section.</b>
+</p>
+<ul class="org-ul">
+<li>In section of Abstract: "<del>Admittedly" is required to be changed</del>
+</li>
+<li>In section of Background: "<del>An example of event" to "of an event</del>"
+</li>
+<li>In subsection of Data: "<del>abstracts of full articles" is supposed to
+be replaced by "abstracts or full articles</del>"
+</li>
+<li>In subsection of Post-Processing: "<del>extra-arguments" is supposed to be split into two words</del>
+</li>
+<li>In subsection of Related Work: "<del>are ran" should be "run</del>";
+"<del>consequential" is required to be changed</del>
+</li>
+<li>In subsection Of Performance Analysis: "<del>rightfully" is required to be changed</del>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Details Enrichment Comments</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Most of detail enrichment comments need me to add more details about the definitions, methods and hyper-parameters, which are not difficult.</b>
+</p>
+<ul class="org-ul">
+<li>Abstract
+<ul class="org-ul">
+<li>"<del>the best results" is not true. The reviewer think it is fair to add <font color='red'>FAUST</font> system in comparison according to the task requirements.</del>
+</li>
+</ul>
+</li>
+<li>Background
+<ul class="org-ul">
+<li>"<del>huge amounts of electronic bio-medical documents" is unnecessary imprecise.</del><br  />
+      <del><font color='green'>I do not understand what the reviewer want. A precise number of documents? </font></del>
+</li>
+<li>"<del><i>[bio-medical documents] involve domain-specific [&#x2026;] dependencies</i>" is an unclear claim.</del>
+      <del><font color='green'>The same as the comment above. </font></del>
+</li>
+<li>"<del>15 times faster [than Riedel et al.] " should specify the condition (e.g. omission of feature caching)</del>
+</li>
+<li>Data
+<ul class="org-ul">
+<li>"<del>extracts of articles from PubMed Central": some are only in
+PubMed, not PMC.</del><br  />
+        <del><font color='green'>It is my mistake.  I thought they are the same thing by inferring from their names.  In fact, PubMed is the super-set of PMC, where articles on PMC can be freely download but only abstracts are accessible for other articles on PubMed.  </font></del>
+</li>
+<li>About the discussion of consistency and effect on performance,
+reviewer suggest to consider contrasting analysis with that
+presented in "Overview of the ID, EPI and REL tasks of BioNLP
+Shared Task 2011"<br  />
+        <font color='green'> I read the article suggested, and found
+a statement "each entity annotation consists of a type".  Note
+that this article is published for BioNLP 2011.  It does not
+explain the inconsistency between BioNLP2009 and 2011.
+</font>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Methods
+<ul class="org-ul">
+<li>Algorithm1G
+<ul class="org-ul">
+<li><del>The reviewer suggest to replace "<i>score and label</i>" and</del>
+        "<del><i>highest score</i>" with more precise descriptions of the steps.</del><br  />
+</li>
+</ul>
+</li>
+<li>Fitting the Pairwise Model
+<ul class="org-ul">
+<li>"<del>two hyper-parameters that are set by cross-validation". More information on selection (e.g. considered values) are required.</del>
+</li>
+<li>The method that the author used to deal with the heavy class
+imbalance should be added.<br  />
+        <font color='green'>We already had cited the paper about the
+method we used, which is C+/C-.</font>
+</li>
+</ul>
+</li>
+<li>Computational Considerations
+<ul class="org-ul">
+<li>"SVM-based classification scales well" is unnecessarily imprecise. Efficient linear SVM implementations are invariant to the number of examples at prediction time (the weight vector is explicitely represented)<br  />
+        <font color='green'> I do not understand </font>
+</li>
+</ul>
+</li>
+<li>Pre-Processing &amp; Features
+<ul class="org-ul">
+<li><del>Add examples of the two tokenizations</del><br  />
+        <del><font color='blue'>"inhibit NF-kappaB-dependent pro-inflammatory gene transcription" vs "inhibit NF-kappaB dependent pro-inflammatory gene transcription" </font></del>
+</li>
+<li><del>Add examples of each feature for clarity</del>.  <br  />
+        <del><font color='green'>Should we add examples in the feature table or in paragraph? The table is not large enough to contain examples whereas enumerating examples for each
+feature in paragraph would be very ugly to see.</font></del>
+</li>
+<li><del>Add details of generating IntAct features.</del>  <br  />
+</li>
+<li>Identify the "<i>heuristics from the UCLEED system</i>"<br  />
+        <font color='green'>Does this requirement means explaining
+how to trim the dependency path?</font><br  />
+        <span class="underline">Reply in reponse</span>
+</li>
+</ul>
+</li>
+<li>Related Work
+<ul class="org-ul">
+<li><del>Mention rule-based (e.g. NCBI) and pattern-based (e.g. NICTA) methods.</del>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Results
+<ul class="org-ul">
+<li><del>Add the comparison with the system by Miwa et al (2010), as it</del>
+      <del>reported one of the best performances, particularly with Binding</del>
+      <del>events.</del><br  />
+      <font color='green'>
+      <del>This system was run on the BioNLP2009 data set, we do not have results on this data set.</del>
+      </font>
+</li>
+<li><del>Add <font color='red'>FAUST</font> system into comparison</del>
+</li>
+</ul>
+</li>
+<li>Conclusion
+<ul class="org-ul">
+<li>Provide more detail regarding future work
+</li>
+<li>"<del>the best result" is not true (<font color='red'>FAUST</font> is the best).</del>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Arguable Comments</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>The arguable comments contain something that reviewers do not agree with us. Some of this kind of comments need the supports from new experiments, which could cost certain amount of time.</b>
+<b>Considering the deadline of the camera version and my defense date, I have to carefully organize the schedule for them.</b>
+<b>Besides, I doubt about some of these comments.</b>
+</p>
+<ul class="org-ul">
+<li><del>Parts of the terminology are confusing. The word "<i>entity</i>" can be</del>
+<del>interpreted as a term in biology and a term in text</del>
+<del>processing. Besides, the trigger is not exactly a "<i>named
+entity</i>".</del><br  />
+    <font color='green'>
+<del>I think it is better to replace named entity by text entity and</del>
+<del>add definition that a text entity is a character chain.</del>
+</font>
+</li>
+<li>Methods
+<ul class="org-ul">
+<li>Algorithm
+<ul class="org-ul">
+<li><del>The definition of P_S=(c_i,a_j) is inconsistent because the</del>
+        <del>arguments are initialized by proteins but involve predicted</del>
+        <del>triggers during the process.</del><br  />
+</li>
+</ul>
+</li>
+
+<li>Pre-Processing
+<ul class="org-ul">
+<li><del>About the claim "high quality dependency parse trees require a</del>
+        <del>fine grained tokenization", reviewer require us to provide</del>
+        <del>evidence to support this claim.</del><br  />
+        <font color='green'>
+        <del><i>It is hard to give a direct evidence of the quality of dependency parse.</i></del>
+        <del><i>We can only say that dependency parse with find grained tokenization provides better features for this task.</i></del>
+        <del><i>But the quality of dependency parse itself is not defined.</i></del>
+        <del><i>To demonstrate the better effect of dependency parse with fine grained tokenization, we have to run experiments with dependency parsing based on coarse tokenization.</i></del>
+        </font>
+</li>
+<li>"<del>trees are finally obtained using &#x2026;.". Reviewer thought such</del>
+        <del>parses are provided in the supporting data?</del><br  />
+        <font color='green'>
+        <del>The support data are generated using different tokenization, hence are differ to what we generated.</del>
+        </font><br  />
+        <del>emphasize we computed them ourselves.</del>
+</li>
+</ul>
+</li>
+<li>Related work
+<ul class="org-ul">
+<li>"<del>rich features coding for (trigger, argument) pairs <code>[16]</code> are</del>
+        <del>only used by pipeline models for assigning arguments": this is</del>
+        <del>false at least for the TEES and EVEX systems.</del><br  />
+        <font color='green'>
+        <del>/This is differ to what I read. TEES has two steps: trigger</del>
+        <del>detection and edge detection. The features of pairs are not used in trigger detection./</del>
+        </font><br  />
+        <del>rephrase and explanation for reviewer.</del>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Results
+<ul class="org-ul">
+<li>Genia Shared Task 2013
+<ul class="org-ul">
+<li>"<i>it is difficult to estimate standard errors properly</i>": consider
+referencing statistical significance results in <code>[1]</code>.<br  />
+        <font color='green'>
+Reply in the response email
+</font>
+</li>
+<li><del>clarify if EVEX and TEES also use the data-set from BioNLP2011</del><br  />
+        <font color='green'>
+        <del>They did not talk about this in their papers published in the workshop.  I have sent a mail to ask which data-set did they use.  However, even if they reply me and say they had used BioLNP2011 data-set, their mail can not act as reference.</del>
+        </font>
+</li>
+</ul>
+</li>
+<li>Genia Shared Task 2011
+<ul class="org-ul">
+<li>"<del>TEES (no detailed results available)": available on the task web page and in "The Genia Event and Protein Co-reference
+tasks of the BioNLP Shared Task 2011</del>"<br  />
+</li>
+</ul>
+</li>
+<li>precision-recall curves with different features
+<ul class="org-ul">
+<li>Figure 5 in the result is easy to misinterpret.  From this curve it seems that V-walk features
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>
+are better left out.  The authors mention that this is due to the limited size of the test set, but I
+would like to see a more careful analysis on how this phenomenon scales with the size of the test
+set.  Related to this, the authors can do a more elaborate feature selection step: this is easy to
+do with SVM, and improved results using feature selection for event extraction have been
+described before.
+        <font color='green'>
+        <del><i>I would like to discuss about it.</i></del>
+        </font><br  />
+        <span class="underline">Do not worth experiments. But I have to be aware of feature
+        selection methods (Lasso).</span>
+</p>
+<ul class="org-ul">
+<li>training duration
+<ul class="org-ul">
+<li><del>more theoretical characterization of the computational</del>
+        <del>complexity (Reviewer 1)<br  />
+</del>
+        <font color='green'>
+        <del><i>It should be in the section of Methods. I do not understand the reviewer's opinion.</i></del>
+        </font><br  />
+        <del>Explain our limitation with a soft description that claims the uncertainty</del>
+</li>
+<li><del>Scala is slower than C. The training duration may be caused by</del>
+        <del>the programming language. (reviewer 1)</del>
+</li>
+<li><del>efficiency order of pipeline &gt; RUPEE &gt; globally joint system is</del>
+        <del>rough and lack of support. There is no training duration test</del>
+        <del>for pipeline system and only one case for joint</del>
+        <del>system. (reviewer 3)</del><br  />
+        <span class="underline">20 mins for pipeline couterpart</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Complement Comments</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<b>Requirements in the complement comments need much time.</b>
+<b>The comments of reviewer 3 are for future job in my opinion.</b>
+</p>
+<ul class="org-ul">
+<li>Make software usable outside the BioNLP community. Web tool or API
+that provide biologists to use this method on text data. (reviewer 1)<br  />
+    <font color='green'>
+Display like <a href="http://corpora.informatik.hu-berlin.de">http://corpora.informatik.hu-berlin.de</a><br  />
+    <i>It will cost a large amount of time to add the protein recognition ourselves.</i>
+</font>
+</li>
+<li>Make general framework for all the BioNLP tasks. Will break the
+constraints in Genia task. (reviewer 3)
+<font color='green'>
+<i>It is not a requirement for this paper, but for the further work</i>
+</font>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Format Comments</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<b>Comments about format are essential to publish our paper.</b>
+</p>
+<ul class="org-ul">
+<li><del>Figures (e.g. figure 5) are hard to interpret with printed out in gray-scale</del>
+</li>
+<li><del>BMC Bioinformatics does not allow footnotes and requires that URLs</del>
+    <del>be included in references.</del> <a href="http://www.biomedcentral.com/bmcbioinformatics/authors/instructions/researcharticle">Link to BMC format</a>.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Reports</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Coarse Tokenization</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+I ran experiments to determine the difference impacts of coarse and
+fine-grained tokenization to the final performance.  Since we argue
+the effects of dependency parses with different tokenizations, it
+is necessary to find the optimal thresholds of the shortest
+dependency paths as I did before.  Hence, the first part of these
+experiments is selecting the thresholds on BioNLP2013 development
+set and the second part is testing the performance on both
+BioNLP2011 and 2013 test test using the optimal thresholds.
+</p>
+</div>
+
+<div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> Selection Dependency path</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+I used the training sets from BioNLP2011 and 2013 to train the
+classifiers and evaluated them on the BionLP2013 development set.
+Unlike the previous experiments made to select the optimal
+thresholds, I selected the thresholds on the RUPEE model instead
+of pairwise model.  Hence, the intermediate results are not
+comparable to those written on my thesis.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-6-1-1-1" name="sec-6-1-1-1"></a>Trigger-Theme Pair Detection Step<br  /><div class="outline-text-5" id="text-6-1-1-1">
+<p>
+I list below the f-scores, precisions and recalls of single
+argument events and total trigger-theme pairs predictions.  I
+costed much time to solve the conflicts between the data in last
+Thursday and Friday, so I ran all the experiments using a shell
+script to save time.  However, I wrote a wrong command in the
+shell script, so I lost some results about the trigger-theme
+pairs.  From the experimental results, I selected 2,3 and None
+for the experiments of next step (Binding argument fusion).
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Dep length</th>
+<th scope="col" class="right">&lt;2</th>
+<th scope="col" class="right">&lt;3</th>
+<th scope="col" class="right">&lt;4</th>
+<th scope="col" class="right">&lt;5</th>
+<th scope="col" class="right">&lt;6</th>
+<th scope="col" class="right">None</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">SVT</td>
+<td class="right">75.09</td>
+<td class="right">75.10</td>
+<td class="right">73.82</td>
+<td class="right">74.27</td>
+<td class="right">73.08</td>
+<td class="right">74.70</td>
+</tr>
+
+<tr>
+<td class="left">prec.</td>
+<td class="right">85.31</td>
+<td class="right">85.05</td>
+<td class="right">78.64</td>
+<td class="right">78.74</td>
+<td class="right">75.19</td>
+<td class="right">80.54</td>
+</tr>
+
+<tr>
+<td class="left">recall</td>
+<td class="right">67.05</td>
+<td class="right">67.23</td>
+<td class="right">69.85</td>
+<td class="right">70.28</td>
+<td class="right">71.08</td>
+<td class="right">69.65</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">THEME-TOTAL</td>
+<td class="right">63.45</td>
+<td class="right">63.11</td>
+<td class="right">&#xa0;</td>
+<td class="right">&#xa0;</td>
+<td class="right">&#xa0;</td>
+<td class="right">63.22</td>
+</tr>
+
+<tr>
+<td class="left">prec.</td>
+<td class="right">77.05</td>
+<td class="right">72.25</td>
+<td class="right">&#xa0;</td>
+<td class="right">&#xa0;</td>
+<td class="right">&#xa0;</td>
+<td class="right">65.00</td>
+</tr>
+
+<tr>
+<td class="left">recall</td>
+<td class="right">53.94</td>
+<td class="right">56.03</td>
+<td class="right">&#xa0;</td>
+<td class="right">&#xa0;</td>
+<td class="right">&#xa0;</td>
+<td class="right">61.54</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-2" name="sec-6-1-1-2"></a>Binding Argument Fusion Step<br  /><div class="outline-text-5" id="text-6-1-1-2">
+<p>
+I list below the f-scores of the Binding events prediction
+using different thresholds. Each line refers to the results of
+experiments using different thresholds during the Binding
+argument fusion step.  "Prev" in the first column indicates the
+threshold used in previous step.  It seems that thresholding the
+dependency paths does not improve the performance.  Hence, I only
+keep one configuration for next step, where the threshold for the
+first step is 3 and these is no threshold for Binding argument
+fusion step.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Dep length</th>
+<th scope="col" class="right">3</th>
+<th scope="col" class="right">4</th>
+<th scope="col" class="right">5</th>
+<th scope="col" class="right">6</th>
+<th scope="col" class="right">None</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">Prev = 2</td>
+<td class="right">39.94</td>
+<td class="right">41.30</td>
+<td class="right">44.18</td>
+<td class="right">44.18</td>
+<td class="right">44.11</td>
+</tr>
+
+<tr>
+<td class="left">Prev = 3</td>
+<td class="right">39.89</td>
+<td class="right">42.84</td>
+<td class="right">45.93</td>
+<td class="right">45.60</td>
+<td class="right">46.00</td>
+</tr>
+
+<tr>
+<td class="left">Prev = None</td>
+<td class="right">39.69</td>
+<td class="right">42.42</td>
+<td class="right">45.54</td>
+<td class="right">45.30</td>
+<td class="right">45.65</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-3" name="sec-6-1-1-3"></a>Regulation Cause Argument Assignment Step<br  /><div class="outline-text-5" id="text-6-1-1-3">
+<p>
+In the last step, we have two thresholds to select, one is for
+the path between the trigger and cause argument, another is for
+the path between two arguments.  The table below lists all the
+experimental results, where each line lists the total event
+f-scores of experiments using different trigger-cause thresholds
+and each column lists the results of experiments using different
+theme-cause thresholds.  The differences between these results
+are not very significant and it is hard to find a general law
+from them.  Therefore, I simply used the configurations with
+respect to the best results (\(2\le l \le None\), \(l\le 3\)).
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Dep length</th>
+<th scope="col" class="right">l&lt;2</th>
+<th scope="col" class="right">l&lt;3</th>
+<th scope="col" class="right">l&lt;4</th>
+<th scope="col" class="right">None</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">\(1\le l\le 5\)</td>
+<td class="right">50.76</td>
+<td class="right">50.72</td>
+<td class="right">51.00</td>
+<td class="right">51.22</td>
+</tr>
+
+<tr>
+<td class="left">\(2\le l\le 5\)</td>
+<td class="right">50.86</td>
+<td class="right">50.93</td>
+<td class="right">51.02</td>
+<td class="right">51.14</td>
+</tr>
+
+<tr>
+<td class="left">\(3\le l\le 5\)</td>
+<td class="right">50.35</td>
+<td class="right">50.01</td>
+<td class="right">50.09</td>
+<td class="right">50.31</td>
+</tr>
+
+<tr>
+<td class="left">None</td>
+<td class="right">50.86</td>
+<td class="right">50.79</td>
+<td class="right">50.90</td>
+<td class="right">49.85</td>
+</tr>
+
+<tr>
+<td class="left">\(1\le l\le 4\)</td>
+<td class="right">50.51</td>
+<td class="right">50.73</td>
+<td class="right">50.80</td>
+<td class="right">50.87</td>
+</tr>
+
+<tr>
+<td class="left">\(2\le l\le 4\)</td>
+<td class="right">50.86</td>
+<td class="right">50.89</td>
+<td class="right">50.89</td>
+<td class="right">51.15</td>
+</tr>
+
+<tr>
+<td class="left">\(3\le l\le 4\)</td>
+<td class="right">50.02</td>
+<td class="right">50.18</td>
+<td class="right">50.11</td>
+<td class="right">50.06</td>
+</tr>
+
+<tr>
+<td class="left">\(1\le l\le None\)</td>
+<td class="right">50.86</td>
+<td class="right">50.79</td>
+<td class="right">50.90</td>
+<td class="right">51.17</td>
+</tr>
+
+<tr>
+<td class="left">\(2\le l\le None\)</td>
+<td class="right">51.04</td>
+<td class="right">51.46</td>
+<td class="right">51.39</td>
+<td class="right">51.24</td>
+</tr>
+
+<tr>
+<td class="left">\(3\le l\le None\)</td>
+<td class="right">50.35</td>
+<td class="right">50.43</td>
+<td class="right">50.26</td>
+<td class="right">50.42</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2"><span class="section-number-4">6.1.2</span> Test Experiments</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+After selecting the optimal thresholds on the BioNLP2013
+development set, I train and evaluate the model with these
+thresholds for online test evaluations.  The result of experiment
+using coarse tokenization on BioNLP2011 test set is surprisingly
+high, which is only \(0.25\%\) lower than fine-grained tokenization.
+But on BioNLP2013 test set, fine-grained tokenization outperforms
+the coarse tokenization significantly.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+
+<colgroup>
+<col  class="right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">&#xa0;</th>
+<th scope="col" class="right">Coarse</th>
+<th scope="col" class="right">Fine-Grained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">BioNLP2011</td>
+<td class="right">55.35</td>
+<td class="right">55.6</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">BioNLP2013</td>
+<td class="right">52.16</td>
+<td class="right">54.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2014-10-29 Wed 18:05</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>
