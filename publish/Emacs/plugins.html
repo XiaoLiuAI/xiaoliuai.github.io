@@ -1,83 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Emacs插件总结</title>
+<!-- 2014-11-26 Wed 21:58 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Emacs插件总结</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">环境</a></li>
-<li><a href="#sec-2">Purcell的Emacs配置</a>
+<li><a href="#sec-1">1. 环境</a></li>
+<li><a href="#sec-2">2. Purcell的Emacs配置</a>
 <ul>
-<li><a href="#sec-2-1">综述&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a></li>
-<li><a href="#sec-2-2">补全,菜单</a>
+<li><a href="#sec-2-1">2.1. 综述&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a></li>
+<li><a href="#sec-2-2">2.2. 补全,菜单</a>
 <ul>
-<li><a href="#sec-2-2-1">auto-complete</a></li>
-<li><a href="#sec-2-2-2">ido</a></li>
-<li><a href="#sec-2-2-3">hippie-expand&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a></li>
+<li><a href="#sec-2-2-1">2.2.1. auto-complete</a></li>
+<li><a href="#sec-2-2-2">2.2.2. ido</a></li>
+<li><a href="#sec-2-2-3">2.2.3. hippie-expand&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a></li>
 </ul>
 </li>
-<li><a href="#sec-2-3">查找</a>
+<li><a href="#sec-2-3">2.3. 查找</a>
 <ul>
-<li><a href="#sec-2-3-1">isearch相关</a></li>
+<li><a href="#sec-2-3-1">2.3.1. isearch相关</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-4">系统集成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a>
+<li><a href="#sec-2-4">2.4. 系统集成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a>
 <ul>
-<li><a href="#sec-2-4-1">Dired</a></li>
+<li><a href="#sec-2-4-1">2.4.1. Dired</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-5">窗口管理&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a>
+<li><a href="#sec-2-5">2.5. 窗口管理&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a>
 <ul>
-<li><a href="#sec-2-5-1">switch-window</a></li>
-<li><a href="#sec-2-5-2">session (desktop)</a></li>
+<li><a href="#sec-2-5-1">2.5.1. switch-window</a></li>
+<li><a href="#sec-2-5-2">2.5.2. session (desktop)</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-6">编辑,显示</a>
+<li><a href="#sec-2-6">2.6. 编辑,显示</a>
 <ul>
-<li><a href="#sec-2-6-1">被动效果</a></li>
-<li><a href="#sec-2-6-2">选择/跳转</a></li>
-<li><a href="#sec-2-6-3">编辑</a></li>
-<li><a href="#sec-2-6-4">显示</a></li>
+<li><a href="#sec-2-6-1">2.6.1. 被动效果</a></li>
+<li><a href="#sec-2-6-2">2.6.2. 选择/跳转</a></li>
+<li><a href="#sec-2-6-3">2.6.3. 编辑</a></li>
+<li><a href="#sec-2-6-4">2.6.4. 显示</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-7">记笔记</a>
+<li><a href="#sec-2-7">2.7. 记笔记</a>
 <ul>
-<li><a href="#sec-2-7-1">Org-mode</a></li>
-<li><a href="#sec-2-7-2">Markdown</a></li>
+<li><a href="#sec-2-7-1">2.7.1. Org-mode</a></li>
+<li><a href="#sec-2-7-2">2.7.2. Markdown</a></li>
 </ul>
 </li>
-<li><a href="#sec-2-8">项目管理</a>
+<li><a href="#sec-2-8">2.8. 项目管理</a>
 <ul>
-<li><a href="#sec-2-8-1">版本控制&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a></li>
+<li><a href="#sec-2-8-1">2.8.1. 版本控制&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a></li>
 </ul>
 </li>
-<li><a href="#sec-2-9">编程语言支持</a>
+<li><a href="#sec-2-9">2.9. 编程语言支持</a>
 <ul>
-<li><a href="#sec-2-9-1">Python 原始配置仅仅给出了python-mode的自动启动和pip-requirements包的加</a></li>
+<li><a href="#sec-2-9-1">2.9.1. Python 原始配置仅仅给出了python-mode的自动启动和pip-requirements包的加</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sec-3">我的Emacs插件</a>
+<li><a href="#sec-3">3. 我的Emacs插件</a>
 <ul>
-<li><a href="#sec-3-1">编辑</a>
+<li><a href="#sec-3-1">3.1. 编辑</a>
 <ul>
-<li><a href="#sec-3-1-1">注释代码</a></li>
+<li><a href="#sec-3-1-1">3.1.1. 注释代码</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-2">系统集成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a>
+<li><a href="#sec-3-2">3.2. 系统集成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></a>
 <ul>
-<li><a href="#sec-3-2-1">Gnus</a></li>
-<li><a href="#sec-3-2-2">zsh</a></li>
-<li><a href="#sec-3-2-3">远程编辑</a></li>
+<li><a href="#sec-3-2-1">3.2.1. Gnus</a></li>
+<li><a href="#sec-3-2-2">3.2.2. zsh</a></li>
+<li><a href="#sec-3-2-3">3.2.3. 远程编辑</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-3">编程语言支持</a>
+<li><a href="#sec-3-3">3.3. 编程语言支持</a>
 <ul>
-<li><a href="#sec-3-3-1">Python</a></li>
+<li><a href="#sec-3-3-1">3.3.1. Python</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-4">欠缺的</a></li>
-<li><a href="#sec-3-5">项目管理</a>
+<li><a href="#sec-3-4">3.4. 欠缺的</a></li>
+<li><a href="#sec-3-5">3.5. 项目管理</a>
 <ul>
-<li><a href="#sec-3-5-1">编程IDE&#xa0;&#xa0;&#xa0;<span class="tag"><span class="to_complete">to_complete</span></span></a></li>
+<li><a href="#sec-3-5-1">3.5.1. 编程IDE&#xa0;&#xa0;&#xa0;<span class="tag"><span class="to_complete">to_complete</span></span></a></li>
 </ul>
 </li>
 </ul>
@@ -87,7 +229,7 @@
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">环境</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 环境</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 经过大半年对Emacs的坚持使用,我目前基本确定自己的Emacs使用环境和 <b>初
@@ -101,18 +243,18 @@ OSX系统,不想也没有过多的精力再去折腾Linux系统,毕竟可以折�
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Purcell的Emacs配置</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> Purcell的Emacs配置</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 
 <div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">综述&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h3>
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 综述&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h3>
 </div>
 <div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">补全,菜单</h3>
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 补全,菜单</h3>
 <div class="outline-text-3" id="text-2-2">
 </div><div id="outline-container-sec-2-2-1" class="outline-4">
-<h4 id="sec-2-2-1">auto-complete</h4>
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> auto-complete</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -146,7 +288,7 @@ OSX系统,不想也没有过多的精力再去折腾Linux系统,毕竟可以折�
 
 
 <div id="outline-container-sec-2-2-2" class="outline-4">
-<h4 id="sec-2-2-2">ido</h4>
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> ido</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 辅助加载路径,打开文件
@@ -185,7 +327,7 @@ OSX系统,不想也没有过多的精力再去折腾Linux系统,毕竟可以折�
 </div>
 
 <div id="outline-container-sec-2-2-3" class="outline-4">
-<h4 id="sec-2-2-3">hippie-expand&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h4>
+<h4 id="sec-2-2-3"><span class="section-number-4">2.2.3</span> hippie-expand&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 不明觉厉&#x2026; 貌似可以在写代码的时候开速插入文件名? 快捷键为 M-/,跟
@@ -196,10 +338,10 @@ OSX系统,不想也没有过多的精力再去折腾Linux系统,毕竟可以折�
 </div>
 </div>
 <div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">查找</h3>
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 查找</h3>
 <div class="outline-text-3" id="text-2-3">
 </div><div id="outline-container-sec-2-3-1" class="outline-4">
-<h4 id="sec-2-3-1">isearch相关</h4>
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> isearch相关</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li><i>anzu</i> 显示匹配的数量
@@ -220,10 +362,10 @@ OSX系统,不想也没有过多的精力再去折腾Linux系统,毕竟可以折�
 </div>
 
 <div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4">系统集成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h3>
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 系统集成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h3>
 <div class="outline-text-3" id="text-2-4">
 </div><div id="outline-container-sec-2-4-1" class="outline-4">
-<h4 id="sec-2-4-1">Dired</h4>
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> Dired</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 自动加载 <i>dired+</i>, <i>dired-sort</i> 增强包.
@@ -234,22 +376,22 @@ OSX系统,不想也没有过多的精力再去折腾Linux系统,毕竟可以折�
 
 
 <div id="outline-container-sec-2-5" class="outline-3">
-<h3 id="sec-2-5">窗口管理&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h3>
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 窗口管理&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h3>
 <div class="outline-text-3" id="text-2-5">
 </div><div id="outline-container-sec-2-5-1" class="outline-4">
-<h4 id="sec-2-5-1">switch-window</h4>
+<h4 id="sec-2-5-1"><span class="section-number-4">2.5.1</span> switch-window</h4>
 </div>
 
 <div id="outline-container-sec-2-5-2" class="outline-4">
-<h4 id="sec-2-5-2">session (desktop)</h4>
+<h4 id="sec-2-5-2"><span class="section-number-4">2.5.2</span> session (desktop)</h4>
 </div>
 </div>
 
 <div id="outline-container-sec-2-6" class="outline-3">
-<h3 id="sec-2-6">编辑,显示</h3>
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 编辑,显示</h3>
 <div class="outline-text-3" id="text-2-6">
 </div><div id="outline-container-sec-2-6-1" class="outline-4">
-<h4 id="sec-2-6-1">被动效果</h4>
+<h4 id="sec-2-6-1"><span class="section-number-4">2.6.1</span> 被动效果</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <ul class="org-ul">
 <li>whitespace-cleanup-mode
@@ -268,7 +410,7 @@ OSX系统,不想也没有过多的精力再去折腾Linux系统,毕竟可以折�
 </div>
 </div>
 <div id="outline-container-sec-2-6-2" class="outline-4">
-<h4 id="sec-2-6-2">选择/跳转</h4>
+<h4 id="sec-2-6-2"><span class="section-number-4">2.6.2</span> 选择/跳转</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <ul class="org-ul">
 <li>expand-region
@@ -300,7 +442,7 @@ ace-jump-mode, <code>C-:</code> ace-jump-word-mode. <font
 </div>
 </div>
 <div id="outline-container-sec-2-6-3" class="outline-4">
-<h4 id="sec-2-6-3">编辑</h4>
+<h4 id="sec-2-6-3"><span class="section-number-4">2.6.3</span> 编辑</h4>
 <div class="outline-text-4" id="text-2-6-3">
 <ul class="org-ul">
 <li>unfill
@@ -324,7 +466,7 @@ fill相反的操作,将所有目标行连成一行
 </div>
 </div>
 <div id="outline-container-sec-2-6-4" class="outline-4">
-<h4 id="sec-2-6-4">显示</h4>
+<h4 id="sec-2-6-4"><span class="section-number-4">2.6.4</span> 显示</h4>
 <div class="outline-text-4" id="text-2-6-4">
 <ul class="org-ul">
 <li>highlight-symbol
@@ -338,7 +480,7 @@ fill相反的操作,将所有目标行连成一行
 </div>
 
 <div id="outline-container-sec-2-7" class="outline-3">
-<h3 id="sec-2-7">记笔记</h3>
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> 记笔记</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 记笔记方面有很多方案,比如 <i>emacs wiki mode</i>, <i>markdown</i>,
@@ -349,7 +491,7 @@ fill相反的操作,将所有目标行连成一行
 </div>
 
 <div id="outline-container-sec-2-7-1" class="outline-4">
-<h4 id="sec-2-7-1">Org-mode</h4>
+<h4 id="sec-2-7-1"><span class="section-number-4">2.7.1</span> Org-mode</h4>
 <div class="outline-text-4" id="text-2-7-1">
 <p>
 可以跟日历互动进行项目管理, 支持丰富的格式导出,甚至还支
@@ -368,7 +510,7 @@ ocaml被禁止).
 </div>
 
 <div id="outline-container-sec-2-7-2" class="outline-4">
-<h4 id="sec-2-7-2">Markdown</h4>
+<h4 id="sec-2-7-2"><span class="section-number-4">2.7.2</span> Markdown</h4>
 <div class="outline-text-4" id="text-2-7-2">
 <p>
 自动启用markdown模式
@@ -378,10 +520,10 @@ ocaml被禁止).
 </div>
 
 <div id="outline-container-sec-2-8" class="outline-3">
-<h3 id="sec-2-8">项目管理</h3>
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> 项目管理</h3>
 <div class="outline-text-3" id="text-2-8">
 </div><div id="outline-container-sec-2-8-1" class="outline-4">
-<h4 id="sec-2-8-1">版本控制&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h4>
+<h4 id="sec-2-8-1"><span class="section-number-4">2.8.1</span> 版本控制&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h4>
 <div class="outline-text-4" id="text-2-8-1">
 <p>
 使用 <b>Git</b> 进行版本控制,预装了 <i>magit</i>, <i>git-blame</i>,
@@ -398,7 +540,7 @@ ocaml被禁止).
 </div>
 
 <div id="outline-container-sec-2-9" class="outline-3">
-<h3 id="sec-2-9">编程语言支持</h3>
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> 编程语言支持</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 Purcell的配置中预装了对于很多编程语言的支持,但是很多我目前不
@@ -415,7 +557,7 @@ javascript, lisp, markdown, php, ruby (rails), sql, xml. 可能还有
 </div>
 
 <div id="outline-container-sec-2-9-1" class="outline-4">
-<h4 id="sec-2-9-1">Python 原始配置仅仅给出了python-mode的自动启动和pip-requirements包的加</h4>
+<h4 id="sec-2-9-1"><span class="section-number-4">2.9.1</span> Python 原始配置仅仅给出了python-mode的自动启动和pip-requirements包的加</h4>
 <div class="outline-text-4" id="text-2-9-1">
 <p>
 载. pip-requirements是一个用来编辑pip requirements文件的major mode.
@@ -426,13 +568,13 @@ javascript, lisp, markdown, php, ruby (rails), sql, xml. 可能还有
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">我的Emacs插件</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> 我的Emacs插件</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">编辑</h3>
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 编辑</h3>
 <div class="outline-text-3" id="text-3-1">
 </div><div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1">注释代码</h4>
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> 注释代码</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 <code>comment-dwin-2</code> 可以很智能地注释代码,去掉注释和在行末添加注释.
@@ -441,23 +583,23 @@ javascript, lisp, markdown, php, ruby (rails), sql, xml. 可能还有
 </div>
 </div>
 <div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">系统集成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h3>
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 系统集成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="todo">todo</span></span></h3>
 <div class="outline-text-3" id="text-3-2">
 </div><div id="outline-container-sec-3-2-1" class="outline-4">
-<h4 id="sec-3-2-1">Gnus</h4>
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Gnus</h4>
 </div>
 <div id="outline-container-sec-3-2-2" class="outline-4">
-<h4 id="sec-3-2-2">zsh</h4>
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> zsh</h4>
 </div>
 <div id="outline-container-sec-3-2-3" class="outline-4">
-<h4 id="sec-3-2-3">远程编辑</h4>
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> 远程编辑</h4>
 </div>
 </div>
 <div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">编程语言支持</h3>
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 编程语言支持</h3>
 <div class="outline-text-3" id="text-3-3">
 </div><div id="outline-container-sec-3-3-1" class="outline-4">
-<h4 id="sec-3-3-1">Python</h4>
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Python</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 Purell的python配置非常简陋,对于用python写大一些的项目是完全不够的,下面给出
@@ -577,7 +719,7 @@ python的外来库文件夹下; 但另外几个不会(可能是自带的版本�
 </div>
 </div>
 <div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4">欠缺的</h3>
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 欠缺的</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>代码折叠
@@ -590,10 +732,10 @@ python的外来库文件夹下; 但另外几个不会(可能是自带的版本�
 </div>
 </div>
 <div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5">项目管理</h3>
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> 项目管理</h3>
 <div class="outline-text-3" id="text-3-5">
 </div><div id="outline-container-sec-3-5-1" class="outline-4">
-<h4 id="sec-3-5-1">编程IDE&#xa0;&#xa0;&#xa0;<span class="tag"><span class="to_complete">to_complete</span></span></h4>
+<h4 id="sec-3-5-1"><span class="section-number-4">3.5.1</span> 编程IDE&#xa0;&#xa0;&#xa0;<span class="tag"><span class="to_complete">to_complete</span></span></h4>
 <div class="outline-text-4" id="text-3-5-1">
 <p>
 Purcell基本没有配置IDE.下面给出我当前使用的配置 <i>ecb</i> + <i>cedet</i>. 首先,
@@ -629,3 +771,12 @@ ecb可以直接从包管理器中安装,目前我没有进一步配置,因为感
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2014-11-26 Wed 21:58</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

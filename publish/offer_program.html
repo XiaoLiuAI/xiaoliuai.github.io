@@ -1,22 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Exercises for program assignment during interview</title>
+<!-- 2014-11-26 Wed 21:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Exercises for program assignment during interview</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">General points</a>
+<li><a href="#sec-1">1. General points</a>
 <ul>
-<li><a href="#sec-1-1">basic skills about programming</a></li>
-<li><a href="#sec-1-2">high quality code</a></li>
-<li><a href="#sec-1-3">analyze problem, improve the algorithm (time and space)</a></li>
-<li><a href="#sec-1-4">communication skill</a></li>
-<li><a href="#sec-1-5">conclusion</a></li>
+<li><a href="#sec-1-1">1.1. basic skills about programming</a></li>
+<li><a href="#sec-1-2">1.2. high quality code</a></li>
+<li><a href="#sec-1-3">1.3. analyze problem, improve the algorithm (time and space)</a></li>
+<li><a href="#sec-1-4">1.4. communication skill</a></li>
+<li><a href="#sec-1-5">1.5. conclusion</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">basic skills</a>
+<li><a href="#sec-2">2. basic skills</a>
 <ul>
-<li><a href="#sec-2-1">language</a></li>
-<li><a href="#sec-2-2">data structure</a></li>
-<li><a href="#sec-2-3">algorithm</a></li>
-<li><a href="#sec-2-4">robust</a></li>
+<li><a href="#sec-2-1">2.1. language</a></li>
+<li><a href="#sec-2-2">2.2. data structure</a></li>
+<li><a href="#sec-2-3">2.3. algorithm</a></li>
+<li><a href="#sec-2-4">2.4. robust</a></li>
 </ul>
 </li>
 </ul>
@@ -24,10 +208,10 @@
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">General points</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> General points</h2>
 <div class="outline-text-2" id="text-1">
 </div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">basic skills about programming</h3>
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> basic skills about programming</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To get the offer, one has to have robust programming skills including
@@ -37,7 +221,7 @@ algorithms.
 </div>
 </div>
 <div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">high quality code</h3>
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> high quality code</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 robust code, detection of point, boundary of variables
@@ -45,13 +229,13 @@ robust code, detection of point, boundary of variables
 </div>
 </div>
 <div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">analyze problem, improve the algorithm (time and space)</h3>
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> analyze problem, improve the algorithm (time and space)</h3>
 </div>
 <div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">communication skill</h3>
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> communication skill</h3>
 </div>
 <div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5">conclusion</h3>
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> conclusion</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 I read the book for interview. As short term goal, I focus on the
@@ -62,10 +246,10 @@ programming skills and robust code.
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">basic skills</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> basic skills</h2>
 <div class="outline-text-2" id="text-2">
 </div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">language</h3>
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> language</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The employer usually use C/C++ as the target language during the
@@ -112,7 +296,7 @@ instance during declaration.
 </div>
 </div>
 <div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">data structure</h3>
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> data structure</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 this is a review of what I learned 6 years ago, which concerns the
@@ -213,7 +397,7 @@ of next since both of them can be NULL.
 </div>
 </div>
 <div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">algorithm</h3>
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> algorithm</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 the common algorithms include ordering and search with common data structures.
@@ -225,23 +409,23 @@ the common algorithms include ordering and search with common data structures.
 and larger numbers to right. 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">partition</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">data</span>[], <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">start</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">end</span>){
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">index</span> = RandomInRang(start, end);
-Swap(&amp;data[index], &amp;data[end]);
-
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">small</span> = start -1;
-<span style="color: #859900;">for</span>( index = start; index &lt; end; ++index){
-    <span style="color: #859900;">if</span> (data[index]&lt;data[end]){
-        ++ small;
-        <span style="color: #859900;">if</span> (small != index)
-            Swap(&amp;data[index], &amp;data[small]);
-    }
-}
-
-++ small;
-Swap(&amp;data[small], &amp;data[end]);
-
-<span style="color: #859900;">return</span> small;}
+<pre class="src src-C++"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">partition</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">data</span>[], <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">start</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">end</span>){&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">index</span> = RandomInRang(start, end);&#57344;&#57345;&#57345;
+Swap(&amp;data[index], &amp;data[end]);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">small</span> = start -1;&#57344;&#57345;&#57345;
+<span style="color: #859900;">for</span>( index = start; index &lt; end; ++index){&#57344;&#57345;&#57345;
+    <span style="color: #859900;">if</span> (data[index]&lt;data[end]){&#57344;&#57345;&#57345;
+        ++ small;&#57344;&#57345;&#57345;
+        <span style="color: #859900;">if</span> (small != index)&#57344;&#57345;&#57345;
+            Swap(&amp;data[index], &amp;data[small]);&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+++ small;&#57344;&#57345;&#57345;
+Swap(&amp;data[small], &amp;data[end]);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #859900;">return</span> small;}&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -256,19 +440,19 @@ element defined by function <code>template&lt;T&gt; bool criterion(T
        element)</code>
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #859900;">template</span>&lt;T&gt; <span style="color: #268bd2;">void</span> <span style="color: #b58900;">TwoParts</span>(<span style="color: #268bd2;">T</span>[] list, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">bool</span> (*<span style="color: #6c71c4;">func</span>)(<span style="color: #268bd2;">T</span>)){
-    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">headPointer</span> = list;
-    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">tailPointer</span> = list+length-1;
-    <span style="color: #859900;">while</span>(headPointer &lt; tailPointer){
-        <span style="color: #859900;">while</span>(func(*headPointer))
-            headPointer++;
-        <span style="color: #859900;">while</span>(<span style="color: #268bd2;">!</span>func(*tailPointer))
-            tailPointer++;
-        <span style="color: #268bd2;">T</span> <span style="color: #6c71c4;">swap</span> = *headPointer;
-        *headPointer = *tailPointer;
-        *tailPointer = swap;
-    }
-}
+<pre class="src src-C++"><span style="color: #859900;">template</span>&lt;T&gt; <span style="color: #268bd2;">void</span> <span style="color: #b58900;">TwoParts</span>(<span style="color: #268bd2;">T</span>[] list, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">bool</span> (*<span style="color: #6c71c4;">func</span>)(<span style="color: #268bd2;">T</span>)){&#57344;&#57345;
+    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">headPointer</span> = list;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">tailPointer</span> = list+length-1;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">while</span>(headPointer &lt; tailPointer){&#57344;&#57345;&#57345;
+        <span style="color: #859900;">while</span>(func(*headPointer))&#57344;&#57345;&#57345;
+            headPointer++;&#57344;&#57345;&#57345;
+        <span style="color: #859900;">while</span>(<span style="color: #268bd2;">!</span>func(*tailPointer))&#57344;&#57345;&#57345;
+            tailPointer++;&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">T</span> <span style="color: #6c71c4;">swap</span> = *headPointer;&#57344;&#57345;&#57345;
+        *headPointer = *tailPointer;&#57344;&#57345;&#57345;
+        *tailPointer = swap;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </dd>
@@ -286,17 +470,17 @@ zero cases. Second, use bit operation on the power number to
 quickly get the result \(a^n=(a^{n/2})^2\). 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">powerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){
-<span style="color: #859900;">if</span> (exponent == 0)
-    <span style="color: #859900;">return</span> 1;
-<span style="color: #859900;">if</span> (exponent == 1)
-    <span style="color: #859900;">return</span> base;
-
-<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = powerWithUnsignedExponent(base, exponent&gt;&gt;1);
-result *= result;
-<span style="color: #859900;">if</span> (exponent &amp; 0x1)
-    result *= base;
-<span style="color: #859900;">return</span> result;
+<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">powerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span> (exponent == 0)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> 1;&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span> (exponent == 1)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> base;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = powerWithUnsignedExponent(base, exponent&gt;&gt;1);&#57344;&#57345;&#57345;
+result *= result;&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span> (exponent &amp; 0x1)&#57344;&#57345;&#57345;
+    result *= base;&#57344;&#57345;&#57345;
+<span style="color: #859900;">return</span> result;&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
@@ -306,12 +490,12 @@ change the bits until the last 1; then xor operation will put
 the changed bits into 0. 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">numberOfOne</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">n</span>){
-    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">count</span> = 0;
-    <span style="color: #859900;">while</span> (n){
-        count ++;
-        n = n&amp;(n-1);
-    <span style="color: #859900;">return</span> count;
+<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">numberOfOne</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">n</span>){&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">count</span> = 0;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">while</span> (n){&#57344;&#57345;&#57345;
+        count ++;&#57344;&#57345;&#57345;
+        n = n&amp;(n-1);&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> count;&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
@@ -341,7 +525,7 @@ reply on the mathematical induction method.
 </div>
 </div>
 <div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4">robust</h3>
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> robust</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>cannot use <code>d==0</code> for double type.
@@ -349,18 +533,18 @@ reply on the mathematical induction method.
 <li>divide 0
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">PowerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){
-    <span style="color: #859900;">if</span> (exponent == 0)
-        <span style="color: #859900;">return</span> 1;
-    <span style="color: #859900;">if</span> (exponent == 1)
-        <span style="color: #859900;">return</span> base;
-
-    <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = PowerWithUnsignedExponent(base, exponent &gt;&gt; 1);
-    result *= result;
-    <span style="color: #859900;">if</span> (exponent &amp; 0x1 ==1)
-        result *= base;
-
-    <span style="color: #859900;">return</span> result;
+<pre class="src src-c"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">PowerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){&#57344;&#57345;&#57345;
+    <span style="color: #859900;">if</span> (exponent == 0)&#57344;&#57345;&#57345;
+        <span style="color: #859900;">return</span> 1;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">if</span> (exponent == 1)&#57344;&#57345;&#57345;
+        <span style="color: #859900;">return</span> base;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = PowerWithUnsignedExponent(base, exponent &gt;&gt; 1);&#57344;&#57345;&#57345;
+    result *= result;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">if</span> (exponent &amp; 0x1 ==1)&#57344;&#57345;&#57345;
+        result *= base;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> result;&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
@@ -368,3 +552,12 @@ reply on the mathematical induction method.
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2014-11-26 Wed 21:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>
