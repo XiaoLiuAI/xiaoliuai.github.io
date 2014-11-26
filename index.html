@@ -264,8 +264,9 @@ the octave mpi package globally:
 If you install the package under user&#8217;s home folder, you can
 find exmaple codes under <code>$HOME/octave/packages/mpi-1.2.0/</code>. To
 test the example inside octave, run command
-<code>system ("mpirun octave -q --eval 'pkg load mpi; helloworld
-       ()'");</code>
+<code>[info res] = system ("mpirun octave -q --eval 'pkg load mpi; helloworld
+       ()'");</code>. <b>The displayed string of the funciton, e.g. <code>helloworld()</code>, will return by this invokation. Therefore your can embed it in another
+serial computing octave script context (use str2num()).</b>
 </p>
 </li>
 <li>Frequently used mpirun options: <code>--hostfile</code> indicate the file

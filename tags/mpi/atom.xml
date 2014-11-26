@@ -3,7 +3,7 @@
 <title><![CDATA[Tag: MPI | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/mpi/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2014-11-26T22:00:49+01:00</updated>
+<updated>2014-11-27T00:22:04+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
@@ -164,8 +164,9 @@ the octave mpi package globally:
 If you install the package under user&#8217;s home folder, you can
 find exmaple codes under <code>$HOME/octave/packages/mpi-1.2.0/</code>. To
 test the example inside octave, run command
-<code>system ("mpirun octave -q --eval 'pkg load mpi; helloworld
-       ()'");</code>
+<code>[info res] = system ("mpirun octave -q --eval 'pkg load mpi; helloworld
+       ()'");</code>. <b>The displayed string of the funciton, e.g. <code>helloworld()</code>, will return by this invokation. Therefore your can embed it in another
+serial computing octave script context (use str2num()).</b>
 </p>
 </li>
 <li>Frequently used mpirun options: <code>--hostfile</code> indicate the file

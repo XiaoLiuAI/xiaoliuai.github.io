@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Note of MUSE Development</title>
-<!-- 2014-11-26 Wed 21:58 -->
+<!-- 2014-11-27 Thu 00:22 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -294,8 +294,9 @@ the octave mpi package globally:
 If you install the package under user's home folder, you can
 find exmaple codes under <code>$HOME/octave/packages/mpi-1.2.0/</code>. To
 test the example inside octave, run command
-<code>system ("mpirun octave -q --eval 'pkg load mpi; helloworld
-       ()'");</code>
+<code>[info res] = system ("mpirun octave -q --eval 'pkg load mpi; helloworld
+       ()'");</code>. <b>The displayed string of the funciton, e.g. <code>helloworld()</code>, will return by this invokation. Therefore your can embed it in another
+serial computing octave script context (use str2num()).</b>
 </p>
 </li>
 <li>Frequently used mpirun options: <code>--hostfile</code> indicate the file
@@ -722,7 +723,7 @@ Matlab:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-26 Wed 21:58</p>
+<p class="date">Created: 2014-11-27 Thu 00:22</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>
