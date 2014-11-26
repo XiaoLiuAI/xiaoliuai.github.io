@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Writing Blog Using Org-mode and Octopress - 记往开来</title>
+  <meta name="author" content="Xiao Liu">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiaoliuai.github.io/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="记往开来" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://xiaoliuai.github.io/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html">
+  <meta property="og:title" content="Writing Blog Using Org-mode and Octopress - 记往开来">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">记往开来</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:xiaoliuai.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="记往开来" />
+    
+    <meta itemprop="url" content="http://xiaoliuai.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-29T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Writing Blog Using Org-mode and Octopress
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Octopress Installation</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Installation of old version ruby with rbenv</a></li>
+<li><a href="#sec-1-2">1.2. Setup the octopress</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1. Copy octopress repository</a></li>
+<li><a href="#sec-1-2-2">1.2.2. Install dependencies</a></li>
+<li><a href="#sec-1-2-3">1.2.3. Install the default theme</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Common usage</a></li>
+</ul>
+</div>
+</div>
+<p>
+After the installation  and the configuration of jekyll along with
+the org-mode. I tried to find some configurations to facilitate the
+creation of org files (create file with date in front of file name,
+insert heads, etc.) I did not realize the existence of relative
+emacs packages in elpa and asked google for solutions. My
+inefficient search key-words let the google returns undesired
+answer: the <b>octopress</b>. Octopress is based on the jekyll, but
+provide richer blog settings. Finally, I migrated to octopress and
+use it to manager my github pages.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html"><span class="section-number-2">1</span> Octopress Installation</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Installation of octopress is little complex since it requires low
+version ruby.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Installation of old version ruby with rbenv</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+You can following the instructions on the <a href="http://octopress.org/docs/setup/rbenv">official manual</a>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>&#57344;&#57345;&#57345;
+git clone git://github.com/sstephenson/rbenv.git .rbenv&#57344;&#57345;&#57345;
+git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build&#57344;&#57345;
+</pre>
+</div>
+<p>
+Add two lines into the end of shell profile (.zshrc in my case).
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>&#57344;&#57345;&#57345;
+<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+Then reload the profile by <code>source ~/.zshrc</code> or resume the
+terminal.
+The installation of rbenv and ruby-build can be replaced by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">brew update&#57344;&#57345;&#57345;
+brew install rbenv&#57344;&#57345;&#57345;
+brew install ruby-build&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+Attention: the shell profile must be modified with both
+installation methods.
+</p>
+
+<p>
+Then install ruby 1.9.3, which is required by octopress.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rbenv install 1.9.3-p0&#57344;&#57345;&#57345;
+rbenv local 1.9.3-p0&#57344;&#57345;&#57345;
+rbenv rehash&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Setup the octopress</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+My setup experience is basically the same with the <a href="http://octopress.org/docs/setup/">official
+manual</a>. However, after the installation, I replaced the octopress
+directory to <code>~/WorkSpace/xiaoliuai.github.io</code> because it actually
+becomes the repository of my github pages (<b>magnificent!</b>). So I
+suggest to clone the octopress git repository into the directory
+with the same name of the repository of your github pages at the
+beginning.
+</p>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Copy octopress repository</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+(_I suggest to clone shallow copy with option_ <code>depth</code>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress&#57344;&#57345;&#57345;
+<span style="color: #6c71c4;">cd</span> octopress&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Install dependencies</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">gem install bundler&#57344;&#57345;&#57345;
+rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>&#57344;&#57345;
+bundle install&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> Install the default theme</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+(_I suggest to ignore this step and install the 3rd-party theme
+       directly_)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rake install&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Common usage</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Local site
+
+<p>
+The octopress puts the generated web site, including the pages,
+layouts, images, etc. into the <code>_deploy</code> folder. The <code>source</code>
+folder contains all the source files used to generate the site,
+including the layout HTML files, Java-scripts, style-sheets,
+etc. It can be seemed as a hyper <code>_posts</code> folder that contains
+source files more than blog HTML files. The familiar <code>_posts</code>
+folder used in jekyll is under this folder. Let&#8217;s <a href="http://octopress.org/docs/blogging/">start blogging</a>.
+</p>
+
+<p>
+First, go into the octopress folder, type <code>rake
+      new_post["title"]</code>, octopress will ask you to give a blog tile,
+then creates a <code>markdown</code> file into the <code>_posts</code> folder with
+jekyll format (concatenate date and the title as the file name).
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+This file should be edited respect to the jekyll protocol.
+</p>
+
+<p>
+Second, ran <code>rake generate</code> to generate the site in <code>_deploy</code>
+and then ran <code>rake preview</code> to mount a web-server at
+<a href="http://localhost:4000">http://localhost:4000</a>.
+</p>
+</li>
+
+<li>Deploying to Github Pages
+
+<p>
+Octopress integrated commands to let you deploy the generated
+site to the github.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rake setup_github_pages&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+This command will ask you for a URL of the Github repo, then it
+will store your Github pages repository URL as the <i>origin</i>
+remote and change the octopress remote to <i>octopress</i>. The
+directory of octopress becomes the repository of the <b>source</b>
+branch of the origin remote (your Github Pages repo). The
+<code>_deploy</code> directory, which contains the generated site, becomes
+the <b>master</b> branch of the origin remote.
+Run command:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rake deploy&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+will push the generated site in <code>_deploy</code> to the master branch
+of the origin remote.
+To keep your settings and sources tracked, run
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git add .&#57344;&#57345;&#57345;
+git commit -m<span style="color: #2aa198;">'Your message'</span>&#57344;&#57345;&#57345;
+git push origin source&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+to push the contents in octopress directory to the source branch
+of the origin remote.
+</p>
+
+<p>
+<span class="underline">One thing confusing is that one repository (master branch) is</span>
+<span class="underline">under another repository. But the directory <code>_deploy</code> is in the</span>
+<span class="underline"><code>gitignore</code> of source branch, hence solve the self-contain
+problem.</span>
+</p>
+</li>
+</ul>
+
+<p>
+
+</p>
+</div>
+</div>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Xiao Liu</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-29T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geek/'>geek</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://xiaoliuai.github.io/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html" data-via="" data-counturl="http://xiaoliuai.github.io/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2014-10-29-parallelism.html" title="Previous Post: Parallelism">&laquo; Parallelism</a></li>
+            
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item active" href="/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html">Writing Blog Using Org-mode and Octopress</a>
+    
+    <a class="list-group-item " href="/blog/2014-10-29-parallelism.html">Parallelism</a>
+    
+    <a class="list-group-item " href="/blog/2014-10-29-initialize-the-first-blog.html">Initialize the First Blog</a>
+    
+  </div>
+</section>
+
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/xiaoliuai">@xiaoliuai</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiaoliuai',
+            count: 2,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/blog/categories/geek/index.html">
+        <span class="badge">2</span>
+        geek
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/parallelism/index.html">
+        <span class="badge">1</span>
+        parallelism
+      </a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+        <div class="panel-heading">
+                <h2 class="panel-title">标签列表</h2>
+        </div>
+        <div class="list-group">
+                        <ul class="tag-cloud">
+                                <a style="font-size: 210%" href="/tags/github/">GitHub</a>
+<a style="font-size: 90%" href="/tags/jekyll/">Jekyll</a>
+<a style="font-size: 90%" href="/tags/mpi/">MPI</a>
+<a style="font-size: 90%" href="/tags/matlab/">Matlab</a>
+<a style="font-size: 90%" href="/tags/octave/">Octave</a>
+<a style="font-size: 90%" href="/tags/octopress/">Octopress</a>
+<a style="font-size: 210%" href="/tags/org-mode/">Org-mode</a>
+
+                        </ul>
+        </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2014 - Xiao Liu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+  </body>
+</html>

@@ -1,9 +1,18 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Org-mode and Octopress
+excerpt: Blog with org-mode, octopress.
+categories:
+- Geek
+tags: org blog emacs octopress
+---
+#+END_HTML
+
+#+STARTUP: showall indent
+#+STARTUP: hidestars
 #+TITLE: Org-mode and Octopress
 #+DATE: 2014-10-27
-#+SETUPFILE: ~/Emacs/org/org-sty/setupfile.org
-#+JEKYLL_CATEGORIES: Geek
-#+JEKYLL_TAGS: org blog emacs octopress
-#+JEKYLL_PUBLISHED: true
 
 * Writing Blog Using Org-mode and Octopress
   After the installation  and the configuration of jekyll along with
@@ -22,6 +31,33 @@
 
 ** Installation of old version ruby with rbenv
    You can following the instructions on the [[http://octopress.org/docs/setup/rbenv][official manual]].
+   #+begin_src sh
+   cd # go to home
+   git clone git://github.com/sstephenson/rbenv.git .rbenv
+   git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
+   #+end_src
+   Add two lines into the end of shell profile (.zshrc in my case).
+   #+begin_src sh
+   export PATH=$HOME/.rbenv/bin:$PATH
+   eval "$(rbenv init -)"
+   #+end_src
+   Then reload the profile by =source ~/.zshrc= or resume the
+   terminal.
+   The installation of rbenv and ruby-build can be replaced by
+   #+begin_src sh
+   brew update
+   brew install rbenv
+   brew install ruby-build
+   #+end_src
+   Attention: the shell profile must be modified with both
+   installation methods.
+
+   Then install ruby 1.9.3, which is required by octopress.
+   #+begin_src sh
+   rbenv install 1.9.3-p0
+   rbenv local 1.9.3-p0
+   rbenv rehash
+   #+end_src
 
 ** Setup the octopress
    My setup experience is basically the same with the [[http://octopress.org/docs/setup/][official
@@ -33,8 +69,9 @@
    beginning.
 
 *** Setup
-    - Copy octopress repository (_I suggest to clone shallow copy with
-      option =depth=_)
+    - Copy octopress repository
+
+      (_I suggest to clone shallow copy with option_ =depth=)
       #+begin_src sh
       git clone git://github.com/imathis/octopress.git octopress
       cd octopress
@@ -45,15 +82,75 @@
       rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command
       bundle install
       #+end_src
-    - Install the default theme (_I suggest to ignore this step and
-      install the 3rd-party theme directly_)
+    - Install the default theme
+
+      (_I suggest to ignore this step and install the 3rd-party theme
+      directly_)
       #+begin_src sh
       rake install
       #+end_src
     - Install the 3rd-party theme (optional)
     - Add 3rd-party tools (optional)
 
-*** Directory structure comments
+*** Common usage
+
+    - Local site
+
+      The octopress puts the generated web site, including the pages,
+      layouts, images, etc. into the =_deploy= folder. The =source=
+      folder contains all the source files used to generate the site,
+      including the layout HTML files, Java-scripts, style-sheets,
+      etc. It can be seemed as a hyper =_posts= folder that contains
+      source files more than blog HTML files. The familiar =_posts=
+      folder used in jekyll is under this folder. Let's [[http://octopress.org/docs/blogging/][start blogging]].
+
+      First, go into the octopress folder, type =rake
+      new_post["title"]=, octopress will ask you to give a blog tile,
+      then creates a =markdown= file into the =_posts= folder with
+      jekyll format (concatenate date and the title as the file name).
+      #+begin_src sh
+      rake new_post["My first blog"]
+      # create source/_posts/2014-10-28-my-first-blog.markdown
+      #+end_src
+      This file should be edited respect to the jekyll protocol.
+
+      Second, ran =rake generate= to generate the site in =_deploy=
+      and then ran =rake preview= to mount a web-server at
+      http://localhost:4000.
+
+    - Deploying to Github Pages
+
+      Octopress integrated commands to let you deploy the generated
+      site to the github.
+      #+begin_src sh
+      rake setup_github_pages
+      #+end_src
+      This command will ask you for a URL of the Github repo, then it
+      will store your Github pages repository URL as the /origin/
+      remote and change the octopress remote to /octopress/. The
+      directory of octopress becomes the repository of the *source*
+      branch of the origin remote (your Github Pages repo). The
+      =_deploy= directory, which contains the generated site, becomes
+      the *master* branch of the origin remote.
+      Run command:
+      #+begin_src sh
+      rake deploy
+      #+end_src
+      will push the generated site in =_deploy= to the master branch
+      of the origin remote.
+      To keep your settings and sources tracked, run
+      #+begin_src sh
+      git add .
+      git commit -m'Your message'
+      git push origin source
+      #+end_src
+      to push the contents in octopress directory to the source branch
+      of the origin remote.
+
+      _One thing confusing is that one repository (master branch) is_
+      _under another repository. But the directory =_deploy= is in the_
+      _=gitignore= of source branch, hence solve the self-contain
+      problem._
 
 * Emacs Configuration
 
@@ -61,14 +158,16 @@
    The package can be installed from elpa, but it does not support the
    tags. Hence, I modified the ox-jekyll.el file, duplicated all the
    variables and expressions contain =categories= and then replace
-   them by =tags=. After reopening emacs, it successfully exports the tags
-   into HTML files under _posts.
+   them by =tags=. After reopening emacs, it successfully exports the
+   tags into HTML files under _posts.
 
-** TODO [0/3]
+** TODO [1/4]
 
-   - [ ] tags
-   - [ ] automatically inserted categories
+   - [X] tags
    - [ ] functions of contents in setupfile.org
+   - [ ] org-octopress generate =publish= folder.
+   - [ ] In [[http://orgmode.org/worg/org-tutorials/org-jekyll.html][org-jekyll]], YAML markup is mentioned many times. I have to
+    study into it when I have time.
 {{{more}}}
 
 * 博客美化,定制
@@ -78,3 +177,30 @@
   好,[[http://fatestigma.github.io/blog/2014/05/05/tags-in-octopress/][这篇博文]]里提到可以使用tag插件的[[https://github.com/robbyedwards/octopress-tag-cloud/issues/1][Issues]]里面给出的解决方案:修改
   =plugins/tag_clound.rg= 文件.在我所使用的版本中,需要修改的文件是
   =plugins/tag_list.el=.
+
+** TODO [0/2]
+
+   - [ ] 给代码块加行号
+   - [ ] 进一步美化(抄完)
+
+* Conflict and Test
+  标准的org-mode模式在导出为jekyll的HTML片段的时候似乎有一些不兼容.目
+  前发现org-mode下给一段文本加下划线的方式不兼容jekyll.不知道表格是否
+  兼容.以下是测试:
+  #+begin_src org
+  |-----------+------------------+------------|
+  |           | Gene_expression  | Regulation |
+  |-----------+------------------+------------|
+  | precision |               80 |         50 |
+  | recall    |               80 |         50 |
+  |-----------+------------------+------------|
+  #+end_src
+  会生成以下表格
+  |-----------+------------------+------------|
+  |           | Gene_expression  | Regulation |
+  |-----------+------------------+------------|
+  | precision |               80 |         50 |
+  | recall    |               80 |         50 |
+  |-----------+------------------+------------|
+  看来org-mode最吸引我的表格制作至少在org-octopress插件下不兼容.再考虑
+  到这个插件在处理tag时的无力,或许弃用这个插件,另寻它法是更好的选择.

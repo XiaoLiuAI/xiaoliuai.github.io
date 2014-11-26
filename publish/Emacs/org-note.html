@@ -1,0 +1,310 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Studying note of org mode</a>
+<ul>
+<li><a href="#sec-1-1">How to use org? (Commands and functions)</a>
+<ul>
+<li><a href="#sec-1-1-1">editing notes</a>
+<ul>
+<li><a href="#sec-1-1-1-1">structure editing</a></li>
+<li><a href="#sec-1-1-1-2">plain list</a></li>
+<li><a href="#sec-1-1-1-3">Table in ASCII, seems have similar function to spreadsheet</a></li>
+<li><a href="#sec-1-1-1-4">Hyperlinks</a></li>
+<li><a href="#sec-1-1-1-5">Tags</a></li>
+<li><a href="#sec-1-1-1-6">Todo</a></li>
+<li><a href="#sec-1-1-1-7">Time stamps</a></li>
+<li><a href="#sec-1-1-1-8">Deadline</a></li>
+<li><a href="#sec-1-1-1-9">SCHEDULED</a></li>
+<li><a href="#sec-1-1-1-10">embed latex</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-1-2">display notes</a>
+<ul>
+<li><a href="#sec-1-1-2-1">fold full text</a></li>
+<li><a href="#sec-1-1-2-2">move between nodes similar to info</a></li>
+<li><a href="#sec-1-1-2-3">sparse trees</a></li>
+<li><a href="#sec-1-1-2-4">jump between links and footnotes</a></li>
+<li><a href="#jump-internal-link">jump between link</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-1-2">Way of manage project? (Working flow, can be org independent)</a>
+<ul>
+<li><a href="#sec-1-2-1">Archive finished jobs.</a></li>
+<li><a href="#sec-1-2-2">Group the task by tree and tag</a></li>
+<li><a href="#sec-1-2-3">Question2:</a></li>
+<li><a href="#sec-1-2-4">sub heading/todo extends the tag of parent heading/todo</a></li>
+<li><a href="#sec-1-2-5">How to display the extended tag in agenda</a></li>
+<li><a href="#sec-1-2-6">about org-remember and template</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Studying note of org mode</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">How to use org? (Commands and functions)</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1">editing notes</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+<a href="../../../docs/">doc 9 in directory</a>
+</p>
+</div>
+<div id="outline-container-sec-1-1-1-1" class="outline-5">
+<h5 id="sec-1-1-1-1">structure editing</h5>
+<div class="outline-text-5" id="text-1-1-1-1">
+<ul class="org-ul">
+<li>using commands to edit the nodes as trees, increase/decrease
+the level of a subtree, move subtree.
+</li>
+<li>using commands to automatically complet some structure
+information like the level information, TODO.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-1-1-2" class="outline-5">
+<h5 id="sec-1-1-1-2">plain list</h5>
+<div class="outline-text-5" id="text-1-1-1-2">
+<p>
+hand formatted structure like ordered description list and
+checkbox
+</p>
+<ul class="org-ul">
+<li><code>C-c -</code> to switch the format between *,-,+,1.,1).
+</li>
+<li><code>C-c C-x C-b</code> invoke function <code>org-toggle-checkbox</code>.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-1-1-3" class="outline-5">
+<h5 id="sec-1-1-1-3">Table in ASCII, seems have similar function to spreadsheet</h5>
+<div class="outline-text-5" id="text-1-1-1-3">
+<ul class="org-ul">
+<li><code>C-c |</code> convert the active region to table, easy to convert the
+data separated by tab or comma.
+</li>
+<li><code>C-c C-c</code> Re-align without moving the cursor
+</li>
+<li id="TAB, S-TAB, RET">re-align, move to next/previous field,
+next row
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-1-1-4" class="outline-5">
+<h5 id="sec-1-1-1-4">Hyperlinks</h5>
+<div class="outline-text-5" id="text-1-1-1-4">
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #268bd2; text-decoration: underline;"><a href="link">description</a></span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>internal link. The link with value <code>#my-custom-id</code> points to
+entry, of which value of property CUSTOM_ID is
+'my-custom-id'. This an example, <a href="#jump-internal-link">jump to internal link</a>. This
+link does not work after converting into pdf file.
+</li>
+<li>external link on the web, local file, mail address, etc.
+It is very similar to the rtf file, very similar function
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-1-1-5" class="outline-5">
+<h5 id="sec-1-1-1-5">Tags</h5>
+</div>
+<div id="outline-container-sec-1-1-1-6" class="outline-5">
+<h5 id="sec-1-1-1-6">Todo</h5>
+<div class="outline-text-5" id="text-1-1-1-6">
+<p>
+specifying todo keywords at the beginning of file will override
+the settings loaded in elisp script
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-1-1-7" class="outline-5">
+<h5 id="sec-1-1-1-7">Time stamps</h5>
+</div>
+<div id="outline-container-sec-1-1-1-8" class="outline-5">
+<h5 id="sec-1-1-1-8">Deadline</h5>
+</div>
+<div id="outline-container-sec-1-1-1-9" class="outline-5">
+<h5 id="sec-1-1-1-9">SCHEDULED</h5>
+</div>
+<div id="outline-container-sec-1-1-1-10" class="outline-5">
+<h5 id="sec-1-1-1-10">embed latex</h5>
+<div class="outline-text-5" id="text-1-1-1-10">
+<p>
+Example of insert latex code into org mode:
+\[
+P_{k}^{n}=Prob(w_{k}|\mathbf{x}_{n})=\frac{\exp(w_{k}f_{n}(k)+w'_{k})}{z_{n}},
+\]
+where \(z_{n}=\sum_{k=1}^{K}\exp(w_{k}f_{n}(k)+w'_{k})\) is a
+normalization term that ensures that 
+\(\sum_{k=1}^{K}P_{k}^{n}=1\).
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2">display notes</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Though the notes are created as full text, they contain structure
+information. Hence, we should be capable to view them in other
+views besides full text.
+</p>
+</div>
+<div id="outline-container-sec-1-1-2-1" class="outline-5">
+<h5 id="sec-1-1-2-1">fold full text</h5>
+<div class="outline-text-5" id="text-1-1-2-1">
+<ul class="org-ul">
+<li>using TAB to fold and unfold a node from FOLD to CHILDREN to
+SUBTREE.
+</li>
+<li>using S TAB/C-u TAB to switch between OVERVIEW(only display the
+first level heads), CONTENTS (only display all the heads) and
+SHOW ALL.
+</li>
+<li>under MAC OS X, the S TAB does not work since it is used as
+switching applications.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2-2" class="outline-5">
+<h5 id="sec-1-1-2-2">move between nodes similar to info</h5>
+<div class="outline-text-5" id="text-1-1-2-2">
+<ul class="org-ul">
+<li>C-c C-[move command], move command can be n,p,f,b,u
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2-3" class="outline-5">
+<h5 id="sec-1-1-2-3">sparse trees</h5>
+<div class="outline-text-5" id="text-1-1-2-3">
+<ul class="org-ul">
+<li>This is very important! C-c / with prompted options can make
+you to view the tree with specified contents.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2-4" class="outline-5">
+<h5 id="sec-1-1-2-4">jump between links and footnotes</h5>
+<div class="outline-text-5" id="text-1-1-2-4">
+<ul class="org-ul">
+<li>C-c C-c jump between defintion and reference
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-jump-internal-link" class="outline-5">
+<h5 id="jump-internal-link"><a id="sec-1-1-2-5" name="sec-1-1-2-5"></a>jump between link</h5>
+<div class="outline-text-5" id="text-jump-internal-link">
+<ul class="org-ul">
+<li>C-c C-o open link
+</li>
+<li>C-c &amp; jump back
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Way of manage project? (Working flow, can be org independent)</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+examples in org-mode实现GTD
+</p>
+</div>
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">Archive finished jobs.</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ul class="org-ul">
+<li>archive to file which is %s_archive by default, the buffer
+specified file is defined by 
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+ARCHIVE: file_name</span>
+</pre>
+</div>
+<p>
+Another way of hide the finished task is adding ARCHIVE tag.
+</p>
+</li>
+<li>For a big task like projects, it is better to archive them
+together at the end of the project. Archiving sub-tasks can
+make some conflicts or overlaps, which are hard to track. It is
+better to see the unfinished tasks from agenda than consult the
+task tree.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2">Group the task by tree and tag</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+It is important to specify the environment of task by tag  and
+group similar things together.
+</p>
+<ul class="org-ul">
+<li>create a section for things to do someday.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3">Question2:</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+automatic move/copy finished tasks from task.org to finished.org when changing the status.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4">sub heading/todo extends the tag of parent heading/todo</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+The subtree extends the tag of parent by default, but they are
+not displayed. Of course, we can use the tag to search them.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2-5" class="outline-4">
+<h4 id="sec-1-2-5">How to display the extended tag in agenda</h4>
+</div>
+<div id="outline-container-sec-1-2-6" class="outline-4">
+<h4 id="sec-1-2-6">about org-remember and template</h4>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+footnote reference
+</p></div>
+
+
+</div>
+</div>

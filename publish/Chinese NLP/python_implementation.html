@@ -1,0 +1,230 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">编程</a>
+<ul>
+<li><a href="#sec-1-1">字符编码</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">分词</a>
+<ul>
+<li><a href="#sec-2-1">资源</a>
+<ul>
+<li><a href="#sec-2-1-1">语料资源</a></li>
+<li><a href="#sec-2-1-2">软件资源</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">实现</a>
+<ul>
+<li><a href="#sec-2-2-1">结巴分词</a>
+<ul>
+<li><a href="#sec-2-2-1-1">流水账</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">语法标记</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">编程</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">字符编码</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+中文处理中步可必免要面对字符编码问题.(由于中文字符编码的特殊性,英文NLP
+中使用UNIX命令进行简单字符串除理的办法基本失效.)最方便有效的办法是统一
+使用unicode和utf-8编码.
+</p>
+
+<ul class="org-ul">
+<li>python脚本编码设定,在文件开始加入 
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-*- coding:&lt;encoding name&gt; -*-</span>
+</pre>
+</div>
+<p>
+或者
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">coding=&lt;encoding name&gt;</span>
+</pre>
+</div>
+</li>
+<li>中文字符的unicode范围是\u4E00-\u9FA5,这个范围包含所有正规的简繁体
+中文字符.在这个范围之外有一些拟似中文字符.这些字符在网上字典中查
+不到意思,怀疑是日本汉字.关于字符匹配,参见
+<a href="https:github.com/fxsjy/jieba">结巴分词</a><sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>,主包下的 <code>__init__.py</code> 文件
+</li>
+<li>编码的原理.在一个系统里储存了显示字符的方式,每个字符都被编号.现在
+的系统为了支持多国语言,采用一个通用编码unicode.但是这种编码只确定
+了字符的现示编码,没有确定如何储存.这样做的原因是对于latin语系,用
+多个字节来表示字母是非常浪费储存空间的.所以储存编码和显示编码被分
+开.utf-8,big-5,gbk,ascii,就是储存编码.英文字母由于历史原因,在所有
+编码中都一样.但是对同一个汉字,不同储存编码的具体值就可能不一样.这
+就是乱码的由来.python中,编码指的是把unicode转换成储存编码,解码指的
+是把储存编码转换成unicode.一个str可以看成是储存编码,在写入文件前,
+必需编码.而读入的str在打印和求长度等运算前,必需解码.在字符串前加u
+等于解码.
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">分词</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+目前分词基本基于两类方法,一类是 <b>词匹配</b> ,另一类是基于 <b>Markov Random
+Field</b> 模型。基于词语匹配的方法速度很快,但是对于歧义的处理不好,很依赖
+词典;基于Markov Random Field (HMM,CEF, etc.)的模型在消除歧义方面有优势,不
+过速度相对慢很多.不管那一种模型,良好的词典支持都是必要的.有人甚至认为:
+ <i>算法本身不重要,重要的是词典.开源项目中可用的算法有很多,具体工程实现更
+偏重于有自己的一套面向项目的词典</i> 。
+</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">资源</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+文献集，<a href="https://github.com/zhangkaixu/bibpage"><a href="https://github.com/zhangkaixu/bibpage">https://github.com/zhangkaixu/bibpage</a></a>
+</p>
+</div>
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">语料资源</h4>
+</div>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2">软件资源</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<ul class="org-ul">
+<li>Coreseek,中文检索搜索软件,开源<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>且免费.包含
+MMSEG(词匹配分词算法),这个网站上还有CRF（分词算法)和Sphinx（搜索
+软件包,多语言)的开源资源下载。
+</li>
+
+<li>ik-analyzer<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup>是一个开源的,Java实现的词匹配工具包.知乎
+本身好像选用了这个方案.
+</li>
+
+<li>Stanford NLP package, CRF 实现分词算法.
+</li>
+
+<li>结巴分词<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup>,python实现,文档中说有HMM。在匹配（非训练）过程
+中，个人只看到已经算好概率的词匹配.包中还有关键词提取和词性标注功能。
+</li>
+
+<li>MaxEnt，张乐<a href="https://github.com/lzhang10/maxent"><a href="https://github.com/lzhang10/maxent">https://github.com/lzhang10/maxent</a></a>. 基于C++,但是有
+python接口，接口通过 <b>SWIG</b> 生成。
+</li>
+
+<li>CRF++。基于C++，有python接口
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">实现</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">结巴分词</h4>
+<div class="outline-text-4" id="text-2-2-1">
+</div><div id="outline-container-sec-2-2-1-1" class="outline-5">
+<h5 id="sec-2-2-1-1">流水账</h5>
+<div class="outline-text-5" id="text-2-2-1-1">
+<p>
+结巴分词自带一个三十多万词的词典，词典中包含词的频率（多为很小的个位
+数）。加载词典的时候会生成一个树，包含所有词的字符组合。根据这个树，可
+以知道当一个词中第$i$个字符为C的时候，第$i+1$个字符有哪些可能。这个树本
+身是不带频率或者概率统计的，所有的叶节点都为空字符串 =''= ，作为休止符
+方便查找。
+</p>
+
+<p>
+首先，对于一个大字符串（可以是一整部小说），使用正则表达式将整块的中文
+分割出来。基于中文的特性，所有的标点符号都是分割符， <b>分词中的句子对象
+是分句，不是整句</b> 。默认的正则表达式是
+<code>[\u4E00-\u9FA5a-zA-Z0-9+#&amp;\._]+</code> ，这个表达式有一个问题，那就是遇到用
+英文句号的文本会导致分句失败。
+</p>
+
+<p>
+对于目标句，先创建了一个DAG的数据结构，包含这个句子中所有可能的出现在词
+典中的候选词（以字典的方式返回词在句中的位置， <code>(i,j)</code> 被表述为
+<code>{i:[j]}</code> ）。然后根据词频计算概率最大的分词组合。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #6c71c4;">N</span> = <span style="color: #6c71c4;">len</span>(sentence)
+<span style="color: #6c71c4;">route</span>[N] = (0.0,<span style="color: #2aa198;">''</span>)
+<span style="color: #859900;">for</span> idx <span style="color: #859900;">in</span> <span style="color: #6c71c4;">xrange</span>(N-1,-1,-1):
+    <span style="color: #6c71c4;">candidates</span> = [ ( FREQ.get(sentence[idx:x+1],min_freq) + route[x+1][0],x ) <span style="color: #859900;">for</span> x <span style="color: #859900;">in</span> DAG[idx] ]
+    <span style="color: #6c71c4;">route</span>[idx] = <span style="color: #6c71c4;">max</span>(candidates)
+</pre>
+</div>
+<p>
+对于连续的单字词，使用hmm来分词，将字母和数字抱团成为新词。这个hmm只关
+注分词，采用4-tag为隐藏层状态。
+</p>
+
+<p>
+在关键词提取过程中，首先对文档进行分词（默认），然后计算词在文档中的频
+率。之后和从idf.txt中读取的idf相乘，最后排序。
+</p>
+
+<p>
+词性标注的代码位于posseg包中，使用了HMM。先分词，这部分跟之前差不多，但
+是多了对于数字的细化处理。=word_tag_tab=,对于登录词的tag采用查表的方式。
+依靠超标来判断登录词的词性导致词义消岐不行。例句：“我花了一个小时吃饭”
+和“我喜欢花”中的“花”词性不同。对于连续单字词，使用HMM重新划分和标注词类，
+（viterbi算法）。这里的HMM把分词标签和词性标签混合在一起作为hidden
+state，也就是说，每个hidden state实际上是一个joint state，具体的实现为
+一个tuple。举个例子，transit probability的一个状态转换为从 <code>(B,'n')</code> 到
+<code>(E,'n')</code>.在4-tag（B(egin),M(edia),E(nd),S(ingle)）的情况下，所有可能的
+状态为 \(4\times p\), \(p\) 为POS的标签种数。
+</p>
+
+<p>
+具体使用HMM实现分词和标注词性时的一个技巧是通过观测训练数据减少
+emission probability的候选，同时记住每个字有限的可能状态，从而减少要计
+算的状态数。如果出现完全不在训练数据中的emission情况，则用一个小值来做
+平滑（ <b>只有不存在任何记录状况时才做平滑</b> ）。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">语法标记</h2>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+See <a href="https:github.com/fxsjy/jieba"><a href="https:github.com/fxsjy/jieba">https:github.com/fxsjy/jieba</a></a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+See <a href="http://www.coreseek.cn/opensource/"><a href="http://www.coreseek.cn/opensource/">http://www.coreseek.cn/opensource/</a></a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+See <a href="https://code.google.com/p/ik-analyzer/"><a href="https://code.google.com/p/ik-analyzer/">https://code.google.com/p/ik-analyzer/</a></a>.
+</p></div>
+
+
+</div>
+</div>

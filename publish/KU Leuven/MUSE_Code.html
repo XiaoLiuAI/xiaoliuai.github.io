@@ -1,0 +1,93 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Muse_Python</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Muse_Python</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The muse_python part is an interface to launch Stanford CoreNLP
+package to make tokenization, coreference resolution, <i>etc</i>. This
+package provides two ways of invoking the parser: 1) interactive style
+provided by StanfordCoreNLP class, 2) batch_parse.
+</p>
+
+<p>
+This package use <a href="https://pexpect.readthedocs.org/en/latest/">pexpect</a> to call the corenlp as in an interactive
+command line. Besides, the author likes <b>json</b> very much. I also found
+the package xmltodict (handle xml like json). Below, I list all the
+standard python package and site-packages used in this project.
+</p>
+
+<ul class="org-ul">
+<li>standard
+<ul class="org-ul">
+<li>json
+</li>
+<li>os, re, sys, shutil, tempfile, collections
+</li>
+<li>traceback <i>used in verbose mode</i>
+</li>
+<li>subprocess <i>call command to process the xml output file to bypass the command-line interface limit</i>
+</li>
+</ul>
+</li>
+<li>site-package
+<ul class="org-ul">
+<li>pexpect <i>run application as under an interactive command-line</i>
+</li>
+<li>xmltodict <i>parse xml to ordered dict</i>
+</li>
+<li>progressbar <i>show progressbar in verbose mode</i>
+</li>
+<li>unidecode <i>decode, encode unicode?</i>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+From the <code>default.properties</code> file, the Stanford corenlp pakcage
+execute the tokenization, sentence splitting, POS tag, lemmatization,
+NER, parsing and coreference resolution tasks. There are also many
+commented options.
+</p>
+
+<p>
+The class StanfordCoreNLP works in a server mode along with pexpect? I
+am not sure.
+</p>
+
+<p>
+Except the <code>corenlp</code> module, there is a <code>muse</code> module in this
+package. It contains many things.
+</p>
+<ul class="org-ul">
+<li>io       read CoNLL and LiirCoref data
+</li>
+<li>lm       supposed to be an interface to work with the RNNLM, not
+complished yet?
+</li>
+<li>modules
+</li>
+<li>represe  representation of texts, sentences, <i>etc</i> in python data
+structure
+</li>
+<li>resource Read SemLink data. VerbClassManager cooperates with
+nltk.corpus.VerbnetCorpusReader. <font color=red>What is SemLink?
+What exactly does the VerbClassManager work for?</font>
+</li>
+<li>spliter  Sentence splitter, tokenizer
+</li>
+<li>srl      semiSupervised?
+</li>
+<li>taggers  SimplePOSTagger
+</li>
+</ul>
+</div>
+</div>

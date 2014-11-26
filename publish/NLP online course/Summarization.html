@@ -1,0 +1,181 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Type of Tasks</a>
+<ul>
+<li><a href="#sec-1-1">Applications</a></li>
+<li><a href="#sec-1-2">Target</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Methods</a>
+<ul>
+<li><a href="#sec-2-1">Single Document Summarization</a>
+<ul>
+<li><a href="#sec-2-1-1">Generating Summarization</a></li>
+<li><a href="#sec-2-1-2">Evaluation</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">Multi-document Summarization (Question Answering)</a>
+<ul>
+<li><a href="#sec-2-2-1">Snippet</a></li>
+<li><a href="#sec-2-2-2">Information extraction (domain-specific anwsering)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Type of Tasks</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Applications</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>outlines or abstracts,
+</li>
+<li>summaries of email threads
+</li>
+<li>action items
+</li>
+<li>simplifying
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Target</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Single document summarization
+abstract, outline, headline
+</li>
+<li>Multi-document
+<ul class="org-ul">
+<li>retrieve stories on the same event
+</li>
+<li>web pages about some topics or questions
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Methods</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Single Document Summarization</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">Generating Summarization</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<ul class="org-ul">
+<li>Content Selection Retrieving relative sentences.<br  />
+       Supervised methods are not better than unsupervised, thus unsupervised methods are more common.
+<ul class="org-ul">
+<li>tf-idf
+</li>
+<li>topic signature (informative words)
+<ul class="org-ul">
+<li>likelihood
+</li>
+<li>mutual information
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Information Ordering
+Reordering the sentences, usually keeping the document order.
+</li>
+<li>Sentence Realization
+Cleaning up the sentences, usually using the original sentences.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2">Evaluation</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+ROUGE-n method evaluates the summaries by counting the n-grams
+coexisting in generated summaries and human made summaries.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">Multi-document Summarization (Question Answering)</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Two kinds of methods: top-down (information extraction) , bottom-up (snippet).
+</p>
+</div>
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">Snippet</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<ul class="org-ul">
+<li>Splitting sentences from documents
+</li>
+<li>Simplifing sentences (triming parsing trees, rule-based)
+</li>
+<li>Extractign sentences (Maximal Margin Relevance)
+<ul class="org-ul">
+<li>Relevant to query
+</li>
+<li>Novel to extracted answers
+</li>
+</ul>
+</li>
+<li>Ordering
+<ul class="org-ul">
+<li>Chronological ordering
+</li>
+<li>Coherence (neighboring sentences are similar or discuss the same entity)
+</li>
+<li>Topic ordering (learn the orders of topics from source files)
+</li>
+</ul>
+</li>
+<li>Sentence realization
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2">Information extraction (domain-specific anwsering)</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<ul class="org-ul">
+<li>Predefined forms about specific domain. (i.e the forms predefined in BioNLP)
+<ul class="org-ul">
+<li>Biography of a person (birth/death, fame factor, education, nationality)
+</li>
+<li>Definition (hypernym)
+</li>
+<li>Medical anwser (problem, intervention, outcome)
+</li>
+</ul>
+</li>
+<li>Framewrok
+<ul class="org-ul">
+<li>Document retrieval
+</li>
+<li><b>Predicate identification</b> ?
+</li>
+<li><b>Data-driven analysis</b> ?
+</li>
+<li>Definition creation
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,271 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1"><span class="todo TODO">TODO</span> Python <code>[2/6]</code></a></li>
+<li><a href="#sec-2"><span class="done DONE">DONE</span> Java <code>[2/2]</code></a>
+<ul>
+<li><a href="#sec-2-1"><span class="done DONE">DONE</span> Archive into an excutable.</a></li>
+<li><a href="#sec-2-2"><span class="done DONE">DONE</span> Make command line interface.</a></li>
+</ul>
+</li>
+<li><a href="#sec-3"><span class="done DONE">DONE</span> Display</a></li>
+<li><a href="#sec-4"><span class="todo SINGLE">SINGLE</span> Web Site <code>[0/2]</code></a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="todo TODO">TODO</span> Python <code>[2/6]</code></h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><code>[X]</code> Create corpus sets view on multiple corpuses.
+</li>
+</ul>
+<p>
+I define corpus sets the original corpus settings provided by the task
+organizers, which is distinguished by the year of task and <i>train</i>,
+<i>development</i> and <i>test</i> propose. However, in order to fill the
+requirements during development of algorithm or train a powerful
+classifier to participate the challenge, one usually merge some of
+these corpus. So I create corpus sets view that works like a wrapper
+on the original files and preprocessing results, so we only have only
+one copy of these files on disk.
+</p>
+
+<p>
+However, as I did not make a searialization process, the temporary
+files made by the prediction models cannot be seperated from the
+original data. Hence, I still have to save some redundant files for
+each tasks. This problem can be solved by giving ids to all the
+objects so that different data can be saved in different XML files and
+keep the common data shared by each step of the model.
+</p>
+<ul class="org-ul">
+<li><code>[X]</code> Serialize objects and save them into XML files separately
+</li>
+</ul>
+<p>
+Attributes of corpus without annotation.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Document</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    Document object contains the view of document with respect to a  specific tokenization</span>
+<span style="color: #2aa198;">    along with the corresponding sentences.</span>
+
+<span style="color: #2aa198;">    Attributes:</span>
+<span style="color: #2aa198;">        hyper_doc            The reference to the HyperDoc</span>
+<span style="color: #2aa198;">        tokens              The list of all the tokens</span>
+<span style="color: #2aa198;">        sentences           The list of Sentences</span>
+<span style="color: #2aa198;">        charOffset2token    The index from character index to Token</span>
+<span style="color: #2aa198;">    '''</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">HyperDoc</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    HyperDoc is the abstract document that does not contain the concrete tokenizations.</span>
+<span style="color: #2aa198;">    It contains a list of HyperSent, which contains the sentence boundary, entity and</span>
+<span style="color: #2aa198;">    annotation information.</span>
+
+<span style="color: #2aa198;">    Attributes</span>
+<span style="color: #2aa198;">        id                   file name, for example: PMID-997...</span>
+<span style="color: #2aa198;">        raw_text             original text</span>
+<span style="color: #2aa198;">        corpus_name          corpus name of this document</span>
+<span style="color: #2aa198;">        documents            dictionary of Documents</span>
+<span style="color: #2aa198;">        hyper_sents           list of HyperSents</span>
+<span style="color: #2aa198;">        proteins             dictionary of proteins, {protein_label -&gt; protein_object}</span>
+<span style="color: #2aa198;">        target_annotation    dictionary of annotations to create (gold annotation, temporary annotation), {annotation_name -&gt; trigger_annotation}</span>
+<span style="color: #2aa198;">        charOffset2hyper_sent dictionary of character indices to HyperSent</span>
+<span style="color: #2aa198;">    '''</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Sentence</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    Sentence object contains the tokens, index of dependency parse trees/graphs and phrase structure trees.</span>
+
+<span style="color: #2aa198;">    Attributes</span>
+<span style="color: #2aa198;">        tokens          list of Tokens</span>
+<span style="color: #2aa198;">        parseTrees      index of phrase structure trees, {parser_name -&gt; parse tree}</span>
+<span style="color: #2aa198;">        dependencies    index of dependency parse trees/graphs, {parser_name -&gt; parse tree/graph}</span>
+<span style="color: #2aa198;">        hyper_sent      HyperSent that contains this Sentence</span>
+<span style="color: #2aa198;">        document        Document that this Sentence belongs to</span>
+<span style="color: #2aa198;">    '''</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">HyperSent</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    HyperSent manages the Sentence, annotations</span>
+
+<span style="color: #2aa198;">    Attributes:</span>
+<span style="color: #2aa198;">        charOffsetBeg       Start char index</span>
+<span style="color: #2aa198;">        charOffsetEnd       End char index</span>
+<span style="color: #2aa198;">        hyper_doc           HyperDoc that this HyperSent belongs to</span>
+<span style="color: #2aa198;">        indexInDocument     The list of Sentences</span>
+<span style="color: #2aa198;">        sentences           The dictionary of sentences {tok_name -&gt; Sentence}</span>
+<span style="color: #2aa198;">    '''</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Token</span>(<span style="color: #6c71c4;">object</span>):
+    <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    basic element, contain the raw text, lemma, character position ...</span>
+<span style="color: #2aa198;">    Attributes:</span>
+<span style="color: #2aa198;">        lemma               lemma</span>
+<span style="color: #2aa198;">        stem                stemmed word</span>
+<span style="color: #2aa198;">        raw_text            raw text</span>
+<span style="color: #2aa198;">        decorated           ...</span>
+<span style="color: #2aa198;">        pos                 part of speech</span>
+<span style="color: #2aa198;">        charOffsetBeg       index of first character</span>
+<span style="color: #2aa198;">        charOffsetEnd       index of last character</span>
+<span style="color: #2aa198;">        document            Docuemnt that this Token belongs to</span>
+<span style="color: #2aa198;">        sentence            Sentence that this Token belongs to</span>
+<span style="color: #2aa198;">        ner                 ...</span>
+<span style="color: #2aa198;">    '''</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> Save different annotations separately. Annotations are
+independent to the preprocessed documents.
+Annotations are saved in both <code>HyperDoc</code> and <code>HyperSent</code>, but the
+<code>Entity</code> are only saved in <code>HyperSent</code>. The <code>HyperDoc</code> and
+<code>Document</code> do not directly access the <code>Entity</code>.
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> AnnotationLoader
+The current application running portal is main.py, which read a
+configuration file by the given path and clear cache files after
+all the tasks finished. The configuration file contains a taks
+list and the main() function runs the tasks by sequence. Each
+task configuration contains a <code>taks name</code>, a <code>task method</code> and a
+string of <code>task parameters</code>, which will be loaded by <code>eval</code>.
+
+<p>
+In addition, I save the preprocessed documents and the
+annotaions separately, which means there is no <i>cache</i> of
+corpus but only <i>cache</i> of annotations. So the action of loading
+annotion should be implemented as a non-task methodf. Based on
+this method, I have to implement a task method for UnitTest
+and put this function into task method for each steps of RUPEE.
+</p>
+</li>
+<li><code>[&#xa0;]</code> RUPEE steps organization
+</li>
+</ul>
+</li>
+<li><code>[&#xa0;]</code> Remove 'base token protocol'.
+</li>
+<li><code>[&#xa0;]</code> Protocol to solve one file.
+</li>
+<li><code>[&#xa0;]</code> Protocol to invoke protein name recognition application.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="done DONE">DONE</span> Java <code>[2/2]</code></h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2014-10-09 jeu. 18:14]</span></span>
+</li>
+<li>State "TODO"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2014-10-09 jeu. 18:11]</span></span>
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="done DONE">DONE</span> Archive into an excutable.</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2014-10-09 jeu. 18:14]</span></span>
+</li>
+<li>State "TODO"       from ""           <span class="timestamp-wrapper"><span class="timestamp">[2014-10-09 jeu. 18:13]</span></span>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="done DONE">DONE</span> Make command line interface.</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2014-10-09 jeu. 18:14]</span></span>
+</li>
+<li>State "TODO"       from ""           <span class="timestamp-wrapper"><span class="timestamp">[2014-10-09 jeu. 18:13]</span></span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="done DONE">DONE</span> Display</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>State "DONE"       from "SINGLE"     <span class="timestamp-wrapper"><span class="timestamp">[2014-10-14 mar. 14:17]</span></span>
+</li>
+</ul>
+<p>
+Using <b>BRAT</b>.
+</p>
+
+<p>
+With apache server installed on the machine and the server folder is
+<code>/home/xiaoliu/Public/</code>, clone the git repository of brat into
+<code>Public</code> and run the installation script <code>brat/install.sh</code>. This
+script will ask you for the user name and password for accessing the
+server (I think is only used to edit the annotations, the mail address
+for the administrator) and create two directories <code>data</code> and <code>work</code>
+with appropriate group and permitions. The data we wish to display
+should be placed under the directory <code>data</code>, whiler <code>work</code> is for the
+script to generate some necessary files. If your apache is well
+configured to run the <b>CGI</b> script, you should be able to visit the brat
+now by <code>localhost/brat</code>, which will be automatically redirected to
+<code>localhost/brat/index.xhtml</code>. But if the apache server is not well
+configured, you will see nothing and be told that you cannot access to
+the brat folder. You can rename the file <code>.htaccess</code> to
+<code>.htaccess_bp</code> to visit the <code>index.xhtml</code> by force and collect the
+error information. An alternative solution to gathering the error
+messages is run <code>brat/tools/troubleshooting.sh</code>.
+</p>
+
+<p>
+The CGI configuration tutorial given by the developer does not work on
+my machine. Here I record what I did to make it works. First, you do
+not edit the <code>/etc/apache2/httpd.conf</code>, <b>instead</b> you edit the
+<code>/etc/apache2/sites-available/000-default.conf</code>. In addition to what
+to be added noticed in the tutorial, you have to add <code>ExecCGI</code> to
+<code>Options</code> to make it work. Then you restart the apache server by
+<code>sudo service apache2 restart</code>.
+</p>
+
+<p>
+Let me conclude what needs to do for apache CGI below.
+</p>
+<ul class="org-ul">
+<li>Add
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-apache">ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+&lt;Directory /home/xiaoliu/Public&gt;
+    Options Indexes FollowSymLinks ExecCGI
+    AllowOverride Options Indexes FileInfo Limit
+    Require all granted
+    AddHandler cgi-script .cgi
+&lt;/Directory&gt;
+</pre>
+</div>
+<p>
+into <code>/etc/apache2/sites-available/000-default.conf</code>.
+</p>
+<ul class="org-ul">
+<li>Run <code>sudo a2enmod cgi</code> and then <code>sudo service apache2 restart</code>.
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="todo SINGLE">SINGLE</span> Web Site <code>[0/2]</code></h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><code>[&#xa0;]</code> Input, background excution, display.
+</li>
+<li><code>[&#xa0;]</code> Protein name recognition.
+</li>
+</ul>
+</div>
+</div>
