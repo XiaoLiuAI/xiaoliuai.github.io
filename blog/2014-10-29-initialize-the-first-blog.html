@@ -186,10 +186,10 @@ things work.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">xiaoliuai.github.io/&#57344;&#57345;&#57345;
--- _posts/&#57344;&#57345;&#57345;
--- _sites/&#57344;&#57345;&#57345;
-...&#57344;&#57345;&#57345;
+<pre class="src src-sh">xiaoliuai.github.io/
+-- _posts/
+-- _sites/
+...
 </pre>
 </div>
 <p>
@@ -213,26 +213,26 @@ the contents in <code>_sites</code>.
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-org"</span>&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"org"</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:recursive</span> t&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:publishing-function</span> org-html-publish-to-html&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:headline-levels</span> 4&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:html-extension</span> <span style="color: #2aa198;">"html"</span>&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:body-only</span> t <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Only export section between &lt;body&gt; &lt;/body&gt;</span>&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:with-toc</span> nil <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">don't export toc, it clobbers the YAML front matter</span>&#57344;&#57345;&#57345;
- <span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-static"</span>&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">js</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">png</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gif</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">pdf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">mp3</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">swf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gz</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">txt</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">el"</span>&#57344;&#57345;
- <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:recursive</span> t&#57344;&#57345;&#57345;
- <span style="color: #6c71c4;">:publishing-function</span> org-publish-attachment&#57344;&#57345;&#57345;
- <span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog"</span><span style="color: #6c71c4;">:components</span> <span style="color: #2aa198;">(</span><span style="color: #2aa198;">"blog-org"</span> <span style="color: #2aa198;">"blog-static"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-org"</span>
+ <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
+ <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
+
+ <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
+ <span style="color: #6c71c4;">:recursive</span> t
+ <span style="color: #6c71c4;">:publishing-function</span> org-html-publish-to-html
+ <span style="color: #6c71c4;">:headline-levels</span> 4
+ <span style="color: #6c71c4;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
+ <span style="color: #6c71c4;">:body-only</span> t <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
+ <span style="color: #6c71c4;">:with-toc</span> nil <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">don't export toc, it clobbers the YAML front matter</span>
+ <span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-static"</span>
+ <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
+ <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">js</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">png</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gif</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">pdf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">mp3</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">swf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gz</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">txt</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">el"</span>
+ <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
+ <span style="color: #6c71c4;">:recursive</span> t
+ <span style="color: #6c71c4;">:publishing-function</span> org-publish-attachment
+ <span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog"</span><span style="color: #6c71c4;">:components</span> <span style="color: #2aa198;">(</span><span style="color: #2aa198;">"blog-org"</span> <span style="color: #2aa198;">"blog-static"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
 </pre>
 </div>
 <p>
@@ -248,17 +248,17 @@ html files into the right place.
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 
-<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+STARTUP: showall indent</span>&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">#+STARTUP: hidestars</span>&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">#+BEGIN_HTML</span>&#57344;&#57345;&#57345;
-<span style="color: #cb4b16;">---</span>&#57344;&#57345;&#57345;
-<span style="color: #cb4b16;">layout: default</span>&#57344;&#57345;&#57345;
-<span style="color: #cb4b16;">title: Xiao Liu's First Blog</span>&#57344;&#57345;&#57345;
-<span style="color: #cb4b16;">excerpt: First blog with org-mode, jekyll.</span>&#57344;&#57345;&#57345;
-<span style="color: #cb4b16;">categories:</span>&#57344;&#57345;&#57345;
-<span style="color: #cb4b16;">    - org</span>&#57344;&#57345;&#57345;
-<span style="color: #cb4b16;">---</span>&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">#+END_HTML</span>&#57344;&#57345;&#57345;
+<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+STARTUP: showall indent</span>
+<span style="color: #93a1a1; font-style: italic;">#+STARTUP: hidestars</span>
+<span style="color: #93a1a1; font-style: italic;">#+BEGIN_HTML</span>
+<span style="color: #cb4b16;">---</span>
+<span style="color: #cb4b16;">layout: default</span>
+<span style="color: #cb4b16;">title: Xiao Liu's First Blog</span>
+<span style="color: #cb4b16;">excerpt: First blog with org-mode, jekyll.</span>
+<span style="color: #cb4b16;">categories:</span>
+<span style="color: #cb4b16;">    - org</span>
+<span style="color: #cb4b16;">---</span>
+<span style="color: #93a1a1; font-style: italic;">#+END_HTML</span>
 </pre>
 </div>
 </div>
@@ -372,6 +372,8 @@ name, description, email address, etc.
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2014-12-18-drilljava.html">Drill的Java后端</a>
+    
     <a class="list-group-item " href="/blog/2014-11-26-parallelism.html">Parallelism</a>
     
     <a class="list-group-item " href="/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html">Writing Blog Using Org-mode and Octopress</a>
@@ -436,6 +438,12 @@ name, description, email address, etc.
         parallelism
       </a>
     
+    
+    <a class="list-group-item " href="/blog/categories/web/index.html">
+        <span class="badge">1</span>
+        web
+      </a>
+    
   </div>
 </section>
 <section class="panel panel-default">
@@ -445,12 +453,14 @@ name, description, email address, etc.
         <div class="list-group">
                         <ul class="tag-cloud">
                                 <a style="font-size: 210%" href="/tags/github/">GitHub</a>
+<a style="font-size: 90%" href="/tags/java/">Java</a>
 <a style="font-size: 90%" href="/tags/jekyll/">Jekyll</a>
 <a style="font-size: 90%" href="/tags/mpi/">MPI</a>
 <a style="font-size: 90%" href="/tags/matlab/">Matlab</a>
 <a style="font-size: 90%" href="/tags/octave/">Octave</a>
 <a style="font-size: 90%" href="/tags/octopress/">Octopress</a>
 <a style="font-size: 210%" href="/tags/org-mode/">Org-mode</a>
+<a style="font-size: 90%" href="/tags/spring/">Spring</a>
 
                         </ul>
         </div>

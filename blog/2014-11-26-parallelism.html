@@ -206,9 +206,9 @@ sudo make install
 <li>Inside octave
 <div class="org-src-container">
 
-<pre class="src src-octave">putenv (<span style="color: #2aa198;">"PATH"</span><span style="color: #6c71c4;">,</span> [<span style="color: #2aa198;">"path/to/mpic++/:"</span> getenv(<span style="color: #2aa198;">"PATH"</span>)]) <span style="color: #93a1a1; font-style: italic;">% optional</span>&#57344;&#57345;&#57345;
-pkg install <span style="color: #6c71c4;">-</span>forge mpi      <span style="color: #93a1a1; font-style: italic;">% install mpi from internet or</span>&#57344;&#57345;&#57345;
-pkg install PATH<span style="color: #6c71c4;">/</span>TO<span style="color: #6c71c4;">/</span>PACKAGE <span style="color: #93a1a1; font-style: italic;">% install mpi from downloaded package</span>&#57344;&#57345;&#57345;
+<pre class="src src-octave">putenv (<span style="color: #2aa198;">"PATH"</span><span style="color: #6c71c4;">,</span> [<span style="color: #2aa198;">"path/to/mpic++/:"</span> getenv(<span style="color: #2aa198;">"PATH"</span>)]) <span style="color: #93a1a1; font-style: italic;">% optional</span>
+pkg install <span style="color: #6c71c4;">-</span>forge mpi      <span style="color: #93a1a1; font-style: italic;">% install mpi from internet or</span>
+pkg install PATH<span style="color: #6c71c4;">/</span>TO<span style="color: #6c71c4;">/</span>PACKAGE <span style="color: #93a1a1; font-style: italic;">% install mpi from downloaded package</span>
 </pre>
 </div>
 </li>
@@ -245,7 +245,7 @@ method.
 <li>Second way is call the system command inside octave.
 <div class="org-src-container">
 
-<pre class="src src-octave">system (<span style="color: #2aa198;">"mpirun octave -q --eval '[octave code, function or script name]"</span>)<span style="color: #6c71c4;">;</span>&#57344;&#57345;
+<pre class="src src-octave">system (<span style="color: #2aa198;">"mpirun octave -q --eval '[octave code, function or script name]"</span>)<span style="color: #6c71c4;">;</span>
 </pre>
 </div>
 </li>
@@ -282,21 +282,21 @@ and receive messages/variables. Basically, these functions are
 enough to create the parallelism program.
 <div class="org-src-container">
 
-<pre class="src src-octave">MPI_Init()<span style="color: #6c71c4;">;</span>&#57344;&#57345;&#57345;
-communicator <span style="color: #6c71c4;">=</span> MPI_Comm_Load(<span style="color: #2aa198;">"a label string"</span>) <span style="color: #93a1a1; font-style: italic;">% one can use multiple communicators indicated by different label</span>&#57344;&#57345;
-my_rank <span style="color: #6c71c4;">=</span> MPI_Comm_rank(communicator) <span style="color: #93a1a1; font-style: italic;">% rank is the indicator(id) of current process</span>&#57344;&#57345;
-p <span style="color: #6c71c4;">=</span> MPI_Comm_size(CW) <span style="color: #93a1a1; font-style: italic;">% the size of a communicator is the number of processes handled by the communicator</span>&#57344;&#57345;
-[info] <span style="color: #6c71c4;">=</span> MPI_Send(value<span style="color: #6c71c4;">,</span> ranks<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)<span style="color: #6c71c4;">;</span>&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  a octave variable</span>&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">ranks:  a vector that contains the id of destination processes, can be an integer</span>&#57344;&#57345;
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">TAG:    an integer to identify the message (when there are many messages sent in the same context)</span>&#57344;&#57345;
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">info:   an integer that indicates the success of failure state of process</span>&#57344;&#57345;
-[value<span style="color: #6c71c4;">,</span> info] <span style="color: #6c71c4;">=</span> MPI_Recv(source<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">source: the id the process that send this message</span>&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">receive from any process if source is -1</span>&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">process starts from 0 and process 0 is usually used as master process</span>&#57344;&#57345;
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  received variable</span>&#57344;&#57345;&#57345;
-MPI_Finalize()&#57344;&#57345;&#57345;
+<pre class="src src-octave">MPI_Init()<span style="color: #6c71c4;">;</span>
+communicator <span style="color: #6c71c4;">=</span> MPI_Comm_Load(<span style="color: #2aa198;">"a label string"</span>) <span style="color: #93a1a1; font-style: italic;">% one can use multiple communicators indicated by different label</span>
+my_rank <span style="color: #6c71c4;">=</span> MPI_Comm_rank(communicator) <span style="color: #93a1a1; font-style: italic;">% rank is the indicator(id) of current process</span>
+p <span style="color: #6c71c4;">=</span> MPI_Comm_size(CW) <span style="color: #93a1a1; font-style: italic;">% the size of a communicator is the number of processes handled by the communicator</span>
+[info] <span style="color: #6c71c4;">=</span> MPI_Send(value<span style="color: #6c71c4;">,</span> ranks<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)<span style="color: #6c71c4;">;</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  a octave variable</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">ranks:  a vector that contains the id of destination processes, can be an integer</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">TAG:    an integer to identify the message (when there are many messages sent in the same context)</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">info:   an integer that indicates the success of failure state of process</span>
+[value<span style="color: #6c71c4;">,</span> info] <span style="color: #6c71c4;">=</span> MPI_Recv(source<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">source: the id the process that send this message</span>
+<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">receive from any process if source is -1</span>
+<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">process starts from 0 and process 0 is usually used as master process</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  received variable</span>
+MPI_Finalize()
 </pre>
 </div>
 
@@ -414,6 +414,8 @@ width="900" height="600"></iframe>
             <li class="previous"><a href="/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html" title="Previous Post: Writing Blog Using Org-mode and Octopress">&laquo; Writing Blog Using Org-mode and Octopress</a></li>
             
             
+            <li class="next"><a href="/blog/2014-12-18-drilljava.html" title="Next Post: Drill的Java后端">Drill的Java后端 &raquo;</a></li>
+            
           </ul>
         
       </footer>
@@ -430,6 +432,8 @@ width="900" height="600"></iframe>
   </div>
   
   <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2014-12-18-drilljava.html">Drill的Java后端</a>
     
     <a class="list-group-item active" href="/blog/2014-11-26-parallelism.html">Parallelism</a>
     
@@ -495,6 +499,12 @@ width="900" height="600"></iframe>
         parallelism
       </a>
     
+    
+    <a class="list-group-item " href="/blog/categories/web/index.html">
+        <span class="badge">1</span>
+        web
+      </a>
+    
   </div>
 </section>
 <section class="panel panel-default">
@@ -504,12 +514,14 @@ width="900" height="600"></iframe>
         <div class="list-group">
                         <ul class="tag-cloud">
                                 <a style="font-size: 210%" href="/tags/github/">GitHub</a>
+<a style="font-size: 90%" href="/tags/java/">Java</a>
 <a style="font-size: 90%" href="/tags/jekyll/">Jekyll</a>
 <a style="font-size: 90%" href="/tags/mpi/">MPI</a>
 <a style="font-size: 90%" href="/tags/matlab/">Matlab</a>
 <a style="font-size: 90%" href="/tags/octave/">Octave</a>
 <a style="font-size: 90%" href="/tags/octopress/">Octopress</a>
 <a style="font-size: 210%" href="/tags/org-mode/">Org-mode</a>
+<a style="font-size: 90%" href="/tags/spring/">Spring</a>
 
                         </ul>
         </div>

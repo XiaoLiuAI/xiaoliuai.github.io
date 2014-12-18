@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>RUPEE Reconstruction Notes</title>
-<!-- 2014-11-26 Wed 21:57 -->
+<!-- 2014-11-27 Thu 16:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -192,70 +192,70 @@ Attributes of corpus without annotation.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Document</span>(<span style="color: #6c71c4;">object</span>):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    Document object contains the view of document with respect to a  specific tokenization</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    along with the corresponding sentences.</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    Attributes:</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        hyper_doc            The reference to the HyperDoc</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        tokens              The list of all the tokens</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        sentences           The list of Sentences</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        charOffset2token    The index from character index to Token</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    '''</span>&#57344;&#57345;&#57345;
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">HyperDoc</span>(<span style="color: #6c71c4;">object</span>):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    HyperDoc is the abstract document that does not contain the concrete tokenizations.</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    It contains a list of HyperSent, which contains the sentence boundary, entity and</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    annotation information.</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    Attributes</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        id                   file name, for example: PMID-997...</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        raw_text             original text</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        corpus_name          corpus name of this document</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        documents            dictionary of Documents</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        hyper_sents           list of HyperSents</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        proteins             dictionary of proteins, {protein_label -&gt; protein_object}</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        target_annotation    dictionary of annotations to create (gold annotation, temporary annotation), {annotation_name -&gt; trigger_annotation}</span>&#57344;&#57345;
-<span style="color: #2aa198;">        charOffset2hyper_sent dictionary of character indices to HyperSent</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    '''</span>&#57344;&#57345;&#57345;
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">Sentence</span>(<span style="color: #6c71c4;">object</span>):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    Sentence object contains the tokens, index of dependency parse trees/graphs and phrase structure trees.</span>&#57344;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    Attributes</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        tokens          list of Tokens</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        parseTrees      index of phrase structure trees, {parser_name -&gt; parse tree}</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        dependencies    index of dependency parse trees/graphs, {parser_name -&gt; parse tree/graph}</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        hyper_sent      HyperSent that contains this Sentence</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        document        Document that this Sentence belongs to</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    '''</span>&#57344;&#57345;&#57345;
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">HyperSent</span>(<span style="color: #6c71c4;">object</span>):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    HyperSent manages the Sentence, annotations</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    Attributes:</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        charOffsetBeg       Start char index</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        charOffsetEnd       End char index</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        hyper_doc           HyperDoc that this HyperSent belongs to</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        indexInDocument     The list of Sentences</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        sentences           The dictionary of sentences {tok_name -&gt; Sentence}</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    '''</span>&#57344;&#57345;&#57345;
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">Token</span>(<span style="color: #6c71c4;">object</span>):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    basic element, contain the raw text, lemma, character position ...</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    Attributes:</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        lemma               lemma</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        stem                stemmed word</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        raw_text            raw text</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        decorated           ...</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        pos                 part of speech</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        charOffsetBeg       index of first character</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        charOffsetEnd       index of last character</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        document            Docuemnt that this Token belongs to</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        sentence            Sentence that this Token belongs to</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">        ner                 ...</span>&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">    '''</span>&#57344;&#57345;&#57345;
+<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Document</span>(<span style="color: #6c71c4;">object</span>):
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    Document object contains the view of document with respect to a  specific tokenization</span>
+<span style="color: #2aa198;">    along with the corresponding sentences.</span>
+
+<span style="color: #2aa198;">    Attributes:</span>
+<span style="color: #2aa198;">        hyper_doc            The reference to the HyperDoc</span>
+<span style="color: #2aa198;">        tokens              The list of all the tokens</span>
+<span style="color: #2aa198;">        sentences           The list of Sentences</span>
+<span style="color: #2aa198;">        charOffset2token    The index from character index to Token</span>
+<span style="color: #2aa198;">    '''</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">HyperDoc</span>(<span style="color: #6c71c4;">object</span>):
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    HyperDoc is the abstract document that does not contain the concrete tokenizations.</span>
+<span style="color: #2aa198;">    It contains a list of HyperSent, which contains the sentence boundary, entity and</span>
+<span style="color: #2aa198;">    annotation information.</span>
+
+<span style="color: #2aa198;">    Attributes</span>
+<span style="color: #2aa198;">        id                   file name, for example: PMID-997...</span>
+<span style="color: #2aa198;">        raw_text             original text</span>
+<span style="color: #2aa198;">        corpus_name          corpus name of this document</span>
+<span style="color: #2aa198;">        documents            dictionary of Documents</span>
+<span style="color: #2aa198;">        hyper_sents           list of HyperSents</span>
+<span style="color: #2aa198;">        proteins             dictionary of proteins, {protein_label -&gt; protein_object}</span>
+<span style="color: #2aa198;">        target_annotation    dictionary of annotations to create (gold annotation, temporary annotation), {annotation_name -&gt; trigger_annotation}</span>
+<span style="color: #2aa198;">        charOffset2hyper_sent dictionary of character indices to HyperSent</span>
+<span style="color: #2aa198;">    '''</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Sentence</span>(<span style="color: #6c71c4;">object</span>):
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    Sentence object contains the tokens, index of dependency parse trees/graphs and phrase structure trees.</span>
+
+<span style="color: #2aa198;">    Attributes</span>
+<span style="color: #2aa198;">        tokens          list of Tokens</span>
+<span style="color: #2aa198;">        parseTrees      index of phrase structure trees, {parser_name -&gt; parse tree}</span>
+<span style="color: #2aa198;">        dependencies    index of dependency parse trees/graphs, {parser_name -&gt; parse tree/graph}</span>
+<span style="color: #2aa198;">        hyper_sent      HyperSent that contains this Sentence</span>
+<span style="color: #2aa198;">        document        Document that this Sentence belongs to</span>
+<span style="color: #2aa198;">    '''</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">HyperSent</span>(<span style="color: #6c71c4;">object</span>):
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    HyperSent manages the Sentence, annotations</span>
+
+<span style="color: #2aa198;">    Attributes:</span>
+<span style="color: #2aa198;">        charOffsetBeg       Start char index</span>
+<span style="color: #2aa198;">        charOffsetEnd       End char index</span>
+<span style="color: #2aa198;">        hyper_doc           HyperDoc that this HyperSent belongs to</span>
+<span style="color: #2aa198;">        indexInDocument     The list of Sentences</span>
+<span style="color: #2aa198;">        sentences           The dictionary of sentences {tok_name -&gt; Sentence}</span>
+<span style="color: #2aa198;">    '''</span>
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">Token</span>(<span style="color: #6c71c4;">object</span>):
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
+<span style="color: #2aa198;">    basic element, contain the raw text, lemma, character position ...</span>
+<span style="color: #2aa198;">    Attributes:</span>
+<span style="color: #2aa198;">        lemma               lemma</span>
+<span style="color: #2aa198;">        stem                stemmed word</span>
+<span style="color: #2aa198;">        raw_text            raw text</span>
+<span style="color: #2aa198;">        decorated           ...</span>
+<span style="color: #2aa198;">        pos                 part of speech</span>
+<span style="color: #2aa198;">        charOffsetBeg       index of first character</span>
+<span style="color: #2aa198;">        charOffsetEnd       index of last character</span>
+<span style="color: #2aa198;">        document            Docuemnt that this Token belongs to</span>
+<span style="color: #2aa198;">        sentence            Sentence that this Token belongs to</span>
+<span style="color: #2aa198;">        ner                 ...</span>
+<span style="color: #2aa198;">    '''</span>
 </pre>
 </div>
 <ul class="org-ul">
@@ -414,7 +414,7 @@ into <code>/etc/apache2/sites-available/000-default.conf</code>.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-26 Wed 21:57</p>
+<p class="date">Created: 2014-11-27 Thu 16:11</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>

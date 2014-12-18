@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Web | 记往开来]]></title>
+  <link href="http://xiaoliuai.github.io/blog/categories/web/atom.xml" rel="self"/>
+  <link href="http://xiaoliuai.github.io/"/>
+  <updated>2014-12-18T21:31:12+01:00</updated>
+  <id>http://xiaoliuai.github.io/</id>
+  <author>
+    <name><![CDATA[Xiao Liu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Drill的Java后端]]></title>
+    <link href="http://xiaoliuai.github.io/blog/2014-12-18-drilljava.html"/>
+    <updated>2014-12-18T00:00:00+01:00</updated>
+    <id>http://xiaoliuai.github.io/blog/drilljava</id>
+    <content type="html"><![CDATA[<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 环境与配置加载</a></li>
+<li><a href="#sec-2">2. 持久化</a></li>
+<li><a href="#sec-3">3. 业务层</a></li>
+</ul>
+</div>
+</div>
+
+
+<p>
+Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接触到的内容有
+账号注册登录管理,本地化设置等等.将整个后端当做一个应用,那么在主目录
+下有一个 <code>Application.java</code> 类作为整个应用的入口.这个类最基本的应用需要
+<code>@ComponentScan</code> 和 <code>@EnableAutoConfiguration</code> 两个标签来声明自动配
+置和扫描组件;同时在 <code>main</code> 函数里实例化一个 <code>SpringApplication</code> 对象
+并调用对象函数 <code>run()</code> 就行了. 目前的程序里还用
+<code>app.setAdditionalProfiles</code> 在没有命令行参数的时候默认加载dev配置.
+</p>
+
+
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/categories/web/atom.xml"><span class="section-number-2">1</span> 环境与配置加载</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<code>SpringApplication</code> 会自动搜索以下路径来寻找
+<code>application.properties</code> 作为配置文件.
+</p>
+<ol class="org-ol">
+<li>当前路径下地 <code>/config</code> 子文件夹
+</li>
+<li>当前路径
+</li>
+<li><code>classpath:/config</code>
+</li>
+<li><code>classpath</code>
+</li>
+</ol>
+<p>
+同时,SpringApplication还支持 <font
+   color='blue'>YAML</font> 文件,即 <code>applicaiton.yml</code>.
+函数 <code>SpringApplication.setAdditionalProfiles("dev")</code> 则会额外加载
+<code>application-dev.yml</code> (或者 <code>application-dev.properties</code>), 而不是
+<code>dev.yml</code>.
+</p>
+
+<p>
+当我们有类继承了EnvironmentAware这个接口的时候,框架会自动调用这个类
+的 <code>setEnvironment</code> 方法,将一个 <code>Environment</code> 对象交给这个类的对象
+从而使这个类获得配置文件中提供的参数. <code>LocaleConfiguration</code> 和
+<code>MailConfiguration</code> 两个类展示了相关的编程方法.
+</p>
+
+<p>
+<code>LocalResolver</code> 和 <code>Interceptor</code>. 在接受请求的时候, <code>Interceptor</code>
+拦截请求中特定的参数值,并且调用 <code>LocalResolver</code> 的函数来进行相关渲
+染处理.在 <code>LocaleConfiguration</code> 中,龙伟权通过定义Bean来指定特定的
+<code>LocalResolver</code>, 即 <code>AngularCookieLocaleResolver</code>.
+</p>
+
+<p>
+问题:
+</p>
+<ol class="org-ol">
+<li>用 <code>EnvironmentAware</code> 和直接 <code>@Inject</code> 一个 <code>Environment</code> 有什么
+不同?
+</li>
+<li><code>LocaleConfiguration</code> 和 <code>ThymeleafConfiguration</code> 都有方法返回
+<code>MessageSource</code>, <code>MailService</code> 里面貌似引用的是
+<code>LocaleConfiguration</code> 返回的对象,为什么?
+</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 持久化</h2>
+</div>
+
+
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 业务层</h2>
+</div>
+
+]]></content>
+  </entry>
+  
+</feed>

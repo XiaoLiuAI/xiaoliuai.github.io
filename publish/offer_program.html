@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Exercises for program assignment during interview</title>
-<!-- 2014-11-26 Wed 21:57 -->
+<!-- 2014-11-27 Thu 16:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -409,23 +409,23 @@ the common algorithms include ordering and search with common data structures.
 and larger numbers to right. 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">partition</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">data</span>[], <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">start</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">end</span>){&#57344;&#57345;&#57345;
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">index</span> = RandomInRang(start, end);&#57344;&#57345;&#57345;
-Swap(&amp;data[index], &amp;data[end]);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">small</span> = start -1;&#57344;&#57345;&#57345;
-<span style="color: #859900;">for</span>( index = start; index &lt; end; ++index){&#57344;&#57345;&#57345;
-    <span style="color: #859900;">if</span> (data[index]&lt;data[end]){&#57344;&#57345;&#57345;
-        ++ small;&#57344;&#57345;&#57345;
-        <span style="color: #859900;">if</span> (small != index)&#57344;&#57345;&#57345;
-            Swap(&amp;data[index], &amp;data[small]);&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-++ small;&#57344;&#57345;&#57345;
-Swap(&amp;data[small], &amp;data[end]);&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #859900;">return</span> small;}&#57344;&#57345;&#57345;
+<pre class="src src-C++"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">partition</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">data</span>[], <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">start</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">end</span>){
+<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">index</span> = RandomInRang(start, end);
+Swap(&amp;data[index], &amp;data[end]);
+
+<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">small</span> = start -1;
+<span style="color: #859900;">for</span>( index = start; index &lt; end; ++index){
+    <span style="color: #859900;">if</span> (data[index]&lt;data[end]){
+        ++ small;
+        <span style="color: #859900;">if</span> (small != index)
+            Swap(&amp;data[index], &amp;data[small]);
+    }
+}
+
+++ small;
+Swap(&amp;data[small], &amp;data[end]);
+
+<span style="color: #859900;">return</span> small;}
 </pre>
 </div>
 <p>
@@ -440,19 +440,19 @@ element defined by function <code>template&lt;T&gt; bool criterion(T
        element)</code>
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #859900;">template</span>&lt;T&gt; <span style="color: #268bd2;">void</span> <span style="color: #b58900;">TwoParts</span>(<span style="color: #268bd2;">T</span>[] list, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">bool</span> (*<span style="color: #6c71c4;">func</span>)(<span style="color: #268bd2;">T</span>)){&#57344;&#57345;
-    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">headPointer</span> = list;&#57344;&#57345;&#57345;
-    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">tailPointer</span> = list+length-1;&#57344;&#57345;&#57345;
-    <span style="color: #859900;">while</span>(headPointer &lt; tailPointer){&#57344;&#57345;&#57345;
-        <span style="color: #859900;">while</span>(func(*headPointer))&#57344;&#57345;&#57345;
-            headPointer++;&#57344;&#57345;&#57345;
-        <span style="color: #859900;">while</span>(<span style="color: #268bd2;">!</span>func(*tailPointer))&#57344;&#57345;&#57345;
-            tailPointer++;&#57344;&#57345;&#57345;
-        <span style="color: #268bd2;">T</span> <span style="color: #6c71c4;">swap</span> = *headPointer;&#57344;&#57345;&#57345;
-        *headPointer = *tailPointer;&#57344;&#57345;&#57345;
-        *tailPointer = swap;&#57344;&#57345;&#57345;
-    }&#57344;&#57345;&#57345;
-}&#57344;&#57345;&#57345;
+<pre class="src src-C++"><span style="color: #859900;">template</span>&lt;T&gt; <span style="color: #268bd2;">void</span> <span style="color: #b58900;">TwoParts</span>(<span style="color: #268bd2;">T</span>[] list, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">bool</span> (*<span style="color: #6c71c4;">func</span>)(<span style="color: #268bd2;">T</span>)){
+    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">headPointer</span> = list;
+    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">tailPointer</span> = list+length-1;
+    <span style="color: #859900;">while</span>(headPointer &lt; tailPointer){
+        <span style="color: #859900;">while</span>(func(*headPointer))
+            headPointer++;
+        <span style="color: #859900;">while</span>(<span style="color: #268bd2;">!</span>func(*tailPointer))
+            tailPointer++;
+        <span style="color: #268bd2;">T</span> <span style="color: #6c71c4;">swap</span> = *headPointer;
+        *headPointer = *tailPointer;
+        *tailPointer = swap;
+    }
+}
 </pre>
 </div>
 </dd>
@@ -470,17 +470,17 @@ zero cases. Second, use bit operation on the power number to
 quickly get the result \(a^n=(a^{n/2})^2\). 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">powerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){&#57344;&#57345;&#57345;
-<span style="color: #859900;">if</span> (exponent == 0)&#57344;&#57345;&#57345;
-    <span style="color: #859900;">return</span> 1;&#57344;&#57345;&#57345;
-<span style="color: #859900;">if</span> (exponent == 1)&#57344;&#57345;&#57345;
-    <span style="color: #859900;">return</span> base;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = powerWithUnsignedExponent(base, exponent&gt;&gt;1);&#57344;&#57345;&#57345;
-result *= result;&#57344;&#57345;&#57345;
-<span style="color: #859900;">if</span> (exponent &amp; 0x1)&#57344;&#57345;&#57345;
-    result *= base;&#57344;&#57345;&#57345;
-<span style="color: #859900;">return</span> result;&#57344;&#57345;&#57345;
+<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">powerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){
+<span style="color: #859900;">if</span> (exponent == 0)
+    <span style="color: #859900;">return</span> 1;
+<span style="color: #859900;">if</span> (exponent == 1)
+    <span style="color: #859900;">return</span> base;
+
+<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = powerWithUnsignedExponent(base, exponent&gt;&gt;1);
+result *= result;
+<span style="color: #859900;">if</span> (exponent &amp; 0x1)
+    result *= base;
+<span style="color: #859900;">return</span> result;
 </pre>
 </div>
 </li>
@@ -490,12 +490,12 @@ change the bits until the last 1; then xor operation will put
 the changed bits into 0. 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">numberOfOne</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">n</span>){&#57344;&#57345;&#57345;
-    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">count</span> = 0;&#57344;&#57345;&#57345;
-    <span style="color: #859900;">while</span> (n){&#57344;&#57345;&#57345;
-        count ++;&#57344;&#57345;&#57345;
-        n = n&amp;(n-1);&#57344;&#57345;&#57345;
-    <span style="color: #859900;">return</span> count;&#57344;&#57345;&#57345;
+<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">numberOfOne</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">n</span>){
+    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">count</span> = 0;
+    <span style="color: #859900;">while</span> (n){
+        count ++;
+        n = n&amp;(n-1);
+    <span style="color: #859900;">return</span> count;
 </pre>
 </div>
 </li>
@@ -533,18 +533,18 @@ reply on the mathematical induction method.
 <li>divide 0
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">PowerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){&#57344;&#57345;&#57345;
-    <span style="color: #859900;">if</span> (exponent == 0)&#57344;&#57345;&#57345;
-        <span style="color: #859900;">return</span> 1;&#57344;&#57345;&#57345;
-    <span style="color: #859900;">if</span> (exponent == 1)&#57344;&#57345;&#57345;
-        <span style="color: #859900;">return</span> base;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = PowerWithUnsignedExponent(base, exponent &gt;&gt; 1);&#57344;&#57345;&#57345;
-    result *= result;&#57344;&#57345;&#57345;
-    <span style="color: #859900;">if</span> (exponent &amp; 0x1 ==1)&#57344;&#57345;&#57345;
-        result *= base;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    <span style="color: #859900;">return</span> result;&#57344;&#57345;&#57345;
+<pre class="src src-c"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">PowerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){
+    <span style="color: #859900;">if</span> (exponent == 0)
+        <span style="color: #859900;">return</span> 1;
+    <span style="color: #859900;">if</span> (exponent == 1)
+        <span style="color: #859900;">return</span> base;
+
+    <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = PowerWithUnsignedExponent(base, exponent &gt;&gt; 1);
+    result *= result;
+    <span style="color: #859900;">if</span> (exponent &amp; 0x1 ==1)
+        result *= base;
+
+    <span style="color: #859900;">return</span> result;
 </pre>
 </div>
 </li>
@@ -555,7 +555,7 @@ reply on the mathematical induction method.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-26 Wed 21:57</p>
+<p class="date">Created: 2014-11-27 Thu 16:11</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>

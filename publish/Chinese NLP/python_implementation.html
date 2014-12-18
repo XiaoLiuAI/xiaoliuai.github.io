@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python实现NLP</title>
-<!-- 2014-11-26 Wed 21:58 -->
+<!-- 2014-11-27 Thu 16:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -231,7 +231,7 @@ for the JavaScript code in this tag.
 <li>python脚本编码设定,在文件开始加入 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-*- coding:&lt;encoding name&gt; -*-</span>&#57344;&#57345;&#57345;
+<pre class="src src-python"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-*- coding:&lt;encoding name&gt; -*-</span>
 </pre>
 </div>
 <p>
@@ -239,7 +239,7 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">coding=&lt;encoding name&gt;</span>&#57344;&#57345;&#57345;
+<pre class="src src-python"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">coding=&lt;encoding name&gt;</span>
 </pre>
 </div>
 </li>
@@ -348,11 +348,11 @@ python接口，接口通过 <b>SWIG</b> 生成。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #6c71c4;">N</span> = <span style="color: #6c71c4;">len</span>(sentence)&#57344;&#57345;&#57345;
-<span style="color: #6c71c4;">route</span>[N] = (0.0,<span style="color: #2aa198;">''</span>)&#57344;&#57345;&#57345;
-<span style="color: #859900;">for</span> idx <span style="color: #859900;">in</span> <span style="color: #6c71c4;">xrange</span>(N-1,-1,-1):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">candidates</span> = [ ( FREQ.get(sentence[idx:x+1],min_freq) + route[x+1][0],x ) <span style="color: #859900;">for</span> x <span style="color: #859900;">in</span> DAG[idx] ]&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">route</span>[idx] = <span style="color: #6c71c4;">max</span>(candidates)&#57344;&#57345;&#57345;
+<pre class="src src-python"><span style="color: #6c71c4;">N</span> = <span style="color: #6c71c4;">len</span>(sentence)
+<span style="color: #6c71c4;">route</span>[N] = (0.0,<span style="color: #2aa198;">''</span>)
+<span style="color: #859900;">for</span> idx <span style="color: #859900;">in</span> <span style="color: #6c71c4;">xrange</span>(N-1,-1,-1):
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">candidates</span> = [ ( FREQ.get(sentence[idx:x+1],min_freq) + route[x+1][0],x ) <span style="color: #859900;">for</span> x <span style="color: #859900;">in</span> DAG[idx] ]
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">route</span>[idx] = <span style="color: #6c71c4;">max</span>(candidates)
 </pre>
 </div>
 <p>
@@ -414,7 +414,7 @@ See <a href="https://code.google.com/p/ik-analyzer/"><a href="https://code.googl
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-26 Wed 21:58</p>
+<p class="date">Created: 2014-11-27 Thu 16:11</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>

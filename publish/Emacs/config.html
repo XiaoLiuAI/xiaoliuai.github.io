@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>emacs配置</title>
-<!-- 2014-11-26 Wed 21:58 -->
+<!-- 2014-11-27 Thu 16:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -221,16 +221,16 @@ make
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">load cedet. It is very important to load cedet early, before Emacs loads the builtin cedet-eieio.</span>&#57344;&#57345;
-<span style="color: #657b83;">(</span>load-file <span style="color: #2aa198;">"~/.emacs.d/3rd-party/cedet/cedet-devel-load.el"</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">; </span><span style="color: #93a1a1; font-style: italic;">load other programs that work with cedet but not copyright compliant with FSF</span>&#57344;&#57345;
-<span style="color: #657b83;">(</span>load-file <span style="color: #2aa198;">"~/.emacs.d/3rd-party/cedet/contrib/cedet-contrib-load.el"</span><span style="color: #657b83;">)</span>&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;">; </span><span style="color: #93a1a1; font-style: italic;">enable semantic</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span>semantic-mode 1<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span>semantic-load-enable-minimum-features<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span>semantic-load-enable-code-helpers<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">load cedet. It is very important to load cedet early, before Emacs loads the builtin cedet-eieio.</span>
+<span style="color: #657b83;">(</span>load-file <span style="color: #2aa198;">"~/.emacs.d/3rd-party/cedet/cedet-devel-load.el"</span><span style="color: #657b83;">)</span>
+
+<span style="color: #93a1a1; font-style: italic;">; </span><span style="color: #93a1a1; font-style: italic;">load other programs that work with cedet but not copyright compliant with FSF</span>
+<span style="color: #657b83;">(</span>load-file <span style="color: #2aa198;">"~/.emacs.d/3rd-party/cedet/contrib/cedet-contrib-load.el"</span><span style="color: #657b83;">)</span>
+
+<span style="color: #93a1a1; font-style: italic;">; </span><span style="color: #93a1a1; font-style: italic;">enable semantic</span>
+<span style="color: #657b83;">(</span>semantic-mode 1<span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span>semantic-load-enable-minimum-features<span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span>semantic-load-enable-code-helpers<span style="color: #657b83;">)</span>
 </pre>
 </div>
 </li>
@@ -313,17 +313,17 @@ lisp/personal文件夹下。
 <li>添加库到package manager.
 <div class="org-src-container">
 
-<pre class="src src-elisp">M-: <span style="color: #657b83;">(</span>add-to-list <span style="color: #859900;">'</span><span style="color: #268bd2;">package-archives</span> <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #2aa198;">"marmalade"</span> . <span style="color: #2aa198;">"http://marmalade-repo.org/packages/"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;
-M-x package-install <span style="color: #657b83;">[</span>RET<span style="color: #657b83;">]</span> marmalade-demo&#57344;&#57345;&#57345;
+<pre class="src src-elisp">M-: <span style="color: #657b83;">(</span>add-to-list <span style="color: #859900;">'</span><span style="color: #268bd2;">package-archives</span> <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #2aa198;">"marmalade"</span> . <span style="color: #2aa198;">"http://marmalade-repo.org/packages/"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
+M-x package-install <span style="color: #657b83;">[</span>RET<span style="color: #657b83;">]</span> marmalade-demo
 </pre>
 </div>
 </li>
 <li>安装monokai颜色主题,运行以下代码.
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #859900;">progn</span>&#57344;&#57345;&#57345;
-  <span style="color: #2aa198;">(</span>package-refresh-contents<span style="color: #2aa198;">)</span>&#57344;&#57345;&#57345;
-  <span style="color: #2aa198;">(</span>package-install <span style="color: #859900;">'</span><span style="color: #268bd2;">monokai-theme</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #859900;">progn</span>
+  <span style="color: #2aa198;">(</span>package-refresh-contents<span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>package-install <span style="color: #859900;">'</span><span style="color: #268bd2;">monokai-theme</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
 </pre>
 </div>
 </li>
@@ -379,17 +379,17 @@ scratch冲突的内容去掉.
 <li>添加库到package manager.
 <div class="org-src-container">
 
-<pre class="src src-elisp">M-: <span style="color: #657b83;">(</span>add-to-list <span style="color: #859900;">'</span><span style="color: #268bd2;">package-archives</span> <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #2aa198;">"marmalade"</span> . <span style="color: #2aa198;">"http://marmalade-repo.org/packages/"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;
-M-x package-install <span style="color: #657b83;">[</span>RET<span style="color: #657b83;">]</span> marmalade-demo&#57344;&#57345;&#57345;
+<pre class="src src-elisp">M-: <span style="color: #657b83;">(</span>add-to-list <span style="color: #859900;">'</span><span style="color: #268bd2;">package-archives</span> <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span><span style="color: #2aa198;">"marmalade"</span> . <span style="color: #2aa198;">"http://marmalade-repo.org/packages/"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
+M-x package-install <span style="color: #657b83;">[</span>RET<span style="color: #657b83;">]</span> marmalade-demo
 </pre>
 </div>
 </li>
 <li>安装monokai颜色主题,运行以下代码.
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #859900;">progn</span>&#57344;&#57345;&#57345;
-  <span style="color: #2aa198;">(</span>package-refresh-contents<span style="color: #2aa198;">)</span>&#57344;&#57345;&#57345;
-  <span style="color: #2aa198;">(</span>package-install <span style="color: #859900;">'</span><span style="color: #268bd2;">monokai-theme</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #859900;">progn</span>
+  <span style="color: #2aa198;">(</span>package-refresh-contents<span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>package-install <span style="color: #859900;">'</span><span style="color: #268bd2;">monokai-theme</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
 </pre>
 </div>
 </li>
@@ -435,7 +435,7 @@ M-x package-install <span style="color: #657b83;">[</span>RET<span style="color:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-26 Wed 21:58</p>
+<p class="date">Created: 2014-11-27 Thu 16:11</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>

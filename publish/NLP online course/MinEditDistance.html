@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Minimun Edit Distance</title>
-<!-- 2014-11-26 Wed 21:57 -->
+<!-- 2014-11-27 Thu 16:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -233,21 +233,21 @@ the MED.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">med</span>(str1, str2):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">len1</span>, <span style="color: #6c71c4;">len2</span> = <span style="color: #6c71c4;">len</span>(str1)+1, <span style="color: #6c71c4;">len</span>(str2)+1&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">init the distance table</span>&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">D</span>=[[0]*len2 <span style="color: #859900;">for</span> i <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(len1)]&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">D</span>[0]=<span style="color: #6c71c4;">range</span>(len2)&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #859900;">for</span> i <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(len1):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   D[i][0]=i&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #859900;">for</span> i <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(1, len1):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="color: #859900;">for</span> j <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(1, len2):&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">d1</span> = D[i-1][j]+1 <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">deletion</span>&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">d2</span> = D[i][j-1]+1 <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">insertion</span>&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">d3</span> = 2 <span style="color: #859900;">if</span> str1[i-1]!=str2[j-1] <span style="color: #859900;">else</span> 0 <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">substitution if not equal, 0 else.</span>&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   D[i][j] = <span style="color: #6c71c4;">min</span>([d1, d2, d3])&#57344;&#57345;&#57345;
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #859900;">return</span> D[len1][len2]&#57344;&#57345;&#57345;
+<pre class="src src-python"><span style="color: #859900;">def</span> <span style="color: #b58900;">med</span>(str1, str2):
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">len1</span>, <span style="color: #6c71c4;">len2</span> = <span style="color: #6c71c4;">len</span>(str1)+1, <span style="color: #6c71c4;">len</span>(str2)+1
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">init the distance table</span>
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">D</span>=[[0]*len2 <span style="color: #859900;">for</span> i <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(len1)]
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">D</span>[0]=<span style="color: #6c71c4;">range</span>(len2)
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #859900;">for</span> i <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(len1):
+<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   D[i][0]=i
+
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #859900;">for</span> i <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(1, len1):
+<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="color: #859900;">for</span> j <span style="color: #859900;">in</span> <span style="color: #6c71c4;">range</span>(1, len2):
+<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">d1</span> = D[i-1][j]+1 <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">deletion</span>
+<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">d2</span> = D[i][j-1]+1 <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">insertion</span>
+<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">d3</span> = 2 <span style="color: #859900;">if</span> str1[i-1]!=str2[j-1] <span style="color: #859900;">else</span> 0 <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">substitution if not equal, 0 else.</span>
+<span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   <span style="background-color: #eee8d5;"> </span>   D[i][j] = <span style="color: #6c71c4;">min</span>([d1, d2, d3])
+<span style="background-color: #eee8d5;"> </span>   <span style="color: #859900;">return</span> D[len1][len2]
 </pre>
 </div>
 <p>
@@ -329,7 +329,7 @@ questions mentioned in this section?
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-26 Wed 21:57</p>
+<p class="date">Created: 2014-11-27 Thu 16:11</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>

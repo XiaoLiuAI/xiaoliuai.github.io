@@ -3,7 +3,7 @@
 <title><![CDATA[Tag: Octopress | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/octopress/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2014-11-27T00:22:04+01:00</updated>
+<updated>2014-12-18T21:31:12+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
@@ -78,9 +78,9 @@ You can following the instructions on the <a href="http://octopress.org/docs/set
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>&#57344;&#57345;&#57345;
-git clone git://github.com/sstephenson/rbenv.git .rbenv&#57344;&#57345;&#57345;
-git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build&#57344;&#57345;
+<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>
+git clone git://github.com/sstephenson/rbenv.git .rbenv
+git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
 </pre>
 </div>
 <p>
@@ -88,8 +88,8 @@ Add two lines into the end of shell profile (.zshrc in my case).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>&#57344;&#57345;&#57345;
-<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>&#57344;&#57345;&#57345;
+<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>
+<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>
 </pre>
 </div>
 <p>
@@ -99,9 +99,9 @@ The installation of rbenv and ruby-build can be replaced by
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">brew update&#57344;&#57345;&#57345;
-brew install rbenv&#57344;&#57345;&#57345;
-brew install ruby-build&#57344;&#57345;&#57345;
+<pre class="src src-sh">brew update
+brew install rbenv
+brew install ruby-build
 </pre>
 </div>
 <p>
@@ -114,9 +114,9 @@ Then install ruby 1.9.3, which is required by octopress.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rbenv install 1.9.3-p0&#57344;&#57345;&#57345;
-rbenv local 1.9.3-p0&#57344;&#57345;&#57345;
-rbenv rehash&#57344;&#57345;&#57345;
+<pre class="src src-sh">rbenv install 1.9.3-p0
+rbenv local 1.9.3-p0
+rbenv rehash
 </pre>
 </div>
 </div>
@@ -144,8 +144,8 @@ beginning.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress&#57344;&#57345;&#57345;
-<span style="color: #6c71c4;">cd</span> octopress&#57344;&#57345;&#57345;
+<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress
+<span style="color: #6c71c4;">cd</span> octopress
 </pre>
 </div>
 </div>
@@ -156,9 +156,9 @@ beginning.
 <div class="outline-text-4" id="text-1-2-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">gem install bundler&#57344;&#57345;&#57345;
-rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>&#57344;&#57345;
-bundle install&#57344;&#57345;&#57345;
+<pre class="src src-sh">gem install bundler
+rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>
+bundle install
 </pre>
 </div>
 </div>
@@ -173,7 +173,7 @@ bundle install&#57344;&#57345;&#57345;
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake install&#57344;&#57345;&#57345;
+<pre class="src src-sh">rake install
 </pre>
 </div>
 </div>
@@ -208,8 +208,8 @@ jekyll format (concatenate date and the title as the file name).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]&#57344;&#57345;&#57345;
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>&#57344;&#57345;&#57345;
+<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>
 </pre>
 </div>
 <p>
@@ -231,7 +231,7 @@ site to the github.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake setup_github_pages&#57344;&#57345;&#57345;
+<pre class="src src-sh">rake setup_github_pages
 </pre>
 </div>
 <p>
@@ -246,7 +246,7 @@ Run command:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake deploy&#57344;&#57345;&#57345;
+<pre class="src src-sh">rake deploy
 </pre>
 </div>
 <p>
@@ -256,9 +256,9 @@ settings and sources tracked, run
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">git add .&#57344;&#57345;&#57345;
-git commit -m<span style="color: #2aa198;">'Your message'</span>&#57344;&#57345;&#57345;
-git push origin source&#57344;&#57345;&#57345;
+<pre class="src src-sh">git add .
+git commit -m<span style="color: #2aa198;">'Your message'</span>
+git push origin source
 </pre>
 </div>
 <p>

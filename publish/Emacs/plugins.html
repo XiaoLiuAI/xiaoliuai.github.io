@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Emacs插件总结</title>
-<!-- 2014-11-26 Wed 21:58 -->
+<!-- 2014-11-27 Thu 16:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -424,12 +424,12 @@ ace-jump-mode, <code>C-:</code> ace-jump-word-mode. <font
 捷键.</font>
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #657b83;">(</span>eval-after-load <span style="color: #2aa198;">"flyspell"</span>&#57344;&#57345;&#57345;
-  <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span>define-key flyspell-mode-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-."</span><span style="color: #b58900;">)</span> nil<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span>eval-after-load <span style="color: #2aa198;">"flyspell"</span>&#57344;&#57345;&#57345;
-  <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span>define-key flyspell-mode-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-;"</span><span style="color: #b58900;">)</span> nil<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span>eval-after-load <span style="color: #2aa198;">"flyspell"</span>&#57344;&#57345;&#57345;
-  <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span>define-key flyspell-mode-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-,"</span><span style="color: #b58900;">)</span> nil<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #657b83;">(</span>eval-after-load <span style="color: #2aa198;">"flyspell"</span>
+  <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span>define-key flyspell-mode-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-."</span><span style="color: #b58900;">)</span> nil<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span>eval-after-load <span style="color: #2aa198;">"flyspell"</span>
+  <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span>define-key flyspell-mode-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-;"</span><span style="color: #b58900;">)</span> nil<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span>eval-after-load <span style="color: #2aa198;">"flyspell"</span>
+  <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span>define-key flyspell-mode-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-,"</span><span style="color: #b58900;">)</span> nil<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
 </pre>
 </div>
 </li>
@@ -647,7 +647,7 @@ python的外来库文件夹下; 但另外几个不会(可能是自带的版本�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">pip install -e <span style="color: #2aa198;">"git+https://github.com/pinard/Pymacs.git#egg=Pymacs"</span>&#57344;&#57345;&#57345;
+<pre class="src src-sh">pip install -e <span style="color: #2aa198;">"git+https://github.com/pinard/Pymacs.git#egg=Pymacs"</span>
 </pre>
 </div>
 <p>
@@ -710,9 +710,9 @@ python的外来库文件夹下; 但另外几个不会(可能是自带的版本�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #859900;">when</span> <span style="color: #2aa198;">(</span><span style="color: #859900;">require</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">flycheck</span> nil t<span style="color: #2aa198;">)</span>&#57344;&#57345;&#57345;
-  <span style="color: #2aa198;">(</span>setq elpy-modules <span style="color: #b58900;">(</span>delq <span style="color: #859900;">'</span><span style="color: #268bd2;">elpy-module-flymake</span> elpy-modules<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&#57344;&#57345;&#57345;
-  <span style="color: #2aa198;">(</span>add-hook <span style="color: #859900;">'</span><span style="color: #268bd2;">elpy-mode-hook</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">flycheck-mode</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #859900;">when</span> <span style="color: #2aa198;">(</span><span style="color: #859900;">require</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">flycheck</span> nil t<span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>setq elpy-modules <span style="color: #b58900;">(</span>delq <span style="color: #859900;">'</span><span style="color: #268bd2;">elpy-module-flymake</span> elpy-modules<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+  <span style="color: #2aa198;">(</span>add-hook <span style="color: #859900;">'</span><span style="color: #268bd2;">elpy-mode-hook</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">flycheck-mode</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
 </pre>
 </div>
 </div>
@@ -743,11 +743,11 @@ Purcell基本没有配置IDE.下面给出我当前使用的配置 <i>ecb</i> + <
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">bzr checkout bzr://cedet.bzr.sourceforge.net/bzrroot/cedet/code/trunk cedet&#57344;&#57345;
-<span style="color: #6c71c4;">cd</span> cedet&#57344;&#57345;&#57345;
-make <span style="color: #6c71c4;">EMACS</span>=[PATH-TO-EMACS]&#57344;&#57345;&#57345;
-<span style="color: #6c71c4;">cd</span> contrib&#57344;&#57345;&#57345;
-make <span style="color: #6c71c4;">EMACS</span>=[PATH-TO-EMACS]&#57344;&#57345;&#57345;
+<pre class="src src-sh">bzr checkout bzr://cedet.bzr.sourceforge.net/bzrroot/cedet/code/trunk cedet
+<span style="color: #6c71c4;">cd</span> cedet
+make <span style="color: #6c71c4;">EMACS</span>=[PATH-TO-EMACS]
+<span style="color: #6c71c4;">cd</span> contrib
+make <span style="color: #6c71c4;">EMACS</span>=[PATH-TO-EMACS]
 </pre>
 </div>
 <p>
@@ -757,11 +757,11 @@ make <span style="color: #6c71c4;">EMACS</span>=[PATH-TO-EMACS]&#57344;&#57345;&
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #657b83;">(</span>load-file <span style="color: #2aa198;">"~/.emacs.d/3rd-party/cedet/cedet-devel-load.el"</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span>load-file <span style="color: #2aa198;">"~/.emacs.d/3rd-party/cedet/contrib/cedet-contrib-load.el"</span><span style="color: #657b83;">)</span>&#57345;
-<span style="color: #657b83;">(</span>semantic-mode 1<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span>semantic-load-enable-minimum-features<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
-<span style="color: #657b83;">(</span>semantic-load-enable-code-helpers<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<pre class="src src-elisp"><span style="color: #657b83;">(</span>load-file <span style="color: #2aa198;">"~/.emacs.d/3rd-party/cedet/cedet-devel-load.el"</span><span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span>load-file <span style="color: #2aa198;">"~/.emacs.d/3rd-party/cedet/contrib/cedet-contrib-load.el"</span><span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span>semantic-mode 1<span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span>semantic-load-enable-minimum-features<span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span>semantic-load-enable-code-helpers<span style="color: #657b83;">)</span>
 </pre>
 </div>
 <p>
@@ -774,7 +774,7 @@ ecb可以直接从包管理器中安装,目前我没有进一步配置,因为感
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-26 Wed 21:58</p>
+<p class="date">Created: 2014-11-27 Thu 16:11</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>
