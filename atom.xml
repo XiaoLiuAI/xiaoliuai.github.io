@@ -4,7 +4,7 @@
   <title><![CDATA[记往开来]]></title>
   <link href="http://xiaoliuai.github.io/atom.xml" rel="self"/>
   <link href="http://xiaoliuai.github.io/"/>
-  <updated>2014-12-18T21:31:12+01:00</updated>
+  <updated>2014-12-19T00:27:10+01:00</updated>
   <id>http://xiaoliuai.github.io/</id>
   <author>
     <name><![CDATA[Xiao Liu]]></name>
@@ -22,7 +22,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 环境与配置加载</a></li>
+<li><a href="#sec-1">1. 环境与配置加载</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 配置文件</a></li>
+<li><a href="#sec-1-2">1.2. 获取配置内容</a></li>
+<li><a href="#sec-1-3">1.3. 根据配置进行渲染</a></li>
+</ul>
+</li>
 <li><a href="#sec-2">2. 持久化</a></li>
 <li><a href="#sec-3">3. 业务层</a></li>
 </ul>
@@ -41,6 +47,9 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-12-18-drilljava.html"><span class="section-number-2">1</span> 环境与配置加载</a></h2>
 <div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 配置文件</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 <code>SpringApplication</code> 会自动搜索以下路径来寻找
 <code>application.properties</code> 作为配置文件.
@@ -57,19 +66,29 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </ol>
 <p>
 同时,SpringApplication还支持 <font
-   color='blue'>YAML</font> 文件,即 <code>applicaiton.yml</code>.
+    color='blue'>YAML</font> 文件,即 <code>applicaiton.yml</code>.
 函数 <code>SpringApplication.setAdditionalProfiles("dev")</code> 则会额外加载
 <code>application-dev.yml</code> (或者 <code>application-dev.properties</code>), 而不是
 <code>dev.yml</code>.
 </p>
+</div>
+</div>
 
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 获取配置内容</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 当我们有类继承了EnvironmentAware这个接口的时候,框架会自动调用这个类
 的 <code>setEnvironment</code> 方法,将一个 <code>Environment</code> 对象交给这个类的对象
 从而使这个类获得配置文件中提供的参数. <code>LocaleConfiguration</code> 和
 <code>MailConfiguration</code> 两个类展示了相关的编程方法.
 </p>
+</div>
+</div>
 
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 根据配置进行渲染</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
 <code>LocalResolver</code> 和 <code>Interceptor</code>. 在接受请求的时候, <code>Interceptor</code>
 拦截请求中特定的参数值,并且调用 <code>LocalResolver</code> 的函数来进行相关渲
@@ -89,6 +108,7 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 <code>LocaleConfiguration</code> 返回的对象,为什么?
 </li>
 </ol>
+</div>
 </div>
 </div>
 <div id="outline-container-sec-2" class="outline-2">
