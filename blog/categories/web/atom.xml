@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Web | 记往开来]]></title>
   <link href="http://xiaoliuai.github.io/blog/categories/web/atom.xml" rel="self"/>
   <link href="http://xiaoliuai.github.io/"/>
-  <updated>2014-12-19T00:27:10+01:00</updated>
+  <updated>2014-12-19T22:19:55+01:00</updated>
   <id>http://xiaoliuai.github.io/</id>
   <author>
     <name><![CDATA[Xiao Liu]]></name>
@@ -30,7 +30,12 @@
 </ul>
 </li>
 <li><a href="#sec-2">2. 持久化</a></li>
-<li><a href="#sec-3">3. 业务层</a></li>
+<li><a href="#sec-3">3. 业务层</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Controller</a></li>
+<li><a href="#sec-3-2">3.2. Service</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -71,10 +76,10 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </ol>
 <p>
 同时,SpringApplication还支持 <font
-    color='blue'>YAML</font> 文件,即 <code>applicaiton.yml</code>.
+    color='blue'>YAML</font> 文件,即 <i>applicaiton.yml</i>.
 函数 <code>SpringApplication.setAdditionalProfiles("dev")</code> 则会额外加载
-<code>application-dev.yml</code> (或者 <code>application-dev.properties</code>), 而不是
-<code>dev.yml</code>.
+<i>application-dev.yml</i> (或者 <i>application-dev.properties</i>), 而不是
+<i>dev.yml</i>.
 </p>
 </div>
 </div>
@@ -87,6 +92,30 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 的 <code>setEnvironment</code> 方法,将一个 <code>Environment</code> 对象交给这个类的对象
 从而使这个类获得配置文件中提供的参数. <code>LocaleConfiguration</code> 和
 <code>MailConfiguration</code> 两个类展示了相关的编程方法.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {
+        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);
+    }
+}
+</pre>
+</div>
+
+<p>
+另一种方法是直接 <code>@Inject</code> 一个 <code>Environment</code> 的对象.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {
+    <span style="color: #268bd2;">@Inject</span>
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;
+}
+</pre>
+</div>
+<p>
+<b><font color='red'>&lt;&#x2013;这种方法跟之前所介绍的有什么区别,暂时不知道.&#x2013;&gt;</font></b>
 </p>
 </div>
 </div>
@@ -105,9 +134,6 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 问题:
 </p>
 <ol class="org-ol">
-<li>用 <code>EnvironmentAware</code> 和直接 <code>@Inject</code> 一个 <code>Environment</code> 有什么
-不同?
-</li>
 <li><code>LocaleConfiguration</code> 和 <code>ThymeleafConfiguration</code> 都有方法返回
 <code>MessageSource</code>, <code>MailService</code> 里面貌似引用的是
 <code>LocaleConfiguration</code> 返回的对象,为什么?
@@ -120,6 +146,15 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> 持久化</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+对象的关联问题.Mongodb本身作为NoSql的典范,内部以文件和类似json的数
+据形式来储存数据.Mongodb中一个Document可以看做关系数据库中的一行数
+据,一个Repository可以看做关系数据库中的一个表(table).目前我们有三个
+标记为 <code>@Document</code> 的类 <code>PersistentToken,Task,User</code> 和对应的
+<code>Repository</code> 类.
+</p>
+</div>
 </div>
 
 
@@ -127,6 +162,122 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> 业务层</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Controller</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+控制器类都在org.team.drill.web下面,统一以 <i>XXXResource</i> 命名.
+</p>
+<ul class="org-ul">
+<li>registerAccount
+<ul class="org-ul">
+<li>check if login/email exist
+</li>
+<li>userService create user
+</li>
+<li>send activation mail
+</li>
+</ul>
+</li>
+<li>activateAccount
+<ul class="org-ul">
+<li><i>userService.activateRegistration</i> <span class="underline">get user by activation key</span>
+</li>
+</ul>
+</li>
+<li>isAuthenticate
+<ul class="org-ul">
+<li>HttpServletRequest request.getRemoteUser()
+</li>
+</ul>
+</li>
+<li>getAccount
+<ul class="org-ul">
+<li><i>userService.getUserWithAuthorities()</i> <span class="underline">get current user by SecurityUtils</span>
+</li>
+</ul>
+</li>
+<li>saveAccount
+<ul class="org-ul">
+<li>check email is not used by any user in repository(input)
+</li>
+<li>update account information <i>userService.updateUserInformation</i>
+</li>
+</ul>
+</li>
+<li>changePassword (newPassword)
+<ul class="org-ul">
+<li><i>userService.changePassword(newPassword)</i>
+</li>
+</ul>
+</li>
+<li>getCurrentSession
+<ul class="org-ul">
+<li>userRepository.findOne(SecurityUtils.getCurrentLogin())
+</li>
+<li>persistentTokenRepository.findByUser(user)
+</li>
+</ul>
+</li>
+<li>invalideSession
+<ul class="org-ul">
+<li>find current user SecurityUtils.getCurrentLogin()
+</li>
+<li>delete persistentToken
+</li>
+</ul>
+</li>
+
+<li>getUser
+</li>
+</ul>
+
+<p>
+不论是Service还是Resource,都是靠 <code>SecurityUtils.getCurrentLogin()</code>
+来获取当前用户的.那么问题来了,SecurityUtils如何知道当前用户是谁?
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {
+
+    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {
+    }
+
+    <span style="color: #d33682;">/**</span>
+<span style="color: #d33682;">     * Get the login of the current user.</span>
+<span style="color: #d33682;">     */</span>
+    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {
+        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();
+        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();
+        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;
+        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;
+
+        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {
+            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {
+                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();
+                userName = springSecurityUser.getUsername();
+            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {
+                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();
+            }
+        }
+
+        <span style="color: #859900;">return</span> userName;
+    }
+}
+</pre>
+</div>
+<p>
+<code>SecurityContextHolder</code> 在文档里解释为&#8221;with the current execution
+thread&#8221;. 那么该如何理解 <code>resource</code> <code>service</code> 的运行方式?一个,还是
+多个对象对应不同的客户端?
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Service</h3>
+</div>
 </div>
 
 ]]></content>
