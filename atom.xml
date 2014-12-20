@@ -4,7 +4,7 @@
   <title><![CDATA[记往开来]]></title>
   <link href="http://xiaoliuai.github.io/atom.xml" rel="self"/>
   <link href="http://xiaoliuai.github.io/"/>
-  <updated>2014-12-19T22:19:55+01:00</updated>
+  <updated>2014-12-21T00:29:00+01:00</updated>
   <id>http://xiaoliuai.github.io/</id>
   <author>
     <name><![CDATA[Xiao Liu]]></name>
@@ -32,8 +32,22 @@
 <li><a href="#sec-2">2. 持久化</a></li>
 <li><a href="#sec-3">3. 业务层</a>
 <ul>
-<li><a href="#sec-3-1">3.1. Controller</a></li>
+<li><a href="#sec-3-1">3.1. Controller</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. <code>AccountResource</code></a></li>
+<li><a href="#sec-3-1-2">3.1.2. <code>UserResource</code></a></li>
+</ul>
+</li>
 <li><a href="#sec-3-2">3.2. Service</a></li>
+<li><a href="#sec-3-3">3.3. DTO</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Security</a>
+<ul>
+<li><a href="#sec-4-1">4.1. <code>SecurityContextHolder</code></a></li>
+<li><a href="#sec-4-2">4.2. <code>UserDetails</code></a></li>
+<li><a href="#sec-4-3">4.3. <code>GrantedAuthority</code></a></li>
+<li><a href="#sec-4-4">4.4. 其它</a></li>
 </ul>
 </li>
 </ul>
@@ -159,70 +173,83 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 <p>
 控制器类都在org.team.drill.web下面,统一以 <i>XXXResource</i> 命名.
 </p>
+</div>
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> <code>AccountResource</code></h4>
+<div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>registerAccount
-<ul class="org-ul">
-<li>check if login/email exist
-</li>
-<li>userService create user
-</li>
-<li>send activation mail
-</li>
-</ul>
+注册账户,接受新账户信息,验证账户,创建账户,发送激活邮件.
 </li>
 <li>activateAccount
-<ul class="org-ul">
-<li><i>userService.activateRegistration</i> <span class="underline">get user by activation key</span>
-</li>
-</ul>
+激活账户,通过激活key来确定当前User.
 </li>
 <li>isAuthenticate
+这个什么时候会用到?
 <ul class="org-ul">
 <li>HttpServletRequest request.getRemoteUser()
 </li>
 </ul>
 </li>
 <li>getAccount
-<ul class="org-ul">
-<li><i>userService.getUserWithAuthorities()</i> <span class="underline">get current user by SecurityUtils</span>
-</li>
-</ul>
+这个貌似是浏览账户信息的时候用, 返回 <i>UserDTO</i>
 </li>
 <li>saveAccount
-<ul class="org-ul">
-<li>check email is not used by any user in repository(input)
-</li>
-<li>update account information <i>userService.updateUserInformation</i>
-</li>
-</ul>
+这个是修改用户信息用, email 地址必须唯一
 </li>
 <li>changePassword (newPassword)
-<ul class="org-ul">
-<li><i>userService.changePassword(newPassword)</i>
-</li>
-</ul>
+这个是修改用户密码用
 </li>
 <li>getCurrentSession
-<ul class="org-ul">
-<li>userRepository.findOne(SecurityUtils.getCurrentLogin())
-</li>
-<li>persistentTokenRepository.findByUser(user)
-</li>
-</ul>
+貌似是获得所有当前用户的登录记录(多地自动登录产生多个记录)
 </li>
 <li>invalideSession
+取消某个登录记录(已登录)
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> <code>UserResource</code></h4>
+<div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
-<li>find current user SecurityUtils.getCurrentLogin()
-</li>
-<li>delete persistentToken
-</li>
-</ul>
-</li>
-
 <li>getUser
+通过String login获取user, 直接返回 <i>User</i>
 </li>
 </ul>
 
+<p>
+登录功能是在 <i>SecurityConfig</i> 中间接实现的.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Service</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<i>Service</i> 里面通过 <i>SecurityContextHolder</i> 来获取当前用户.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> DTO</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+位于 <i>web.dto</i> 包下面的 <code>UserDTO</code> 类型,似乎是用来作为JS交互的数据
+对象?但是内容上跟 <i>domain</i> 里的 <code>User</code> 差不多,用来保证安全.在更复
+杂的应用环境中有用.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Security</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 不论是Service还是Resource,都是靠 <code>SecurityUtils.getCurrentLogin()</code>
 来获取当前用户的.那么问题来了,SecurityUtils如何知道当前用户是谁?
@@ -257,16 +284,87 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 }
 </pre>
 </div>
+</div>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> <code>SecurityContextHolder</code></h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
-<code>SecurityContextHolder</code> 在文档里解释为&#8221;with the current execution
-thread&#8221;. 那么该如何理解 <code>resource</code> <code>service</code> 的运行方式?一个,还是
-多个对象对应不同的客户端?
+包含安全上下文信息,并且默认为/ThreadLocal/,即对于一个线程采用一
+个统一的安全上下文信息.同时,=SecurityContextHolder= 中还储存了当前
+与App进行交互的主体(<i>principal</i>)的详情,用 <code>Authentication</code> 对象来表
+示.上面的代码示例中体现的是获取当前用户信息的标准用法.
+</p>
+
+<p>
+<b><font color='red'>&lt;&#x2013;spring应用内部线程到底是如何管理
+的?&#x2013;&gt;</font></b>
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Service</h3>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> <code>UserDetails</code></h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+在以上代码片段中我们可以看到一个特殊的类 <code>UserDetails</code>,在获取当前主
+体的时候,返回的可能是一个 <i>String</i> 或者一个 <i>UserDetails</i> 的对象.那
+么这个/UserDetails/到底是什么东西,为什么它的方法 <code>getUsername()</code> 刚
+好能包含我们的 <code>User</code> 类所需的 <i>login</i>?
+</p>
+
+<p>
+<i>UserDetails</i> 是一个接口,包含了 <code>getPassword()</code>, <code>getUsername()</code> 等
+一系列方法. 在 <i>UserDetails</i> 中加入我们定义的 <i>login</i>,这是靠实现
+<code>UserDetailsService</code> 接口来做到的. 这个接口只包含一个方法,这个方法
+接受一个 <i>String</i> 参数,并返回一个实现了 <code>UserDetails</code> 接口的对象.目
+前在org.team.drill.security包中的 <code>UserDetailsService</code> 类里面,龙伟
+权实现了这个方法,并且将 <code>org.team.drill.domain.User</code> 的 <i>login</i> 包
+装到实现了 <i>UserDetails</i> 接口的
+<code>org.springframework.security.core.userdetails.User</code> 类中.
+</p>
+
+<p>
+到这里,我试着把 <i>SecurityContextHolder</i> 到 <i>UserDetails</i> 串起来. 个
+人认为,在通过
+<code>SecurityContextHolder.getContext().getAuthentication().getPrincipal()</code>
+来获取 <i>UserDetails</i> 的时候,spring通过调用实现了
+<code>org.springframework.security.core.userdetails.UserDetailsService</code>
+接口的对象的方法来尝试获取 <i>UserDetails</i>, 这个方法本身接受一个
+String参数. <font color='red'>又绕回来了,这个String参数是
+从哪来的?依靠http协议?还是session?</font>
+因为某种原因,
+<i>getPrincipal</i> 方法返回的是一个 <i>Object</i>,那么实际上给出了一种可能性,就
+是通过某个实现了 <i>UserDetails</i> 的类使用额外的业务逻辑.我们可以创建
+一个实现了 <i>UserDetals</i> 的类 <b>A</b>,在 <i>UserDetailsService</i> 中返回 <b>A</b>
+的对象,然后将 <i>getPrincipal()</i> 返回的对象强制转换为 <b>A</b> 并调用相关
+方法.当然,强制转换类型总是有风险的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> <code>GrantedAuthority</code></h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+<code>Authentication</code> 提供两个重要的方法,第一个是上面说过的
+<i>getPrincipal</i>,另一个则是 <i>getAuthorities</i> .它返回一个
+<i>GrantedAuthoriy</i> 对象数组.顾名思义,这是用来管理用户权限的.在
+<i>UserDetailsService</i> 里面进行加载.目前drill中加载的是
+<code>SimpleGrantedAuthority</code> 数组,每个 <i>SimpleGrantedAuthority</i> 里面包
+含一个字符串,代表某种权限(自定义于
+<code>org.team.drill.security.Authority</code> 中).
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> 其它</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+用 <code>random.nextBytes</code> 来产生 <i>PersistentToken</i> 的序列号,不怕重复?
+虽然16位Byte确实已经很大(10亿的4次方).
+</p>
+</div>
 </div>
 </div>
 ]]></content>
