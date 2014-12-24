@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Notes of Reading MUSE Project</title>
-<!-- 2014-11-27 Thu 16:11 -->
+<!-- 2014-12-23 Tue 21:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -145,6 +145,21 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">1. Muse_Python</a></li>
+<li><a href="#sec-2">2. Terence and Lindo</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Dependency of terence to lindo</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1. All refered classes</a>
+<ul>
+<li><a href="#sec-2-1-1-1">2.1.1.1. Package messages</a></li>
+<li><a href="#sec-2-1-1-2">2.1.1.2. Pacakges api</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-1-2">2.1.2. Terence references</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -233,10 +248,161 @@ What exactly does the VerbClassManager work for?</font>
 </ul>
 </div>
 </div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Terence and Lindo</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Dependency of terence to lindo</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> All refered classes</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">corpus</span>.<span style="color: #268bd2;">CorpusReader</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">Outcomes</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">features</span>.<span style="color: #268bd2;">CPOSTag</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">features</span>.<span style="color: #268bd2;">Form</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">features</span>.<span style="color: #268bd2;">Lemma</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">features</span>.<span style="color: #268bd2;">POSTag</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">malt</span>.<span style="color: #268bd2;">MaltDataWriter</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">nlp</span>.<span style="color: #268bd2;">adapters</span>.<span style="color: #268bd2;">OpenNLPFactory</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">nlp</span>.<span style="color: #268bd2;">adapters</span>.<span style="color: #268bd2;">WebNLPFactoryLoader</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">timex</span>.<span style="color: #268bd2;">model</span>.<span style="color: #268bd2;">Calendar</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">tlink</span>.<span style="color: #268bd2;">EventStemFrequency</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">util</span>.<span style="color: #268bd2;">Const</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">util</span>.<span style="color: #268bd2;">EditDistance</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">util</span>.<span style="color: #268bd2;">WebConst</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">util</span>.<span style="color: #268bd2;">WordNet</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">experiments</span>.<span style="color: #268bd2;">recognition</span>.<span style="color: #268bd2;">Classifier</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">experiments</span>.<span style="color: #268bd2;">tlinks</span>.<span style="color: #268bd2;">fables</span>.<span style="color: #268bd2;">FablesFeatureGenerator</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">experiments</span>.<span style="color: #268bd2;">tlinks</span>.<span style="color: #268bd2;">fables</span>.<span style="color: #268bd2;">parse</span>.<span style="color: #268bd2;">MaltFeatureGenerator</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">experiments</span>.<span style="color: #268bd2;">tlinks</span>.<span style="color: #268bd2;">fables</span>.<span style="color: #268bd2;">parse</span>.<span style="color: #268bd2;">MaltParser</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">AnnotatedElement</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">Event</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">Parse</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">Statement</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">TLink</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">TimeX</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">Token</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">malt</span>.<span style="color: #268bd2;">Node</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">utils</span>.<span style="color: #268bd2;">Container</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">utils</span>.<span style="color: #268bd2;">LINDOConsts</span>;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">utils</span>.<span style="color: #268bd2;">TimexUtils</span>;
+</pre>
+</div>
+<p>
+Lindo is designed for question answering.
+</p>
+</div>
+
+<div id="outline-container-sec-2-1-1-1" class="outline-5">
+<h5 id="sec-2-1-1-1"><span class="section-number-5">2.1.1.1</span> Package messages</h5>
+<div class="outline-text-5" id="text-2-1-1-1">
+<ul class="org-ul">
+<li>AnnotatedElement extends Statement implements Comparable
+<ul class="org-ul">
+<li>NamedNodeMap attributes// dom name (String) to nodes
+</li>
+<li>Node annotatingNode // dom xml node
+</li>
+<li>String id; String fileName; int startIndex // index of the first token in the sentence
+</li>
+<li>HashMap&lt;String, String&gt; // two maps from attribute name to
+value and vise versa.
+</li>
+<li>ArrayList&lt;String&gt; // annotationLines, annotationAttributeLines
+</li>
+<li>ArrayList&lt;Integer&gt; tokenNums
+</li>
+</ul>
+</li>
+<li>Event extends AnnotatedElement
+</li>
+<li>Timex extends AnnotatedElement
+</li>
+<li>TLink
+</li>
+<li>Parse
+</li>
+<li>Statement extends Question
+<ul class="org-ul">
+<li>Question implements Serializable, Cloneable
+<ul class="org-ul">
+<li>String //string representation, etc., List&lt;Token&gt;,
+Parse //the syntatic parse, List&lt;String&gt; chunks
+</li>
+<li>ArrayList&lt;ArrayList&lt;SemanticLabel&gt;&gt;
+</li>
+<li>String normlizedQuestion, originalQuestion.
+</li>
+<li>ArrayList&lt;AnnotatedElement&gt; annotatedEvent,
+recognizedEvent, annotated timex, recognized timex, annotatedSignals
+</li>
+<li>ArrayList&lt;ArrayList&lt;Token&gt;&gt; ngrams
+</li>
+<li>String sourceFile, dct.
+</li>
+<li>ArrayList&lt;String&gt; timex, ArrayList&lt;Parse&gt; candidates;
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Token implements Serializable
+<ul class="org-ul">
+<li>index in sentence, String annotationLine?, pos, int (start,
+end), String convertedString, some boolean for syntactic
+states, Span, String chunkTag. Statement //sentence. String[]
+features.
+<ul class="org-ul">
+<li>HashMap&lt;Integer, ArrayList&lt;RuleResults&gt;&gt; ?. integer means level
+</li>
+<li>HashMap&lt;Sematic,String&gt; different labels in different context?
+</li>
+<li>HashMap&lt;Enum, ArrayList&lt;Object&gt;&gt; map of TimeML label -&gt; BIO
+labels? In Question, they only treate the first element and
+planned to make warm if there are more than one
+label. <i>twist design.</i> The second Object is converted into a NamedNodeMap
+</li>
+<li>ArrayList&lt;Container&lt;String, Double&gt;&gt; contextSynonyms.
+Synonyms and probabilities
+</li>
+<li>ArrayList&lt;Container&lt;String, Double&gt;&gt; contextIndependentSynonyms
+</li>
+<li>Parse parentParse ?
+</li>
+</ul>
+</li>
+<li>Span int (start, end), String merge?
+</li>
+<li>SemanticLabel
+String role; String chunk; ArrayList&lt;Token&gt; tokens;
+</li>
+</ul>
+</li>
+<li>malt.Node
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-1-2" class="outline-5">
+<h5 id="sec-2-1-1-2"><span class="section-number-5">2.1.1.2</span> Pacakges api</h5>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Terence references</h4>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-27 Thu 16:11</p>
+<p class="date">Created: 2014-12-23 Tue 21:30</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>

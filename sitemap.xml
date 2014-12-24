@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://xiaoliuai.github.io/blog/2014-12-24-angularjs-tutorial-.html</loc>
+    <lastmod>2014-12-24T00:00:00+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/blog/2014-12-24-angularjs-developer-guide-.html</loc>
+    <lastmod>2014-12-24T00:00:00+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/blog/2014-12-22-.html</loc>
+    <lastmod>2014-12-22T00:00:00+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://xiaoliuai.github.io/blog/2014-12-18-drilljava.html</loc>
     <lastmod>2014-12-18T00:00:00+01:00</lastmod>
     <priority>0.8</priority>
@@ -22,15 +37,21 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/blog/archives/</loc>
-    <lastmod>2014-12-21T00:29:00+01:00</lastmod>
+    <lastmod>2014-12-24T03:19:18+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/</loc>
-    <lastmod>2014-12-21T00:29:00+01:00</lastmod>
+    <lastmod>2014-12-24T03:19:18+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/archives/tags.html</loc>
+    <lastmod>2014-12-24T03:19:18+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Chinese NLP/python_implementation.html</loc>
@@ -78,23 +99,18 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://xiaoliuai.github.io/publish/KU Leuven/BioNLP_GRN.html</loc>
-    <lastmod>1417-10-11T09:00:00+01:00</lastmod>
+    <loc>http://xiaoliuai.github.io/publish/KU Leuven/Biobliography.html</loc>
+    <lastmod>2014-12-23T21:30:18+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/KU Leuven/MUSE_Code.html</loc>
-    <lastmod>1417-10-11T08:00:00+01:00</lastmod>
+    <lastmod>2014-12-23T21:30:17+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/KU Leuven/MUSE_Dev.html</loc>
     <lastmod>2014-12-19T16:53:27+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/KU Leuven/MUSE_Publications.html</loc>
-    <lastmod>1417-10-11T08:00:00+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -129,7 +145,7 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Private Work/drill.html</loc>
-    <lastmod>2014-12-19T20:31:41+01:00</lastmod>
+    <lastmod>2014-12-24T01:45:46+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -144,7 +160,7 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/sitemap.html</loc>
-    <lastmod>2014-12-19T20:31:41+01:00</lastmod>
+    <lastmod>2014-12-24T01:45:45+01:00</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>

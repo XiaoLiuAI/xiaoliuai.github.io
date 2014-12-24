@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title><![CDATA[Tag: CGI | 记往开来]]></title>
+<link href="http://xiaoliuai.github.io/tags/cgi/atom.xml" rel="self"/>
+<link href="http://xiaoliuai.github.io/"/>
+<updated>2014-12-24T03:19:18+01:00</updated>
+<id>http://xiaoliuai.github.io/</id>
+<author>
+<name><![CDATA[Xiao Liu]]></name>
+
+</author>
+<generator uri="http://octopress.org/">Octopress</generator>
+
+<entry>
+<title type="html"><![CDATA[背景知识]]></title>
+<link href="http://xiaoliuai.github.io/blog/2014-12-22-.html"/>
+<updated>2014-12-22T00:00:00+01:00</updated>
+<id>http://xiaoliuai.github.io/blog/</id>
+<content type="html"><![CDATA[<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. JSP</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Servelet</a></li>
+<li><a href="#sec-1-2">1.2. CGI 和 WSGI</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Tomcat + Apache</a></li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/tags/cgi/atom.xml"><span class="section-number-2">1</span> JSP</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+JavaServer Page(JSP)是一种动态网页技术标准.在HTML中插入Java片段
+(Scriptlet),以.jsp为文件后缀.在接到客户端请求的时候,服务器根据XXX.jsp文
+件生成XXXServlet.java文件,然后编译运行,最后返回结果给客户端.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Servelet</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Servelet是一种 <i>独立于平台和协议</i> 的 <i>服务器端</i> 的Java应用程序,生
+成动态页面.为HTTP客户端跟HTTP服务器程序的中间层.好处是快(比CGI快),
+每个用户请求被激活成程序中的一个线程.Servlet是纯粹的Java,jsp介于
+html和java质检,有助于美工人员来设计界面.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> CGI 和 WSGI</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+既然上一节提到了CGI,这里稍微展开一下.Common Gateway Interface
+(CGI)是一种利用程序的标准输入,输出流来完成HTTP通信的方式.HTTP本身
+是文本协议,请求是由服务器(Apache)处理,而应用程序可能由各种语言来实
+现.CGI则将这个文本协议以标准输入流的方式传递给服务器端的CGI程序.
+与之类似的还有WSGI,原理类似,但是是Python专用的协议.对于实现了
+<i><span class="underline"><span class="underline">call</span></span></i> 的对象,将 <i>request</i> 经过包装作为参数传入,同时也返回进过
+包装的 <i>response</i>.
+</p>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Tomcat + Apache</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Apache和Tomcat都是提供服务器功能的软件.Apache可以使用
+PHP,CGI,Perl,Tomcat在Apache后端提供对Java的支持.Apache+Tomcat处理
+JSP的时候,Apache只是转发.Apache是Web服务器,Tomcat是应用服务器,是
+Servlet容器,可以单独运行.
+</p>
+
+<p>
+Tomcat是Servlet的容器,可以独立运行,也可以作为现有服务器的附加(支持
+Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
+</p>
+</div>
+</div>
+
+]]></content>
+</entry>
+
+</feed>
