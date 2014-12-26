@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://xiaoliuai.github.io/blog/2014-12-24-angularjs-tutorial-.html</loc>
-    <lastmod>2014-12-24T00:00:00+01:00</lastmod>
+    <loc>http://xiaoliuai.github.io/blog/2014-12-25-angularjs-developer-guide-.html</loc>
+    <lastmod>2014-12-25T00:00:00+01:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://xiaoliuai.github.io/blog/2014-12-24-angularjs-developer-guide-.html</loc>
+    <loc>http://xiaoliuai.github.io/blog/2014-12-24-angularjs-tutorial-.html</loc>
     <lastmod>2014-12-24T00:00:00+01:00</lastmod>
     <priority>0.8</priority>
   </url>
@@ -37,19 +37,19 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/blog/archives/</loc>
-    <lastmod>2014-12-24T03:19:18+01:00</lastmod>
+    <lastmod>2014-12-26T22:29:57+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/</loc>
-    <lastmod>2014-12-24T03:19:18+01:00</lastmod>
+    <lastmod>2014-12-26T22:29:57+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/archives/tags.html</loc>
-    <lastmod>2014-12-24T03:19:18+01:00</lastmod>
+    <lastmod>2014-12-26T22:29:57+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -145,7 +145,7 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Private Work/drill.html</loc>
-    <lastmod>2014-12-24T01:45:46+01:00</lastmod>
+    <lastmod>2014-12-25T20:34:45+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -160,7 +160,7 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/sitemap.html</loc>
-    <lastmod>2014-12-24T01:45:45+01:00</lastmod>
+    <lastmod>2014-12-25T20:34:43+01:00</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>

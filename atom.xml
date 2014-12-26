@@ -4,7 +4,7 @@
   <title><![CDATA[记往开来]]></title>
   <link href="http://xiaoliuai.github.io/atom.xml" rel="self"/>
   <link href="http://xiaoliuai.github.io/"/>
-  <updated>2014-12-24T03:19:18+01:00</updated>
+  <updated>2014-12-26T22:29:57+01:00</updated>
   <id>http://xiaoliuai.github.io/</id>
   <author>
     <name><![CDATA[Xiao Liu]]></name>
@@ -12,6 +12,604 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AngularJS Developer Guide 开发指南学习笔记]]></title>
+    <link href="http://xiaoliuai.github.io/blog/2014-12-25-angularjs-developer-guide-.html"/>
+    <updated>2014-12-25T00:00:00+01:00</updated>
+    <id>http://xiaoliuai.github.io/blog/angularjs-developer-guide-</id>
+    <content type="html"><![CDATA[<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Introduction &amp; Conceptual Overview</a></li>
+<li><a href="#sec-2">2. DI</a></li>
+<li><a href="#sec-3">3. Data Binding &amp; Scopes &amp; Template</a></li>
+<li><a href="#sec-4">4. Module &amp; Provider</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Service</a></li>
+<li><a href="#sec-4-2">4.2. Controller</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Directive</a>
+<ul>
+<li><a href="#sec-5-1">5.1. 注册Directive</a></li>
+<li><a href="#sec-5-2">5.2. restrict option</a></li>
+<li><a href="#sec-5-3">5.3. link option</a></li>
+<li><a href="#sec-5-4">5.4. isolate scope</a></li>
+<li><a href="#sec-5-5">5.5. <i>transclude</i></a></li>
+<li><a href="#sec-5-6">5.6. scope</a></li>
+<li><a href="#sec-5-7">5.7. controller in directive.</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Filters</a></li>
+<li><a href="#sec-7">7. Forms</a></li>
+<li><a href="#sec-8">8. Expressions</a></li>
+<li><a href="#sec-9">9. HTML Compiler</a></li>
+<li><a href="#sec-10">10. Security</a></li>
+<li><a href="#sec-11">11. i18n and l10n</a></li>
+<li><a href="#sec-12">12. Accessibility</a></li>
+<li><a href="#sec-13">13. Bootstrap</a></li>
+<li><a href="#sec-14">14. Running in Production</a></li>
+<li><a href="#sec-15">15. Animations</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-12-25-angularjs-developer-guide-.html"><span class="section-number-2">1</span> Introduction &amp; Conceptual Overview</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+HTML本身是静态的,对于现在的动态网页无能为力.为了弥合静态和动态之间
+的鸿沟,有两种静态方式:库(<code>jQuery</code>),框架(<code>durandal</code>,
+<code>ember</code>). <code>AngularJS</code> 则提供了第三种方式,通过数据绑定等方式让浏览
+器学会新的语法. <code>AngularJS</code> 是完全基于前端的,适用于CRUD应用.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> DI</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+AngularJS中的模组类似于名字空间,在几乎所有东西都在名字空间下注册.这
+些注册的东西是通过名字推断来进行绑定(引用)的.AngularJS自带的那功能,都
+是可以直接引用的.自己定义的东西,也可以直接靠名字推定,但是要给模组
+加上依赖关系.
+</p>
+
+<p>
+<b>service</b>, <b>directive</b>, <b>filter</b> 都是通过 <code>factory/directive/filter</code> 方
+法注册在模组中的,这些方法统称工厂(factory)方法.
+</p>
+
+<p>
+我们可以通过 <code>config/run</code> 方法注册在模组配置和运行的时候需要运行的
+函数,这些函数也同样的可以被以类似上面的方式来调用.这些方法被归类为
+模组(module)方法.
+</p>
+
+<p>
+控制器(<b>controller</b>),被解释为classes或者constructor function,同样需
+要注册到模组中,通过名字来引用.
+</p>
+
+<p>
+这些东西在引用的时候,可以直接当函数参数名,可以用 <i>$inject</i> 来显示
+说明,也可以用数组.后两种基本上是在第一种的基础上多写些代码来说明.直
+接用函数参数名是最简单的,但是不被官方所推荐.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Data Binding &amp; Scopes &amp; Template</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+传统模板是通过模板Tempalte和模型Model来建立视图View. AngularJS是通过模
+板建立起View和Model的对应,让View跟Model直接互动.
+AngularJS中,template是包含AngularJS元素和属性的HTML.template中可用
+的AngularJS元素和属性为 <i>Directive</i>, <i>Markup</i> (<code></code>), <i>Filter</i>,
+<i>Form controls</i>.通过这些template,JS(model)和(view)被连接了起来(数
+据绑定).
+</p>
+
+<p>
+上下文(Scope)提供表达式的运行环境,它被组织成一个类似DOM的层级结构.上
+下文监视表达式并传递事件.API($watch)监视模型的变更,($apply)将任意
+由Angular之外的事件对模型的改变传递到View.这里所谓的Angular之外的
+事件,指的是controllers,services,event handlers.
+</p>
+
+<p>
+上下文之间可以嵌套,嵌套的上下文有两种 <i>child scope</i> 和 <i>isolate
+scope</i>, <i>child scope</i> 继承上层上下文的内容, <i>isolate scope</i> 不继承.
+如果上下文中没有对应的属性,表达式是没有任何作用的.
+</p>
+
+<p>
+上下文可以看做将应用控制器controller和视图view联系起来的胶水.
+<span class="underline">在template连接的时候,directive会设置上下文中的$watch,$watch会通知
+directive任何属性的变更,从而使directive能根据更新的数据来渲染DOM</span>
+控制器controller和directive都能直接访问scope,但是不能直接访问对方.这
+种设计孤立controller和directive. <code>$rootScope</code> 提供对root上下文的访
+问,一般指向ng-app所在的范围.
+</p>
+
+<p>
+如果用chrome的inspect element功能查看页面元素,会发现
+<code>class="ng-scope ng-binding"</code>之类的属
+性.Anuglar会自动将 <i>ng-scope</i> 加入制定了上下文的元素, <i>ng-binding</i>
+则说明这里面的内容是用绑定实现的.
+</p>
+
+<p>
+在不同层级使用同一个controller,
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;
+  Root scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: 
+  &lt;<span style="color: #b58900;">ul</span>&gt;
+    &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"i in [1]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;
+      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$emit('MyEvent')"</span>&gt;$emit('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;
+      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$broadcast('MyEvent')"</span>&gt;$broadcast('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;
+      &lt;<span style="color: #b58900;">br</span>&gt;
+      Middle scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: 
+      &lt;<span style="color: #b58900;">ul</span>&gt;
+        &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"item in [1, 2]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;
+          Leaf scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: 
+        &lt;/<span style="color: #b58900;">li</span>&gt;
+      &lt;/<span style="color: #b58900;">ul</span>&gt;
+    &lt;/<span style="color: #b58900;">li</span>&gt;
+  &lt;/<span style="color: #b58900;">ul</span>&gt;
+&lt;/<span style="color: #b58900;">div</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'eventExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'EventController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+  $scope.count = 0;
+  $scope.$on<span style="color: #859900;">(</span><span style="color: #2aa198;">'MyEvent'</span>, <span style="color: #859900;">function</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>
+    $scope.count++;
+  <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+</pre>
+</div>
+
+<p>
+这个例子中,首先我们看JS的部分.这部分注册了一个EventController,这个
+controller对于给定的上下文 <i>$scope</i> 设定属性 <i>count</i>,同时注册一个
+名为 <i>MyEvent</i> 的事件,调用一个闭包函数对于当前上下文进行操作.
+</p>
+
+<p>
+接下来看HTML,里面把同一个controller用了三次,也就意味着对于
+eventExample,给予三个不同的 <i>$scope</i>.而这三个 <i>$scope</i> 各自拥有自
+己的 <i>MyEvent</i> 函数副本.最后, <code>$emit('MyEvent')</code> 将调用这个函数的
+动作传递给上层 <i>$scope</i>, <code>$broadcast('MyEvent')</code> 则传递给下层
+<i>$scope</i>.
+</p>
+
+<p>
+<i>$scope</i> 的生命周期中,模型的改变不会立即触发 <i>$watch</i>, 而是通过在
+<i>$apply</i> 结束时的 <i>$digest</i> 来触发 <i>$watch</i>,这么做的好处在于将多个
+改变合为一个 <i>$watch</i> 动作. 当子上下文不需要继续存在时,子上下文的
+创建者负责调用 <i>scope.$destroy()</i> 负责停止事件传递,允许垃圾回收来
+释放内存.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Module &amp; Provider</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+angular.module会覆盖已存在的名字.模组提供 <i>provider</i>, <i>factory</i>,
+<i>service</i>, <i>value</i>, <i>constant</i>, <i>animation</i>, <i>filter</i>,
+<i>controller</i>, <i>directive</i>, <i>config</i>, <i>run</i> 这些方法.除了最后两个以
+外,都是注册某一种功能.
+<i>provider,factory,service,value,constant</i> 都是JS内部用的,
+<i>directive,filter,animation,controller</i> 都是在html里面用
+的(JS里面定义的).
+</p>
+<ul class="org-ul">
+<li>JS
+<ul class="org-ul">
+<li>provider 提供一个在config阶段配置内容的机会,通过 <i>$get</i> 函数返
+回绑定的对象.
+</li>
+<li>factory 注册一个名字空间,跟value类似,但是可以引用其它的服务
+</li>
+<li>service 注册一个类,用 <i>new</i> 来获得对象
+</li>
+<li>value 注册一个变量,也可以在变量下加入函数,但是不能引用其它的服务.
+</li>
+</ul>
+</li>
+<li>html
+<ul class="org-ul">
+<li>directive, 定义一个html元素,属性,类名,对相应的元素加入定义好的模块
+</li>
+<li>controller, 注册一个可在html里面引用的属性值,对相应元素中的变
+量进行绑定和操作.
+</li>
+<li>filter, 过滤器
+</li>
+<li>animation, 动作效果
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+Provider是AngularJS的基础,Value,Factory,Service,Constant都建立在Provider之上.下
+面的 <code>myApp.XXX</code> 方法实际上都是调用 <code>$provider.XXX</code>.
+</p>
+<ul class="org-ul">
+<li>Value recipe
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myApp</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>;
+myApp.value<span style="color: #657b83;">(</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #2aa198;">'a12345654321x'</span><span style="color: #657b83;">)</span>;
+myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'DemoController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #859900;">function</span> DemoController<span style="color: #b58900;">(</span><span style="color: #6c71c4;">clientId</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+  <span style="color: #268bd2;">this</span>.clientId = clientId;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">html</span> <span style="color: #6c71c4;">ng-app</span>=<span style="color: #2aa198;">"myApp"</span>&gt;
+  &lt;<span style="color: #b58900;">body</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"DemoController as demo"</span>&gt;
+    Client ID: 
+  &lt;/<span style="color: #b58900;">body</span>&gt;
+&lt;/<span style="color: #b58900;">html</span>&gt;
+</pre>
+</div>
+<p>
+其实就是定义一个模组下的变量/对象,可以是简单值,也可以在这个变量
+下加入函数.
+</p>
+</li>
+<li>Factory recipe
+相对Value,可使用其他服务,初始化服务,惰性初始化. 使用 <code>myApp.factory</code>
+方法.返回的是一系列变量,函数.
+</li>
+<li>Service recipe
+使用 <code>myApp.service()</code> 方法,注册一个构造函数,得到一个类(class),
+用 <i>new</i> 来得到新实例.返回的是构造函数.
+</li>
+<li>Provider Recipe
+比Factory更高一层,能够让用户在使用服务之前进行定制化,用config函
+数来实现.Provider里面有个 <code>$get</code> 方法,DI会把这个方法返回的东西绑
+定到注册的Provider名字上.
+<div class="org-src-container">
+
+<pre class="src src-javascript">myApp.provider<span style="color: #657b83;">(</span><span style="color: #2aa198;">'AAA'</span>, <span style="color: #859900;">function</span> AAAProvider<span style="color: #2aa198;">(){</span>
+    <span style="color: #268bd2;">this</span>.configFunc = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">bla</span><span style="color: #b58900;">){</span>blabla<span style="color: #b58900;">}</span>;
+    <span style="color: #268bd2;">this</span>.$get = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">lab</span><span style="color: #b58900;">){</span> <span style="color: #859900;">return</span> BBB<span style="color: #b58900;">}</span>;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+myApp.config<span style="color: #657b83;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAAProvider</span><span style="color: #2aa198;">){</span>
+    AAAProvider.configFunc<span style="color: #b58900;">(</span>...<span style="color: #b58900;">)</span>;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'CCC'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAA</span><span style="color: #2aa198;">){</span> <span style="color: #93a1a1; font-style: italic;">/*</span><span style="color: #93a1a1; font-style: italic;">AAA is BBB*/</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+</pre>
+</div>
+<p>
+<i>provider</i> 只能在config里面,而在run里面,只能用非 <i>provider</i>.
+</p>
+</li>
+<li>Constant Recipe
+Constant在config和run的过程中都存在(在他们之前).用
+<code>myApp.constant</code> 来注册.
+</li>
+<li>Special Purpose Objects
+包括controller, directive, filter, animation.
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Service</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+服务都是惰性加载和单例,通过 <i>factory</i> 注册.服务本身对于html是不可
+见的.在JS里面引用其功能.
+除了用工厂方法意外,还可以在模组的config方法中通过 <i>$provie.factory</i> 来
+注册服务.这里的Service和前面Provider段落中的不是一个概念.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Controller</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+控制器是用于连接上下文和服务的,通过 <i>controller</i> 注册,对于html可见,通
+过 <i>ng-controller</i> 来进行绑定.本身也可以定义一些行为.不需要返回什
+么东西.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Directive</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Directive提供自己定义的HTML标记,基于AngularJS HTML compiler
+(<code>$compile</code>). <i>ngApp</i>, <i>ngRepeat</i> 等等就是AngularJS自带的
+directive,这些directive通过 <i>ng-app</i>, <i>ng-repeat</i> 标记在HTML文件中
+改变元素的行为模式.当然,这里的compile并不是真正意义上的编
+译,AngularJS只是将事件监听器绑定到HTML元素上,使得这些元素可以互动.
+在 <code>$compile</code> 的API中可以找到directive的各种option的详细说明.
+</p>
+
+<p>
+命名方面, <code>-,:,_</code> 都可以作为分隔符, <code>ng-model</code> 和 <code>ng:model</code> 是等
+效的.同时还可以在前面加上 <code>x-</code> 或者 <code>data-</code> 前缀, <code>ng-model</code> 和
+<code>data-ng:model</code> 是等效的.
+</p>
+
+<p>
+使用directive可以将它作为tag name, attribute name, comment 或者
+class name.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">my-dir</span>&gt;&lt;/<span style="color: #b58900;">my-dir</span>&gt;
+&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">my-dir</span>=<span style="color: #2aa198;">"exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;
+<span style="color: #93a1a1; font-style: italic;">&lt;!-- </span><span style="color: #93a1a1; font-style: italic;">directive:my-dir exp</span><span style="color: #93a1a1; font-style: italic;">--&gt;</span>
+&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"my-dir: exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;
+</pre>
+</div>
+<p>
+以上三种标记方式是等效的.当然,推荐使用tag name和attribute name.
+</p>
+
+<p>
+<i>ngAttr</i> 能够绕过浏览器限制使用AngularJS的表达式设定attribute.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;
+&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">ng-attr-cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;
+&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">viewBox</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;
+&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">ng-attr-view-box</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;
+</pre>
+</div>
+
+<p>
+<b>Directive返回固定的option.如果说Service(Factory)是注册名字和对应的属性,函数;Directive则是将值和函数绑定到预先定义好的选项</b>
+</p>
+</div>
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 注册Directive</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+module.directive 函数注册directive,它接受一个名字和一个工厂方法.方
+法返回template,用其填充directive元素的内容.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> restrict option</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+值为 &#8216;A&#8217; (match attribute), &#8216;E&#8217; (match element),
+&#8216;C&#8217; (match class).指定这个directive被用作元素的属性,元素名或类
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> link option</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+操作DOM.这个option需要指定一个函数,函数的参数为
+scope,element,attrs.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsTimeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+  $scope.format = <span style="color: #2aa198;">'M/d/yy h:mm:ss a'</span>;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCurrentTime'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$interval'</span>, <span style="color: #2aa198;">'dateFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$interval</span>, <span style="color: #6c71c4;">dateFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+
+  <span style="color: #859900;">function</span> <span style="color: #b58900;">link</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">scope</span>, <span style="color: #6c71c4;">element</span>, <span style="color: #6c71c4;">attrs</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
+    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">format</span>,
+        timeoutId;
+
+    <span style="color: #859900;">function</span> <span style="color: #b58900;">updateTime</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>
+      element.text<span style="color: #657b83;">(</span>dateFilter<span style="color: #2aa198;">(</span><span style="color: #859900;">new</span> <span style="color: #268bd2;">Date</span><span style="color: #b58900;">()</span>, format<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>;
+    <span style="color: #268bd2;">}</span>
+
+    scope.$watch<span style="color: #268bd2;">(</span>attrs.myCurrentTime, <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">value</span><span style="color: #657b83;">)</span> <span style="color: #657b83;">{</span>
+      format = value;
+      updateTime<span style="color: #2aa198;">()</span>;
+    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;
+
+    element.on<span style="color: #268bd2;">(</span><span style="color: #2aa198;">'$destroy'</span>, <span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>
+      $interval.cancel<span style="color: #2aa198;">(</span>timeoutId<span style="color: #2aa198;">)</span>;
+    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;
+
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">start the UI update process; save the timeoutId for canceling</span>
+    timeoutId = $interval<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>
+      updateTime<span style="color: #2aa198;">()</span>; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">update DOM</span>
+    <span style="color: #657b83;">}</span>, 1000<span style="color: #268bd2;">)</span>;
+  <span style="color: #859900;">}</span>
+
+  <span style="color: #859900;">return</span> <span style="color: #859900;">{</span>
+    link: link
+  <span style="color: #859900;">}</span>;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+</pre>
+</div>
+<p>
+设定函数 <i>updateTime</i> 直接操纵元素内容,通过 <i>$watch</i> 将元素中的属
+性变动跟操作函数绑定在一起. 通过 <i>$interval</i> 来实现自动读秒更新时
+间. 绑定 <i>$destroy</i> 来终止 <i>$interval</i> 读秒.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> isolate scope</h3>
+<div class="outline-text-3" id="text-5-4">
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsolateScopeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+  $scope.naomi = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Naomi'</span>, address: <span style="color: #2aa198;">'1600 Amphitheatre'</span> <span style="color: #859900;">}</span>;
+  $scope.igor = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Igor'</span>, address: <span style="color: #2aa198;">'123 Somewhere'</span> <span style="color: #859900;">}</span>;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCustomer'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>
+    restrict: <span style="color: #2aa198;">'E'</span>,
+    scope: <span style="color: #859900;">{</span>
+      customerInfo: <span style="color: #2aa198;">'=info'</span>
+    <span style="color: #859900;">}</span>,
+    templateUrl: <span style="color: #2aa198;">'my-customer-iso.html'</span>
+  <span style="color: #b58900;">}</span>;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;
+  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"naomi"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;
+  &lt;<span style="color: #b58900;">hr</span>&gt;
+  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"igor"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;
+&lt;/<span style="color: #b58900;">div</span>&gt;
+</pre>
+</div>
+<p>
+controller里面绑定了 <i>naomi</i> 和 <i>ingor</i> 的值,html里面将directive
+元素中的 <i>info</i> 绑定为 <i>naomi</i> 或 <i>ingor</i>. directive里面定义独立
+上下文,将 <i>customerInfo</i> 绑定到元素里的
+<i>info</i>. my-customer-iso.html 里面引用 customerInfo 的内容. 如果要
+引用 <code>&lt;div bind-to-this="thing"&gt;</code>,
+在directive里面应该用
+<code>=bindToThis</code>.如果isolate scope里的
+属性名跟directive标签中的一样,则可以缩写为 <code>XXX:
+'='</code>.
+<b>注意:如同之前提到过的,isolate scope没有继承高级上下文的内容,在这
+里面调用高级上下文中的变量,只能是空</b>
+<b>template里面或者templateUrl引用的html里面的内容继承的是directive
+的上下文</b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> <i>transclude</i></h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+给予外部上下文访问能力.同时也意味着之前isolate scope
+被遮盖了,无法访问.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsoFnBindExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$timeout'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$timeout</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+  $scope.name = <span style="color: #2aa198;">'Tobias'</span>;
+  $scope.hideDialog = <span style="color: #859900;">function</span> <span style="color: #859900;">()</span> <span style="color: #859900;">{</span>
+    $scope.dialogIsHidden = <span style="color: #268bd2;">true</span>;
+    $timeout<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span> <span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>
+      $scope.dialogIsHidden = <span style="color: #268bd2;">false</span>;
+    <span style="color: #657b83;">}</span>, 2000<span style="color: #268bd2;">)</span>;
+  <span style="color: #859900;">}</span>;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myDialog'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>
+    restrict: <span style="color: #2aa198;">'E'</span>,
+    transclude: <span style="color: #268bd2;">true</span>,
+    scope: <span style="color: #859900;">{</span>
+      <span style="color: #2aa198;">'close'</span>: <span style="color: #2aa198;">'&amp;onClose'</span>
+    <span style="color: #859900;">}</span>,
+    templateUrl: <span style="color: #2aa198;">'&lt;div class="alert"&gt;&lt;a href class="close" ng-click="close()"&gt;&amp;times;&lt;/a&gt;&lt;div ng-transclude&gt;&lt;/div&gt;&lt;/div&gt;'</span>
+  <span style="color: #b58900;">}</span>;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;
+  &lt;<span style="color: #b58900;">my-dialog</span> <span style="color: #6c71c4;">ng-hide</span>=<span style="color: #2aa198;">"dialogIsHidden"</span> <span style="color: #6c71c4;">on-close</span>=<span style="color: #2aa198;">"hideDialog()"</span>&gt;
+    Check out the contents, !
+  &lt;/<span style="color: #b58900;">my-dialog</span>&gt;
+&lt;/<span style="color: #b58900;">div</span>&gt;
+</pre>
+</div>
+<p>
+点击动作为<code>ng-click="close()"</code>,而
+<code>close</code> 动作被绑定到 <code>&amp;onClose</code> 这个directive. <code>on-close</code> 又在
+html里面绑定到 <code>hideDialog</code> 函数上. (真扭曲啊)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-6" class="outline-3">
+<h3 id="sec-5-6"><span class="section-number-3">5.6</span> scope</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+不管是template还是templateUrl都是在directive的上下文下.当没有
+isolate scope的时候,直接访问外部上下文.有isolate scope的时候,只能
+访问isolate scope.这个时候html里面元素的内容,比如
+<code>&lt;AA&gt;blabla&lt;/AA&gt;</code> 里面的 <i>blabla</i> 是被忽略/覆盖的.
+当在template中加入一个含有transclude的元素的时候,html里面的
+<i>blabla</i> 会被显示在这个元素之中,而这个含有transclude的元素的内容
+却不会被显示,同时html里面的表达式无法访问isolate scope.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">...
+<span style="color: #859900;">return</span> <span style="color: #657b83;">{</span>
+    template: &lt;div&gt;CONTENT IN JAVASCRIPT <span style="color: #2aa198;">(</span>DIRECTIVE SCOPE <span style="color: #b58900;">(</span>OUTER/ISOLATE SCOPE<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&lt;/div&gt;&lt;div ng-transclude&gt;CONTENT FROM HTML <span style="color: #2aa198;">(</span>OUTER SCOPE<span style="color: #2aa198;">)</span>&lt;/div&gt;
+<span style="color: #657b83;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-7" class="outline-3">
+<h3 id="sec-5-7"><span class="section-number-3">5.7</span> controller in directive.</h3>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Filters</h2>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Forms</h2>
+</div>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Expressions</h2>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> HTML Compiler</h2>
+</div>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Security</h2>
+</div>
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> i18n and l10n</h2>
+</div>
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> Accessibility</h2>
+</div>
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> Bootstrap</h2>
+</div>
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> Running in Production</h2>
+</div>
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> Animations</h2>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AngularJS Tutorial 入门教程学习笔记]]></title>
@@ -68,7 +666,8 @@
 </p>
 
 <p>
-<i><b>写在后面,在学习了后面的课程之后,我对module的理解是:1.通过angular.module(&#8216;AA&#8217;)注册一个模组名字叫AA,HTML里面通过ng-app=&#8221;AA&#8221;来表示自己需要/接受模组AA的操作</b></i>
+<i><b>写在后面,对angular.module是所有JS中创建,注册和获取模组的地方.HTML里
+面通过ng-app=&#8221;AA&#8221;来绑定模组AA的上下文</b></i>
 </p>
 </div>
 </div>
@@ -313,63 +912,6 @@ Phone.get({phoneId:$routeParams.phoneId})</code>和
 <p>
 更多的教程 <a href="http://angularjs.cn/tag/AngularJS_%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97">开发指南</a> 和 <a href="http://docs.angularjs.org/cookbook/index">Cookbook</a>. 推荐使用<a href="https://github.com/angular/angular-seed">AngularJS种子项目</a>来引导开发新项目
 </p>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AngularJS Developer Guide 开发指南学习笔记]]></title>
-    <link href="http://xiaoliuai.github.io/blog/2014-12-24-angularjs-developer-guide-.html"/>
-    <updated>2014-12-24T00:00:00+01:00</updated>
-    <id>http://xiaoliuai.github.io/blog/angularjs-developer-guide-</id>
-    <content type="html"><![CDATA[<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. Introduction &amp; Conceptual Overview</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-12-24-angularjs-developer-guide-.html"><span class="section-number-2">1</span> Introduction &amp; Conceptual Overview</a></h2>
-<div class="outline-text-2" id="text-1">
-<p>
-HTML本身是静态的,对于现在的动态网页无能为力.为了弥合静态和动态之间
-的鸿沟,有两种静态方式:库(<code>jQuery</code>),框架(<code>durandal</code>,
-<code>ember</code>). <code>AngularJS</code> 则提供了第三种方式,通过数据绑定等方式让浏览
-器学会新的语法. <code>AngularJS</code> 是完全基于前端的,适用于CRUD应用.
-</p>
-<ul class="org-ul">
-<li>Template
-</li>
-<li>Directives
-</li>
-<li>Model
-</li>
-<li>Scope
-</li>
-<li>Expressions
-</li>
-<li>Compiler
-</li>
-<li>Filter
-</li>
-<li>View
-</li>
-<li>Data Binding
-</li>
-<li>Controller
-</li>
-<li>Dependency Injection
-</li>
-<li>Injector
-</li>
-<li>Module
-</li>
-<li>Service
-</li>
-</ul>
 </div>
 </div>
 ]]></content>
