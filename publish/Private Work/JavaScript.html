@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Sitemap</title>
+<title>JavaScript 学习</title>
 <!-- 2015-02-06 Fri 02:18 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
@@ -139,93 +139,140 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Sitemap</h1>
+<h1 class="title">JavaScript 学习</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. JavaScript Overview&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></a>
+<ul>
+<li><a href="#sec-1-1">1.1. 后端</a></li>
+<li><a href="#sec-1-2">1.2. 前端</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> JavaScript Overview&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+在工具描述中,主要介绍经常用到的库,框架,前后端开发用到的平台.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 后端</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<b>Node.js</b> 是一个JavaScript的平台,它提供了一个脱离浏览器的JavaScript运
+行环境,同时也提供了一系列运行库和各种包. npm(nodejs package
+manager)则是这各平台的包管理系统.它通过读取package.json文件来安装项
+目所需的依赖(就跟maven的pom.xml一样).
+</p>
+
+<p>
+<b>bower</b> ,是nodejs之中的一个组件,本身用来专门管理前端开发所需要的包
+(JavaScript,CSS).它与npm的区别在于管理对象的不同以及bower使用的是扁
+平化的依赖关系而npm使用树形依赖.bower读取bower.json来安装依赖.
+</p>
+
+<p>
+<b>yoeman</b> , 安装时叫做 <b>yo</b>,是一个用来创建项目骨架的工具.它根据
+yeoman-generator,也就是模板来创建文件架结构.模板需要用npm来安装,比
+方说
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">npm install -g generator-gulp-angular
+</pre>
+</div>
+<p>
+模板名字以 <code>generator</code> 开头.
+使用时运行
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">mkdir [app-name] &amp;&amp; cd $_
+yo gulp-angular [app-name]
+</pre>
+</div>
+<p>
+来生成一个以generator-gulp-angular为模板的项目骨架,项目名字为
+<code>[app-name]</code>. 就刚刚使用的这个模板为例,它在创建的时候会询问你需要什
+么样的angular版本,哪一种CSS样式库(bootstrap, material),哪种angular
+的实现方式(angular-strap),等等.
+</p>
+
+<p>
+<b>grunt</b> / <b>gulp</b> 用来运行打包,压缩,发布等任务.在刚刚的例子中,我们使
+用的是基于gulp的模板,所以要用gulp来运行以上任务.生成模板的事后,已经
+在项目目录下建立了一个名为gulp的目录以及一个叫做gulpfile.js的文
+件.gulp目录下面包含一系列js文件. gulpfile.js里面引入gulp库,定义一些
+目录(src)的路径,并引入gulp目录,从而使得gulp目录下的js文件被gulp用来
+进行相应的操作.这个模板的<a href="https://github.com/Swiip/generator-gulp-angular">github</a>说明上还指出一系列可选的特性,但是目
+前看不出来在哪里定义的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 前端</h3>
+<div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
-<li>Chinese NLP
+<li>Javascript
 <ul class="org-ul">
-<li><a href="Chinese NLP/python_implementation.html">python实现NLP</a>
+<li><b>AngularJS</b>
+</li>
+<li><b>UI-Route</b>
 </li>
 </ul>
 </li>
-<li>Emacs
+
+<li>UI Framework
 <ul class="org-ul">
-<li><a href="Emacs/plugins.html">Emacs插件总结</a>
+<li><b>Bootstrap</b>
 </li>
-<li><a href="Emacs/org-note.html">Org-mode Conflict Solutions, Manual and Setting</a>
-</li>
-<li><a href="Emacs/config.html">emacs配置</a>
+<li><b>Angular Material</b>
 </li>
 </ul>
 </li>
-<li>Geek
+
+<li>CSS Preprocessor
 <ul class="org-ul">
-<li><a href="Geek/blog.html">Creating and Maintaining a Blog</a>
+<li>Sass(Node.js)
 </li>
-<li><a href="Geek/server.html">Web server service</a>
+<li>Less
 </li>
 </ul>
 </li>
-<li>KU Leuven
+
+<li>JS Preprocessor
 <ul class="org-ul">
-<li><a href="KU Leuven/BioSummary.html">Biblio Summary</a>
+<li>ES6
 </li>
-<li><a href="KU Leuven/Biobliography.html">Bibliography</a>
+<li>TypeScript
 </li>
-<li><a href="KU Leuven/MUSE_Dev.html">Note of MUSE Development</a>
+<li>CoffeeScript
 </li>
-<li><a href="KU Leuven/MUSE_Code.html">Notes of Reading MUSE Project</a>
-</li>
-<li><a href="KU Leuven/PG_review.html">Review of Results</a>
-</li>
-<li><a href="KU Leuven/TempAnnotation.html">Temporal Event Annotation</a>
-</li>
-<li><a href="KU Leuven/UMLS.html">UMLS Survey</a>
+<li>AtScript
 </li>
 </ul>
 </li>
-<li>NLP online course
+
+<li>HTML template
 <ul class="org-ul">
-<li><a href="NLP online course/MinEditDistance.html">Minimun Edit Distance</a>
+<li><code>.jade</code>
 </li>
-<li><a href="NLP online course/Summarization.html">Text Summarization</a>
-</li>
-</ul>
-</li>
-<li>Papers
-<ul class="org-ul">
-<li><a href="Papers/BMCBioinformatic.html">Summary of Reviews for Paper of  BMC Bioinformatics</a>
+<li><code>.haml</code>
 </li>
 </ul>
 </li>
-<li>Private Work
-<ul class="org-ul">
-<li><a href="Private Work/JavaScript.html">JavaScript 学习</a>
-</li>
-<li><a href="Private Work/drill.html">Notes of Drill Development</a>
-</li>
-<li><a href="Private Work/faxiang.html">Notes of Faxiang(JS frontend)</a>
-</li>
 </ul>
-</li>
-<li>java
-<ul class="org-ul">
-<li><a href="java/Spring.html">Spring Framework</a>
-</li>
-<li><a href="java/maven.html">Study of Maven</a>
-</li>
-</ul>
-</li>
-<li><a href="offer_program.html">Exercises for program assignment during interview</a>
-</li>
-<li><a href="hhm.html">Hidden Markov Machine</a>
-</li>
-<li><a href="RUPEE.html">RUPEE Reconstruction Notes</a>
-</li>
-<li><a href="perl.html">perl</a>
-</li>
-<li><a href="python.html">python学习笔记</a>
-</li>
-</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>

@@ -37,19 +37,19 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/blog/archives/</loc>
-    <lastmod>2014-12-26T22:29:57+01:00</lastmod>
+    <lastmod>2015-02-06T02:48:29+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/</loc>
-    <lastmod>2014-12-26T22:29:57+01:00</lastmod>
+    <lastmod>2015-02-06T02:48:29+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/archives/tags.html</loc>
-    <lastmod>2014-12-26T22:29:57+01:00</lastmod>
+    <lastmod>2015-02-06T02:48:29+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -100,22 +100,37 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/KU Leuven/Biobliography.html</loc>
-    <lastmod>2014-12-23T21:30:18+01:00</lastmod>
+    <lastmod>2015-01-30T16:59:34+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/KU Leuven/BioSummary.html</loc>
+    <lastmod>2015-01-30T16:59:35+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/KU Leuven/MUSE_Code.html</loc>
-    <lastmod>2014-12-23T21:30:17+01:00</lastmod>
+    <lastmod>2015-01-30T16:59:34+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/KU Leuven/MUSE_Dev.html</loc>
-    <lastmod>2014-12-19T16:53:27+01:00</lastmod>
+    <lastmod>2015-02-06T02:19:02+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/KU Leuven/PG_review.html</loc>
     <lastmod>2014-12-18T21:23:53+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/KU Leuven/TempAnnotation.html</loc>
+    <lastmod>2015-01-30T16:59:33+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/KU Leuven/UMLS.html</loc>
+    <lastmod>2015-01-30T16:59:33+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -145,7 +160,17 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Private Work/drill.html</loc>
-    <lastmod>2014-12-25T20:34:45+01:00</lastmod>
+    <lastmod>2015-02-06T02:18:53+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/Private Work/faxiang.html</loc>
+    <lastmod>2015-01-10T20:37:57+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/Private Work/JavaScript.html</loc>
+    <lastmod>2015-02-06T02:18:53+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -160,7 +185,7 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/sitemap.html</loc>
-    <lastmod>2014-12-25T20:34:43+01:00</lastmod>
+    <lastmod>2015-02-06T02:18:52+01:00</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>
