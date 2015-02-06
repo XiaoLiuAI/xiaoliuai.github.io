@@ -3,7 +3,7 @@
 <title><![CDATA[Tag: Spring | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/spring/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2015-02-06T02:48:29+01:00</updated>
+<updated>2015-02-06T12:31:42+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
@@ -107,11 +107,11 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {
-        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);
-    }
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {&#57344;&#57345;&#57345;
+        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);&#57344;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -120,10 +120,10 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {
-    <span style="color: #268bd2;">@Inject</span>
-    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Inject</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -267,32 +267,32 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {
-
-    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {
-    }
-
-    <span style="color: #d33682;">/**</span>
-<span style="color: #d33682;">     * Get the login of the current user.</span>
-<span style="color: #d33682;">     */</span>
-    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {
-        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();
-        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();
-        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;
-        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;
-
-        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {
-            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {
-                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();
-                userName = springSecurityUser.getUsername();
-            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {
-                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();
-            }
-        }
-
-        <span style="color: #859900;">return</span> userName;
-    }
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #d33682;">/**</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">     * Get the login of the current user.</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">     */</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();&#57344;&#57345;
+        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();&#57344;&#57345;
+        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {&#57344;&#57345;&#57345;
+            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {&#57344;&#57345;
+                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();&#57344;&#57345;
+                userName = springSecurityUser.getUsername();&#57344;&#57345;&#57345;
+            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {&#57344;&#57345;
+                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #859900;">return</span> userName;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Exercises for program assignment during interview</title>
-<!-- 2014-11-27 Thu 16:11 -->
+<!-- 2014-10-29 Wed 18:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -409,15 +409,15 @@ the common algorithms include ordering and search with common data structures.
 and larger numbers to right. 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">partition</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">data</span>[], <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">start</span>, <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">end</span>){
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">index</span> = RandomInRang(start, end);
+<pre class="src src-C++"><span style="color: #2075c7;">int</span> <span style="color: #a57705;">partition</span>(<span style="color: #2075c7;">int</span> <span style="color: #5859b7;">data</span>[], <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">length</span>, <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">start</span>, <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">end</span>){
+<span style="color: #2075c7;">int</span> <span style="color: #5859b7;">index</span> = RandomInRang(start, end);
 Swap(&amp;data[index], &amp;data[end]);
 
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">small</span> = start -1;
-<span style="color: #859900;">for</span>( index = start; index &lt; end; ++index){
-    <span style="color: #859900;">if</span> (data[index]&lt;data[end]){
+<span style="color: #2075c7;">int</span> <span style="color: #5859b7;">small</span> = start -1;
+<span style="color: #728a05;">for</span>( index = start; index &lt; end; ++index){
+    <span style="color: #728a05;">if</span> (data[index]&lt;data[end]){
         ++ small;
-        <span style="color: #859900;">if</span> (small != index)
+        <span style="color: #728a05;">if</span> (small != index)
             Swap(&amp;data[index], &amp;data[small]);
     }
 }
@@ -425,7 +425,7 @@ Swap(&amp;data[index], &amp;data[end]);
 ++ small;
 Swap(&amp;data[small], &amp;data[end]);
 
-<span style="color: #859900;">return</span> small;}
+<span style="color: #728a05;">return</span> small;}
 </pre>
 </div>
 <p>
@@ -440,15 +440,15 @@ element defined by function <code>template&lt;T&gt; bool criterion(T
        element)</code>
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #859900;">template</span>&lt;T&gt; <span style="color: #268bd2;">void</span> <span style="color: #b58900;">TwoParts</span>(<span style="color: #268bd2;">T</span>[] list, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">length</span>, <span style="color: #268bd2;">bool</span> (*<span style="color: #6c71c4;">func</span>)(<span style="color: #268bd2;">T</span>)){
-    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">headPointer</span> = list;
-    <span style="color: #268bd2;">T</span>* <span style="color: #6c71c4;">tailPointer</span> = list+length-1;
-    <span style="color: #859900;">while</span>(headPointer &lt; tailPointer){
-        <span style="color: #859900;">while</span>(func(*headPointer))
+<pre class="src src-C++"><span style="color: #728a05;">template</span>&lt;T&gt; <span style="color: #2075c7;">void</span> <span style="color: #a57705;">TwoParts</span>(T[] list, <span style="color: #2075c7;">unsigned</span> <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">length</span>, <span style="color: #2075c7;">bool</span> (*<span style="color: #5859b7;">func</span>)(T)){
+    <span style="color: #2075c7;">T</span>* <span style="color: #5859b7;">headPointer</span> = list;
+    <span style="color: #2075c7;">T</span>* <span style="color: #5859b7;">tailPointer</span> = list+length-1;
+    <span style="color: #728a05;">while</span>(headPointer &lt; tailPointer){
+        <span style="color: #728a05;">while</span>(func(*headPointer))
             headPointer++;
-        <span style="color: #859900;">while</span>(<span style="color: #268bd2;">!</span>func(*tailPointer))
+        <span style="color: #728a05;">while</span>(<span style="color: #2075c7;">!</span>func(*tailPointer))
             tailPointer++;
-        <span style="color: #268bd2;">T</span> <span style="color: #6c71c4;">swap</span> = *headPointer;
+        <span style="color: #2075c7;">T</span> <span style="color: #5859b7;">swap</span> = *headPointer;
         *headPointer = *tailPointer;
         *tailPointer = swap;
     }
@@ -470,17 +470,17 @@ zero cases. Second, use bit operation on the power number to
 quickly get the result \(a^n=(a^{n/2})^2\). 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">powerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){
-<span style="color: #859900;">if</span> (exponent == 0)
-    <span style="color: #859900;">return</span> 1;
-<span style="color: #859900;">if</span> (exponent == 1)
-    <span style="color: #859900;">return</span> base;
+<pre class="src src-C++"><span style="color: #2075c7;">double</span> <span style="color: #a57705;">powerWithUnsignedExponent</span>(<span style="color: #2075c7;">double</span> <span style="color: #5859b7;">base</span>, <span style="color: #2075c7;">unsigned</span> <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">exponent</span>){
+<span style="color: #728a05;">if</span> (exponent == 0)
+    <span style="color: #728a05;">return</span> 1;
+<span style="color: #728a05;">if</span> (exponent == 1)
+    <span style="color: #728a05;">return</span> base;
 
-<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = powerWithUnsignedExponent(base, exponent&gt;&gt;1);
+<span style="color: #2075c7;">double</span> <span style="color: #5859b7;">result</span> = powerWithUnsignedExponent(base, exponent&gt;&gt;1);
 result *= result;
-<span style="color: #859900;">if</span> (exponent &amp; 0x1)
+<span style="color: #728a05;">if</span> (exponent &amp; 0x1)
     result *= base;
-<span style="color: #859900;">return</span> result;
+<span style="color: #728a05;">return</span> result;
 </pre>
 </div>
 </li>
@@ -490,12 +490,12 @@ change the bits until the last 1; then xor operation will put
 the changed bits into 0. 
 <div class="org-src-container">
 
-<pre class="src src-C++"><span style="color: #268bd2;">double</span> <span style="color: #b58900;">numberOfOne</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">n</span>){
-    <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">count</span> = 0;
-    <span style="color: #859900;">while</span> (n){
+<pre class="src src-C++"><span style="color: #2075c7;">double</span> <span style="color: #a57705;">numberOfOne</span>(<span style="color: #2075c7;">int</span> <span style="color: #5859b7;">n</span>){
+    <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">count</span> = 0;
+    <span style="color: #728a05;">while</span> (n){
         count ++;
         n = n&amp;(n-1);
-    <span style="color: #859900;">return</span> count;
+    <span style="color: #728a05;">return</span> count;
 </pre>
 </div>
 </li>
@@ -533,18 +533,18 @@ reply on the mathematical induction method.
 <li>divide 0
 <div class="org-src-container">
 
-<pre class="src src-c"><span style="color: #268bd2;">int</span> <span style="color: #b58900;">PowerWithUnsignedExponent</span>(<span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">base</span>, <span style="color: #268bd2;">unsigned</span> <span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">exponent</span>){
-    <span style="color: #859900;">if</span> (exponent == 0)
-        <span style="color: #859900;">return</span> 1;
-    <span style="color: #859900;">if</span> (exponent == 1)
-        <span style="color: #859900;">return</span> base;
+<pre class="src src-c"><span style="color: #2075c7;">int</span> <span style="color: #a57705;">PowerWithUnsignedExponent</span>(<span style="color: #2075c7;">double</span> <span style="color: #5859b7;">base</span>, <span style="color: #2075c7;">unsigned</span> <span style="color: #2075c7;">int</span> <span style="color: #5859b7;">exponent</span>){
+    <span style="color: #728a05;">if</span> (exponent == 0)
+        <span style="color: #728a05;">return</span> 1;
+    <span style="color: #728a05;">if</span> (exponent == 1)
+        <span style="color: #728a05;">return</span> base;
 
-    <span style="color: #268bd2;">double</span> <span style="color: #6c71c4;">result</span> = PowerWithUnsignedExponent(base, exponent &gt;&gt; 1);
+    <span style="color: #2075c7;">double</span> <span style="color: #5859b7;">result</span> = PowerWithUnsignedExponent(base, exponent &gt;&gt; 1);
     result *= result;
-    <span style="color: #859900;">if</span> (exponent &amp; 0x1 ==1)
+    <span style="color: #728a05;">if</span> (exponent &amp; 0x1 ==1)
         result *= base;
 
-    <span style="color: #859900;">return</span> result;
+    <span style="color: #728a05;">return</span> result;
 </pre>
 </div>
 </li>
@@ -555,8 +555,8 @@ reply on the mathematical induction method.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-27 Thu 16:11</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2014-10-29 Wed 18:05</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>
 </body>

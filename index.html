@@ -114,10 +114,166 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-25T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-30T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
-           | <a href="/blog/2014-12-25-angularjs-developer-guide-.html#disqus_thread" itemprop="discussionUrl"
-             data-disqus-identifier="http://xiaoliuai.github.io/blog/2014-12-25-angularjs-developer-guide-.html">Comments</a>
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015-01-30-javascript-overview.html" itemprop="url">JavaScript Overview</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 后端</a></li>
+<li><a href="#sec-2">2. 前端</a></li>
+</ul>
+</div>
+</div>
+<p>
+在工具描述中,主要介绍经常用到的库,框架,前后端开发用到的平台.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-01-30-javascript-overview.html"><span class="section-number-2">1</span> 后端</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Node.js</b> 是一个JavaScript的平台,它提供了一个脱离浏览器的JavaScript运
+行环境,同时也提供了一系列运行库和各种包. npm(nodejs package
+manager)则是这各平台的包管理系统.它通过读取package.json文件来安装项
+目所需的依赖(就跟maven的pom.xml一样).
+</p>
+
+<p>
+<b>bower</b> ,是nodejs之中的一个组件,本身用来专门管理前端开发所需要的包
+(JavaScript,CSS).它与npm的区别在于管理对象的不同以及bower使用的是扁
+平化的依赖关系而npm使用树形依赖.bower读取bower.json来安装依赖.
+</p>
+
+<p>
+<b>yoeman</b> , 安装时叫做 <b>yo</b>,是一个用来创建项目骨架的工具.它根据
+yeoman-generator,也就是模板来创建文件架结构.模板需要用npm来安装,比
+方说
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">npm install -g generator-gulp-angular
+</pre>
+</div>
+<p>
+模板名字以 <code>generator</code> 开头.
+使用时运行
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">mkdir [app-name] &amp;&amp; cd $_
+yo gulp-angular [app-name]
+</pre>
+</div>
+<p>
+来生成一个以generator-gulp-angular为模板的项目骨架,项目名字为
+<code>[app-name]</code>. 就刚刚使用的这个模板为例,它在创建的时候会询问你需要什
+么样的angular版本,哪一种CSS样式库(bootstrap, material),哪种angular
+的实现方式(angular-strap),等等.
+</p>
+
+<p>
+<b>grunt</b> / <b>gulp</b> 用来运行打包,压缩,发布等任务.在刚刚的例子中,我们使
+用的是基于gulp的模板,所以要用gulp来运行以上任务.生成模板的事后,已经
+在项目目录下建立了一个名为gulp的目录以及一个叫做gulpfile.js的文
+件.gulp目录下面包含一系列js文件. gulpfile.js里面引入gulp库,定义一些
+目录(src)的路径,并引入gulp目录,从而使得gulp目录下的js文件被gulp用来
+进行相应的操作.这个模板的<a href="https://github.com/Swiip/generator-gulp-angular">github</a>说明上还指出一系列可选的特性,但是目
+前看不出来在哪里定义的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 前端</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Javascript
+<ul class="org-ul">
+<li><b>AngularJS</b>
+</li>
+<li><b>UI-Route</b>
+</li>
+</ul>
+</li>
+
+<li>UI Framework
+<ul class="org-ul">
+<li><b>Bootstrap</b>
+</li>
+<li><b>Angular Material</b>
+</li>
+</ul>
+</li>
+
+<li>CSS Preprocessor
+<ul class="org-ul">
+<li>Sass(Node.js)
+</li>
+<li>Less
+</li>
+</ul>
+</li>
+
+<li>JS Preprocessor
+<ul class="org-ul">
+<li>ES6
+</li>
+<li>TypeScript
+</li>
+<li>CoffeeScript
+</li>
+<li>AtScript
+</li>
+</ul>
+</li>
+
+<li>HTML template
+<ul class="org-ul">
+<li><code>.jade</code>
+</li>
+<li><code>.haml</code>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-25T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
@@ -256,34 +412,34 @@ directive任何属性的变更,从而使directive能根据更新的数据来渲�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;
-  Root scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: 
-  &lt;<span style="color: #b58900;">ul</span>&gt;
-    &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"i in [1]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;
-      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$emit('MyEvent')"</span>&gt;$emit('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;
-      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$broadcast('MyEvent')"</span>&gt;$broadcast('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;
-      &lt;<span style="color: #b58900;">br</span>&gt;
-      Middle scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: 
-      &lt;<span style="color: #b58900;">ul</span>&gt;
-        &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"item in [1, 2]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;
-          Leaf scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: 
-        &lt;/<span style="color: #b58900;">li</span>&gt;
-      &lt;/<span style="color: #b58900;">ul</span>&gt;
-    &lt;/<span style="color: #b58900;">li</span>&gt;
-  &lt;/<span style="color: #b58900;">ul</span>&gt;
-&lt;/<span style="color: #b58900;">div</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;&#57344;&#57345;&#57345;
+  Root scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: &#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"i in [1]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;&#57344;&#57345;&#57345;
+      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$emit('MyEvent')"</span>&gt;$emit('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;&#57344;&#57345;&#57345;
+      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$broadcast('MyEvent')"</span>&gt;$broadcast('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;&#57344;&#57345;
+      &lt;<span style="color: #b58900;">br</span>&gt;&#57344;&#57345;&#57345;
+      Middle scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: &#57344;&#57345;&#57345;
+      &lt;<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+        &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"item in [1, 2]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;&#57344;&#57345;
+          Leaf scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: &#57344;&#57345;&#57345;
+        &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+      &lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+    &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'eventExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
-.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'EventController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  $scope.count = 0;
-  $scope.$on<span style="color: #859900;">(</span><span style="color: #2aa198;">'MyEvent'</span>, <span style="color: #859900;">function</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>
-    $scope.count++;
-  <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'eventExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'EventController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+  $scope.count = 0;&#57344;&#57345;&#57345;
+  $scope.$on<span style="color: #859900;">(</span><span style="color: #2aa198;">'MyEvent'</span>, <span style="color: #859900;">function</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+    $scope.count++;&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -343,9 +499,14 @@ angular.module会覆盖已存在的名字.模组提供 <i>provider</i>, <i>facto
 <li>controller, 注册一个可在html里面引用的属性值,对相应元素中的变
 量进行绑定和操作.
 </li>
-<li>filter, 过滤器
-</li>
 <li>animation, 动作效果
+</li>
+</ul>
+</li>
+<li>html and JS
+<ul class="org-ul">
+<li>filter, 过滤器. 返回一个过滤函数并绑定在这个名字上. 过滤函数接
+受整个数组为第一个参数,还可以自定附加参数.
 </li>
 </ul>
 </li>
@@ -359,20 +520,20 @@ Provider是AngularJS的基础,Value,Factory,Service,Constant都建立在Provider
 <li>Value recipe
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myApp</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>;
-myApp.value<span style="color: #657b83;">(</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #2aa198;">'a12345654321x'</span><span style="color: #657b83;">)</span>;
-myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'DemoController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #859900;">function</span> DemoController<span style="color: #b58900;">(</span><span style="color: #6c71c4;">clientId</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  <span style="color: #268bd2;">this</span>.clientId = clientId;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myApp</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.value<span style="color: #657b83;">(</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #2aa198;">'a12345654321x'</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'DemoController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #859900;">function</span> DemoController<span style="color: #b58900;">(</span><span style="color: #6c71c4;">clientId</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+  <span style="color: #268bd2;">this</span>.clientId = clientId;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">html</span> <span style="color: #6c71c4;">ng-app</span>=<span style="color: #2aa198;">"myApp"</span>&gt;
-  &lt;<span style="color: #b58900;">body</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"DemoController as demo"</span>&gt;
-    Client ID: 
-  &lt;/<span style="color: #b58900;">body</span>&gt;
-&lt;/<span style="color: #b58900;">html</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">html</span> <span style="color: #6c71c4;">ng-app</span>=<span style="color: #2aa198;">"myApp"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">body</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"DemoController as demo"</span>&gt;&#57344;&#57345;&#57345;
+    Client ID: &#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">body</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">html</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -394,14 +555,14 @@ myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa19
 定到注册的Provider名字上.
 <div class="org-src-container">
 
-<pre class="src src-javascript">myApp.provider<span style="color: #657b83;">(</span><span style="color: #2aa198;">'AAA'</span>, <span style="color: #859900;">function</span> AAAProvider<span style="color: #2aa198;">(){</span>
-    <span style="color: #268bd2;">this</span>.configFunc = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">bla</span><span style="color: #b58900;">){</span>blabla<span style="color: #b58900;">}</span>;
-    <span style="color: #268bd2;">this</span>.$get = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">lab</span><span style="color: #b58900;">){</span> <span style="color: #859900;">return</span> BBB<span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
-myApp.config<span style="color: #657b83;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAAProvider</span><span style="color: #2aa198;">){</span>
-    AAAProvider.configFunc<span style="color: #b58900;">(</span>...<span style="color: #b58900;">)</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
-myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'CCC'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAA</span><span style="color: #2aa198;">){</span> <span style="color: #93a1a1; font-style: italic;">/*</span><span style="color: #93a1a1; font-style: italic;">AAA is BBB*/</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">myApp.provider<span style="color: #657b83;">(</span><span style="color: #2aa198;">'AAA'</span>, <span style="color: #859900;">function</span> AAAProvider<span style="color: #2aa198;">(){</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">this</span>.configFunc = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">bla</span><span style="color: #b58900;">){</span>blabla<span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">this</span>.$get = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">lab</span><span style="color: #b58900;">){</span> <span style="color: #859900;">return</span> BBB<span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.config<span style="color: #657b83;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAAProvider</span><span style="color: #2aa198;">){</span>&#57344;&#57345;&#57345;
+    AAAProvider.configFunc<span style="color: #b58900;">(</span>...<span style="color: #b58900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'CCC'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAA</span><span style="color: #2aa198;">){</span> <span style="color: #93a1a1; font-style: italic;">/*</span><span style="color: #93a1a1; font-style: italic;">AAA is BBB*/</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -464,10 +625,10 @@ class name.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">my-dir</span>&gt;&lt;/<span style="color: #b58900;">my-dir</span>&gt;
-&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">my-dir</span>=<span style="color: #2aa198;">"exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;
-<span style="color: #93a1a1; font-style: italic;">&lt;!-- </span><span style="color: #93a1a1; font-style: italic;">directive:my-dir exp</span><span style="color: #93a1a1; font-style: italic;">--&gt;</span>
-&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"my-dir: exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">my-dir</span>&gt;&lt;/<span style="color: #b58900;">my-dir</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">my-dir</span>=<span style="color: #2aa198;">"exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">&lt;!-- </span><span style="color: #93a1a1; font-style: italic;">directive:my-dir exp</span><span style="color: #93a1a1; font-style: italic;">--&gt;</span>&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"my-dir: exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -479,10 +640,10 @@ class name.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;
-&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">ng-attr-cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;
-&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">viewBox</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;
-&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">ng-attr-view-box</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">ng-attr-cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">viewBox</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">ng-attr-view-box</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -515,43 +676,44 @@ module.directive 函数注册directive,它接受一个名字和一个工厂方�
 <div class="outline-text-3" id="text-5-3">
 <p>
 操作DOM.这个option需要指定一个函数,函数的参数为
-scope,element,attrs.
+scope (上下文),element (当前元素),attrs (当前元素的属性), ctrl
+(array of controllers required by the directive).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsTimeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
-.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  $scope.format = <span style="color: #2aa198;">'M/d/yy h:mm:ss a'</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>
-.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCurrentTime'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$interval'</span>, <span style="color: #2aa198;">'dateFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$interval</span>, <span style="color: #6c71c4;">dateFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-
-  <span style="color: #859900;">function</span> <span style="color: #b58900;">link</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">scope</span>, <span style="color: #6c71c4;">element</span>, <span style="color: #6c71c4;">attrs</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
-    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">format</span>,
-        timeoutId;
-
-    <span style="color: #859900;">function</span> <span style="color: #b58900;">updateTime</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>
-      element.text<span style="color: #657b83;">(</span>dateFilter<span style="color: #2aa198;">(</span><span style="color: #859900;">new</span> <span style="color: #268bd2;">Date</span><span style="color: #b58900;">()</span>, format<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>;
-    <span style="color: #268bd2;">}</span>
-
-    scope.$watch<span style="color: #268bd2;">(</span>attrs.myCurrentTime, <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">value</span><span style="color: #657b83;">)</span> <span style="color: #657b83;">{</span>
-      format = value;
-      updateTime<span style="color: #2aa198;">()</span>;
-    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;
-
-    element.on<span style="color: #268bd2;">(</span><span style="color: #2aa198;">'$destroy'</span>, <span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>
-      $interval.cancel<span style="color: #2aa198;">(</span>timeoutId<span style="color: #2aa198;">)</span>;
-    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;
-
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">start the UI update process; save the timeoutId for canceling</span>
-    timeoutId = $interval<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>
-      updateTime<span style="color: #2aa198;">()</span>; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">update DOM</span>
-    <span style="color: #657b83;">}</span>, 1000<span style="color: #268bd2;">)</span>;
-  <span style="color: #859900;">}</span>
-
-  <span style="color: #859900;">return</span> <span style="color: #859900;">{</span>
-    link: link
-  <span style="color: #859900;">}</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsTimeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+  $scope.format = <span style="color: #2aa198;">'M/d/yy h:mm:ss a'</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCurrentTime'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$interval'</span>, <span style="color: #2aa198;">'dateFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$interval</span>, <span style="color: #6c71c4;">dateFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #859900;">function</span> <span style="color: #b58900;">link</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">scope</span>, <span style="color: #6c71c4;">element</span>, <span style="color: #6c71c4;">attrs</span>, <span style="color: #6c71c4;">ctrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">format</span>,&#57344;&#57345;&#57345;
+        timeoutId;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">function</span> <span style="color: #b58900;">updateTime</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+      element.text<span style="color: #657b83;">(</span>dateFilter<span style="color: #2aa198;">(</span><span style="color: #859900;">new</span> <span style="color: #268bd2;">Date</span><span style="color: #b58900;">()</span>, format<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    scope.$watch<span style="color: #268bd2;">(</span>attrs.myCurrentTime, <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">value</span><span style="color: #657b83;">)</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      format = value;&#57344;&#57345;&#57345;
+      updateTime<span style="color: #2aa198;">()</span>;&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    element.on<span style="color: #268bd2;">(</span><span style="color: #2aa198;">'$destroy'</span>, <span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      $interval.cancel<span style="color: #2aa198;">(</span>timeoutId<span style="color: #2aa198;">)</span>;&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">start the UI update process; save the timeoutId for canceling</span>&#57344;&#57345;&#57345;
+    timeoutId = $interval<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      updateTime<span style="color: #2aa198;">()</span>; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">update DOM</span>&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span>, 1000<span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+    link: link&#57344;&#57345;&#57345;
+  <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -567,29 +729,29 @@ scope,element,attrs.
 <div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsolateScopeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
-.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  $scope.naomi = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Naomi'</span>, address: <span style="color: #2aa198;">'1600 Amphitheatre'</span> <span style="color: #859900;">}</span>;
-  $scope.igor = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Igor'</span>, address: <span style="color: #2aa198;">'123 Somewhere'</span> <span style="color: #859900;">}</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>
-.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCustomer'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>
-    restrict: <span style="color: #2aa198;">'E'</span>,
-    scope: <span style="color: #859900;">{</span>
-      customerInfo: <span style="color: #2aa198;">'=info'</span>
-    <span style="color: #859900;">}</span>,
-    templateUrl: <span style="color: #2aa198;">'my-customer-iso.html'</span>
-  <span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsolateScopeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+  $scope.naomi = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Naomi'</span>, address: <span style="color: #2aa198;">'1600 Amphitheatre'</span> <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+  $scope.igor = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Igor'</span>, address: <span style="color: #2aa198;">'123 Somewhere'</span> <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCustomer'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    restrict: <span style="color: #2aa198;">'E'</span>,&#57344;&#57345;&#57345;
+    scope: <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      customerInfo: <span style="color: #2aa198;">'=info'</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>,&#57344;&#57345;&#57345;
+    templateUrl: <span style="color: #2aa198;">'my-customer-iso.html'</span>&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;
-  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"naomi"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;
-  &lt;<span style="color: #b58900;">hr</span>&gt;
-  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"igor"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;
-&lt;/<span style="color: #b58900;">div</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"naomi"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">hr</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"igor"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -619,41 +781,43 @@ controller里面绑定了 <i>naomi</i> 和 <i>ingor</i> 的值,html里面将dire
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsoFnBindExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
-.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$timeout'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$timeout</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  $scope.name = <span style="color: #2aa198;">'Tobias'</span>;
-  $scope.hideDialog = <span style="color: #859900;">function</span> <span style="color: #859900;">()</span> <span style="color: #859900;">{</span>
-    $scope.dialogIsHidden = <span style="color: #268bd2;">true</span>;
-    $timeout<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span> <span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>
-      $scope.dialogIsHidden = <span style="color: #268bd2;">false</span>;
-    <span style="color: #657b83;">}</span>, 2000<span style="color: #268bd2;">)</span>;
-  <span style="color: #859900;">}</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>
-.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myDialog'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>
-    restrict: <span style="color: #2aa198;">'E'</span>,
-    transclude: <span style="color: #268bd2;">true</span>,
-    scope: <span style="color: #859900;">{</span>
-      <span style="color: #2aa198;">'close'</span>: <span style="color: #2aa198;">'&amp;onClose'</span>
-    <span style="color: #859900;">}</span>,
-    templateUrl: <span style="color: #2aa198;">'&lt;div class="alert"&gt;&lt;a href class="close" ng-click="close()"&gt;&amp;times;&lt;/a&gt;&lt;div ng-transclude&gt;&lt;/div&gt;&lt;/div&gt;'</span>
-  <span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsoFnBindExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$timeout'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$timeout</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+  $scope.name = <span style="color: #2aa198;">'Tobias'</span>;&#57344;&#57345;&#57345;
+  $scope.hideDialog = <span style="color: #859900;">function</span> <span style="color: #859900;">()</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+    $scope.dialogIsHidden = <span style="color: #268bd2;">true</span>;&#57344;&#57345;&#57345;
+    $timeout<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span> <span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      $scope.dialogIsHidden = <span style="color: #268bd2;">false</span>;&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span>, 2000<span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myDialog'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    restrict: <span style="color: #2aa198;">'E'</span>,&#57344;&#57345;&#57345;
+    transclude: <span style="color: #268bd2;">true</span>,&#57344;&#57345;&#57345;
+    scope: <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      <span style="color: #2aa198;">'close'</span>: <span style="color: #2aa198;">'&amp;onClose'</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>,&#57344;&#57345;&#57345;
+    templateUrl: <span style="color: #2aa198;">'&lt;div class="alert"&gt;&lt;a href class="close" ng-click="close()"&gt;&amp;times;&lt;/a&gt;&lt;div ng-transclude&gt;&lt;/div&gt;&lt;/div&gt;'</span>&#57344;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;
-  &lt;<span style="color: #b58900;">my-dialog</span> <span style="color: #6c71c4;">ng-hide</span>=<span style="color: #2aa198;">"dialogIsHidden"</span> <span style="color: #6c71c4;">on-close</span>=<span style="color: #2aa198;">"hideDialog()"</span>&gt;
-    Check out the contents, !
-  &lt;/<span style="color: #b58900;">my-dialog</span>&gt;
-&lt;/<span style="color: #b58900;">div</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">my-dialog</span> <span style="color: #6c71c4;">ng-hide</span>=<span style="color: #2aa198;">"dialogIsHidden"</span> <span style="color: #6c71c4;">on-close</span>=<span style="color: #2aa198;">"hideDialog()"</span>&gt;&#57344;&#57345;&#57345;
+    Check out the contents, !&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">my-dialog</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
 点击动作为<code>ng-click="close()"</code>,而
 <code>close</code> 动作被绑定到 <code>&amp;onClose</code> 这个directive. <code>on-close</code> 又在
-html里面绑定到 <code>hideDialog</code> 函数上. (真扭曲啊)
+html里面绑定到 <code>hideDialog</code> 函数上. 这个示例中显示了如何将函数表
+达式传递给directive,让directive在一定时候选择执行这个函数.scope中
+读取值用&#8217;@XX&#8217;,读取表达式结果用&#8217;=XX&#8217;,读取表达式但不执行用&#8217;&amp;XX&#8217;.
 </p>
 </div>
 </div>
@@ -672,10 +836,10 @@ isolate scope的时候,直接访问外部上下文.有isolate scope的时候,只
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">...
-<span style="color: #859900;">return</span> <span style="color: #657b83;">{</span>
-    template: &lt;div&gt;CONTENT IN JAVASCRIPT <span style="color: #2aa198;">(</span>DIRECTIVE SCOPE <span style="color: #b58900;">(</span>OUTER/ISOLATE SCOPE<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&lt;/div&gt;&lt;div ng-transclude&gt;CONTENT FROM HTML <span style="color: #2aa198;">(</span>OUTER SCOPE<span style="color: #2aa198;">)</span>&lt;/div&gt;
-<span style="color: #657b83;">}</span>
+<pre class="src src-javascript">...&#57344;&#57345;&#57345;
+<span style="color: #859900;">return</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+    template: &lt;div&gt;CONTENT IN JAVASCRIPT <span style="color: #2aa198;">(</span>DIRECTIVE SCOPE <span style="color: #b58900;">(</span>OUTER/ISOLATE SCOPE<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&lt;/div&gt;&lt;div ng-transclude&gt;CONTENT FROM HTML <span style="color: #2aa198;">(</span>OUTER SCOPE<span style="color: #2aa198;">)</span>&lt;/div&gt;&#57344;&#57345;
+<span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -688,6 +852,53 @@ isolate scope的时候,直接访问外部上下文.有isolate scope的时候,只
 
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6"><span class="section-number-2">6</span> Filters</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+在html里面用的时候 <code></code>
+在JS里面使用一个叫做 filter 的过滤器
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'FilterInControllerModule'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.&#57344;&#57345;&#57345;
+controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'FilterController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'filterFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">filterFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+  <span style="color: #268bd2;">this</span>.array = <span style="color: #859900;">[</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Tobias'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Jeff'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Brian'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Igor'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'James'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Brad'</span><span style="color: #268bd2;">}</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">]</span>;&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">this</span>.filteredArray = filterFilter<span style="color: #859900;">(</span><span style="color: #268bd2;">this</span>.array, <span style="color: #2aa198;">'a'</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+创建过滤器
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myReverseFilterApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'reverse'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span>, <span style="color: #6c71c4;">uppercase</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    input = input || <span style="color: #2aa198;">''</span>;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">out</span> = <span style="color: #2aa198;">""</span>;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">for</span> <span style="color: #859900;">(</span><span style="color: #859900;">var</span> <span style="color: #6c71c4;">i</span> = 0; i &lt; input.length; i++<span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      out = input.charAt<span style="color: #268bd2;">(</span>i<span style="color: #268bd2;">)</span> + out;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">conditional based on optional argument</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">if</span> <span style="color: #859900;">(</span>uppercase<span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      out = out.toUpperCase<span style="color: #268bd2;">()</span>;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> out;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+<code>$filter</code> 服务通过名字调用相应的过滤器.
+</p>
+</div>
 </div>
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7"><span class="section-number-2">7</span> Forms</h2>
@@ -744,9 +955,6 @@ isolate scope的时候,直接访问外部上下文.有isolate scope的时候,只
 
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-24T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-           | <a href="/blog/2014-12-24-angularjs-tutorial-.html#disqus_thread" itemprop="discussionUrl"
-             data-disqus-identifier="http://xiaoliuai.github.io/blog/2014-12-24-angularjs-tutorial-.html">Comments</a>
         
       </p>
     
@@ -838,10 +1046,10 @@ query,值的同步是实时的; 2.filter过滤器,生成新数组,自动更新�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">select</span> <span style="color: #6c71c4;">ng-model</span>=<span style="color: #2aa198;">"orderProp"</span>&gt;
-  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"name"</span>&gt;Alphabetical&lt;/<span style="color: #b58900;">option</span>&gt;
-  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"age"</span>&gt;Newest&lt;/<span style="color: #b58900;">option</span>&gt;
-&lt;/<span style="color: #b58900;">select</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">select</span> <span style="color: #6c71c4;">ng-model</span>=<span style="color: #2aa198;">"orderProp"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"name"</span>&gt;Alphabetical&lt;/<span style="color: #b58900;">option</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"age"</span>&gt;Newest&lt;/<span style="color: #b58900;">option</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">select</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -871,11 +1079,11 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">phonecatApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneListCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$http'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/phones.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
-        $scope.phones = data;
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">phonecatApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneListCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$http'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/phones.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        $scope.phones = data;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -886,13 +1094,13 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phones"</span>&gt;
-  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"phone in phones | filter:query | orderBy:orderProp"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumbnail"</span>&gt;
-    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumb"</span>&gt;&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;
-    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;
-    &lt;<span style="color: #b58900;">p</span>&gt;&lt;/<span style="color: #b58900;">p</span>&gt;
-  &lt;/<span style="color: #b58900;">li</span>&gt;
-&lt;/<span style="color: #b58900;">ul</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phones"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"phone in phones | filter:query | orderBy:orderProp"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumbnail"</span>&gt;&#57344;&#57345;
+    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumb"</span>&gt;&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;&#57344;&#57345;
+    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">p</span>&gt;&lt;/<span style="color: #b58900;">p</span>&gt;&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -908,21 +1116,21 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">phonecatApp.config<span style="color: #657b83;">(</span><span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$routeProvider'</span>,
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$routeProvider</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    $routeProvider.
-      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones'</span>, <span style="color: #268bd2;">{</span>
-        templateUrl: <span style="color: #2aa198;">'partials/phone-list.html'</span>,
-        controller: <span style="color: #2aa198;">'PhoneListCtrl'</span>
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.
-      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones/:phoneId'</span>, <span style="color: #268bd2;">{</span>
-        templateUrl: <span style="color: #2aa198;">'partials/phone-detail.html'</span>,
-        controller: <span style="color: #2aa198;">'PhoneDetailCtrl'</span>
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.
-      otherwise<span style="color: #859900;">(</span><span style="color: #268bd2;">{</span>
-        redirectTo: <span style="color: #2aa198;">'/phones'</span>
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">phonecatApp.config<span style="color: #657b83;">(</span><span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$routeProvider'</span>,&#57344;&#57345;&#57345;
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$routeProvider</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    $routeProvider.&#57344;&#57345;&#57345;
+      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones'</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        templateUrl: <span style="color: #2aa198;">'partials/phone-list.html'</span>,&#57344;&#57345;&#57345;
+        controller: <span style="color: #2aa198;">'PhoneListCtrl'</span>&#57344;&#57345;&#57345;
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.&#57344;&#57345;&#57345;
+      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones/:phoneId'</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        templateUrl: <span style="color: #2aa198;">'partials/phone-detail.html'</span>,&#57344;&#57345;&#57345;
+        controller: <span style="color: #2aa198;">'PhoneDetailCtrl'</span>&#57344;&#57345;&#57345;
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.&#57344;&#57345;&#57345;
+      otherwise<span style="color: #859900;">(</span><span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        redirectTo: <span style="color: #2aa198;">'/phones'</span>&#57344;&#57345;&#57345;
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -952,11 +1160,11 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatFilters'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'checkmark'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    <span style="color: #859900;">return</span> input ? <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2713'</span> : <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2718'</span>;
-  <span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatFilters'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'checkmark'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> input ? <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2713'</span> : <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2718'</span>;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -975,17 +1183,17 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">phonecatControllers.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneDetailCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$routeParams'</span>, <span style="color: #2aa198;">'$http'</span>,
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$routeParams</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/'</span> + $routeParams.phoneId + <span style="color: #2aa198;">'.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
-      $scope.phone = data;
-      $scope.mainImageUrl = data.images<span style="color: #657b83;">[</span>0<span style="color: #657b83;">]</span>;
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-
-    $scope.setImage = <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">imageUrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
-      $scope.mainImageUrl = imageUrl;
-    <span style="color: #859900;">}</span>
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">phonecatControllers.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneDetailCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$routeParams'</span>, <span style="color: #2aa198;">'$http'</span>,&#57344;&#57345;
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$routeParams</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/'</span> + $routeParams.phoneId + <span style="color: #2aa198;">'.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;
+      $scope.phone = data;&#57344;&#57345;&#57345;
+      $scope.mainImageUrl = data.images<span style="color: #657b83;">[</span>0<span style="color: #657b83;">]</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    $scope.setImage = <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">imageUrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      $scope.mainImageUrl = imageUrl;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -993,15 +1201,15 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone"</span>&gt;
-
-...
-
-&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone-thumbs"</span>&gt;
-  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"img in phone.images"</span>&gt;
-    &lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"setImage(img)"</span>&gt;
-  &lt;/<span style="color: #b58900;">li</span>&gt;
-&lt;/<span style="color: #b58900;">ul</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone"</span>&gt;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+...&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone-thumbs"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"img in phone.images"</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"setImage(img)"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -1019,14 +1227,14 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">phonecatServices</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatServices'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'ngResource'</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
-
-phonecatServices.factory<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Phone'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$resource'</span>,
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$resource</span><span style="color: #b58900;">){</span>
-    <span style="color: #859900;">return</span> $resource<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/:phoneId.json'</span>, <span style="color: #268bd2;">{}</span>, <span style="color: #268bd2;">{</span>
-      query: <span style="color: #657b83;">{</span>method:<span style="color: #2aa198;">'GET'</span>, params:<span style="color: #2aa198;">{</span>phoneId:<span style="color: #2aa198;">'phones'</span><span style="color: #2aa198;">}</span>, isArray:<span style="color: #268bd2;">true</span><span style="color: #657b83;">}</span>
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">phonecatServices</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatServices'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'ngResource'</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;
+&#57344;&#57345;&#57345;
+phonecatServices.factory<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Phone'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$resource'</span>,&#57344;&#57345;&#57345;
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$resource</span><span style="color: #b58900;">){</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> $resource<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/:phoneId.json'</span>, <span style="color: #268bd2;">{}</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+      query: <span style="color: #657b83;">{</span>method:<span style="color: #2aa198;">'GET'</span>, params:<span style="color: #2aa198;">{</span>phoneId:<span style="color: #2aa198;">'phones'</span><span style="color: #2aa198;">}</span>, isArray:<span style="color: #268bd2;">true</span><span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -1046,7 +1254,7 @@ Phone.get({phoneId:$routeParams.phoneId})</code>和
 <h2 id="sec-10"><span class="section-number-2">10</span> 12 Animations</h2>
 <div class="outline-text-2" id="text-10">
 <p>
-???
+TODO
 </p>
 
 <p>
@@ -1081,9 +1289,6 @@ Phone.get({phoneId:$routeParams.phoneId})</code>和
 
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-22T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-           | <a href="/blog/2014-12-22-.html#disqus_thread" itemprop="discussionUrl"
-             data-disqus-identifier="http://xiaoliuai.github.io/blog/2014-12-22-.html">Comments</a>
         
       </p>
     
@@ -1120,10 +1325,29 @@ JavaServer Page(JSP)是一种动态网页技术标准.在HTML中插入Java片段
 
 <div id="outline-container-sec-1-1" class="outline-3">
 <h3 id="sec-1-1"><span class="section-number-3">1.1</span> Servelet</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Servelet是一种 <i>独立于平台和协议</i> 的 <i>服务器端</i> 的Java应用程序,生
+成动态页面.为HTTP客户端跟HTTP服务器程序的中间层.好处是快(比CGI快),
+每个用户请求被激活成程序中的一个线程.Servlet是纯粹的Java,jsp介于
+html和java质检,有助于美工人员来设计界面.
+</p>
+</div>
 </div>
 
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2"><span class="section-number-3">1.2</span> CGI 和 WSGI</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+既然上一节提到了CGI,这里稍微展开一下.Common Gateway Interface
+(CGI)是一种利用程序的标准输入,输出流来完成HTTP通信的方式.HTTP本身
+是文本协议,请求是由服务器(Apache)处理,而应用程序可能由各种语言来实
+现.CGI则将这个文本协议以标准输入流的方式传递给服务器端的CGI程序.
+与之类似的还有WSGI,原理类似,但是是Python专用的协议.对于实现了
+<i><span class="underline"><span class="underline">call</span></span></i> 的对象,将 <i>request</i> 经过包装作为参数传入,同时也返回进过
+包装的 <i>response</i>.
+</p>
+</div>
 </div>
 </div>
 
@@ -1170,9 +1394,6 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
 
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-18T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-           | <a href="/blog/2014-12-18-drilljava.html#disqus_thread" itemprop="discussionUrl"
-             data-disqus-identifier="http://xiaoliuai.github.io/blog/2014-12-18-drilljava.html">Comments</a>
         
       </p>
     
@@ -1268,11 +1489,11 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {
-        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);
-    }
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {&#57344;&#57345;&#57345;
+        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);&#57344;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -1281,10 +1502,10 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {
-    <span style="color: #268bd2;">@Inject</span>
-    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Inject</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -1420,32 +1641,32 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {
-
-    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {
-    }
-
-    <span style="color: #d33682;">/**</span>
-<span style="color: #d33682;">     * Get the login of the current user.</span>
-<span style="color: #d33682;">     */</span>
-    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {
-        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();
-        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();
-        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;
-        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;
-
-        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {
-            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {
-                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();
-                userName = springSecurityUser.getUsername();
-            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {
-                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();
-            }
-        }
-
-        <span style="color: #859900;">return</span> userName;
-    }
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #d33682;">/**</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">     * Get the login of the current user.</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">     */</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();&#57344;&#57345;
+        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();&#57344;&#57345;
+        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {&#57344;&#57345;&#57345;
+            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {&#57344;&#57345;
+                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();&#57344;&#57345;
+                userName = springSecurityUser.getUsername();&#57344;&#57345;&#57345;
+            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {&#57344;&#57345;
+                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #859900;">return</span> userName;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -1559,9 +1780,6 @@ String参数. <font color='red'>又绕回来了,这个String参数是
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-11-26T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
-           | <a href="/blog/2014-11-26-parallelism.html#disqus_thread" itemprop="discussionUrl"
-             data-disqus-identifier="http://xiaoliuai.github.io/blog/2014-11-26-parallelism.html">Comments</a>
-        
       </p>
     
     
@@ -1621,7 +1839,8 @@ manager <code>sudo apt-get install openmpi-bin openmpi-common
         openmpi-checkpoint libopenmpi-dev libopenmpi-X.X</code>. However,
 the OpenMPI installed through this method does not work with
 the octave-mpi package due to a library linkage problem. A
-fast cue is compiling and installing it manually.
+fast cue is compiling and installing it manually with specific
+configurations.
 Download the openmpi package <a href="http://www.open-mpi.org/software/ompi/v1.8/">openmpi-1.8.3.tar.gz</a>.
 <div class="org-src-container">
 
@@ -1659,9 +1878,9 @@ sudo make install
 <li>Inside octave
 <div class="org-src-container">
 
-<pre class="src src-octave">putenv (<span style="color: #2aa198;">"PATH"</span><span style="color: #6c71c4;">,</span> [<span style="color: #2aa198;">"path/to/mpic++/:"</span> getenv(<span style="color: #2aa198;">"PATH"</span>)]) <span style="color: #93a1a1; font-style: italic;">% optional</span>
-pkg install <span style="color: #6c71c4;">-</span>forge mpi      <span style="color: #93a1a1; font-style: italic;">% install mpi from internet or</span>
-pkg install PATH<span style="color: #6c71c4;">/</span>TO<span style="color: #6c71c4;">/</span>PACKAGE <span style="color: #93a1a1; font-style: italic;">% install mpi from downloaded package</span>
+<pre class="src src-octave">putenv (<span style="color: #2aa198;">"PATH"</span><span style="color: #6c71c4;">,</span> [<span style="color: #2aa198;">"path/to/mpic++/:"</span> getenv(<span style="color: #2aa198;">"PATH"</span>)]) <span style="color: #93a1a1; font-style: italic;">% optional</span>&#57344;&#57345;&#57345;
+pkg install <span style="color: #6c71c4;">-</span>forge mpi      <span style="color: #93a1a1; font-style: italic;">% install mpi from internet or</span>&#57344;&#57345;&#57345;
+pkg install PATH<span style="color: #6c71c4;">/</span>TO<span style="color: #6c71c4;">/</span>PACKAGE <span style="color: #93a1a1; font-style: italic;">% install mpi from downloaded package</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
@@ -1682,12 +1901,13 @@ method.
 </div>
 </div>
 
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> Ocatve</h2>
 <div class="outline-text-2" id="text-2">
 </div><div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1"><span class="section-number-3">2.1</span> Run octave code with mpi.</h3>
-<div class="outline-text-4" id="text-1-2-1">
+<div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>First way is run code from shell/terminal/ssh.
 <div class="org-src-container">
@@ -1699,7 +1919,7 @@ method.
 <li>Second way is call the system command inside octave.
 <div class="org-src-container">
 
-<pre class="src src-octave">system (<span style="color: #2aa198;">"mpirun octave -q --eval '[octave code, function or script name]"</span>)<span style="color: #6c71c4;">;</span>
+<pre class="src src-octave">system (<span style="color: #2aa198;">"mpirun octave -q --eval '[octave code, function or script name]"</span>)<span style="color: #6c71c4;">;</span>&#57344;&#57345;
 </pre>
 </div>
 </li>
@@ -1727,8 +1947,9 @@ that contains the hostnames of cluster; <code>-np</code> number of
 processes to run.
 </li>
 </ul>
-
-<div id="outline-container-sec-2-2" class="outline-4">
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2"><span class="section-number-3">2.2</span> Programming</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
@@ -1743,21 +1964,21 @@ enough to create the parallelism program.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-octave">MPI_Init()<span style="color: #6c71c4;">;</span>
-communicator <span style="color: #6c71c4;">=</span> MPI_Comm_Load(<span style="color: #2aa198;">"a label string"</span>) <span style="color: #93a1a1; font-style: italic;">% one can use multiple communicators indicated by different label</span>
-my_rank <span style="color: #6c71c4;">=</span> MPI_Comm_rank(communicator) <span style="color: #93a1a1; font-style: italic;">% rank is the indicator(id) of current process</span>
-p <span style="color: #6c71c4;">=</span> MPI_Comm_size(CW) <span style="color: #93a1a1; font-style: italic;">% the size of a communicator is the number of processes handled by the communicator</span>
-[info] <span style="color: #6c71c4;">=</span> MPI_Send(value<span style="color: #6c71c4;">,</span> ranks<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)<span style="color: #6c71c4;">;</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  a octave variable</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">ranks:  a vector that contains the id of destination processes, can be an integer</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">TAG:    an integer to identify the message (when there are many messages sent in the same context)</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">info:   an integer that indicates the success of failure state of process</span>
-[value<span style="color: #6c71c4;">,</span> info] <span style="color: #6c71c4;">=</span> MPI_Recv(source<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">source: the id the process that send this message</span>
-<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">receive from any process if source is -1</span>
-<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">process starts from 0 and process 0 is usually used as master process</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  received variable</span>
-MPI_Finalize()
+<pre class="src src-octave">MPI_Init()<span style="color: #6c71c4;">;</span>&#57344;&#57345;&#57345;
+communicator <span style="color: #6c71c4;">=</span> MPI_Comm_Load(<span style="color: #2aa198;">"a label string"</span>) <span style="color: #93a1a1; font-style: italic;">% one can use multiple communicators indicated by different label</span>&#57344;&#57345;
+my_rank <span style="color: #6c71c4;">=</span> MPI_Comm_rank(communicator) <span style="color: #93a1a1; font-style: italic;">% rank is the indicator(id) of current process</span>&#57344;&#57345;
+p <span style="color: #6c71c4;">=</span> MPI_Comm_size(CW) <span style="color: #93a1a1; font-style: italic;">% the size of a communicator is the number of processes handled by the communicator</span>&#57344;&#57345;
+[info] <span style="color: #6c71c4;">=</span> MPI_Send(value<span style="color: #6c71c4;">,</span> ranks<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)<span style="color: #6c71c4;">;</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  a octave variable</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">ranks:  a vector that contains the id of destination processes, can be an integer</span>&#57344;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">TAG:    an integer to identify the message (when there are many messages sent in the same context)</span>&#57344;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">info:   an integer that indicates the success of failure state of process</span>&#57344;&#57345;
+[value<span style="color: #6c71c4;">,</span> info] <span style="color: #6c71c4;">=</span> MPI_Recv(source<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">source: the id the process that send this message</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">receive from any process if source is -1</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">process starts from 0 and process 0 is usually used as master process</span>&#57344;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  received variable</span>&#57344;&#57345;&#57345;
+MPI_Finalize()&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -1777,8 +1998,6 @@ no message arrive.
 <li>Function <code>MPI_Iprobe(RANK, TAG, COMM)</code> test if process [RANK] send
 a message with TAG from communicator COMM. NOT block the process
 if no message arrive.
-</li>
-</ul>
 </li>
 </ul>
 </div>
@@ -1830,7 +2049,7 @@ please check the document of the version you installed.
 <ul class="org-ul">
 <li>Point-to-point communication
 <ul class="org-ul">
-<li>blocked<br>
+<li>blocked
 <code>MPI_Send(buffer,count,type,dest,tag,comm)</code>
 <code>MPI_Recv(buffer,count,type,source,tag,comm, status)</code>
 <ul class="org-ul">
@@ -1869,7 +2088,7 @@ MPI context created at the beginning of application.
 </li>
 </ul>
 </li>
-<li>non-blocked<br>
+<li>non-blocked
 <code>MPI_ISend(buffer,count,type,dest,tag,comm,request)</code>
 <code>MPI_IRecv(buffer,count,type,source,tag,comm,request)</code>
 First, I have to clarify the blocking/non-blocking concept in this
@@ -1892,53 +2111,92 @@ that processes receive data before sending them.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #d33682;">#include</span> <span style="color: #2aa198;">"mpi.h"</span>
-<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
-
-<span style="color: #b58900;">main</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">argc</span>, <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">argv</span>[])  {
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">numtasks</span>, <span style="color: #6c71c4;">rank</span>, <span style="color: #6c71c4;">next</span>, <span style="color: #6c71c4;">prev</span>, <span style="color: #6c71c4;">buf</span>[2], <span style="color: #6c71c4;">tag1</span>=1, <span style="color: #6c71c4;">tag2</span>=2;
-<span style="color: #268bd2;">MPI_Request</span> <span style="color: #6c71c4;">reqs</span>[4];
-<span style="color: #268bd2;">MPI_Status</span> <span style="color: #6c71c4;">stats</span>[4];
-
-MPI_Init(&amp;argc,&amp;argv);
-MPI_Comm_size(MPI_COMM_WORLD, &amp;numtasks);
-MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
-
-prev = rank-1;
-next = rank+1;
-<span style="color: #859900;">if</span> (rank == 0)  prev = numtasks - 1;
-<span style="color: #859900;">if</span> (rank == (numtasks - 1))  next = 0;
-
-MPI_Irecv(&amp;buf[0], 1, MPI_INT, prev, tag1, MPI_COMM_WORLD, &amp;reqs[0]);
-MPI_Irecv(&amp;buf[1], 1, MPI_INT, next, tag2, MPI_COMM_WORLD, &amp;reqs[1]);
-
-MPI_Isend(&amp;rank, 1, MPI_INT, prev, tag2, MPI_COMM_WORLD, &amp;reqs[2]);
-MPI_Isend(&amp;rank, 1, MPI_INT, next, tag1, MPI_COMM_WORLD, &amp;reqs[3]);
-
-      {  <span style="color: #859900;">do</span> some work  }
-
-MPI_Waitall(4, reqs, stats);
-
-MPI_Finalize();
-}
+<pre class="src src-C"><span style="color: #d33682;">#include</span> <span style="color: #2aa198;">"mpi.h"</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #b58900;">main</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">argc</span>, <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">argv</span>[])  {&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">numtasks</span>, <span style="color: #6c71c4;">rank</span>, <span style="color: #6c71c4;">next</span>, <span style="color: #6c71c4;">prev</span>, <span style="color: #6c71c4;">buf</span>[2], <span style="color: #6c71c4;">tag1</span>=1, <span style="color: #6c71c4;">tag2</span>=2;&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">MPI_Request</span> <span style="color: #6c71c4;">reqs</span>[4];&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">MPI_Status</span> <span style="color: #6c71c4;">stats</span>[4];&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Init(&amp;argc,&amp;argv);&#57344;&#57345;&#57345;
+MPI_Comm_size(MPI_COMM_WORLD, &amp;numtasks);&#57344;&#57345;&#57345;
+MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+prev = rank-1;&#57344;&#57345;&#57345;
+next = rank+1;&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span> (rank == 0)  prev = numtasks - 1;&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span> (rank == (numtasks - 1))  next = 0;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Irecv(&amp;buf[0], 1, MPI_INT, prev, tag1, MPI_COMM_WORLD, &amp;reqs[0]);&#57344;&#57345;&#57345;
+MPI_Irecv(&amp;buf[1], 1, MPI_INT, next, tag2, MPI_COMM_WORLD, &amp;reqs[1]);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Isend(&amp;rank, 1, MPI_INT, prev, tag2, MPI_COMM_WORLD, &amp;reqs[2]);&#57344;&#57345;&#57345;
+MPI_Isend(&amp;rank, 1, MPI_INT, next, tag1, MPI_COMM_WORLD, &amp;reqs[3]);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+      {  <span style="color: #859900;">do</span> some work  }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Waitall(4, reqs, stats);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Finalize();&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
 </ul>
 </li>
 <li>Collective communication
+Basically, all the collective communications can be implemented
+using the point-to-point communication methods.
 <ul class="org-ul">
 <li>MPI_Reduce
+Split data to processes, gather the result as reducing
+operation such as the sum of array.
 </li>
 <li>MPI_Scatter
+       Split data from one processes to all the processes.
+</li>
+<li>MPI_Gather
+       Gather data from all the processes to one process
+</li>
+<li>MPI_Barrier
+       For synchronizing.
 </li>
 </ul>
 </li>
 <li>Derived data type
+Though the MPI provides series of primitive types, it is also
+useful to let useser to define their own data type. You can
+define a variable of type and use it as the MPI type.
+<ol class="org-ol">
+<li>Contiguous
+TODO
+</li>
+<li>Vector
+TODO
+</li>
+<li>Indexed
+TODO
+</li>
+<li>Struct
+TODO
+</li>
+</ol>
 </li>
 <li>Group and communicator management
+Group is an ordered set of processes, where the id(rank) of
+process go from zero to N-1. Communicator encompoasses a group of
+processes. Communicator that comprises all tasks is represented
+by MPI_COMM_WORLD. They are the same thing for programmer.
+
+<p>
+Groups can be destroyed and created during execution. One process
+can be in multiple groups.
+</p>
 </li>
 <li>Virtual topology routine
+Organize the processors in geometric way, like orginizing the
+processors in a two-dimensional array.
 </li>
 </ul>
 </div>
@@ -1981,9 +2239,6 @@ width="900" height="600"></iframe>
 
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-29T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-           | <a href="/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html#disqus_thread" itemprop="discussionUrl"
-             data-disqus-identifier="http://xiaoliuai.github.io/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html">Comments</a>
         
       </p>
     
@@ -2050,9 +2305,9 @@ You can following the instructions on the <a href="http://octopress.org/docs/set
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>
-git clone git://github.com/sstephenson/rbenv.git .rbenv
-git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
+<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>&#57344;&#57345;&#57345;
+git clone git://github.com/sstephenson/rbenv.git .rbenv&#57344;&#57345;&#57345;
+git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build&#57344;&#57345;
 </pre>
 </div>
 <p>
@@ -2060,8 +2315,8 @@ Add two lines into the end of shell profile (.zshrc in my case).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>
-<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>
+<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>&#57344;&#57345;&#57345;
+<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -2071,9 +2326,9 @@ The installation of rbenv and ruby-build can be replaced by
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">brew update
-brew install rbenv
-brew install ruby-build
+<pre class="src src-sh">brew update&#57344;&#57345;&#57345;
+brew install rbenv&#57344;&#57345;&#57345;
+brew install ruby-build&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -2086,9 +2341,9 @@ Then install ruby 1.9.3, which is required by octopress.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rbenv install 1.9.3-p0
-rbenv local 1.9.3-p0
-rbenv rehash
+<pre class="src src-sh">rbenv install 1.9.3-p0&#57344;&#57345;&#57345;
+rbenv local 1.9.3-p0&#57344;&#57345;&#57345;
+rbenv rehash&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -2116,8 +2371,8 @@ beginning.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress
-<span style="color: #6c71c4;">cd</span> octopress
+<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress&#57344;&#57345;&#57345;
+<span style="color: #6c71c4;">cd</span> octopress&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -2128,9 +2383,9 @@ beginning.
 <div class="outline-text-4" id="text-1-2-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">gem install bundler
-rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>
-bundle install
+<pre class="src src-sh">gem install bundler&#57344;&#57345;&#57345;
+rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>&#57344;&#57345;
+bundle install&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -2145,7 +2400,7 @@ bundle install
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake install
+<pre class="src src-sh">rake install&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -2179,8 +2434,8 @@ jekyll format (concatenate date and the title as the file name).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>
+<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -2202,7 +2457,7 @@ site to the github.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake setup_github_pages
+<pre class="src src-sh">rake setup_github_pages&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -2217,7 +2472,7 @@ Run command:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake deploy
+<pre class="src src-sh">rake deploy&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -2227,9 +2482,9 @@ settings and sources tracked, run
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">git add .
-git commit -m<span style="color: #2aa198;">'Your message'</span>
-git push origin source
+<pre class="src src-sh">git add .&#57344;&#57345;&#57345;
+git commit -m<span style="color: #2aa198;">'Your message'</span>&#57344;&#57345;&#57345;
+git push origin source&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -2270,6 +2525,16 @@ This package does only export the section names, modify the elisp
 script following the <a href="https://github.com/juanre/org-jekyll/issues/11">issue</a> to export the contents. Use
 <code>org-jekyll-export-blog</code> to export the blog HTML files.
 </p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">change</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span>&#57344;&#57345;&#57345;
+                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">))</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">to</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-show-subtree<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&#57344;&#57345;
+                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">)))</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
 </div>
 </div>
 
@@ -2348,9 +2613,6 @@ study into it when I have time.
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-29T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
-           | <a href="/blog/2014-10-29-initialize-the-first-blog.html#disqus_thread" itemprop="discussionUrl"
-             data-disqus-identifier="http://xiaoliuai.github.io/blog/2014-10-29-initialize-the-first-blog.html">Comments</a>
-        
       </p>
     
     
@@ -2422,10 +2684,10 @@ things work.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">xiaoliuai.github.io/
--- _posts/
--- _sites/
-...
+<pre class="src src-sh">xiaoliuai.github.io/&#57344;&#57345;&#57345;
+-- _posts/&#57344;&#57345;&#57345;
+-- _sites/&#57344;&#57345;&#57345;
+...&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -2449,26 +2711,26 @@ the contents in <code>_sites</code>.
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-org"</span>
- <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
- <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
-
- <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
- <span style="color: #6c71c4;">:recursive</span> t
- <span style="color: #6c71c4;">:publishing-function</span> org-html-publish-to-html
- <span style="color: #6c71c4;">:headline-levels</span> 4
- <span style="color: #6c71c4;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
- <span style="color: #6c71c4;">:body-only</span> t <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
- <span style="color: #6c71c4;">:with-toc</span> nil <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">don't export toc, it clobbers the YAML front matter</span>
- <span style="color: #657b83;">)</span>
-<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-static"</span>
- <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
- <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">js</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">png</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gif</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">pdf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">mp3</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">swf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gz</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">txt</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">el"</span>
- <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
- <span style="color: #6c71c4;">:recursive</span> t
- <span style="color: #6c71c4;">:publishing-function</span> org-publish-attachment
- <span style="color: #657b83;">)</span>
-<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog"</span><span style="color: #6c71c4;">:components</span> <span style="color: #2aa198;">(</span><span style="color: #2aa198;">"blog-org"</span> <span style="color: #2aa198;">"blog-static"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
+<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-org"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"org"</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:recursive</span> t&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:publishing-function</span> org-html-publish-to-html&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:headline-levels</span> 4&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:html-extension</span> <span style="color: #2aa198;">"html"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:body-only</span> t <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Only export section between &lt;body&gt; &lt;/body&gt;</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:with-toc</span> nil <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">don't export toc, it clobbers the YAML front matter</span>&#57344;&#57345;&#57345;
+ <span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-static"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">js</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">png</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gif</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">pdf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">mp3</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">swf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gz</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">txt</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">el"</span>&#57344;&#57345;
+ <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:recursive</span> t&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:publishing-function</span> org-publish-attachment&#57344;&#57345;&#57345;
+ <span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog"</span><span style="color: #6c71c4;">:components</span> <span style="color: #2aa198;">(</span><span style="color: #2aa198;">"blog-org"</span> <span style="color: #2aa198;">"blog-static"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -2484,17 +2746,17 @@ html files into the right place.
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 
-<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+STARTUP: showall indent</span>
-<span style="color: #93a1a1; font-style: italic;">#+STARTUP: hidestars</span>
-<span style="color: #93a1a1; font-style: italic;">#+BEGIN_HTML</span>
-<span style="color: #cb4b16;">---</span>
-<span style="color: #cb4b16;">layout: default</span>
-<span style="color: #cb4b16;">title: Xiao Liu's First Blog</span>
-<span style="color: #cb4b16;">excerpt: First blog with org-mode, jekyll.</span>
-<span style="color: #cb4b16;">categories:</span>
-<span style="color: #cb4b16;">    - org</span>
-<span style="color: #cb4b16;">---</span>
-<span style="color: #93a1a1; font-style: italic;">#+END_HTML</span>
+<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+STARTUP: showall indent</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">#+STARTUP: hidestars</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">#+BEGIN_HTML</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">---</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">layout: default</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">title: Xiao Liu's First Blog</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">excerpt: First blog with org-mode, jekyll.</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">categories:</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">    - org</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">---</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">#+END_HTML</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -2582,6 +2844,8 @@ name, description, email address, etc.
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-01-30-javascript-overview.html">JavaScript Overview</a>
+    
     <a class="list-group-item " href="/blog/2014-12-25-angularjs-developer-guide-.html">AngularJS Developer Guide 开发指南学习笔记</a>
     
     <a class="list-group-item " href="/blog/2014-12-24-angularjs-tutorial-.html">AngularJS Tutorial 入门教程学习笔记</a>
@@ -2589,8 +2853,6 @@ name, description, email address, etc.
     <a class="list-group-item " href="/blog/2014-12-22-.html">背景知识</a>
     
     <a class="list-group-item " href="/blog/2014-12-18-drilljava.html">Drill的Java后端</a>
-    
-    <a class="list-group-item " href="/blog/2014-11-26-parallelism.html">Parallelism</a>
     
   </div>
 </section>
@@ -2614,7 +2876,7 @@ name, description, email address, etc.
     
     
     <a class="list-group-item " href="/blog/categories/web/index.html">
-        <span class="badge">4</span>
+        <span class="badge">5</span>
         web
       </a>
     
@@ -2627,15 +2889,15 @@ name, description, email address, etc.
         <div class="list-group">
                         <ul class="tag-cloud">
                                 <a style="font-size: 210%" href="/tags/angularjs/">AngularJS</a>
+<a style="font-size: 90%" href="/tags/cgi/">CGI</a>
 <a style="font-size: 210%" href="/tags/github/">GitHub</a>
 <a style="font-size: 90%" href="/tags/jsp/">JSP</a>
 <a style="font-size: 90%" href="/tags/java/">Java</a>
-<a style="font-size: 90%" href="/tags/jekyll/">Jekyll</a>
 <a style="font-size: 90%" href="/tags/mpi/">MPI</a>
 <a style="font-size: 90%" href="/tags/matlab/">Matlab</a>
 <a style="font-size: 90%" href="/tags/octave/">Octave</a>
-<a style="font-size: 90%" href="/tags/octopress/">Octopress</a>
 <a style="font-size: 210%" href="/tags/org-mode/">Org-mode</a>
+<a style="font-size: 90%" href="/tags/spring/">Spring</a>
 
                         </ul>
         </div>
@@ -2695,19 +2957,6 @@ name, description, email address, etc.
 </div>
 </footer>
     
-
-<script type="text/javascript">
-      var disqus_shortname = 'xiaoliuaigithubio';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://xiaoliuai.github.io/blog/2015-01-30-javascript-overview.html</loc>
+    <lastmod>2015-01-30T00:00:00+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://xiaoliuai.github.io/blog/2014-12-25-angularjs-developer-guide-.html</loc>
     <lastmod>2014-12-25T00:00:00+01:00</lastmod>
     <priority>0.8</priority>
@@ -37,155 +42,89 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/blog/archives/</loc>
-    <lastmod>2015-02-06T02:48:29+01:00</lastmod>
+    <lastmod>2015-02-06T12:31:42+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/</loc>
-    <lastmod>2015-02-06T02:48:29+01:00</lastmod>
+    <lastmod>2015-02-06T12:31:42+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://xiaoliuai.github.io/archives/tags.html</loc>
-    <lastmod>2015-02-06T02:48:29+01:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>http://xiaoliuai.github.io/publish/Chinese NLP/python_implementation.html</loc>
-    <lastmod>1417-10-11T12:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Emacs/config.html</loc>
-    <lastmod>1417-10-11T11:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Emacs/org-note.html</loc>
-    <lastmod>2014-11-28T13:10:09+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/Emacs/plugins.html</loc>
-    <lastmod>1417-10-11T12:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Geek/blog.html</loc>
-    <lastmod>2014-12-19T16:53:29+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Geek/server.html</loc>
-    <lastmod>1417-10-11T09:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/hhm.html</loc>
-    <lastmod>1417-10-11T05:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://xiaoliuai.github.io/publish/java/maven.html</loc>
-    <lastmod>2014-12-18T21:23:49+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/java/Spring.html</loc>
-    <lastmod>2014-12-18T21:23:49+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/KU Leuven/Biobliography.html</loc>
-    <lastmod>2015-01-30T16:59:34+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/KU Leuven/BioSummary.html</loc>
-    <lastmod>2015-01-30T16:59:35+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/KU Leuven/MUSE_Code.html</loc>
-    <lastmod>2015-01-30T16:59:34+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/KU Leuven/MUSE_Dev.html</loc>
-    <lastmod>2015-02-06T02:19:02+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/KU Leuven/PG_review.html</loc>
-    <lastmod>2014-12-18T21:23:53+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/KU Leuven/TempAnnotation.html</loc>
-    <lastmod>2015-01-30T16:59:33+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/KU Leuven/UMLS.html</loc>
-    <lastmod>2015-01-30T16:59:33+01:00</lastmod>
+    <loc>http://xiaoliuai.github.io/publish/KU Leuven/BioNLP_GRN.html</loc>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/NLP online course/MinEditDistance.html</loc>
-    <lastmod>1417-10-11T07:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/NLP online course/Summarization.html</loc>
-    <lastmod>1417-10-11T07:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/offer_program.html</loc>
-    <lastmod>1417-10-11T06:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Papers/BMCBioinformatic.html</loc>
-    <lastmod>1417-10-11T07:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/perl.html</loc>
-    <lastmod>1417-10-11T04:00:00+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/Private Work/drill.html</loc>
-    <lastmod>2015-02-06T02:18:53+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/Private Work/faxiang.html</loc>
-    <lastmod>2015-01-10T20:37:57+01:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://xiaoliuai.github.io/publish/Private Work/JavaScript.html</loc>
-    <lastmod>2015-02-06T02:18:53+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/python.html</loc>
-    <lastmod>1417-10-11T04:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/RUPEE.html</loc>
-    <lastmod>1417-10-11T05:00:00+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/sitemap.html</loc>
-    <lastmod>2015-02-06T02:18:52+01:00</lastmod>
+    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>

@@ -112,9 +112,6 @@
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-22T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
-           | <a href="#disqus_thread" itemprop="discussionUrl"
-             data-disqus-identifier="http://xiaoliuai.github.io">Comments</a>
-        
       </p>
     
     
@@ -153,10 +150,29 @@ JavaServer Page(JSP)是一种动态网页技术标准.在HTML中插入Java片段
 
 <div id="outline-container-sec-1-1" class="outline-3">
 <h3 id="sec-1-1"><span class="section-number-3">1.1</span> Servelet</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Servelet是一种 <i>独立于平台和协议</i> 的 <i>服务器端</i> 的Java应用程序,生
+成动态页面.为HTTP客户端跟HTTP服务器程序的中间层.好处是快(比CGI快),
+每个用户请求被激活成程序中的一个线程.Servlet是纯粹的Java,jsp介于
+html和java质检,有助于美工人员来设计界面.
+</p>
+</div>
 </div>
 
 <div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2"><span class="section-number-3">1.2</span> CGI 和 WSGI</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+既然上一节提到了CGI,这里稍微展开一下.Common Gateway Interface
+(CGI)是一种利用程序的标准输入,输出流来完成HTTP通信的方式.HTTP本身
+是文本协议,请求是由服务器(Apache)处理,而应用程序可能由各种语言来实
+现.CGI则将这个文本协议以标准输入流的方式传递给服务器端的CGI程序.
+与之类似的还有WSGI,原理类似,但是是Python专用的协议.对于实现了
+<i><span class="underline"><span class="underline">call</span></span></i> 的对象,将 <i>request</i> 经过包装作为参数传入,同时也返回进过
+包装的 <i>response</i>.
+</p>
+</div>
 </div>
 </div>
 
@@ -234,12 +250,6 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
       </footer>
     </article>
     
-      <section>
-        <h2>Comments</h2>
-        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-      </section>
-    
   </div>
 
   
@@ -252,6 +262,8 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-01-30-javascript-overview.html">JavaScript Overview</a>
+    
     <a class="list-group-item " href="/blog/2014-12-25-angularjs-developer-guide-.html">AngularJS Developer Guide 开发指南学习笔记</a>
     
     <a class="list-group-item " href="/blog/2014-12-24-angularjs-tutorial-.html">AngularJS Tutorial 入门教程学习笔记</a>
@@ -259,8 +271,6 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
     <a class="list-group-item active" href="/blog/2014-12-22-.html">背景知识</a>
     
     <a class="list-group-item " href="/blog/2014-12-18-drilljava.html">Drill的Java后端</a>
-    
-    <a class="list-group-item " href="/blog/2014-11-26-parallelism.html">Parallelism</a>
     
   </div>
 </section>
@@ -322,7 +332,7 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
     
     
     <a class="list-group-item " href="/blog/categories/web/index.html">
-        <span class="badge">4</span>
+        <span class="badge">5</span>
         web
       </a>
     
@@ -335,15 +345,15 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
         <div class="list-group">
                         <ul class="tag-cloud">
                                 <a style="font-size: 210%" href="/tags/angularjs/">AngularJS</a>
+<a style="font-size: 90%" href="/tags/cgi/">CGI</a>
 <a style="font-size: 210%" href="/tags/github/">GitHub</a>
 <a style="font-size: 90%" href="/tags/jsp/">JSP</a>
 <a style="font-size: 90%" href="/tags/java/">Java</a>
-<a style="font-size: 90%" href="/tags/jekyll/">Jekyll</a>
 <a style="font-size: 90%" href="/tags/mpi/">MPI</a>
 <a style="font-size: 90%" href="/tags/matlab/">Matlab</a>
 <a style="font-size: 90%" href="/tags/octave/">Octave</a>
-<a style="font-size: 90%" href="/tags/octopress/">Octopress</a>
 <a style="font-size: 210%" href="/tags/org-mode/">Org-mode</a>
+<a style="font-size: 90%" href="/tags/spring/">Spring</a>
 
                         </ul>
         </div>
@@ -369,22 +379,6 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
 </div>
 </footer>
     
-
-<script type="text/javascript">
-      var disqus_shortname = 'xiaoliuaigithubio';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://xiaoliuai.github.io/blog/2014-12-22-.html';
-        var disqus_url = 'http://xiaoliuai.github.io/blog/2014-12-22-.html';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

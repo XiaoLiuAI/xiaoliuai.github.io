@@ -3,7 +3,7 @@
 <title><![CDATA[Tag: GitHub | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/github/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2015-02-06T02:48:29+01:00</updated>
+<updated>2015-02-06T12:31:42+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
@@ -78,9 +78,9 @@ You can following the instructions on the <a href="http://octopress.org/docs/set
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>
-git clone git://github.com/sstephenson/rbenv.git .rbenv
-git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
+<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>&#57344;&#57345;&#57345;
+git clone git://github.com/sstephenson/rbenv.git .rbenv&#57344;&#57345;&#57345;
+git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build&#57344;&#57345;
 </pre>
 </div>
 <p>
@@ -88,8 +88,8 @@ Add two lines into the end of shell profile (.zshrc in my case).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>
-<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>
+<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>&#57344;&#57345;&#57345;
+<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -99,9 +99,9 @@ The installation of rbenv and ruby-build can be replaced by
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">brew update
-brew install rbenv
-brew install ruby-build
+<pre class="src src-sh">brew update&#57344;&#57345;&#57345;
+brew install rbenv&#57344;&#57345;&#57345;
+brew install ruby-build&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -114,9 +114,9 @@ Then install ruby 1.9.3, which is required by octopress.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rbenv install 1.9.3-p0
-rbenv local 1.9.3-p0
-rbenv rehash
+<pre class="src src-sh">rbenv install 1.9.3-p0&#57344;&#57345;&#57345;
+rbenv local 1.9.3-p0&#57344;&#57345;&#57345;
+rbenv rehash&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -144,8 +144,8 @@ beginning.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress
-<span style="color: #6c71c4;">cd</span> octopress
+<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress&#57344;&#57345;&#57345;
+<span style="color: #6c71c4;">cd</span> octopress&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -156,9 +156,9 @@ beginning.
 <div class="outline-text-4" id="text-1-2-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">gem install bundler
-rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>
-bundle install
+<pre class="src src-sh">gem install bundler&#57344;&#57345;&#57345;
+rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>&#57344;&#57345;
+bundle install&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -173,7 +173,7 @@ bundle install
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake install
+<pre class="src src-sh">rake install&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -208,8 +208,8 @@ jekyll format (concatenate date and the title as the file name).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>
+<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -231,7 +231,7 @@ site to the github.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake setup_github_pages
+<pre class="src src-sh">rake setup_github_pages&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -246,7 +246,7 @@ Run command:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake deploy
+<pre class="src src-sh">rake deploy&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -256,9 +256,9 @@ settings and sources tracked, run
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">git add .
-git commit -m<span style="color: #2aa198;">'Your message'</span>
-git push origin source
+<pre class="src src-sh">git add .&#57344;&#57345;&#57345;
+git commit -m<span style="color: #2aa198;">'Your message'</span>&#57344;&#57345;&#57345;
+git push origin source&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -302,6 +302,16 @@ This package does only export the section names, modify the elisp
 script following the <a href="https://github.com/juanre/org-jekyll/issues/11">issue</a> to export the contents. Use
 <code>org-jekyll-export-blog</code> to export the blog HTML files.
 </p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">change</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span>&#57344;&#57345;&#57345;
+                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">))</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">to</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-show-subtree<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&#57344;&#57345;
+                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">)))</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
 </div>
 </div>
 
@@ -431,10 +441,10 @@ things work.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">xiaoliuai.github.io/
--- _posts/
--- _sites/
-...
+<pre class="src src-sh">xiaoliuai.github.io/&#57344;&#57345;&#57345;
+-- _posts/&#57344;&#57345;&#57345;
+-- _sites/&#57344;&#57345;&#57345;
+...&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -461,26 +471,26 @@ the contents in <code>_sites</code>.
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-org"</span>
- <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
- <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
-
- <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
- <span style="color: #6c71c4;">:recursive</span> t
- <span style="color: #6c71c4;">:publishing-function</span> org-html-publish-to-html
- <span style="color: #6c71c4;">:headline-levels</span> 4
- <span style="color: #6c71c4;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
- <span style="color: #6c71c4;">:body-only</span> t <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
- <span style="color: #6c71c4;">:with-toc</span> nil <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">don't export toc, it clobbers the YAML front matter</span>
- <span style="color: #657b83;">)</span>
-<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-static"</span>
- <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
- <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">js</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">png</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gif</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">pdf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">mp3</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">swf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gz</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">txt</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">el"</span>
- <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
- <span style="color: #6c71c4;">:recursive</span> t
- <span style="color: #6c71c4;">:publishing-function</span> org-publish-attachment
- <span style="color: #657b83;">)</span>
-<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog"</span><span style="color: #6c71c4;">:components</span> <span style="color: #2aa198;">(</span><span style="color: #2aa198;">"blog-org"</span> <span style="color: #2aa198;">"blog-static"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
+<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-org"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"org"</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:recursive</span> t&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:publishing-function</span> org-html-publish-to-html&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:headline-levels</span> 4&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:html-extension</span> <span style="color: #2aa198;">"html"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:body-only</span> t <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Only export section between &lt;body&gt; &lt;/body&gt;</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:with-toc</span> nil <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">don't export toc, it clobbers the YAML front matter</span>&#57344;&#57345;&#57345;
+ <span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-static"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">js</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">png</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gif</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">pdf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">mp3</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">swf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gz</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">txt</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">el"</span>&#57344;&#57345;
+ <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:recursive</span> t&#57344;&#57345;&#57345;
+ <span style="color: #6c71c4;">:publishing-function</span> org-publish-attachment&#57344;&#57345;&#57345;
+ <span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog"</span><span style="color: #6c71c4;">:components</span> <span style="color: #2aa198;">(</span><span style="color: #2aa198;">"blog-org"</span> <span style="color: #2aa198;">"blog-static"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -496,17 +506,17 @@ html files into the right place.
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 
-<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+STARTUP: showall indent</span>
-<span style="color: #93a1a1; font-style: italic;">#+STARTUP: hidestars</span>
-<span style="color: #93a1a1; font-style: italic;">#+BEGIN_HTML</span>
-<span style="color: #cb4b16;">---</span>
-<span style="color: #cb4b16;">layout: default</span>
-<span style="color: #cb4b16;">title: Xiao Liu's First Blog</span>
-<span style="color: #cb4b16;">excerpt: First blog with org-mode, jekyll.</span>
-<span style="color: #cb4b16;">categories:</span>
-<span style="color: #cb4b16;">    - org</span>
-<span style="color: #cb4b16;">---</span>
-<span style="color: #93a1a1; font-style: italic;">#+END_HTML</span>
+<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+STARTUP: showall indent</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">#+STARTUP: hidestars</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">#+BEGIN_HTML</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">---</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">layout: default</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">title: Xiao Liu's First Blog</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">excerpt: First blog with org-mode, jekyll.</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">categories:</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">    - org</span>&#57344;&#57345;&#57345;
+<span style="color: #cb4b16;">---</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">#+END_HTML</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>

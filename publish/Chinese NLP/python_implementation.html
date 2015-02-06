@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>python实现NLP</title>
-<!-- 2014-11-27 Thu 16:11 -->
+<!-- 2014-10-29 Wed 18:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -201,11 +201,7 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#sec-2-2">2.2. 实现</a>
 <ul>
-<li><a href="#sec-2-2-1">2.2.1. 结巴分词</a>
-<ul>
-<li><a href="#sec-2-2-1-1">2.2.1.1. 流水账</a></li>
-</ul>
-</li>
+<li><a href="#sec-2-2-1">2.2.1. 结巴分词</a></li>
 </ul>
 </li>
 </ul>
@@ -231,7 +227,7 @@ for the JavaScript code in this tag.
 <li>python脚本编码设定,在文件开始加入 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">-*- coding:&lt;encoding name&gt; -*-</span>
+<pre class="src src-python"><span style="color: #81908f; font-style: italic;"># </span><span style="color: #81908f; font-style: italic;">-*- coding:&lt;encoding name&gt; -*-</span>
 </pre>
 </div>
 <p>
@@ -239,7 +235,7 @@ for the JavaScript code in this tag.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">coding=&lt;encoding name&gt;</span>
+<pre class="src src-python"><span style="color: #81908f; font-style: italic;"># </span><span style="color: #81908f; font-style: italic;">coding=&lt;encoding name&gt;</span>
 </pre>
 </div>
 </li>
@@ -322,9 +318,7 @@ python接口，接口通过 <b>SWIG</b> 生成。
 </div><div id="outline-container-sec-2-2-1" class="outline-4">
 <h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> 结巴分词</h4>
 <div class="outline-text-4" id="text-2-2-1">
-</div><div id="outline-container-sec-2-2-1-1" class="outline-5">
-<h5 id="sec-2-2-1-1"><span class="section-number-5">2.2.1.1</span> 流水账</h5>
-<div class="outline-text-5" id="text-2-2-1-1">
+</div><ol class="org-ol"><li><a id="sec-2-2-1-1" name="sec-2-2-1-1"></a>流水账<br  /><div class="outline-text-5" id="text-2-2-1-1">
 <p>
 结巴分词自带一个三十多万词的词典，词典中包含词的频率（多为很小的个位
 数）。加载词典的时候会生成一个树，包含所有词的字符组合。根据这个树，可
@@ -348,11 +342,11 @@ python接口，接口通过 <b>SWIG</b> 生成。
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #6c71c4;">N</span> = <span style="color: #6c71c4;">len</span>(sentence)
-<span style="color: #6c71c4;">route</span>[N] = (0.0,<span style="color: #2aa198;">''</span>)
-<span style="color: #859900;">for</span> idx <span style="color: #859900;">in</span> <span style="color: #6c71c4;">xrange</span>(N-1,-1,-1):
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">candidates</span> = [ ( FREQ.get(sentence[idx:x+1],min_freq) + route[x+1][0],x ) <span style="color: #859900;">for</span> x <span style="color: #859900;">in</span> DAG[idx] ]
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #6c71c4;">route</span>[idx] = <span style="color: #6c71c4;">max</span>(candidates)
+<pre class="src src-python"><span style="color: #5859b7;">N</span> = <span style="color: #5859b7;">len</span>(sentence)
+<span style="color: #5859b7;">route</span>[N] = (0.0,<span style="color: #259185;">''</span>)
+<span style="color: #728a05;">for</span> idx <span style="color: #728a05;">in</span> <span style="color: #5859b7;">xrange</span>(N-1,-1,-1):
+    <span style="color: #5859b7;">candidates</span> = [ ( FREQ.get(sentence[idx:x+1],min_freq) + route[x+1][0],x ) <span style="color: #728a05;">for</span> x <span style="color: #728a05;">in</span> DAG[idx] ]
+    <span style="color: #5859b7;">route</span>[idx] = <span style="color: #5859b7;">max</span>(candidates)
 </pre>
 </div>
 <p>
@@ -384,7 +378,7 @@ emission probability的候选，同时记住每个字有限的可能状态，从
 平滑（ <b>只有不存在任何记录状况时才做平滑</b> ）。
 </p>
 </div>
-</div>
+</li></ol>
 </div>
 </div>
 </div>
@@ -414,8 +408,8 @@ See <a href="https://code.google.com/p/ik-analyzer/"><a href="https://code.googl
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-27 Thu 16:11</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2014-10-29 Wed 18:06</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>
 </body>

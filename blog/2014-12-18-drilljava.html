@@ -112,9 +112,6 @@
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-18T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
-           | <a href="#disqus_thread" itemprop="discussionUrl"
-             data-disqus-identifier="http://xiaoliuai.github.io">Comments</a>
-        
       </p>
     
     
@@ -212,11 +209,11 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {
-        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);
-    }
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {&#57344;&#57345;&#57345;
+        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);&#57344;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -225,10 +222,10 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {
-    <span style="color: #268bd2;">@Inject</span>
-    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Inject</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -364,32 +361,32 @@ Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {
-
-    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {
-    }
-
-    <span style="color: #d33682;">/**</span>
-<span style="color: #d33682;">     * Get the login of the current user.</span>
-<span style="color: #d33682;">     */</span>
-    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {
-        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();
-        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();
-        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;
-        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;
-
-        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {
-            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {
-                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();
-                userName = springSecurityUser.getUsername();
-            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {
-                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();
-            }
-        }
-
-        <span style="color: #859900;">return</span> userName;
-    }
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #d33682;">/**</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">     * Get the login of the current user.</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">     */</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();&#57344;&#57345;
+        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();&#57344;&#57345;
+        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {&#57344;&#57345;&#57345;
+            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {&#57344;&#57345;
+                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();&#57344;&#57345;
+                userName = springSecurityUser.getUsername();&#57344;&#57345;&#57345;
+            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {&#57344;&#57345;
+                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #859900;">return</span> userName;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -533,12 +530,6 @@ String参数. <font color='red'>又绕回来了,这个String参数是
       </footer>
     </article>
     
-      <section>
-        <h2>Comments</h2>
-        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-      </section>
-    
   </div>
 
   
@@ -551,6 +542,8 @@ String参数. <font color='red'>又绕回来了,这个String参数是
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-01-30-javascript-overview.html">JavaScript Overview</a>
+    
     <a class="list-group-item " href="/blog/2014-12-25-angularjs-developer-guide-.html">AngularJS Developer Guide 开发指南学习笔记</a>
     
     <a class="list-group-item " href="/blog/2014-12-24-angularjs-tutorial-.html">AngularJS Tutorial 入门教程学习笔记</a>
@@ -558,8 +551,6 @@ String参数. <font color='red'>又绕回来了,这个String参数是
     <a class="list-group-item " href="/blog/2014-12-22-.html">背景知识</a>
     
     <a class="list-group-item active" href="/blog/2014-12-18-drilljava.html">Drill的Java后端</a>
-    
-    <a class="list-group-item " href="/blog/2014-11-26-parallelism.html">Parallelism</a>
     
   </div>
 </section>
@@ -621,7 +612,7 @@ String参数. <font color='red'>又绕回来了,这个String参数是
     
     
     <a class="list-group-item " href="/blog/categories/web/index.html">
-        <span class="badge">4</span>
+        <span class="badge">5</span>
         web
       </a>
     
@@ -634,15 +625,15 @@ String参数. <font color='red'>又绕回来了,这个String参数是
         <div class="list-group">
                         <ul class="tag-cloud">
                                 <a style="font-size: 210%" href="/tags/angularjs/">AngularJS</a>
+<a style="font-size: 90%" href="/tags/cgi/">CGI</a>
 <a style="font-size: 210%" href="/tags/github/">GitHub</a>
 <a style="font-size: 90%" href="/tags/jsp/">JSP</a>
 <a style="font-size: 90%" href="/tags/java/">Java</a>
-<a style="font-size: 90%" href="/tags/jekyll/">Jekyll</a>
 <a style="font-size: 90%" href="/tags/mpi/">MPI</a>
 <a style="font-size: 90%" href="/tags/matlab/">Matlab</a>
 <a style="font-size: 90%" href="/tags/octave/">Octave</a>
-<a style="font-size: 90%" href="/tags/octopress/">Octopress</a>
 <a style="font-size: 210%" href="/tags/org-mode/">Org-mode</a>
+<a style="font-size: 90%" href="/tags/spring/">Spring</a>
 
                         </ul>
         </div>
@@ -668,22 +659,6 @@ String参数. <font color='red'>又绕回来了,这个String参数是
 </div>
 </footer>
     
-
-<script type="text/javascript">
-      var disqus_shortname = 'xiaoliuaigithubio';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://xiaoliuai.github.io/blog/2014-12-18-drilljava.html';
-        var disqus_url = 'http://xiaoliuai.github.io/blog/2014-12-18-drilljava.html';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

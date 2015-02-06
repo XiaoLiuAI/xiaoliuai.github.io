@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>RUPEE Reconstruction Notes</title>
-<!-- 2014-11-27 Thu 16:11 -->
+<!-- 2014-10-29 Wed 18:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Xiao LIU" />
@@ -192,70 +192,70 @@ Attributes of corpus without annotation.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #859900;">class</span> <span style="color: #268bd2;">Document</span>(<span style="color: #6c71c4;">object</span>):
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
-<span style="color: #2aa198;">    Document object contains the view of document with respect to a  specific tokenization</span>
-<span style="color: #2aa198;">    along with the corresponding sentences.</span>
+<pre class="src src-python"><span style="color: #728a05;">class</span> <span style="color: #2075c7;">Document</span>(<span style="color: #5859b7;">object</span>):
+    <span style="color: #259185;">'''</span>
+<span style="color: #259185;">    Document object contains the view of document with respect to a  specific tokenization</span>
+<span style="color: #259185;">    along with the corresponding sentences.</span>
 
-<span style="color: #2aa198;">    Attributes:</span>
-<span style="color: #2aa198;">        hyper_doc            The reference to the HyperDoc</span>
-<span style="color: #2aa198;">        tokens              The list of all the tokens</span>
-<span style="color: #2aa198;">        sentences           The list of Sentences</span>
-<span style="color: #2aa198;">        charOffset2token    The index from character index to Token</span>
-<span style="color: #2aa198;">    '''</span>
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">HyperDoc</span>(<span style="color: #6c71c4;">object</span>):
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
-<span style="color: #2aa198;">    HyperDoc is the abstract document that does not contain the concrete tokenizations.</span>
-<span style="color: #2aa198;">    It contains a list of HyperSent, which contains the sentence boundary, entity and</span>
-<span style="color: #2aa198;">    annotation information.</span>
+<span style="color: #259185;">    Attributes:</span>
+<span style="color: #259185;">        hyper_doc            The reference to the HyperDoc</span>
+<span style="color: #259185;">        tokens              The list of all the tokens</span>
+<span style="color: #259185;">        sentences           The list of Sentences</span>
+<span style="color: #259185;">        charOffset2token    The index from character index to Token</span>
+<span style="color: #259185;">    '''</span>
+<span style="color: #728a05;">class</span> <span style="color: #2075c7;">HyperDoc</span>(<span style="color: #5859b7;">object</span>):
+    <span style="color: #259185;">'''</span>
+<span style="color: #259185;">    HyperDoc is the abstract document that does not contain the concrete tokenizations.</span>
+<span style="color: #259185;">    It contains a list of HyperSent, which contains the sentence boundary, entity and</span>
+<span style="color: #259185;">    annotation information.</span>
 
-<span style="color: #2aa198;">    Attributes</span>
-<span style="color: #2aa198;">        id                   file name, for example: PMID-997...</span>
-<span style="color: #2aa198;">        raw_text             original text</span>
-<span style="color: #2aa198;">        corpus_name          corpus name of this document</span>
-<span style="color: #2aa198;">        documents            dictionary of Documents</span>
-<span style="color: #2aa198;">        hyper_sents           list of HyperSents</span>
-<span style="color: #2aa198;">        proteins             dictionary of proteins, {protein_label -&gt; protein_object}</span>
-<span style="color: #2aa198;">        target_annotation    dictionary of annotations to create (gold annotation, temporary annotation), {annotation_name -&gt; trigger_annotation}</span>
-<span style="color: #2aa198;">        charOffset2hyper_sent dictionary of character indices to HyperSent</span>
-<span style="color: #2aa198;">    '''</span>
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">Sentence</span>(<span style="color: #6c71c4;">object</span>):
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
-<span style="color: #2aa198;">    Sentence object contains the tokens, index of dependency parse trees/graphs and phrase structure trees.</span>
+<span style="color: #259185;">    Attributes</span>
+<span style="color: #259185;">        id                   file name, for example: PMID-997...</span>
+<span style="color: #259185;">        raw_text             original text</span>
+<span style="color: #259185;">        corpus_name          corpus name of this document</span>
+<span style="color: #259185;">        documents            dictionary of Documents</span>
+<span style="color: #259185;">        hyper_sents           list of HyperSents</span>
+<span style="color: #259185;">        proteins             dictionary of proteins, {protein_label -&gt; protein_object}</span>
+<span style="color: #259185;">        target_annotation    dictionary of annotations to create (gold annotation, temporary annotation), {annotation_name -&gt; trigger_annotation}</span>
+<span style="color: #259185;">        charOffset2hyper_sent dictionary of character indices to HyperSent</span>
+<span style="color: #259185;">    '''</span>
+<span style="color: #728a05;">class</span> <span style="color: #2075c7;">Sentence</span>(<span style="color: #5859b7;">object</span>):
+    <span style="color: #259185;">'''</span>
+<span style="color: #259185;">    Sentence object contains the tokens, index of dependency parse trees/graphs and phrase structure trees.</span>
 
-<span style="color: #2aa198;">    Attributes</span>
-<span style="color: #2aa198;">        tokens          list of Tokens</span>
-<span style="color: #2aa198;">        parseTrees      index of phrase structure trees, {parser_name -&gt; parse tree}</span>
-<span style="color: #2aa198;">        dependencies    index of dependency parse trees/graphs, {parser_name -&gt; parse tree/graph}</span>
-<span style="color: #2aa198;">        hyper_sent      HyperSent that contains this Sentence</span>
-<span style="color: #2aa198;">        document        Document that this Sentence belongs to</span>
-<span style="color: #2aa198;">    '''</span>
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">HyperSent</span>(<span style="color: #6c71c4;">object</span>):
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
-<span style="color: #2aa198;">    HyperSent manages the Sentence, annotations</span>
+<span style="color: #259185;">    Attributes</span>
+<span style="color: #259185;">        tokens          list of Tokens</span>
+<span style="color: #259185;">        parseTrees      index of phrase structure trees, {parser_name -&gt; parse tree}</span>
+<span style="color: #259185;">        dependencies    index of dependency parse trees/graphs, {parser_name -&gt; parse tree/graph}</span>
+<span style="color: #259185;">        hyper_sent      HyperSent that contains this Sentence</span>
+<span style="color: #259185;">        document        Document that this Sentence belongs to</span>
+<span style="color: #259185;">    '''</span>
+<span style="color: #728a05;">class</span> <span style="color: #2075c7;">HyperSent</span>(<span style="color: #5859b7;">object</span>):
+    <span style="color: #259185;">'''</span>
+<span style="color: #259185;">    HyperSent manages the Sentence, annotations</span>
 
-<span style="color: #2aa198;">    Attributes:</span>
-<span style="color: #2aa198;">        charOffsetBeg       Start char index</span>
-<span style="color: #2aa198;">        charOffsetEnd       End char index</span>
-<span style="color: #2aa198;">        hyper_doc           HyperDoc that this HyperSent belongs to</span>
-<span style="color: #2aa198;">        indexInDocument     The list of Sentences</span>
-<span style="color: #2aa198;">        sentences           The dictionary of sentences {tok_name -&gt; Sentence}</span>
-<span style="color: #2aa198;">    '''</span>
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">Token</span>(<span style="color: #6c71c4;">object</span>):
-<span style="background-color: #eee8d5;"> </span>   <span style="color: #2aa198;">'''</span>
-<span style="color: #2aa198;">    basic element, contain the raw text, lemma, character position ...</span>
-<span style="color: #2aa198;">    Attributes:</span>
-<span style="color: #2aa198;">        lemma               lemma</span>
-<span style="color: #2aa198;">        stem                stemmed word</span>
-<span style="color: #2aa198;">        raw_text            raw text</span>
-<span style="color: #2aa198;">        decorated           ...</span>
-<span style="color: #2aa198;">        pos                 part of speech</span>
-<span style="color: #2aa198;">        charOffsetBeg       index of first character</span>
-<span style="color: #2aa198;">        charOffsetEnd       index of last character</span>
-<span style="color: #2aa198;">        document            Docuemnt that this Token belongs to</span>
-<span style="color: #2aa198;">        sentence            Sentence that this Token belongs to</span>
-<span style="color: #2aa198;">        ner                 ...</span>
-<span style="color: #2aa198;">    '''</span>
+<span style="color: #259185;">    Attributes:</span>
+<span style="color: #259185;">        charOffsetBeg       Start char index</span>
+<span style="color: #259185;">        charOffsetEnd       End char index</span>
+<span style="color: #259185;">        hyper_doc           HyperDoc that this HyperSent belongs to</span>
+<span style="color: #259185;">        indexInDocument     The list of Sentences</span>
+<span style="color: #259185;">        sentences           The dictionary of sentences {tok_name -&gt; Sentence}</span>
+<span style="color: #259185;">    '''</span>
+<span style="color: #728a05;">class</span> <span style="color: #2075c7;">Token</span>(<span style="color: #5859b7;">object</span>):
+    <span style="color: #259185;">'''</span>
+<span style="color: #259185;">    basic element, contain the raw text, lemma, character position ...</span>
+<span style="color: #259185;">    Attributes:</span>
+<span style="color: #259185;">        lemma               lemma</span>
+<span style="color: #259185;">        stem                stemmed word</span>
+<span style="color: #259185;">        raw_text            raw text</span>
+<span style="color: #259185;">        decorated           ...</span>
+<span style="color: #259185;">        pos                 part of speech</span>
+<span style="color: #259185;">        charOffsetBeg       index of first character</span>
+<span style="color: #259185;">        charOffsetEnd       index of last character</span>
+<span style="color: #259185;">        document            Docuemnt that this Token belongs to</span>
+<span style="color: #259185;">        sentence            Sentence that this Token belongs to</span>
+<span style="color: #259185;">        ner                 ...</span>
+<span style="color: #259185;">    '''</span>
 </pre>
 </div>
 <ul class="org-ul">
@@ -264,27 +264,6 @@ independent to the preprocessed documents.
 Annotations are saved in both <code>HyperDoc</code> and <code>HyperSent</code>, but the
 <code>Entity</code> are only saved in <code>HyperSent</code>. The <code>HyperDoc</code> and
 <code>Document</code> do not directly access the <code>Entity</code>.
-<ul class="org-ul">
-<li><code>[&#xa0;]</code> AnnotationLoader
-The current application running portal is main.py, which read a
-configuration file by the given path and clear cache files after
-all the tasks finished. The configuration file contains a taks
-list and the main() function runs the tasks by sequence. Each
-task configuration contains a <code>taks name</code>, a <code>task method</code> and a
-string of <code>task parameters</code>, which will be loaded by <code>eval</code>.
-
-<p>
-In addition, I save the preprocessed documents and the
-annotaions separately, which means there is no <i>cache</i> of
-corpus but only <i>cache</i> of annotations. So the action of loading
-annotion should be implemented as a non-task methodf. Based on
-this method, I have to implement a task method for UnitTest
-and put this function into task method for each steps of RUPEE.
-</p>
-</li>
-<li><code>[&#xa0;]</code> RUPEE steps organization
-</li>
-</ul>
 </li>
 <li><code>[&#xa0;]</code> Remove 'base token protocol'.
 </li>
@@ -414,8 +393,8 @@ into <code>/etc/apache2/sites-available/000-default.conf</code>.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xiao LIU</p>
-<p class="date">Created: 2014-11-27 Thu 16:11</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2014-10-29 Wed 18:05</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>
 </body>
