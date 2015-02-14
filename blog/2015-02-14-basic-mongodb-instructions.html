@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Basic Mongodb Instructions - 记往开来</title>
+  <meta name="author" content="Xiao Liu">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiaoliuai.github.io/blog/2015-02-14-basic-mongodb-instructions.html">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="记往开来" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://xiaoliuai.github.io/blog/2015-02-14-basic-mongodb-instructions.html">
+  <meta property="og:title" content="Basic Mongodb Instructions - 记往开来">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">记往开来</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:xiaoliuai.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="记往开来" />
+    
+    <meta itemprop="url" content="http://xiaoliuai.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-14T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Basic Mongodb Instructions
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Insert</a></li>
+<li><a href="#sec-2">2. Find</a></li>
+<li><a href="#sec-3">3. Select</a></li>
+<li><a href="#sec-4">4. Update</a></li>
+<li><a href="#sec-5">5. Remove</a></li>
+<li><a href="#sec-6">6. Commands</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-02-14-basic-mongodb-instructions.html"><span class="section-number-2">1</span> Insert</a></h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.insert<span style="color: #657b83;">(</span>doc/docs<span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+You can insert one document or a list of documents.  When you
+insert a list of documents, the operation is not atomic.  The
+returned result shows the statistics of the write operations
+including the write errors and the number of successfully inserted
+documents.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Find</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>name: value, <span style="color: #2aa198;">'name1.name2.name3'</span>:value/condition<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+Check all the elements in array when &#8216;name#&#8217; corresponds to
+array. Special conditions
+</p>
+<ul class="org-ul">
+<li><code>$in, $ne, $nin, $lt, $gt, $lte, $gte</code>
+</li>
+<li><code>$and, $or, $not, $nor</code>
+</li>
+<li><code>$exists, $type</code>
+</li>
+<li><code>$regex, $text, $where, $mod</code>
+</li>
+<li><code>$all, $elemMatch, $size</code>
+</li>
+<li><code>$, $slice</code>
+</li>
+</ul>
+
+<p>
+Difference between with/without <code>$elemMatch</code> is that: <code>$elemMatch</code>
+restrict that one element in array should match all the conditions,
+while without <code>$elemMatch</code>, different elements in the array can
+match different part of the conditions.
+</p>
+
+<p>
+Match <b>element</b> / <b>array</b> can be done by query <code>{name: value}</code> when value
+is a single <b>variable/object</b> or an <b>array</b>.
+</p>
+
+<p>
+Elements in array can be retrieved by index
+<code>db.COLLECTION.find({'name.0': value})</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Select</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>get attribute
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+</li>
+<li>get elements in array
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span><span style="color: #2aa198;">'name1.name2'</span>:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+This projection will returns all the elments with the path
+&#8216;name1.name2&#8217; when any one in the path represents an array.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name1: <span style="color: #b58900;">{</span>$elemMatch: <span style="color: #859900;">{</span>name2:value<span style="color: #859900;">}</span><span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+<code>$elemMatch</code> can be used in the second argument to limit the
+returned elements in array. However, it cannot be used in nested
+array.
+</p>
+</li>
+<li>get elements in nested array.
+
+<p>
+<b>Aggregation framework/unwind.</b>
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Update</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>update attribute:
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$set: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+<code>$inc</code> increase number, etc. <code>upsert</code> will insert element when it
+does not exist in collection.
+</p>
+</li>
+<li>update array:
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$push/$pull: value<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+</li>
+<li>update element in array:
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$set:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2:value}})</span>
+</pre>
+</div>
+<p>
+It only works for one match.
+</p>
+
+<p>
+If you want to update multiple elments, use forEach function.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">x=db.COLLECTION.findOne<span style="color: #657b83;">(</span>...<span style="color: #657b83;">)</span>;
+x.name1.forEach<span style="color: #657b83;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">obj</span><span style="color: #2aa198;">){</span>obj.name2=value;<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+db.COLLECTION.save<span style="color: #657b83;">(</span>x<span style="color: #657b83;">)</span>;
+</pre>
+</div>
+</li>
+<li>update element in nested array.
+
+<p>
+<b>Impossible</b> for only one query. The issue is reported on 2010, but
+is still there on 2015&#x2026;
+</p>
+</li>
+</ul>
+
+<p>
+Functional key words:
+</p>
+<ul class="org-ul">
+<li><code>$currentDate, $inc, $max, $min, $mul, $rename, $setOnInsert, $set, $unset</code>
+</li>
+<li><code>$, $addToSet, $pop, $pullAll, $pull, $pushAll, $push</code>
+</li>
+<li><code>$each, $position, $slice, $sort</code>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Remove</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>remove document
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.remove<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+remove all documents when condition is not provided.
+</p>
+</li>
+<li>remove colleciton
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.drop<span style="color: #657b83;">()</span>
+</pre>
+</div>
+</li>
+<li>remove database
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #657b83;">{</span>dropDatabase: 1<span style="color: #657b83;">}</span>
+</pre>
+</div>
+</li>
+<li>remove attribute
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find, <span style="color: #2aa198;">{</span>$unset: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+value can be 1, &#8220;&#8221;, true/false.
+</p>
+</li>
+<li>remove element in array
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$unset:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2'</span>:1<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Commands</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<code>show dbs</code>
+<code>use DB</code>
+<code>show collection</code>
+<code>help</code>
+<code>db.help()</code>
+<code>db.COLLECTION.help()</code>
+</p>
+</div>
+</div>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Xiao Liu</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-14T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/database/'>database</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://xiaoliuai.github.io/blog/2015-02-14-basic-mongodb-instructions.html" data-via="" data-counturl="http://xiaoliuai.github.io/blog/2015-02-14-basic-mongodb-instructions.html" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2015-01-30-javascript-overview.html" title="Previous Post: JavaScript Overview">&laquo; JavaScript Overview</a></li>
+            
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item active" href="/blog/2015-02-14-basic-mongodb-instructions.html">Basic Mongodb Instructions</a>
+    
+    <a class="list-group-item " href="/blog/2015-01-30-javascript-overview.html">JavaScript Overview</a>
+    
+    <a class="list-group-item " href="/blog/2014-12-25-angularjs-developer-guide-.html">AngularJS Developer Guide 开发指南学习笔记</a>
+    
+    <a class="list-group-item " href="/blog/2014-12-24-angularjs-tutorial-.html">AngularJS Tutorial 入门教程学习笔记</a>
+    
+    <a class="list-group-item " href="/blog/2014-12-22-.html">背景知识</a>
+    
+  </div>
+</section>
+
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/xiaoliuai">@xiaoliuai</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiaoliuai',
+            count: 2,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/blog/categories/geek/index.html">
+        <span class="badge">2</span>
+        geek
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/parallelism/index.html">
+        <span class="badge">1</span>
+        parallelism
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/web/index.html">
+        <span class="badge">5</span>
+        web
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/database/index.html">
+        <span class="badge">1</span>
+        database
+      </a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+        <div class="panel-heading">
+                <h2 class="panel-title">标签列表</h2>
+        </div>
+        <div class="list-group">
+                        <ul class="tag-cloud">
+                                <a style="font-size: 210%" href="/tags/angularjs/">AngularJS</a>
+<a style="font-size: 210%" href="/tags/github/">GitHub</a>
+<a style="font-size: 90%" href="/tags/java/">Java</a>
+<a style="font-size: 90%" href="/tags/jekyll/">Jekyll</a>
+<a style="font-size: 90%" href="/tags/mpi/">MPI</a>
+<a style="font-size: 90%" href="/tags/matlab/">Matlab</a>
+<a style="font-size: 90%" href="/tags/octave/">Octave</a>
+<a style="font-size: 90%" href="/tags/octopress/">Octopress</a>
+<a style="font-size: 210%" href="/tags/org-mode/">Org-mode</a>
+<a style="font-size: 90%" href="/tags/spring/">Spring</a>
+
+                        </ul>
+        </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2015 - Xiao Liu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title><![CDATA[Tag: Mongodb | 记往开来]]></title>
+<link href="http://xiaoliuai.github.io/tags/mongodb/atom.xml" rel="self"/>
+<link href="http://xiaoliuai.github.io/"/>
+<updated>2015-02-14T01:47:21+01:00</updated>
+<id>http://xiaoliuai.github.io/</id>
+<author>
+<name><![CDATA[Xiao Liu]]></name>
+
+</author>
+<generator uri="http://octopress.org/">Octopress</generator>
+
+<entry>
+<title type="html"><![CDATA[Basic Mongodb Instructions]]></title>
+<link href="http://xiaoliuai.github.io/blog/2015-02-14-basic-mongodb-instructions.html"/>
+<updated>2015-02-14T00:00:00+01:00</updated>
+<id>http://xiaoliuai.github.io/blog/basic-mongodb-instructions</id>
+<content type="html"><![CDATA[<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Insert</a></li>
+<li><a href="#sec-2">2. Find</a></li>
+<li><a href="#sec-3">3. Select</a></li>
+<li><a href="#sec-4">4. Update</a></li>
+<li><a href="#sec-5">5. Remove</a></li>
+<li><a href="#sec-6">6. Commands</a></li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/tags/mongodb/atom.xml"><span class="section-number-2">1</span> Insert</a></h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.insert<span style="color: #657b83;">(</span>doc/docs<span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+You can insert one document or a list of documents.  When you
+insert a list of documents, the operation is not atomic.  The
+returned result shows the statistics of the write operations
+including the write errors and the number of successfully inserted
+documents.
+</p>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Find</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>name: value, <span style="color: #2aa198;">'name1.name2.name3'</span>:value/condition<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+Check all the elements in array when &#8216;name#&#8217; corresponds to
+array. Special conditions
+</p>
+<ul class="org-ul">
+<li><code>$in, $ne, $nin, $lt, $gt, $lte, $gte</code>
+</li>
+<li><code>$and, $or, $not, $nor</code>
+</li>
+<li><code>$exists, $type</code>
+</li>
+<li><code>$regex, $text, $where, $mod</code>
+</li>
+<li><code>$all, $elemMatch, $size</code>
+</li>
+<li><code>$, $slice</code>
+</li>
+</ul>
+
+<p>
+Difference between with/without <code>$elemMatch</code> is that: <code>$elemMatch</code>
+restrict that one element in array should match all the conditions,
+while without <code>$elemMatch</code>, different elements in the array can
+match different part of the conditions.
+</p>
+
+<p>
+Match <b>element</b> / <b>array</b> can be done by query <code>{name: value}</code> when value
+is a single <b>variable/object</b> or an <b>array</b>.
+</p>
+
+<p>
+Elements in array can be retrieved by index
+<code>db.COLLECTION.find({'name.0': value})</code>.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Select</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>get attribute
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+</li>
+<li>get elements in array
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span><span style="color: #2aa198;">'name1.name2'</span>:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+This projection will returns all the elments with the path
+&#8216;name1.name2&#8217; when any one in the path represents an array.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name1: <span style="color: #b58900;">{</span>$elemMatch: <span style="color: #859900;">{</span>name2:value<span style="color: #859900;">}</span><span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+<code>$elemMatch</code> can be used in the second argument to limit the
+returned elements in array. However, it cannot be used in nested
+array.
+</p>
+</li>
+<li>get elements in nested array.
+
+<p>
+<b>Aggregation framework/unwind.</b>
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Update</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>update attribute:
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$set: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+<code>$inc</code> increase number, etc. <code>upsert</code> will insert element when it
+does not exist in collection.
+</p>
+</li>
+<li>update array:
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$push/$pull: value<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+</li>
+<li>update element in array:
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$set:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2:value}})</span>
+</pre>
+</div>
+<p>
+It only works for one match.
+</p>
+
+<p>
+If you want to update multiple elments, use forEach function.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">x=db.COLLECTION.findOne<span style="color: #657b83;">(</span>...<span style="color: #657b83;">)</span>;
+x.name1.forEach<span style="color: #657b83;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">obj</span><span style="color: #2aa198;">){</span>obj.name2=value;<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+db.COLLECTION.save<span style="color: #657b83;">(</span>x<span style="color: #657b83;">)</span>;
+</pre>
+</div>
+</li>
+<li>update element in nested array.
+
+<p>
+<b>Impossible</b> for only one query. The issue is reported on 2010, but
+is still there on 2015&#x2026;
+</p>
+</li>
+</ul>
+
+<p>
+Functional key words:
+</p>
+<ul class="org-ul">
+<li><code>$currentDate, $inc, $max, $min, $mul, $rename, $setOnInsert, $set, $unset</code>
+</li>
+<li><code>$, $addToSet, $pop, $pullAll, $pull, $pushAll, $push</code>
+</li>
+<li><code>$each, $position, $slice, $sort</code>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Remove</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>remove document
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.remove<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+remove all documents when condition is not provided.
+</p>
+</li>
+<li>remove colleciton
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.drop<span style="color: #657b83;">()</span>
+</pre>
+</div>
+</li>
+<li>remove database
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #657b83;">{</span>dropDatabase: 1<span style="color: #657b83;">}</span>
+</pre>
+</div>
+</li>
+<li>remove attribute
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find, <span style="color: #2aa198;">{</span>$unset: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+value can be 1, &#8220;&#8221;, true/false.
+</p>
+</li>
+<li>remove element in array
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$unset:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2'</span>:1<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Commands</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<code>show dbs</code>
+<code>use DB</code>
+<code>show collection</code>
+<code>help</code>
+<code>db.help()</code>
+<code>db.COLLECTION.help()</code>
+</p>
+</div>
+</div>
+
+]]></content>
+</entry>
+
+</feed>

@@ -205,10 +205,10 @@ query,值的同步是实时的; 2.filter过滤器,生成新数组,自动更新�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">select</span> <span style="color: #6c71c4;">ng-model</span>=<span style="color: #2aa198;">"orderProp"</span>&gt;&#57344;&#57345;&#57345;
-  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"name"</span>&gt;Alphabetical&lt;/<span style="color: #b58900;">option</span>&gt;&#57344;&#57345;&#57345;
-  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"age"</span>&gt;Newest&lt;/<span style="color: #b58900;">option</span>&gt;&#57344;&#57345;&#57345;
-&lt;/<span style="color: #b58900;">select</span>&gt;&#57344;&#57345;&#57345;
+<pre class="src src-html">&lt;<span style="color: #b58900;">select</span> <span style="color: #6c71c4;">ng-model</span>=<span style="color: #2aa198;">"orderProp"</span>&gt;
+  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"name"</span>&gt;Alphabetical&lt;/<span style="color: #b58900;">option</span>&gt;
+  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"age"</span>&gt;Newest&lt;/<span style="color: #b58900;">option</span>&gt;
+&lt;/<span style="color: #b58900;">select</span>&gt;
 </pre>
 </div>
 <p>
@@ -238,11 +238,11 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">phonecatApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneListCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$http'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
-    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/phones.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
-        $scope.phones = data;&#57344;&#57345;&#57345;
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+<pre class="src src-javascript">phonecatApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneListCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$http'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/phones.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+        $scope.phones = data;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
 </pre>
 </div>
 </div>
@@ -253,13 +253,13 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phones"</span>&gt;&#57344;&#57345;&#57345;
-  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"phone in phones | filter:query | orderBy:orderProp"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumbnail"</span>&gt;&#57344;&#57345;
-    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumb"</span>&gt;&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;&#57344;&#57345;
-    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;&#57344;&#57345;&#57345;
-    &lt;<span style="color: #b58900;">p</span>&gt;&lt;/<span style="color: #b58900;">p</span>&gt;&#57344;&#57345;&#57345;
-  &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
-&lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+<pre class="src src-html">&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phones"</span>&gt;
+  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"phone in phones | filter:query | orderBy:orderProp"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumbnail"</span>&gt;
+    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumb"</span>&gt;&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;
+    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;
+    &lt;<span style="color: #b58900;">p</span>&gt;&lt;/<span style="color: #b58900;">p</span>&gt;
+  &lt;/<span style="color: #b58900;">li</span>&gt;
+&lt;/<span style="color: #b58900;">ul</span>&gt;
 </pre>
 </div>
 </div>
@@ -275,21 +275,21 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">phonecatApp.config<span style="color: #657b83;">(</span><span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$routeProvider'</span>,&#57344;&#57345;&#57345;
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$routeProvider</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
-    $routeProvider.&#57344;&#57345;&#57345;
-      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones'</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
-        templateUrl: <span style="color: #2aa198;">'partials/phone-list.html'</span>,&#57344;&#57345;&#57345;
-        controller: <span style="color: #2aa198;">'PhoneListCtrl'</span>&#57344;&#57345;&#57345;
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.&#57344;&#57345;&#57345;
-      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones/:phoneId'</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
-        templateUrl: <span style="color: #2aa198;">'partials/phone-detail.html'</span>,&#57344;&#57345;&#57345;
-        controller: <span style="color: #2aa198;">'PhoneDetailCtrl'</span>&#57344;&#57345;&#57345;
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.&#57344;&#57345;&#57345;
-      otherwise<span style="color: #859900;">(</span><span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
-        redirectTo: <span style="color: #2aa198;">'/phones'</span>&#57344;&#57345;&#57345;
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+<pre class="src src-javascript">phonecatApp.config<span style="color: #657b83;">(</span><span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$routeProvider'</span>,
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$routeProvider</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+    $routeProvider.
+      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones'</span>, <span style="color: #268bd2;">{</span>
+        templateUrl: <span style="color: #2aa198;">'partials/phone-list.html'</span>,
+        controller: <span style="color: #2aa198;">'PhoneListCtrl'</span>
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.
+      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones/:phoneId'</span>, <span style="color: #268bd2;">{</span>
+        templateUrl: <span style="color: #2aa198;">'partials/phone-detail.html'</span>,
+        controller: <span style="color: #2aa198;">'PhoneDetailCtrl'</span>
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.
+      otherwise<span style="color: #859900;">(</span><span style="color: #268bd2;">{</span>
+        redirectTo: <span style="color: #2aa198;">'/phones'</span>
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
 </pre>
 </div>
 <p>
@@ -319,11 +319,11 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatFilters'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'checkmark'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57345;
-  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
-    <span style="color: #859900;">return</span> input ? <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2713'</span> : <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2718'</span>;&#57344;&#57345;&#57345;
-  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatFilters'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'checkmark'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
+  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+    <span style="color: #859900;">return</span> input ? <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2713'</span> : <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2718'</span>;
+  <span style="color: #b58900;">}</span>;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
 </pre>
 </div>
 
@@ -342,17 +342,17 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">phonecatControllers.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneDetailCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$routeParams'</span>, <span style="color: #2aa198;">'$http'</span>,&#57344;&#57345;
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$routeParams</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
-    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/'</span> + $routeParams.phoneId + <span style="color: #2aa198;">'.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;
-      $scope.phone = data;&#57344;&#57345;&#57345;
-      $scope.mainImageUrl = data.images<span style="color: #657b83;">[</span>0<span style="color: #657b83;">]</span>;&#57344;&#57345;&#57345;
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-    $scope.setImage = <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">imageUrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
-      $scope.mainImageUrl = imageUrl;&#57344;&#57345;&#57345;
-    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+<pre class="src src-javascript">phonecatControllers.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneDetailCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$routeParams'</span>, <span style="color: #2aa198;">'$http'</span>,
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$routeParams</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
+    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/'</span> + $routeParams.phoneId + <span style="color: #2aa198;">'.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
+      $scope.phone = data;
+      $scope.mainImageUrl = data.images<span style="color: #657b83;">[</span>0<span style="color: #657b83;">]</span>;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
+
+    $scope.setImage = <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">imageUrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
+      $scope.mainImageUrl = imageUrl;
+    <span style="color: #859900;">}</span>
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
 </pre>
 </div>
 <p>
@@ -360,15 +360,15 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone"</span>&gt;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-...&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone-thumbs"</span>&gt;&#57344;&#57345;&#57345;
-  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"img in phone.images"</span>&gt;&#57344;&#57345;&#57345;
-    &lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"setImage(img)"</span>&gt;&#57344;&#57345;&#57345;
-  &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
-&lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+<pre class="src src-html">&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone"</span>&gt;
+
+...
+
+&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone-thumbs"</span>&gt;
+  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"img in phone.images"</span>&gt;
+    &lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"setImage(img)"</span>&gt;
+  &lt;/<span style="color: #b58900;">li</span>&gt;
+&lt;/<span style="color: #b58900;">ul</span>&gt;
 </pre>
 </div>
 <p>
@@ -386,14 +386,14 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">phonecatServices</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatServices'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'ngResource'</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;
-&#57344;&#57345;&#57345;
-phonecatServices.factory<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Phone'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$resource'</span>,&#57344;&#57345;&#57345;
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$resource</span><span style="color: #b58900;">){</span>&#57344;&#57345;&#57345;
-    <span style="color: #859900;">return</span> $resource<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/:phoneId.json'</span>, <span style="color: #268bd2;">{}</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
-      query: <span style="color: #657b83;">{</span>method:<span style="color: #2aa198;">'GET'</span>, params:<span style="color: #2aa198;">{</span>phoneId:<span style="color: #2aa198;">'phones'</span><span style="color: #2aa198;">}</span>, isArray:<span style="color: #268bd2;">true</span><span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">phonecatServices</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatServices'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'ngResource'</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+
+phonecatServices.factory<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Phone'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$resource'</span>,
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$resource</span><span style="color: #b58900;">){</span>
+    <span style="color: #859900;">return</span> $resource<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/:phoneId.json'</span>, <span style="color: #268bd2;">{}</span>, <span style="color: #268bd2;">{</span>
+      query: <span style="color: #657b83;">{</span>method:<span style="color: #2aa198;">'GET'</span>, params:<span style="color: #2aa198;">{</span>phoneId:<span style="color: #2aa198;">'phones'</span><span style="color: #2aa198;">}</span>, isArray:<span style="color: #268bd2;">true</span><span style="color: #657b83;">}</span>
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
 </pre>
 </div>
 <p>
@@ -491,6 +491,8 @@ TODO
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-02-14-basic-mongodb-instructions.html">Basic Mongodb Instructions</a>
+    
     <a class="list-group-item " href="/blog/2015-01-30-javascript-overview.html">JavaScript Overview</a>
     
     <a class="list-group-item " href="/blog/2014-12-25-angularjs-developer-guide-.html">AngularJS Developer Guide 开发指南学习笔记</a>
@@ -498,8 +500,6 @@ TODO
     <a class="list-group-item active" href="/blog/2014-12-24-angularjs-tutorial-.html">AngularJS Tutorial 入门教程学习笔记</a>
     
     <a class="list-group-item " href="/blog/2014-12-22-.html">背景知识</a>
-    
-    <a class="list-group-item " href="/blog/2014-12-18-drilljava.html">Drill的Java后端</a>
     
   </div>
 </section>
@@ -563,6 +563,12 @@ TODO
     <a class="list-group-item " href="/blog/categories/web/index.html">
         <span class="badge">5</span>
         web
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/database/index.html">
+        <span class="badge">1</span>
+        database
       </a>
     
   </div>
