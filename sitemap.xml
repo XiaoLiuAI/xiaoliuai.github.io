@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://xiaoliuai.github.io/blog/2015-02-28-start-maven-example.html</loc>
+    <lastmod>2015-02-28T00:00:00+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html</loc>
+    <lastmod>2015-02-28T00:00:00+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/blog/2015-02-28-pom-configuration.html</loc>
+    <lastmod>2015-02-28T00:00:00+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/blog/2015-02-28-functional-programming-on-coursera.html</loc>
+    <lastmod>2015-02-28T00:00:00+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://xiaoliuai.github.io/blog/2015-02-17-mongodb-strategy.html</loc>
     <lastmod>2015-02-17T00:00:00+01:00</lastmod>
     <priority>0.8</priority>
@@ -52,13 +72,13 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/blog/archives/</loc>
-    <lastmod>2015-02-17T00:15:46+01:00</lastmod>
+    <lastmod>2015-03-01T00:54:50+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/</loc>
-    <lastmod>2015-02-17T00:15:46+01:00</lastmod>
+    <lastmod>2015-03-01T00:54:50+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -79,7 +99,7 @@
   </url>
   <url>
     <loc>http://xiaoliuai.github.io/publish/Geek/blog.html</loc>
-    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
+    <lastmod>2015-02-28T22:37:07+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -93,8 +113,28 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>http://xiaoliuai.github.io/publish/java/maven.html</loc>
+    <lastmod>2015-02-28T22:37:01+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/java/Spring-tutorial.html</loc>
+    <lastmod>2015-02-28T22:37:01+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>http://xiaoliuai.github.io/publish/KU Leuven/BioNLP_GRN.html</loc>
     <lastmod>2015-02-06T12:30:26+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/KU Leuven/MUSE_Code.html</loc>
+    <lastmod>2015-02-28T22:37:05+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/KU Leuven/MUSE_Dev.html</loc>
+    <lastmod>2015-02-28T22:37:05+01:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -123,6 +163,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>http://xiaoliuai.github.io/publish/Private Work/drill.html</loc>
+    <lastmod>2015-02-28T22:37:04+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/Private Work/JavaScript.html</loc>
+    <lastmod>2015-02-28T22:37:04+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>http://xiaoliuai.github.io/publish/Private Work/mongodb.html</loc>
+    <lastmod>2015-02-28T22:37:02+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>http://xiaoliuai.github.io/publish/python.html</loc>
     <lastmod>2015-02-06T12:30:26+01:00</lastmod>
     <priority>0.6</priority>
@@ -133,8 +188,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>http://xiaoliuai.github.io/publish/scala.html</loc>
+    <lastmod>2015-02-28T22:40:06+01:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>http://xiaoliuai.github.io/publish/sitemap.html</loc>
-    <lastmod>2015-02-06T12:30:26+01:00</lastmod>
+    <lastmod>2015-02-28T22:40:05+01:00</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>

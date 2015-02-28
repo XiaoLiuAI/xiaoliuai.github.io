@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Spring from scratch</title>
+<!-- 2015-02-28 Sat 22:37 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Spring from scratch</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Init the project</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Project file structure</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. Configuration</a>
+<ul>
+<li><a href="#sec-1-1-1-1">1.1.1.1. Inject configurations</a></li>
+<li><a href="#sec-1-1-1-2">1.1.1.2. Load configuration files.</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-1-2">1.1.2. Compile and run</a></li>
+<li><a href="#sec-1-1-3">1.1.3. <span class="todo TODO">TODO</span> </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Init the project</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Project file structure</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Generally, we use maven to manage the directory layout. Hence, you
+will get a <b>standard directory</b> layout like below:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">project
+    src
+        main
+            java
+            [scala]
+            resources
+                environment.properties
+                environment.test.properties
+                environment.prod.properties
+                config
+                    application.yml
+                    application-dev.yml
+                    application-[profile].yml
+                [other]
+        test
+            java
+            [scala]
+    target
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Configuration</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+The files <code>environment.[profile].properties</code> are used to provide
+different profiles to <b><a href="http://maven.apache.org/guides/mini/guide-building-for-different-environments.html">maven</a></b>. The files
+<code>application-[profile].yml</code> are used to provide different
+configurations for <b><a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">spring</a></b>.
+</p>
+
+<p>
+Since maven is used to manage the package dependencies, different
+maven profiles enables you to use different dependencies for
+development and production, e.g. run different tasks. I am not
+farmiliar with maven, and cannot tell how and when it can be used.
+</p>
+
+<p>
+Spring configuration files let you to inject different
+configurations for development and production. For example, you can
+use different database for development and production (different
+host, port, username and password, etc.).
+</p>
+</div>
+
+<div id="outline-container-sec-1-1-1-1" class="outline-5">
+<h5 id="sec-1-1-1-1"><span class="section-number-5">1.1.1.1</span> Inject configurations</h5>
+<div class="outline-text-5" id="text-1-1-1-1">
+<p>
+You can get access to these configurations by creating a class
+  with annotation <code>@Configuration</code>.
+</p>
+<ul class="org-ul">
+<li>Inject the value of configuration to attribute of this class by
+<code>@Value("${NAME:DEFAULT_VALUE}")</code>.
+</li>
+<li>You can also inject <code>Environment</code> object.
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">@Configuration</span>&#57344;&#57345;&#57345;
+<span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">AppConfig</span> {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Inject</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Bean</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">MyBean</span> <span style="color: #b58900;">myBean</span>() {&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">MyBean</span> <span style="color: #6c71c4;">myBean</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">MyBean</span>();&#57344;&#57345;&#57345;
+        myBean.setName(env.getProperty(<span style="color: #2aa198;">"bean.name"</span>));&#57344;&#57345;&#57345;
+        <span style="color: #859900;">return</span> myBean;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+</li>
+</ul>
+
+<p>
+Get the configuration from configuration class in some where
+else. <i>I haven't used this now.</i>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">ConfigurationTest</span> {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Test</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">testHelloworld</span> () {&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">AnnotationConfigApplicationContext</span> <span style="color: #6c71c4;">ctx</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">AnnotationConfigApplicationContext</span>(ApplicationContextConfig.<span style="color: #859900;">class</span>);&#57344;&#57345;
+        Assert.assertEquals(<span style="color: #2aa198;">"hello"</span>, ctx.getBean(<span style="color: #2aa198;">"message"</span>)); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">message is the name of the Bean method in configuration class</span>&#57344;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-1-2" class="outline-5">
+<h5 id="sec-1-1-1-2"><span class="section-number-5">1.1.1.2</span> Load configuration files.</h5>
+<div class="outline-text-5" id="text-1-1-1-2">
+<p>
+Different property sources are loaded in predefined order. You
+can set the default additional property file by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">SimpleCommandLinePropertySource</span> <span style="color: #6c71c4;">source</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">SimpleCommandLinePropertySource</span>(args);&#57344;&#57345;
+<span style="color: #859900;">if</span> (<span style="color: #268bd2;">!</span>source.containsProperty(<span style="color: #2aa198;">"spring.profiles.active"</span>)){&#57344;&#57345;&#57345;
+    app.setAdditionalProfiles([profile_name])&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Compile and run</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+You have to add <code>spring-boot-maven-plugin</code> as one of the plugins
+under <code>build</code> node in pom.xml.
+</p>
+<ul class="org-ul">
+<li>Development
+<ul class="org-ul">
+<li>Compile the project by <code>maven clean insatll</code>
+</li>
+<li>More than Build
+
+<p>
+Maven can help running test, web application and produceing
+reports by plugins. TODO
+</p>
+</li>
+<li><b>Compile and run</b>: <code>mvn spring-boot:run</code>.
+</li>
+</ul>
+</li>
+<li>Production
+<ul class="org-ul">
+<li>Package the files
+
+<ul class="org-ul">
+<li><b>Jar file</b>. Run <code>mvn clean package</code> to build the jar file
+and run it through command line.
+</li>
+
+<li><b>War file</b>. Add <code>&lt;packaging&gt;war&lt;/packaging&gt;</code> in pom.xml
+file, under the root node. Then run <code>mvn package</code> as
+building the jar file.
+</li>
+</ul>
+</li>
+
+<li>Deploy
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> <span class="todo TODO">TODO</span> </h4>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2015-02-28 Sat 22:37</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

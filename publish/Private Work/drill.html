@@ -1,0 +1,1895 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Notes of Drill Development</title>
+<!-- 2015-02-28 Sat 22:37 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Notes of Drill Development</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 文件夹结构</a></li>
+<li><a href="#sec-2">2. 背景知识&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></a>
+<ul>
+<li><a href="#sec-2-1">2.1. JSP</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1. Servelet</a></li>
+<li><a href="#sec-2-1-2">2.1.2. CGI 和 WSGI</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2. Tomcat + Apache</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Drill的Java后端&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></a>
+<ul>
+<li><a href="#sec-3-1">3.1. 环境与配置加载</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. 配置文件</a></li>
+<li><a href="#sec-3-1-2">3.1.2. 获取配置内容</a></li>
+<li><a href="#sec-3-1-3">3.1.3. 根据配置进行渲染</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2. 持久化</a></li>
+<li><a href="#sec-3-3">3.3. 业务层</a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1. Controller</a>
+<ul>
+<li><a href="#sec-3-3-1-1">3.3.1.1. <code>AccountResource</code></a></li>
+<li><a href="#sec-3-3-1-2">3.3.1.2. <code>UserResource</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3-2">3.3.2. Service</a></li>
+<li><a href="#sec-3-3-3">3.3.3. DTO</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-4">3.4. Security</a>
+<ul>
+<li><a href="#sec-3-4-1">3.4.1. <code>SecurityContextHolder</code></a></li>
+<li><a href="#sec-3-4-2">3.4.2. <code>UserDetails</code></a></li>
+<li><a href="#sec-3-4-3">3.4.3. <code>GrantedAuthority</code></a></li>
+<li><a href="#sec-3-4-4">3.4.4. 其它</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Angular</a>
+<ul>
+<li><a href="#sec-4-1">4.1. AngularJS Tutorial 入门教程学习笔记&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></a>
+<ul>
+<li><a href="#sec-4-1-1">4.1.1. 01和02,静态模板和AngularJS模板</a></li>
+<li><a href="#sec-4-1-2">4.1.2. 03 迭代器</a></li>
+<li><a href="#sec-4-1-3">4.1.3. 04双向绑定</a></li>
+<li><a href="#sec-4-1-4">4.1.4. 05XHR和依赖注入</a></li>
+<li><a href="#sec-4-1-5">4.1.5. 06链接与图片模板</a></li>
+<li><a href="#sec-4-1-6">4.1.6. 07路由与多视图 &amp; 08更多模板</a></li>
+<li><a href="#sec-4-1-7">4.1.7. 09过滤器</a></li>
+<li><a href="#sec-4-1-8">4.1.8. 10事件</a></li>
+<li><a href="#sec-4-1-9">4.1.9. 11Rest和定制服务</a></li>
+<li><a href="#sec-4-1-10">4.1.10. 12 Animations</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-2">4.2. AngularJS Developer Guide 开发指南学习笔记&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></a>
+<ul>
+<li><a href="#sec-4-2-1">4.2.1. Introduction &amp; Conceptual Overview</a></li>
+<li><a href="#sec-4-2-2">4.2.2. DI</a></li>
+<li><a href="#sec-4-2-3">4.2.3. Data Binding &amp; Scopes &amp; Template</a></li>
+<li><a href="#sec-4-2-4">4.2.4. Module &amp; Provider</a>
+<ul>
+<li><a href="#sec-4-2-4-1">4.2.4.1. Service</a></li>
+<li><a href="#sec-4-2-4-2">4.2.4.2. Controller</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-2-5">4.2.5. Directive</a>
+<ul>
+<li><a href="#sec-4-2-5-1">4.2.5.1. 注册Directive</a></li>
+<li><a href="#sec-4-2-5-2">4.2.5.2. restrict option</a></li>
+<li><a href="#sec-4-2-5-3">4.2.5.3. link option</a></li>
+<li><a href="#sec-4-2-5-4">4.2.5.4. isolate scope</a></li>
+<li><a href="#sec-4-2-5-5">4.2.5.5. <i>transclude</i></a></li>
+<li><a href="#sec-4-2-5-6">4.2.5.6. scope</a></li>
+<li><a href="#sec-4-2-5-7">4.2.5.7. controller in directive.</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-2-6">4.2.6. Filters</a></li>
+<li><a href="#sec-4-2-7">4.2.7. Forms</a></li>
+<li><a href="#sec-4-2-8">4.2.8. Expressions</a></li>
+<li><a href="#sec-4-2-9">4.2.9. HTML Compiler</a></li>
+<li><a href="#sec-4-2-10">4.2.10. Security</a></li>
+<li><a href="#sec-4-2-11">4.2.11. i18n and l10n</a></li>
+<li><a href="#sec-4-2-12">4.2.12. Accessibility</a></li>
+<li><a href="#sec-4-2-13">4.2.13. Bootstrap</a></li>
+<li><a href="#sec-4-2-14">4.2.14. Running in Production</a></li>
+<li><a href="#sec-4-2-15">4.2.15. Animations</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-3">4.3. Bootstrap CSS</a>
+<ul>
+<li><a href="#sec-4-3-1">4.3.1. Grid System</a></li>
+<li><a href="#sec-4-3-2">4.3.2. Typography</a></li>
+<li><a href="#sec-4-3-3">4.3.3. Code</a></li>
+<li><a href="#sec-4-3-4">4.3.4. Table</a></li>
+<li><a href="#sec-4-3-5">4.3.5. Form</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-4">4.4. Drill的前端(front-end)</a>
+<ul>
+<li><a href="#sec-4-4-1">4.4.1. index.html中直接使用的AngularJS</a></li>
+<li><a href="#sec-4-4-2">4.4.2. JS</a>
+<ul>
+<li><a href="#sec-4-4-2-1">4.4.2.1. 定义的模块</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Mongodb &amp; Spring</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 文件夹结构</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Drill项目本身包括了Java后端跟一般常用的web前端两部分.开发的源代码在
+src中而和发布/运行的内容则在target中.开发时的源代码文件夹结构如下
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">/src
+   /main
+      /java
+      /resources
+         /config
+         /i18n
+         ...
+      /webapp
+   /test
+</pre>
+</div>
+<p>
+测试时的对象文件夹结构如下
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">/target
+   /classes
+      /config
+      /i18n
+      ...
+      /org
+   /test-classes
+   ...
+</pre>
+</div>
+<p>
+请注意,发布的时候,会把开发时 <code>resources</code> 中的内容拷贝到 <code>classes</code> 下
+面,而 <code>classes</code> 本身对应Java中 <code>classpath</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 背景知识&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></h2>
+<div class="outline-text-2" id="text-2">
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> JSP</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+JavaServer Page(JSP)是一种动态网页技术标准.在HTML中插入Java片段
+(Scriptlet),以.jsp为文件后缀.在接到客户端请求的时候,服务器根据XXX.jsp文
+件生成XXXServlet.java文件,然后编译运行,最后返回结果给客户端.
+</p>
+</div>
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Servelet</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+Servelet是一种 <i>独立于平台和协议</i> 的 <i>服务器端</i> 的Java应用程序,生
+成动态页面.为HTTP客户端跟HTTP服务器程序的中间层.好处是快(比CGI快),
+每个用户请求被激活成程序中的一个线程.Servlet是纯粹的Java,jsp介于
+html和java质检,有助于美工人员来设计界面.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> CGI 和 WSGI</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+既然上一节提到了CGI,这里稍微展开一下.Common Gateway Interface
+(CGI)是一种利用程序的标准输入,输出流来完成HTTP通信的方式.HTTP本身
+是文本协议,请求是由服务器(Apache)处理,而应用程序可能由各种语言来实
+现.CGI则将这个文本协议以标准输入流的方式传递给服务器端的CGI程序.
+与之类似的还有WSGI,原理类似,但是是Python专用的协议.对于实现了
+<i><span class="underline"><span class="underline">call</span></span></i> 的对象,将 <i>request</i> 经过包装作为参数传入,同时也返回进过
+包装的 <i>response</i>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Tomcat + Apache</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Apache和Tomcat都是提供服务器功能的软件.Apache可以使用
+PHP,CGI,Perl,Tomcat在Apache后端提供对Java的支持.Apache+Tomcat处理
+JSP的时候,Apache只是转发.Apache是Web服务器,Tomcat是应用服务器,是
+Servlet容器,可以单独运行.
+</p>
+
+<p>
+Tomcat是Servlet的容器,可以独立运行,也可以作为现有服务器的附加(支持
+Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Drill的Java后端&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接触到的内容有
+账号注册登录管理,本地化设置等等.将整个后端当做一个应用,那么在主目录
+下有一个 <code>Application.java</code> 类作为整个应用的入口.这个类最基本的应用需要
+<code>@ComponentScan</code> 和 <code>@EnableAutoConfiguration</code> 两个标签来声明自动配
+置和扫描组件;同时在 <code>main</code> 函数里实例化一个 <code>SpringApplication</code> 对象
+并调用对象函数 <code>run()</code> 就行了. 目前的程序里还用
+<code>app.setAdditionalProfiles</code> 在没有命令行参数的时候默认加载dev配置.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 环境与配置加载</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> 配置文件</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+<code>SpringApplication</code> 会自动搜索以下路径来寻找
+<code>application.properties</code> 作为配置文件.
+</p>
+<ol class="org-ol">
+<li>当前路径下地 <code>/config</code> 子文件夹
+</li>
+<li>当前路径
+</li>
+<li><code>classpath:/config</code>
+</li>
+<li><code>classpath</code>
+</li>
+</ol>
+<p>
+同时,SpringApplication还支持 <font
+    color='blue'>YAML</font> 文件,即 <i>applicaiton.yml</i>.
+函数 <code>SpringApplication.setAdditionalProfiles("dev")</code> 则会额外加载
+<i>application-dev.yml</i> (或者 <i>application-dev.properties</i>), 而不是
+<i>dev.yml</i>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> 获取配置内容</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+当我们有类继承了EnvironmentAware这个接口的时候,框架会自动调用这个类
+的 <code>setEnvironment</code> 方法,将一个 <code>Environment</code> 对象交给这个类的对象
+从而使这个类获得配置文件中提供的参数. <code>LocaleConfiguration</code> 和
+<code>MailConfiguration</code> 两个类展示了相关的编程方法.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {&#57344;&#57345;&#57345;
+        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);&#57344;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+另一种方法是直接 <code>@Inject</code> 一个 <code>Environment</code> 的对象.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Inject</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+<b><font color='red'>&lt;&#x2013;这种方法跟之前所介绍的有什么区别,暂时不知道.&#x2013;&gt;</font></b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3"><span class="section-number-4">3.1.3</span> 根据配置进行渲染</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+<code>LocalResolver</code> 和 <code>Interceptor</code>. 在接受请求的时候, <code>Interceptor</code>
+拦截请求中特定的参数值,并且调用 <code>LocalResolver</code> 的函数来进行相关渲
+染处理.在 <code>LocaleConfiguration</code> 中,龙伟权通过定义Bean来指定特定的
+<code>LocalResolver</code>, 即 <code>AngularCookieLocaleResolver</code>.
+</p>
+
+<p>
+问题:
+</p>
+<ol class="org-ol">
+<li><code>LocaleConfiguration</code> 和 <code>ThymeleafConfiguration</code> 都有方法返回
+<code>MessageSource</code>, <code>MailService</code> 里面貌似引用的是
+<code>LocaleConfiguration</code> 返回的对象,为什么?
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 持久化</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+对象的关联问题.Mongodb本身作为NoSql的典范,内部以文件和类似json的数
+据形式来储存数据.Mongodb中一个Document可以看做关系数据库中的一行数
+据,一个Repository可以看做关系数据库中的一个表(table).目前我们有三个
+标记为 <code>@Document</code> 的类 <code>PersistentToken,Task,User</code> 和对应的
+<code>Repository</code> 类.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 业务层</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Controller</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+控制器类都在org.team.drill.web下面,统一以 <i>XXXResource</i> 命名.
+</p>
+</div>
+<div id="outline-container-sec-3-3-1-1" class="outline-5">
+<h5 id="sec-3-3-1-1"><span class="section-number-5">3.3.1.1</span> <code>AccountResource</code></h5>
+<div class="outline-text-5" id="text-3-3-1-1">
+<ul class="org-ul">
+<li>registerAccount
+注册账户,接受新账户信息,验证账户,创建账户,发送激活邮件.
+</li>
+<li>activateAccount
+激活账户,通过激活key来确定当前User.
+</li>
+<li>isAuthenticate
+这个什么时候会用到?
+<ul class="org-ul">
+<li>HttpServletRequest request.getRemoteUser()
+</li>
+</ul>
+</li>
+<li>getAccount
+这个貌似是浏览账户信息的时候用, 返回 <i>UserDTO</i>
+</li>
+<li>saveAccount
+这个是修改用户信息用, email 地址必须唯一
+</li>
+<li>changePassword (newPassword)
+这个是修改用户密码用
+</li>
+<li>getCurrentSession
+貌似是获得所有当前用户的登录记录(多地自动登录产生多个记录)
+</li>
+<li>invalideSession
+取消某个登录记录(已登录)
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-3-1-2" class="outline-5">
+<h5 id="sec-3-3-1-2"><span class="section-number-5">3.3.1.2</span> <code>UserResource</code></h5>
+<div class="outline-text-5" id="text-3-3-1-2">
+<ul class="org-ul">
+<li>getUser
+通过String login获取user, 直接返回 <i>User</i>
+</li>
+</ul>
+
+<p>
+登录功能是在 <i>SecurityConfig</i> 中间接实现的.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> Service</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+<i>Service</i> 里面通过 <i>SecurityContextHolder</i> 来获取当前用户.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> DTO</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+位于 <i>web.dto</i> 包下面的 <code>UserDTO</code> 类型,似乎是用来作为JS交互的数据
+对象?但是内容上跟 <i>domain</i> 里的 <code>User</code> 差不多,用来保证安全.在更复
+杂的应用环境中有用.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Security</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+不论是Service还是Resource,都是靠 <code>SecurityUtils.getCurrentLogin()</code>
+来获取当前用户的.那么问题来了,SecurityUtils如何知道当前用户是谁?
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #d33682;">/**</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">     * Get the login of the current user.</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">     */</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();&#57344;&#57345;
+        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();&#57344;&#57345;
+        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {&#57344;&#57345;&#57345;
+            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {&#57344;&#57345;
+                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();&#57344;&#57345;
+                userName = springSecurityUser.getUsername();&#57344;&#57345;&#57345;
+            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {&#57344;&#57345;
+                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();&#57344;&#57345;&#57345;
+            }&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+        <span style="color: #859900;">return</span> userName;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1"><span class="section-number-4">3.4.1</span> <code>SecurityContextHolder</code></h4>
+<div class="outline-text-4" id="text-3-4-1">
+<p>
+包含安全上下文信息,并且默认为/ThreadLocal/,即对于一个线程采用一
+个统一的安全上下文信息.同时,=SecurityContextHolder= 中还储存了当前
+与App进行交互的主体(<i>principal</i>)的详情,用 <code>Authentication</code> 对象来表
+示.上面的代码示例中体现的是获取当前用户信息的标准用法.
+</p>
+
+<p>
+<b><font color='red'>&lt;&#x2013;spring应用内部线程到底是如何管理
+的?&#x2013;&gt;</font></b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4-2" class="outline-4">
+<h4 id="sec-3-4-2"><span class="section-number-4">3.4.2</span> <code>UserDetails</code></h4>
+<div class="outline-text-4" id="text-3-4-2">
+<p>
+在以上代码片段中我们可以看到一个特殊的类 <code>UserDetails</code>,在获取当前主
+体的时候,返回的可能是一个 <i>String</i> 或者一个 <i>UserDetails</i> 的对象.那
+么这个/UserDetails/到底是什么东西,为什么它的方法 <code>getUsername()</code> 刚
+好能包含我们的 <code>User</code> 类所需的 <i>login</i>?
+</p>
+
+<p>
+<i>UserDetails</i> 是一个接口,包含了 <code>getPassword()</code>, <code>getUsername()</code> 等
+一系列方法. 在 <i>UserDetails</i> 中加入我们定义的 <i>login</i>,这是靠实现
+<code>UserDetailsService</code> 接口来做到的. 这个接口只包含一个方法,这个方法
+接受一个 <i>String</i> 参数,并返回一个实现了 <code>UserDetails</code> 接口的对象.目
+前在org.team.drill.security包中的 <code>UserDetailsService</code> 类里面,龙伟
+权实现了这个方法,并且将 <code>org.team.drill.domain.User</code> 的 <i>login</i> 包
+装到实现了 <i>UserDetails</i> 接口的
+<code>org.springframework.security.core.userdetails.User</code> 类中.
+</p>
+
+<p>
+到这里,我试着把 <i>SecurityContextHolder</i> 到 <i>UserDetails</i> 串起来. 个
+人认为,在通过
+<code>SecurityContextHolder.getContext().getAuthentication().getPrincipal()</code>
+来获取 <i>UserDetails</i> 的时候,spring通过调用实现了
+<code>org.springframework.security.core.userdetails.UserDetailsService</code>
+接口的对象的方法来尝试获取 <i>UserDetails</i>, 这个方法本身接受一个
+String参数. <font color='red'>又绕回来了,这个String参数是
+从哪来的?依靠http协议?还是session?</font>
+因为某种原因,
+<i>getPrincipal</i> 方法返回的是一个 <i>Object</i>,那么实际上给出了一种可能性,就
+是通过某个实现了 <i>UserDetails</i> 的类使用额外的业务逻辑.我们可以创建
+一个实现了 <i>UserDetals</i> 的类 <b>A</b>,在 <i>UserDetailsService</i> 中返回 <b>A</b>
+的对象,然后将 <i>getPrincipal()</i> 返回的对象强制转换为 <b>A</b> 并调用相关
+方法.当然,强制转换类型总是有风险的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4-3" class="outline-4">
+<h4 id="sec-3-4-3"><span class="section-number-4">3.4.3</span> <code>GrantedAuthority</code></h4>
+<div class="outline-text-4" id="text-3-4-3">
+<p>
+<code>Authentication</code> 提供两个重要的方法,第一个是上面说过的
+<i>getPrincipal</i>,另一个则是 <i>getAuthorities</i> .它返回一个
+<i>GrantedAuthoriy</i> 对象数组.顾名思义,这是用来管理用户权限的.在
+<i>UserDetailsService</i> 里面进行加载.目前drill中加载的是
+<code>SimpleGrantedAuthority</code> 数组,每个 <i>SimpleGrantedAuthority</i> 里面包
+含一个字符串,代表某种权限(自定义于
+<code>org.team.drill.security.Authority</code> 中).
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4-4" class="outline-4">
+<h4 id="sec-3-4-4"><span class="section-number-4">3.4.4</span> 其它</h4>
+<div class="outline-text-4" id="text-3-4-4">
+<p>
+用 <code>random.nextBytes</code> 来产生 <i>PersistentToken</i> 的序列号,不怕重复?
+虽然16位Byte确实已经很大(10亿的4次方).
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Angular</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> AngularJS Tutorial 入门教程学习笔记&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+学习<a href="http://angularjs.cn/T006">AngularJS入门教程</a>, <a href="https://docs.angularjs.org/tutorial">英文版</a>
+</p>
+</div>
+
+<div id="outline-container-sec-4-1-1" class="outline-4">
+<h4 id="sec-4-1-1"><span class="section-number-4">4.1.1</span> 01和02,静态模板和AngularJS模板</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+在HTML里面用np-app来定义Angular的上下文,可以用
+<code>ng-app="AAA"</code> 来制定一个名字空间.JS中
+通过这个名字来获取HTML里的上下文 <code>var AAA = angular.module('AAA',
+    []);</code>.
+</p>
+
+<p>
+在HTML中Angular的范围内,用
+<code>ng-controller="BBB"</code>标记一个div,在里
+面用一些Angular命令(ng-repeat)和表达式设定显示方式.在JS里面用
+<code>AAA.controller('BBB',function ...)</code> 给Angular表达式中的域赋值.
+</p>
+
+<p>
+<i>AAA</i> 中的 <code>$scope$</code> 是AAA的根作用域,控制器的作用域则在 <i>BBB</i> 之中.也
+就是说,如果在AAA下面有多个 <i>controller</i>, <i>controller X</i> 的数据绑定
+在 <i>controller Y</i> 下是无效的. <a href="http://docs.angularjs.org/api/ng.$rootScope.Scope">AngularJS作用域文档</a>.
+</p>
+
+<p>
+略:AngularJS的开发者倾向于使用 <i>Jasmine</i> 行为驱动开发(BBD)框架进行
+测试.
+</p>
+
+<p>
+<i><b>写在后面,对angular.module是所有JS中创建,注册和获取模组的地方.HTML里
+面通过ng-app="AA"来绑定模组AA的上下文</b></i>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-2" class="outline-4">
+<h4 id="sec-4-1-2"><span class="section-number-4">4.1.2</span> 03 迭代器</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<p>
+建立输入表单 <code>&lt;input
+ng-model="query"&gt;</code> ,修改 <code>ng-repeat</code> 为
+<code>&lt;li ng-repeat="x in
+list|filter:query"&gt;</code>.只要在输入框里输入文本,就会自动
+地修改列表,只显示包含这个文本的项目.这代表两点:1. 数据绑定同名变量
+query,值的同步是实时的; 2.filter过滤器,生成新数组,自动更新视图.
+</p>
+
+<p>
+略:Angular端到端测试.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-3" class="outline-4">
+<h4 id="sec-4-1-3"><span class="section-number-4">4.1.3</span> 04双向绑定</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<p>
+在HTML里面添加选择器
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">select</span> <span style="color: #6c71c4;">ng-model</span>=<span style="color: #2aa198;">"orderProp"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"name"</span>&gt;Alphabetical&lt;/<span style="color: #b58900;">option</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"age"</span>&gt;Newest&lt;/<span style="color: #b58900;">option</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">select</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+同时在迭代器中加入条件
+<code>&lt;li ng-repeat="phone in phones | filter:query |
+orderBy:orderProp"&gt;</code>
+</p>
+
+<p>
+JS中给每个数据加上 <i>age</i> 这个属性,同时设定
+<code>$scope.orderProp = 'age'</code>设定选择器
+的默认值.
+</p>
+
+<p>
+<code>select</code> 的元素和 <code>orderProp</code> 之间建立了双向绑定.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-4" class="outline-4">
+<h4 id="sec-4-1-4"><span class="section-number-4">4.1.4</span> 05XHR和依赖注入</h4>
+<div class="outline-text-4" id="text-4-1-4">
+<p>
+通过 <code>$http.get(AA/BB.json)</code> 来读取json文件. <i>$http</i> 是AngularJS提
+供的内建服务,通过依赖注入DI子系统.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">phonecatApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneListCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$http'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/phones.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        $scope.phones = data;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-5" class="outline-4">
+<h4 id="sec-4-1-5"><span class="section-number-4">4.1.5</span> 06链接与图片模板</h4>
+<div class="outline-text-4" id="text-4-1-5">
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phones"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"phone in phones | filter:query | orderBy:orderProp"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumbnail"</span>&gt;&#57344;&#57345;
+    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/{{phone.id}}"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumb"</span>&gt;&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">"{{phone.imageUrl}}"</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;&#57344;&#57345;
+    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/{{phone.id}}"</span>&gt;{{phone.name}}&lt;/<span style="color: #b58900;">a</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">p</span>&gt;{{phone.snippet}}&lt;/<span style="color: #b58900;">p</span>&gt;&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-6" class="outline-4">
+<h4 id="sec-4-1-6"><span class="section-number-4">4.1.6</span> 07路由与多视图 &amp; 08更多模板</h4>
+<div class="outline-text-4" id="text-4-1-6">
+<p>
+用 <code>$routeProvider</code> 重定向url,把某个url路径定向到某个HTML模板上去,
+并指定相对应的controller. <i>index.html</i> 中定义一个域,加载所有JS文件.加
+载的 <i>app.js</i> 设定重定向规则.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">phonecatApp.config<span style="color: #657b83;">(</span><span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$routeProvider'</span>,&#57344;&#57345;&#57345;
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$routeProvider</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    $routeProvider.&#57344;&#57345;&#57345;
+      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones'</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        templateUrl: <span style="color: #2aa198;">'partials/phone-list.html'</span>,&#57344;&#57345;&#57345;
+        controller: <span style="color: #2aa198;">'PhoneListCtrl'</span>&#57344;&#57345;&#57345;
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.&#57344;&#57345;&#57345;
+      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones/:phoneId'</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        templateUrl: <span style="color: #2aa198;">'partials/phone-detail.html'</span>,&#57344;&#57345;&#57345;
+        controller: <span style="color: #2aa198;">'PhoneDetailCtrl'</span>&#57344;&#57345;&#57345;
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.&#57344;&#57345;&#57345;
+      otherwise<span style="color: #859900;">(</span><span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        redirectTo: <span style="color: #2aa198;">'/phones'</span>&#57344;&#57345;&#57345;
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+<code>:phoneId</code> 是从将URL路径的对应部分作为变量.这个变量通过
+<code>$routeParams</code> 来访问.
+</p>
+
+<p>
+最后,在index.html里面加上 <code>&lt;div ng-view&gt;&lt;/div&gt;</code> 来为当前路由把对应
+视图加上去.
+</p>
+
+<p>
+<i>08更多模板</i> 之中用 <i>$http</i> 加载不同的json文件来根据phoneId生成每
+部手机的细节说明网页.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-7" class="outline-4">
+<h4 id="sec-4-1-7"><span class="section-number-4">4.1.7</span> 09过滤器</h4>
+<div class="outline-text-4" id="text-4-1-7">
+<p>
+建立自己的 <i>filter FF</i>,实现更复杂的规则,然后像之前使用 <code>| filter:query</code>
+一样用类似pipe的语法把输出传给自己的filter <code>| FF</code>.filter并不限定在
+<i>ng-repeat</i> 中使用.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatFilters'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'checkmark'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> input ? <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2713'</span> : <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2718'</span>;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+<a href="http://code.angularjs.org/1.1.0/docs/api/ng.$filter">AngularJS内置过滤器</a> <i>uppercase</i>, <i>json</i>, <i>date</i>,
+<i>date:"MM/dd/yyy@ h:mma"</i>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-8" class="outline-4">
+<h4 id="sec-4-1-8"><span class="section-number-4">4.1.8</span> 10事件</h4>
+<div class="outline-text-4" id="text-4-1-8">
+<p>
+通过JS在上下文中定义函数,通过 <code>ng-click</code> 来设定点击事件,调用函数.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">phonecatControllers.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneDetailCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$routeParams'</span>, <span style="color: #2aa198;">'$http'</span>,&#57344;&#57345;
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$routeParams</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/'</span> + $routeParams.phoneId + <span style="color: #2aa198;">'.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;
+      $scope.phone = data;&#57344;&#57345;&#57345;
+      $scope.mainImageUrl = data.images<span style="color: #657b83;">[</span>0<span style="color: #657b83;">]</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    $scope.setImage = <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">imageUrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      $scope.mainImageUrl = imageUrl;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+<code>$scope.setImage</code> 就是绑定的函数.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">"{{mainImageUrl}}"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone"</span>&gt;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+...&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone-thumbs"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"img in phone.images"</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">"{{img}}"</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"setImage(img)"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+点击图片的时候调用函数,把 <code>mainImageUrl</code> 的值设定为当前图片.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-9" class="outline-4">
+<h4 id="sec-4-1-9"><span class="section-number-4">4.1.9</span> 11Rest和定制服务</h4>
+<div class="outline-text-4" id="text-4-1-9">
+<p>
+依赖为 <i>angular-resource/angular-resource.js</i>.一般我们的JS相应功能
+命名为 <i>XXXService</i>.首先注册 <i>Service</i> 模块.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">phonecatServices</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatServices'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'ngResource'</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;
+&#57344;&#57345;&#57345;
+phonecatServices.factory<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Phone'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$resource'</span>,&#57344;&#57345;&#57345;
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$resource</span><span style="color: #b58900;">){</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> $resource<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/:phoneId.json'</span>, <span style="color: #268bd2;">{}</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+      query: <span style="color: #657b83;">{</span>method:<span style="color: #2aa198;">'GET'</span>, params:<span style="color: #2aa198;">{</span>phoneId:<span style="color: #2aa198;">'phones'</span><span style="color: #2aa198;">}</span>, isArray:<span style="color: #268bd2;">true</span><span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+建立一个 <i>Phone</i> 工厂,用 <i>$resource</i> 来取得数据.相应的controller改
+为<code>$scope.phone =
+Phone.get({phoneId:$routeParams.phoneId})</code>和
+<code>$scope.phones = Phone.query()</code>.
+</p>
+
+<p>
+<code>query</code> 方法是自己声明和定义的 <code>query: {method:'GET', params:{phoneId:'phones'}, isArray:true}</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-10" class="outline-4">
+<h4 id="sec-4-1-10"><span class="section-number-4">4.1.10</span> 12 Animations</h4>
+<div class="outline-text-4" id="text-4-1-10">
+<p>
+TODO
+</p>
+
+<p>
+更多的教程 <a href="http://angularjs.cn/tag/AngularJS_%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97">开发指南</a> 和 <a href="http://docs.angularjs.org/cookbook/index">Cookbook</a>. 推荐使用<a href="https://github.com/angular/angular-seed">AngularJS种子项目</a>来引导开发新项目
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> AngularJS Developer Guide 开发指南学习笔记&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></h3>
+<div class="outline-text-3" id="text-4-2">
+</div>
+<div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> Introduction &amp; Conceptual Overview</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+HTML本身是静态的,对于现在的动态网页无能为力.为了弥合静态和动态之间
+的鸿沟,有两种静态方式:库(<code>jQuery</code>),框架(<code>durandal</code>,
+<code>ember</code>). <code>AngularJS</code> 则提供了第三种方式,通过数据绑定等方式让浏览
+器学会新的语法. <code>AngularJS</code> 是完全基于前端的,适用于CRUD应用.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2"><span class="section-number-4">4.2.2</span> DI</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<p>
+AngularJS中的模组类似于名字空间,在几乎所有东西都在名字空间下注册.这
+些注册的东西是通过名字推断来进行绑定(引用)的.AngularJS自带的那功能,都
+是可以直接引用的.自己定义的东西,也可以直接靠名字推定,但是要给模组
+加上依赖关系.
+</p>
+
+<p>
+<b>service</b>, <b>directive</b>, <b>filter</b> 都是通过 <code>factory/directive/filter</code> 方
+法注册在模组中的,这些方法统称工厂(factory)方法.
+</p>
+
+<p>
+我们可以通过 <code>config/run</code> 方法注册在模组配置和运行的时候需要运行的
+函数,这些函数也同样的可以被以类似上面的方式来调用.这些方法被归类为
+模组(module)方法.
+</p>
+
+<p>
+控制器(<b>controller</b>),被解释为classes或者constructor function,同样需
+要注册到模组中,通过名字来引用.
+</p>
+
+<p>
+这些东西在引用的时候,可以直接当函数参数名,可以用 <i>$inject</i> 来显示
+说明,也可以用数组.后两种基本上是在第一种的基础上多写些代码来说明.直
+接用函数参数名是最简单的,但是不被官方所推荐.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-3" class="outline-4">
+<h4 id="sec-4-2-3"><span class="section-number-4">4.2.3</span> Data Binding &amp; Scopes &amp; Template</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<p>
+传统模板是通过模板Tempalte和模型Model来建立视图View. AngularJS是通过模
+板建立起View和Model的对应,让View跟Model直接互动.
+AngularJS中,template是包含AngularJS元素和属性的HTML.template中可用
+的AngularJS元素和属性为 <i>Directive</i>, <i>Markup</i> (<code>{{}}</code>), <i>Filter</i>,
+<i>Form controls</i>.通过这些template,JS(model)和(view)被连接了起来(数
+据绑定).
+</p>
+
+<p>
+上下文(Scope)提供表达式的运行环境,它被组织成一个类似DOM的层级结构.上
+下文监视表达式并传递事件.API($watch)监视模型的变更,($apply)将任意
+由Angular之外的事件对模型的改变传递到View.这里所谓的Angular之外的
+事件,指的是controllers,services,event handlers.
+</p>
+
+<p>
+上下文之间可以嵌套,嵌套的上下文有两种 <i>child scope</i> 和 <i>isolate
+scope</i>, <i>child scope</i> 继承上层上下文的内容, <i>isolate scope</i> 不继承.
+如果上下文中没有对应的属性,表达式是没有任何作用的.
+</p>
+
+<p>
+上下文可以看做将应用控制器controller和视图view联系起来的胶水.
+<span class="underline">在template连接的时候,directive会设置上下文中的$watch,$watch会通知
+directive任何属性的变更,从而使directive能根据更新的数据来渲染DOM</span>
+控制器controller和directive都能直接访问scope,但是不能直接访问对方.这
+种设计孤立controller和directive. <code>$rootScope</code> 提供对root上下文的访
+问,一般指向ng-app所在的范围.
+</p>
+
+<p>
+如果用chrome的inspect element功能查看页面元素,会发现
+<code>class="ng-scope ng-binding"</code>之类的属
+性.Anuglar会自动将 <i>ng-scope</i> 加入制定了上下文的元素, <i>ng-binding</i>
+则说明这里面的内容是用绑定实现的.
+</p>
+
+<p>
+在不同层级使用同一个controller,
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;&#57344;&#57345;&#57345;
+  Root scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: {{count}}&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"i in [1]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;&#57344;&#57345;&#57345;
+      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$emit('MyEvent')"</span>&gt;$emit('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;&#57344;&#57345;&#57345;
+      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$broadcast('MyEvent')"</span>&gt;$broadcast('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;&#57344;&#57345;
+      &lt;<span style="color: #b58900;">br</span>&gt;&#57344;&#57345;&#57345;
+      Middle scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: {{count}}&#57344;&#57345;&#57345;
+      &lt;<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+        &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"item in [1, 2]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;&#57344;&#57345;
+          Leaf scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: {{count}}&#57344;&#57345;&#57345;
+        &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+      &lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+    &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'eventExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'EventController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+  $scope.count = 0;&#57344;&#57345;&#57345;
+  $scope.$on<span style="color: #859900;">(</span><span style="color: #2aa198;">'MyEvent'</span>, <span style="color: #859900;">function</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+    $scope.count++;&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+这个例子中,首先我们看JS的部分.这部分注册了一个EventController,这个
+controller对于给定的上下文 <i>$scope</i> 设定属性 <i>count</i>,同时注册一个
+名为 <i>MyEvent</i> 的事件,调用一个闭包函数对于当前上下文进行操作.
+</p>
+
+<p>
+接下来看HTML,里面把同一个controller用了三次,也就意味着对于
+eventExample,给予三个不同的 <i>$scope</i>.而这三个 <i>$scope</i> 各自拥有自
+己的 <i>MyEvent</i> 函数副本.最后, <code>$emit('MyEvent')</code> 将调用这个函数的
+动作传递给上层 <i>$scope</i>, <code>$broadcast('MyEvent')</code> 则传递给下层
+<i>$scope</i>.
+</p>
+
+<p>
+<i>$scope</i> 的生命周期中,模型的改变不会立即触发 <i>$watch</i>, 而是通过在
+<i>$apply</i> 结束时的 <i>$digest</i> 来触发 <i>$watch</i>,这么做的好处在于将多个
+改变合为一个 <i>$watch</i> 动作. 当子上下文不需要继续存在时,子上下文的
+创建者负责调用 <i>scope.$destroy()</i> 负责停止事件传递,允许垃圾回收来
+释放内存.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2-4" class="outline-4">
+<h4 id="sec-4-2-4"><span class="section-number-4">4.2.4</span> Module &amp; Provider</h4>
+<div class="outline-text-4" id="text-4-2-4">
+<p>
+angular.module会覆盖已存在的名字.模组提供 <i>provider</i>, <i>factory</i>,
+<i>service</i>, <i>value</i>, <i>constant</i>, <i>animation</i>, <i>filter</i>,
+<i>controller</i>, <i>directive</i>, <i>config</i>, <i>run</i> 这些方法.除了最后两个以
+外,都是注册某一种功能.
+<i>provider,factory,service,value,constant</i> 都是JS内部用的,
+<i>directive,filter,animation,controller</i> 都是在html里面用
+的(JS里面定义的).
+</p>
+<ul class="org-ul">
+<li>JS
+<ul class="org-ul">
+<li>provider 提供一个在config阶段配置内容的机会,通过 <i>$get</i> 函数返
+回绑定的对象.
+</li>
+<li>factory 注册一个名字空间,跟value类似,但是可以引用其它的服务
+</li>
+<li>service 注册一个类,用 <i>new</i> 来获得对象
+</li>
+<li>value 注册一个变量,也可以在变量下加入函数,但是不能引用其它的服务.
+</li>
+</ul>
+</li>
+<li>html
+<ul class="org-ul">
+<li>directive, 定义一个html元素,属性,类名,对相应的元素加入定义好的模块
+</li>
+<li>controller, 注册一个可在html里面引用的属性值,对相应元素中的变
+量进行绑定和操作.
+</li>
+<li>animation, 动作效果
+</li>
+</ul>
+</li>
+<li>html and JS
+<ul class="org-ul">
+<li>filter, 过滤器. 返回一个过滤函数并绑定在这个名字上. 过滤函数接
+受整个数组为第一个参数,还可以自定附加参数.
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+Provider是AngularJS的基础,Value,Factory,Service,Constant都建立在Provider之上.下
+面的 <code>myApp.XXX</code> 方法实际上都是调用 <code>$provider.XXX</code>.
+</p>
+<ul class="org-ul">
+<li>Value recipe
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myApp</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.value<span style="color: #657b83;">(</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #2aa198;">'a12345654321x'</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'DemoController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #859900;">function</span> DemoController<span style="color: #b58900;">(</span><span style="color: #6c71c4;">clientId</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+  <span style="color: #268bd2;">this</span>.clientId = clientId;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">html</span> <span style="color: #6c71c4;">ng-app</span>=<span style="color: #2aa198;">"myApp"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">body</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"DemoController as demo"</span>&gt;&#57344;&#57345;&#57345;
+    Client ID: {{demo.clientId}}&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">body</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">html</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+其实就是定义一个模组下的变量/对象,可以是简单值,也可以在这个变量
+下加入函数.
+</p>
+</li>
+<li>Factory recipe
+相对Value,可使用其他服务,初始化服务,惰性初始化. 使用 <code>myApp.factory</code>
+方法.返回的是一系列变量,函数.
+</li>
+<li>Service recipe
+使用 <code>myApp.service()</code> 方法,注册一个构造函数,得到一个类(class),
+用 <i>new</i> 来得到新实例.返回的是构造函数.
+</li>
+<li>Provider Recipe
+比Factory更高一层,能够让用户在使用服务之前进行定制化,用config函
+数来实现.Provider里面有个 <code>$get</code> 方法,DI会把这个方法返回的东西绑
+定到注册的Provider名字上.
+<div class="org-src-container">
+
+<pre class="src src-javascript">myApp.provider<span style="color: #657b83;">(</span><span style="color: #2aa198;">'AAA'</span>, <span style="color: #859900;">function</span> AAAProvider<span style="color: #2aa198;">(){</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">this</span>.configFunc = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">bla</span><span style="color: #b58900;">){</span>blabla<span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">this</span>.$get = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">lab</span><span style="color: #b58900;">){</span> <span style="color: #859900;">return</span> BBB<span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.config<span style="color: #657b83;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAAProvider</span><span style="color: #2aa198;">){</span>&#57344;&#57345;&#57345;
+    AAAProvider.configFunc<span style="color: #b58900;">(</span>...<span style="color: #b58900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'CCC'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAA</span><span style="color: #2aa198;">){</span> <span style="color: #93a1a1; font-style: italic;">/*</span><span style="color: #93a1a1; font-style: italic;">AAA is BBB*/</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+<i>provider</i> 只能在config里面,而在run里面,只能用非 <i>provider</i>.
+</p>
+</li>
+<li>Constant Recipe
+Constant在config和run的过程中都存在(在他们之前).用
+<code>myApp.constant</code> 来注册.
+</li>
+<li>Special Purpose Objects
+包括controller, directive, filter, animation.
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-4-2-4-1" class="outline-5">
+<h5 id="sec-4-2-4-1"><span class="section-number-5">4.2.4.1</span> Service</h5>
+<div class="outline-text-5" id="text-4-2-4-1">
+<p>
+服务都是惰性加载和单例,通过 <i>factory</i> 注册.服务本身对于html是不可
+见的.在JS里面引用其功能.
+除了用工厂方法意外,还可以在模组的config方法中通过 <i>$provie.factory</i> 来
+注册服务.这里的Service和前面Provider段落中的不是一个概念.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2-4-2" class="outline-5">
+<h5 id="sec-4-2-4-2"><span class="section-number-5">4.2.4.2</span> Controller</h5>
+<div class="outline-text-5" id="text-4-2-4-2">
+<p>
+控制器是用于连接上下文和服务的,通过 <i>controller</i> 注册,对于html可见,通
+过 <i>ng-controller</i> 来进行绑定.本身也可以定义一些行为.不需要返回什
+么东西.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-5" class="outline-4">
+<h4 id="sec-4-2-5"><span class="section-number-4">4.2.5</span> Directive</h4>
+<div class="outline-text-4" id="text-4-2-5">
+<p>
+Directive提供自己定义的HTML标记,基于AngularJS HTML compiler
+(<code>$compile</code>). <i>ngApp</i>, <i>ngRepeat</i> 等等就是AngularJS自带的
+directive,这些directive通过 <i>ng-app</i>, <i>ng-repeat</i> 标记在HTML文件中
+改变元素的行为模式.当然,这里的compile并不是真正意义上的编
+译,AngularJS只是将事件监听器绑定到HTML元素上,使得这些元素可以互动.
+在 <code>$compile</code> 的API中可以找到directive的各种option的详细说明.
+</p>
+
+<p>
+命名方面, <code>-,:,_</code> 都可以作为分隔符, <code>ng-model</code> 和 <code>ng:model</code> 是等
+效的.同时还可以在前面加上 <code>x-</code> 或者 <code>data-</code> 前缀, <code>ng-model</code> 和
+<code>data-ng:model</code> 是等效的.
+</p>
+
+<p>
+使用directive可以将它作为tag name, attribute name, comment 或者
+class name.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">my-dir</span>&gt;&lt;/<span style="color: #b58900;">my-dir</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">my-dir</span>=<span style="color: #2aa198;">"exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">&lt;!-- </span><span style="color: #93a1a1; font-style: italic;">directive:my-dir exp</span><span style="color: #93a1a1; font-style: italic;">--&gt;</span>&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"my-dir: exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+以上三种标记方式是等效的.当然,推荐使用tag name和attribute name.
+</p>
+
+<p>
+<i>ngAttr</i> 能够绕过浏览器限制使用AngularJS的表达式设定attribute.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">cx</span>=<span style="color: #2aa198;">"{{cx}}"</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">ng-attr-cx</span>=<span style="color: #2aa198;">"{{cx}}"</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">viewBox</span>=<span style="color: #2aa198;">"{{viewBox}}"</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">ng-attr-view-box</span>=<span style="color: #2aa198;">"{{viewBox}}"</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+<b>Directive返回固定的option.如果说Service(Factory)是注册名字和对应的属性,函数;Directive则是将值和函数绑定到预先定义好的选项</b>
+</p>
+</div>
+<div id="outline-container-sec-4-2-5-1" class="outline-5">
+<h5 id="sec-4-2-5-1"><span class="section-number-5">4.2.5.1</span> 注册Directive</h5>
+<div class="outline-text-5" id="text-4-2-5-1">
+<p>
+module.directive 函数注册directive,它接受一个名字和一个工厂方法.方
+法返回template,用其填充directive元素的内容.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-5-2" class="outline-5">
+<h5 id="sec-4-2-5-2"><span class="section-number-5">4.2.5.2</span> restrict option</h5>
+<div class="outline-text-5" id="text-4-2-5-2">
+<p>
+值为 'A' (match attribute), 'E' (match element),
+'C' (match class).指定这个directive被用作元素的属性,元素名或类
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-5-3" class="outline-5">
+<h5 id="sec-4-2-5-3"><span class="section-number-5">4.2.5.3</span> link option</h5>
+<div class="outline-text-5" id="text-4-2-5-3">
+<p>
+操作DOM.这个option需要指定一个函数,函数的参数为
+scope (上下文),element (当前元素),attrs (当前元素的属性), ctrl
+(array of controllers required by the directive).
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsTimeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+  $scope.format = <span style="color: #2aa198;">'M/d/yy h:mm:ss a'</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCurrentTime'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$interval'</span>, <span style="color: #2aa198;">'dateFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$interval</span>, <span style="color: #6c71c4;">dateFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #859900;">function</span> <span style="color: #b58900;">link</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">scope</span>, <span style="color: #6c71c4;">element</span>, <span style="color: #6c71c4;">attrs</span>, <span style="color: #6c71c4;">ctrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">format</span>,&#57344;&#57345;&#57345;
+        timeoutId;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">function</span> <span style="color: #b58900;">updateTime</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+      element.text<span style="color: #657b83;">(</span>dateFilter<span style="color: #2aa198;">(</span><span style="color: #859900;">new</span> <span style="color: #268bd2;">Date</span><span style="color: #b58900;">()</span>, format<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    scope.$watch<span style="color: #268bd2;">(</span>attrs.myCurrentTime, <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">value</span><span style="color: #657b83;">)</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      format = value;&#57344;&#57345;&#57345;
+      updateTime<span style="color: #2aa198;">()</span>;&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    element.on<span style="color: #268bd2;">(</span><span style="color: #2aa198;">'$destroy'</span>, <span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      $interval.cancel<span style="color: #2aa198;">(</span>timeoutId<span style="color: #2aa198;">)</span>;&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">start the UI update process; save the timeoutId for canceling</span>&#57344;&#57345;&#57345;
+    timeoutId = $interval<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      updateTime<span style="color: #2aa198;">()</span>; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">update DOM</span>&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span>, 1000<span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+    link: link&#57344;&#57345;&#57345;
+  <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+设定函数 <i>updateTime</i> 直接操纵元素内容,通过 <i>$watch</i> 将元素中的属
+性变动跟操作函数绑定在一起. 通过 <i>$interval</i> 来实现自动读秒更新时
+间. 绑定 <i>$destroy</i> 来终止 <i>$interval</i> 读秒.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-5-4" class="outline-5">
+<h5 id="sec-4-2-5-4"><span class="section-number-5">4.2.5.4</span> isolate scope</h5>
+<div class="outline-text-5" id="text-4-2-5-4">
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsolateScopeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+  $scope.naomi = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Naomi'</span>, address: <span style="color: #2aa198;">'1600 Amphitheatre'</span> <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+  $scope.igor = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Igor'</span>, address: <span style="color: #2aa198;">'123 Somewhere'</span> <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCustomer'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    restrict: <span style="color: #2aa198;">'E'</span>,&#57344;&#57345;&#57345;
+    scope: <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      customerInfo: <span style="color: #2aa198;">'=info'</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>,&#57344;&#57345;&#57345;
+    templateUrl: <span style="color: #2aa198;">'my-customer-iso.html'</span>&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"naomi"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">hr</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"igor"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+controller里面绑定了 <i>naomi</i> 和 <i>ingor</i> 的值,html里面将directive
+元素中的 <i>info</i> 绑定为 <i>naomi</i> 或 <i>ingor</i>. directive里面定义独立
+上下文,将 <i>customerInfo</i> 绑定到元素里的
+<i>info</i>. my-customer-iso.html 里面引用 customerInfo 的内容. 如果要
+引用 <code>&lt;div bind-to-this="thing"&gt;</code>,
+在directive里面应该用
+<code>=bindToThis</code>.如果isolate scope里的
+属性名跟directive标签中的一样,则可以缩写为 <code>XXX:
+'='</code>.
+<b>注意:如同之前提到过的,isolate scope没有继承高级上下文的内容,在这
+里面调用高级上下文中的变量,只能是空</b>
+<b>template里面或者templateUrl引用的html里面的内容继承的是directive
+的上下文</b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-5-5" class="outline-5">
+<h5 id="sec-4-2-5-5"><span class="section-number-5">4.2.5.5</span> <i>transclude</i></h5>
+<div class="outline-text-5" id="text-4-2-5-5">
+<p>
+给予外部上下文访问能力.同时也意味着之前isolate scope
+被遮盖了,无法访问.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsoFnBindExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$timeout'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$timeout</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+  $scope.name = <span style="color: #2aa198;">'Tobias'</span>;&#57344;&#57345;&#57345;
+  $scope.hideDialog = <span style="color: #859900;">function</span> <span style="color: #859900;">()</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+    $scope.dialogIsHidden = <span style="color: #268bd2;">true</span>;&#57344;&#57345;&#57345;
+    $timeout<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span> <span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      $scope.dialogIsHidden = <span style="color: #268bd2;">false</span>;&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span>, 2000<span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myDialog'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    restrict: <span style="color: #2aa198;">'E'</span>,&#57344;&#57345;&#57345;
+    transclude: <span style="color: #268bd2;">true</span>,&#57344;&#57345;&#57345;
+    scope: <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      <span style="color: #2aa198;">'close'</span>: <span style="color: #2aa198;">'&amp;onClose'</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>,&#57344;&#57345;&#57345;
+    templateUrl: <span style="color: #2aa198;">'&lt;div class="alert"&gt;&lt;a href class="close" ng-click="close()"&gt;&amp;times;&lt;/a&gt;&lt;div ng-transclude&gt;&lt;/div&gt;&lt;/div&gt;'</span>&#57344;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">my-dialog</span> <span style="color: #6c71c4;">ng-hide</span>=<span style="color: #2aa198;">"dialogIsHidden"</span> <span style="color: #6c71c4;">on-close</span>=<span style="color: #2aa198;">"hideDialog()"</span>&gt;&#57344;&#57345;&#57345;
+    Check out the contents, {{name}}!&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">my-dialog</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+点击动作为<code>ng-click="close()"</code>,而
+<code>close</code> 动作被绑定到 <code>&amp;onClose</code> 这个directive. <code>on-close</code> 又在
+html里面绑定到 <code>hideDialog</code> 函数上. 这个示例中显示了如何将函数表
+达式传递给directive,让directive在一定时候选择执行这个函数.scope中
+读取值用'@XX',读取表达式结果用'=XX',读取表达式但不执行用'&amp;XX'.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-5-6" class="outline-5">
+<h5 id="sec-4-2-5-6"><span class="section-number-5">4.2.5.6</span> scope</h5>
+<div class="outline-text-5" id="text-4-2-5-6">
+<p>
+不管是template还是templateUrl都是在directive的上下文下.当没有
+isolate scope的时候,直接访问外部上下文.有isolate scope的时候,只能
+访问isolate scope.这个时候html里面元素的内容,比如
+<code>&lt;AA&gt;blabla&lt;/AA&gt;</code> 里面的 <i>blabla</i> 是被忽略/覆盖的.
+当在template中加入一个含有transclude的元素的时候,html里面的
+<i>blabla</i> 会被显示在这个元素之中,而这个含有transclude的元素的内容
+却不会被显示,同时html里面的表达式无法访问isolate scope.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">...&#57344;&#57345;&#57345;
+<span style="color: #859900;">return</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+    template: &lt;div&gt;CONTENT IN JAVASCRIPT <span style="color: #2aa198;">(</span>DIRECTIVE SCOPE <span style="color: #b58900;">(</span>OUTER/ISOLATE SCOPE<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&lt;/div&gt;&lt;div ng-transclude&gt;CONTENT FROM HTML <span style="color: #2aa198;">(</span>OUTER SCOPE<span style="color: #2aa198;">)</span>&lt;/div&gt;&#57344;&#57345;
+<span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-5-7" class="outline-5">
+<h5 id="sec-4-2-5-7"><span class="section-number-5">4.2.5.7</span> controller in directive.</h5>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-6" class="outline-4">
+<h4 id="sec-4-2-6"><span class="section-number-4">4.2.6</span> Filters</h4>
+<div class="outline-text-4" id="text-4-2-6">
+<p>
+在html里面用的时候 <code>{{expression | filter1:argument1:argument2... | filter2 ...}}</code>
+在JS里面使用一个叫做 filter 的过滤器
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'FilterInControllerModule'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.&#57344;&#57345;&#57345;
+controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'FilterController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'filterFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">filterFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+  <span style="color: #268bd2;">this</span>.array = <span style="color: #859900;">[</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Tobias'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Jeff'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Brian'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Igor'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'James'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Brad'</span><span style="color: #268bd2;">}</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">]</span>;&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">this</span>.filteredArray = filterFilter<span style="color: #859900;">(</span><span style="color: #268bd2;">this</span>.array, <span style="color: #2aa198;">'a'</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+创建过滤器
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myReverseFilterApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'reverse'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span>, <span style="color: #6c71c4;">uppercase</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    input = input || <span style="color: #2aa198;">''</span>;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">out</span> = <span style="color: #2aa198;">""</span>;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">for</span> <span style="color: #859900;">(</span><span style="color: #859900;">var</span> <span style="color: #6c71c4;">i</span> = 0; i &lt; input.length; i++<span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      out = input.charAt<span style="color: #268bd2;">(</span>i<span style="color: #268bd2;">)</span> + out;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">conditional based on optional argument</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">if</span> <span style="color: #859900;">(</span>uppercase<span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      out = out.toUpperCase<span style="color: #268bd2;">()</span>;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> out;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+<code>$filter</code> 服务通过名字调用相应的过滤器.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2-7" class="outline-4">
+<h4 id="sec-4-2-7"><span class="section-number-4">4.2.7</span> Forms</h4>
+</div>
+<div id="outline-container-sec-4-2-8" class="outline-4">
+<h4 id="sec-4-2-8"><span class="section-number-4">4.2.8</span> Expressions</h4>
+</div>
+
+<div id="outline-container-sec-4-2-9" class="outline-4">
+<h4 id="sec-4-2-9"><span class="section-number-4">4.2.9</span> HTML Compiler</h4>
+</div>
+<div id="outline-container-sec-4-2-10" class="outline-4">
+<h4 id="sec-4-2-10"><span class="section-number-4">4.2.10</span> Security</h4>
+</div>
+<div id="outline-container-sec-4-2-11" class="outline-4">
+<h4 id="sec-4-2-11"><span class="section-number-4">4.2.11</span> i18n and l10n</h4>
+</div>
+<div id="outline-container-sec-4-2-12" class="outline-4">
+<h4 id="sec-4-2-12"><span class="section-number-4">4.2.12</span> Accessibility</h4>
+</div>
+<div id="outline-container-sec-4-2-13" class="outline-4">
+<h4 id="sec-4-2-13"><span class="section-number-4">4.2.13</span> Bootstrap</h4>
+</div>
+<div id="outline-container-sec-4-2-14" class="outline-4">
+<h4 id="sec-4-2-14"><span class="section-number-4">4.2.14</span> Running in Production</h4>
+</div>
+<div id="outline-container-sec-4-2-15" class="outline-4">
+<h4 id="sec-4-2-15"><span class="section-number-4">4.2.15</span> Animations</h4>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Bootstrap CSS</h3>
+<div class="outline-text-3" id="text-4-3">
+</div><div id="outline-container-sec-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1"><span class="section-number-4">4.3.1</span> Grid System</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+定义row <code>class="row"</code>, 定义column
+<code>class="col-"</code>. 元素必须在column里面.可
+以同时定义几种 col-xl-NN, col-sm-NN, col-md-NN, col-lg-NN 使得页面
+在不同大小的时候自动采用不同的比例. column如果嵌套的话,父子column的
+宽度必须相等.
+</p>
+
+<p>
+<font color='red'>col-XX-push, col-XX-pull</font>
+是什么意思?
+</p>
+
+<p>
+Less mixins,修改CSS.在CSS里面定义新的class,里面用类似function的形式
+调用bootstrap提供的功能,生成新样式(组合).
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3-2" class="outline-4">
+<h4 id="sec-4-3-2"><span class="section-number-4">4.3.2</span> Typography</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+类似html,用&lt;h1&gt;&lt;/h1&gt;到&lt;h6&gt;&lt;/h6&gt;来生成不同大小的标题. 用
+&lt;small&gt;&lt;/small&gt; 生成比当前上下文小一号的文字. 在段落 &lt;p&gt;&lt;/p&gt;里面加
+上 class="lead" 建立一个大字段落.&lt;mark&gt;高亮,&lt;del&gt;和&lt;s&gt;横线穿过文
+字,&lt;u&gt;和&lt;ins&gt;下划线,&lt;strong&gt;粗体,&lt;em&gt;斜体.
+</p>
+
+<p>
+对齐:
+text-left, text-center, text-right, 顾名思义.
+text-justify, text-nowwrap??
+</p>
+
+<p>
+大小写转换
+text-lowercase, text-uppercase, text-capitalize
+</p>
+
+<p>
+缩写
+&lt;abbr title="attribute"&gt;attr&lt;/abbr&gt;.鼠标放到attr上时呈现问号,停留
+则会显示一个小标签,里面的内容就是title的值. 加入 class="initalism"
+使得attr文本使用稍微小一点的字体.
+</p>
+
+<p>
+地址
+&lt;address&gt;&lt;/address&gt;, href="<a href="mailto:EMAIL@ADRESS">mailto:EMAIL@ADRESS</a>" 添加可点击email地址,点击自动触
+发发送邮件的事件,在我的电脑上会打开Mail客户端.
+</p>
+
+<p>
+块
+&lt;blockquote&gt;&lt;/blockquote&gt;, &lt;footer&gt;&lt;/footer&gt; &lt;cite title="Source
+Title"&gt;Source Title&lt;/cite&gt;这里的title也是停留显示标签.
+在blockquote里面加入 class="blockquote-reverse" 可以将quote对齐右
+边.
+</p>
+
+<p>
+列表
+在列表开头加入 class="list-unstyled" 可以消除列表的缩进和开头的点.
+class="list-inline" 可以把列表的内容放在一行里面.
+描述列表
+&lt;dl&gt;
+&lt;dt&gt;粗体的项目&lt;/dt&gt;
+&lt;dd&gt;正常字体的项目描述&lt;/dd&gt;
+&lt;/dl
+在描述列表中加入 class="dl-horizontal" 可以将项目和描述放在一行,并
+且项目右对齐,描述左对齐,就像我CV里面的效果.太长的项目会自动缩减超
+出的部分,并显示省略号.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3-3" class="outline-4">
+<h4 id="sec-4-3-3"><span class="section-number-4">4.3.3</span> Code</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<p>
+文字中的代码块 &lt;code&gt;&lt;/code&gt; (浅红底,红字). &lt;kbd&gt;&lt;/kbd&gt;表示键盘输
+入 (黑底白字). 例子:&lt;kbd&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;,&lt;/kbd&gt;&lt;/kbd&gt;.
+&lt;pre&gt;&lt;/pre&gt;多行代码块, 可以加上 pre-scrollable 来固定高度,并提供滑
+动条.&lt;var&gt;&lt;/var&gt;变量.&lt;samp&gt;&lt;/samp&gt;输出样例 (等宽字符).
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3-4" class="outline-4">
+<h4 id="sec-4-3-4"><span class="section-number-4">4.3.4</span> Table</h4>
+<div class="outline-text-4" id="text-4-3-4">
+<p>
+class="table",基本表格样式. class="table-strped", 交错使用不同颜色
+作为每行的底色. class="table-bordered", 加上所有的行列边框.
+class="table-hover", 鼠标悬停行用不同低色. class="condensed", 单元
+之间的空间减半,使表格更加紧凑. 在行&lt;tr&gt;或者单元&lt;td&gt;里面加入
+class="XX", 对
+这一行或者单元用不同底色, 可选值为:active (灰),
+success (绿), warning (黄), danger (红), info (蓝).
+table-responseive 横向滚动条,适用于小设备.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3-5" class="outline-4">
+<h4 id="sec-4-3-5"><span class="section-number-4">4.3.5</span> Form</h4>
+<div class="outline-text-4" id="text-4-3-5">
+<p>
+所有文本的input,textarea,select 都可以加入 form-control 来设定宽度.
+form-group可以将form的标题和form本身看做一组并安排空间. 可以用一个
+有 help-block 类别的文本元素显示帮助文本. 表单也可以被放在一行, 使
+用 form-inline. bootstrap的建议是永远都要加入说明性的label,即时在
+一行的时候一部分label可能不显示.同时像checkbox这样的表单,被放在
+label的里面. 含有input-groupe-addon的div元素被放置在表单周围,用来
+显示紧挨着的一个标签块. form-horizontal 类似列表中的dl-horizontal,
+把说明标签和表单分两列,左右对齐.
+</p>
+
+<p>
+input中type可以选择很多类型,datetime, datetime-local, date, month,
+time, email 等等.会给出不同的样式.值得一提的是,如果type是file,会显
+示一个按钮,点击后出现文件选择器.input中加入disabled属性能使其不可
+填写, readonly也可以做到同样效果.
+</p>
+
+<p>
+textarea用row="XX"来控制高度.
+</p>
+
+<p>
+class="checkbox disabled" 让checkbox不可选,一般是用一个div把整个包
+含了checkbox的label包起来, 同时向这个div中加入此class.
+checkbox-inline, 同一行.
+</p>
+
+<p>
+select中加入 multiple 属性(注意,不是classs),会把所有选项都显示出来,还
+带滚动条.
+</p>
+
+<p>
+在form-group中,如果需要用text代替真的form,用
+class="form-control-static"
+</p>
+
+<p>
+使用&lt;fieldset disabled&gt;可以把之下所有的form-group变成不可操作的.
+在form-group旁边加入has-[success]|[error]|[warning],在label里面加
+上class="control-label"可以使用相应的颜色,颜色跟之前表格里的式样统
+一.这就是所谓的semantic style.
+</p>
+
+<p>
+form-control旁边加入input-lg|sm可以控制表单的大小. form-group旁边
+加入form-group-lg|sm控制group的大小.
+</p>
+
+<p>
+aria-describedby="ID", 另一个元素中id="ID"
+<b><i>???sr-only 和 aria-describedby, aria-hidden, has-feedback 有什么用???</i></b>
+<b><i>???name 和 id 有什么区别???</i></b>
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Drill的前端(front-end)</h3>
+<div class="outline-text-3" id="text-4-4">
+</div><div id="outline-container-sec-4-4-1" class="outline-4">
+<h4 id="sec-4-4-1"><span class="section-number-4">4.4.1</span> index.html中直接使用的AngularJS</h4>
+<div class="outline-text-4" id="text-4-4-1">
+<ul class="org-ul">
+<li>ng-app, ng-click, ng-controller, ng-repeat, ng-view
+</li>
+<li>ng-show
+根据表达式显示或者隐藏元素.通过将特定的css类 <i>.ng-hide</i> 加入到或
+移除出元素来实现隐藏.
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-show</span>=<span style="color: #2aa198;">"myValue"</span>&gt;&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+当 <i>myValue</i> 的值是true的时候显示,false隐藏. <font
+      color='red'>注意跟 <i>ng-switch</i> 的区别</font>
+</p>
+</li>
+<li>ng-switch/ng-switch-when
+根据表达式替换DOM结构.选择包含的某个元素,使其可见.
+
+<ol class="org-ol">
+<li>定义一个容器元素,加入
+<code>ng-swith="XXX"</code>
+</li>
+
+<li>在容器元素里面的元素中加入
+<code>ng-swith-when="someVal"</code>
+根据XXX的值是否等于someVal来决定是否显示这个元素.
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4-2" class="outline-4">
+<h4 id="sec-4-4-2"><span class="section-number-4">4.4.2</span> JS</h4>
+<div class="outline-text-4" id="text-4-4-2">
+</div><div id="outline-container-sec-4-4-2-1" class="outline-5">
+<h5 id="sec-4-4-2-1"><span class="section-number-5">4.4.2.1</span> 定义的模块</h5>
+<div class="outline-text-5" id="text-4-4-2-1">
+<ul class="org-ul">
+<li>app.js:                      angular.module('app', ['http-auth-interceptor', 'tmh.dynamicLocale','ngResource', 'ngRoute', 'ngCookies', 'appUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster']);
+</li>
+<li>http-auth-interceptor.js:    angular.module('http-auth-interceptor', ['http-auth-interceptor-buffer'])
+</li>
+<li>http-auth-interceptor.js:    angular.module('http-auth-interceptor-buffer', [])
+</li>
+<li>truncate.js:                 angular.module('truncate', [])
+</li>
+<li>utils.js:                    angular.module('appUtils', [])
+</li>
+</ul>
+</div>
+
+
+<ol class="org-ol"><li><a id="sec-4-4-2-1-1" name="sec-4-4-2-1-1"></a>app模块<br  /><div class="outline-text-6" id="text-4-4-2-1-1">
+<p>
+设定网站url重定向,初始化多语言, <i>?tmhDynamicLocaleProvider</i>.
+在注入injector创建后,初始化.
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Mongodb &amp; Spring</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+看代码
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">Query</span> <span style="color: #6c71c4;">query1</span> = Query.query(Criteria.where(<span style="color: #2aa198;">"_id"</span>).is(instance));&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">&#24314;&#31435;&#19968;&#20010;&#38752;_id&#25214;LetterInstance&#30340;query</span>&#57344;&#57345;&#57345;
+query1.fields().include(<span style="color: #2aa198;">"sections._id"</span>);&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#22312;query&#20013;&#29305;&#21035;&#35828;&#26126;,&#25214;&#21040;&#30340;LetterInstance&#21482;&#38656;&#35201;&#36820;&#22238;&#37324;&#38754;&#30340;sections._id&#23601;&#34892;&#20102;,&#20854;&#23427;&#30340;&#22495;&#19981;&#38656;&#35201;&#36820;&#22238;.</span>&#57344;&#57345;
+<span style="color: #268bd2;">LetterInstance</span> <span style="color: #6c71c4;">letter1</span> = mongoTemplate.findOne(query1, LetterInstance.<span style="color: #859900;">class</span>);&#57344;&#57345;
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#20174;&#25968;&#25454;&#24211;&#20013;&#21462;&#20986;LetterInstance</span>&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">LetterSection</span> <span style="color: #6c71c4;">emptySection</span> = letter1.findSectionById(sectionId);&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#20174;letter&#20013;&#24471;&#21040;section, &#20294;&#26159;&#36825;&#20010;section&#26159;&#31354;&#30340;,&#37324;&#38754;&#21482;&#26377;id</span>&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">index</span> = letter1.getSections().indexOf(emptySection);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">Query</span> <span style="color: #6c71c4;">query2</span> = Query.query(Criteria.where(<span style="color: #2aa198;">"_id"</span>).is(instance));&#57344;&#57345;&#57345;
+query2.fields().include(<span style="color: #2aa198;">"sections"</span>).slice(<span style="color: #2aa198;">"sections"</span>, index, 1);&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">&#22312;query&#20013;&#35828;&#26126;,&#25214;&#21040;&#30340;letter&#20013;&#35201;&#21253;&#21547;sections,&#20294;&#26159;&#21482;&#36820;&#22238;&#20854;&#20013;&#30340;&#31532; index &#20010;.</span>&#57344;&#57345;
+<span style="color: #268bd2;">LetterInstance</span> <span style="color: #6c71c4;">letter2</span> = mongoTemplate.findOne(query2, LetterInstance.<span style="color: #859900;">class</span>);&#57344;&#57345;
+<span style="color: #268bd2;">LetterSection</span> <span style="color: #6c71c4;">section</span> = letter2.getSections().get(0);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">This is an alternative solution loading all sections, but omitting the other (large) fields.</span>&#57344;&#57345;
+<span style="color: #268bd2;">Query</span> <span style="color: #6c71c4;">query</span> = Query.query(Criteria.where(<span style="color: #2aa198;">"_id"</span>).is(instance));&#57344;&#57345;&#57345;
+query.fields().include(<span style="color: #2aa198;">"sections"</span>);&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">LetterInstance</span> <span style="color: #6c71c4;">letter</span> = mongoTemplate.findOne(query, LetterInstance.<span style="color: #859900;">class</span>);&#57344;&#57345;
+<span style="color: #268bd2;">LetterSection</span> <span style="color: #6c71c4;">section</span> = letter.findSectionById(sectionId);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">This is the code I use for storing only a single collection element:</span>&#57344;&#57345;
+<span style="color: #268bd2;">MongoConverter</span> <span style="color: #6c71c4;">converter</span> = mongoTemplate.getConverter();&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">DBObject</span> <span style="color: #6c71c4;">newSectionRec</span> = (<span style="color: #268bd2;">DBObject</span>)converter.convertToMongoType(newSection);&#57344;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">Query</span> <span style="color: #6c71c4;">query</span> = Query.query(Criteria.where(<span style="color: #2aa198;">"_id"</span>).is(instance).and(<span style="color: #2aa198;">"sections._id"</span>).is(<span style="color: #859900;">new</span> <span style="color: #268bd2;">ObjectId</span>(newSection.getSectionId())));&#57344;&#57345;
+<span style="color: #268bd2;">Update</span> <span style="color: #6c71c4;">update</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Update</span>().set(<span style="color: #2aa198;">"sections.$"</span>, newSectionRec);&#57344;&#57345;&#57345;
+mongoTemplate.updateFirst(query, update, LetterInstance.<span style="color: #859900;">class</span>);&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2015-02-28 Sat 22:37</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

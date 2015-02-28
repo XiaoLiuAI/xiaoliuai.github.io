@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>记往开来</title>
+  <meta name="author" content="Xiao Liu">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiaoliuai.github.io/posts/2/index.html">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="记往开来" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://xiaoliuai.github.io/posts/2/index.html">
+  <meta property="og:title" content="记往开来">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">记往开来</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:xiaoliuai.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <div class="blog-index" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="记往开来" />
+    
+    <meta itemprop="url" content="http://xiaoliuai.github.io" />
+      
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-18T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-12-18-drilljava.html" itemprop="url">Drill的Java后端</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 环境与配置加载</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 配置文件</a></li>
+<li><a href="#sec-1-2">1.2. 获取配置内容</a></li>
+<li><a href="#sec-1-3">1.3. 根据配置进行渲染</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. 持久化</a></li>
+<li><a href="#sec-3">3. 业务层</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Controller</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. <code>AccountResource</code></a></li>
+<li><a href="#sec-3-1-2">3.1.2. <code>UserResource</code></a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2. Service</a></li>
+<li><a href="#sec-3-3">3.3. DTO</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Security</a>
+<ul>
+<li><a href="#sec-4-1">4.1. <code>SecurityContextHolder</code></a></li>
+<li><a href="#sec-4-2">4.2. <code>UserDetails</code></a></li>
+<li><a href="#sec-4-3">4.3. <code>GrantedAuthority</code></a></li>
+<li><a href="#sec-4-4">4.4. 其它</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接触到的内容有
+账号注册登录管理,本地化设置等等.将整个后端当做一个应用,那么在主目录
+下有一个 <code>Application.java</code> 类作为整个应用的入口.这个类最基本的应用需要
+<code>@ComponentScan</code> 和 <code>@EnableAutoConfiguration</code> 两个标签来声明自动配
+置和扫描组件;同时在 <code>main</code> 函数里实例化一个 <code>SpringApplication</code> 对象
+并调用对象函数 <code>run()</code> 就行了. 目前的程序里还用
+<code>app.setAdditionalProfiles</code> 在没有命令行参数的时候默认加载dev配置.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-12-18-drilljava.html"><span class="section-number-2">1</span> 环境与配置加载</a></h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 配置文件</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<code>SpringApplication</code> 会自动搜索以下路径来寻找
+<code>application.properties</code> 作为配置文件.
+</p>
+<ol class="org-ol">
+<li>当前路径下地 <code>/config</code> 子文件夹
+</li>
+<li>当前路径
+</li>
+<li><code>classpath:/config</code>
+</li>
+<li><code>classpath</code>
+</li>
+</ol>
+<p>
+同时,SpringApplication还支持 <font
+    color='blue'>YAML</font> 文件,即 <i>applicaiton.yml</i>.
+函数 <code>SpringApplication.setAdditionalProfiles("dev")</code> 则会额外加载
+<i>application-dev.yml</i> (或者 <i>application-dev.properties</i>), 而不是
+<i>dev.yml</i>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 获取配置内容</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+当我们有类继承了EnvironmentAware这个接口的时候,框架会自动调用这个类
+的 <code>setEnvironment</code> 方法,将一个 <code>Environment</code> 对象交给这个类的对象
+从而使这个类获得配置文件中提供的参数. <code>LocaleConfiguration</code> 和
+<code>MailConfiguration</code> 两个类展示了相关的编程方法.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {
+        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);
+    }
+}
+</pre>
+</div>
+
+<p>
+另一种方法是直接 <code>@Inject</code> 一个 <code>Environment</code> 的对象.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {
+    <span style="color: #268bd2;">@Inject</span>
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;
+}
+</pre>
+</div>
+<p>
+<b><font color='red'>&lt;&#x2013;这种方法跟之前所介绍的有什么区别,暂时不知道.&#x2013;&gt;</font></b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 根据配置进行渲染</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+<code>LocalResolver</code> 和 <code>Interceptor</code>. 在接受请求的时候, <code>Interceptor</code>
+拦截请求中特定的参数值,并且调用 <code>LocalResolver</code> 的函数来进行相关渲
+染处理.在 <code>LocaleConfiguration</code> 中,龙伟权通过定义Bean来指定特定的
+<code>LocalResolver</code>, 即 <code>AngularCookieLocaleResolver</code>.
+</p>
+
+<p>
+问题:
+</p>
+<ol class="org-ol">
+<li><code>LocaleConfiguration</code> 和 <code>ThymeleafConfiguration</code> 都有方法返回
+<code>MessageSource</code>, <code>MailService</code> 里面貌似引用的是
+<code>LocaleConfiguration</code> 返回的对象,为什么?
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 持久化</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+对象的关联问题.Mongodb本身作为NoSql的典范,内部以文件和类似json的数
+据形式来储存数据.Mongodb中一个Document可以看做关系数据库中的一行数
+据,一个Repository可以看做关系数据库中的一个表(table).目前我们有三个
+标记为 <code>@Document</code> 的类 <code>PersistentToken,Task,User</code> 和对应的
+<code>Repository</code> 类.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 业务层</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Controller</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+控制器类都在org.team.drill.web下面,统一以 <i>XXXResource</i> 命名.
+</p>
+</div>
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> <code>AccountResource</code></h4>
+<div class="outline-text-4" id="text-3-1-1">
+<ul class="org-ul">
+<li>registerAccount
+注册账户,接受新账户信息,验证账户,创建账户,发送激活邮件.
+</li>
+<li>activateAccount
+激活账户,通过激活key来确定当前User.
+</li>
+<li>isAuthenticate
+这个什么时候会用到?
+<ul class="org-ul">
+<li>HttpServletRequest request.getRemoteUser()
+</li>
+</ul>
+</li>
+<li>getAccount
+这个貌似是浏览账户信息的时候用, 返回 <i>UserDTO</i>
+</li>
+<li>saveAccount
+这个是修改用户信息用, email 地址必须唯一
+</li>
+<li>changePassword (newPassword)
+这个是修改用户密码用
+</li>
+<li>getCurrentSession
+貌似是获得所有当前用户的登录记录(多地自动登录产生多个记录)
+</li>
+<li>invalideSession
+取消某个登录记录(已登录)
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> <code>UserResource</code></h4>
+<div class="outline-text-4" id="text-3-1-2">
+<ul class="org-ul">
+<li>getUser
+通过String login获取user, 直接返回 <i>User</i>
+</li>
+</ul>
+
+<p>
+登录功能是在 <i>SecurityConfig</i> 中间接实现的.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Service</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<i>Service</i> 里面通过 <i>SecurityContextHolder</i> 来获取当前用户.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> DTO</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+位于 <i>web.dto</i> 包下面的 <code>UserDTO</code> 类型,似乎是用来作为JS交互的数据
+对象?但是内容上跟 <i>domain</i> 里的 <code>User</code> 差不多,用来保证安全.在更复
+杂的应用环境中有用.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Security</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+不论是Service还是Resource,都是靠 <code>SecurityUtils.getCurrentLogin()</code>
+来获取当前用户的.那么问题来了,SecurityUtils如何知道当前用户是谁?
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {
+
+    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {
+    }
+
+    <span style="color: #d33682;">/**</span>
+<span style="color: #d33682;">     * Get the login of the current user.</span>
+<span style="color: #d33682;">     */</span>
+    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {
+        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();
+        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();
+        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;
+        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;
+
+        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {
+            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {
+                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();
+                userName = springSecurityUser.getUsername();
+            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {
+                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();
+            }
+        }
+
+        <span style="color: #859900;">return</span> userName;
+    }
+}
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> <code>SecurityContextHolder</code></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+包含安全上下文信息,并且默认为/ThreadLocal/,即对于一个线程采用一
+个统一的安全上下文信息.同时,=SecurityContextHolder= 中还储存了当前
+与App进行交互的主体(<i>principal</i>)的详情,用 <code>Authentication</code> 对象来表
+示.上面的代码示例中体现的是获取当前用户信息的标准用法.
+</p>
+
+<p>
+<b><font color='red'>&lt;&#x2013;spring应用内部线程到底是如何管理
+的?&#x2013;&gt;</font></b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> <code>UserDetails</code></h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+在以上代码片段中我们可以看到一个特殊的类 <code>UserDetails</code>,在获取当前主
+体的时候,返回的可能是一个 <i>String</i> 或者一个 <i>UserDetails</i> 的对象.那
+么这个/UserDetails/到底是什么东西,为什么它的方法 <code>getUsername()</code> 刚
+好能包含我们的 <code>User</code> 类所需的 <i>login</i>?
+</p>
+
+<p>
+<i>UserDetails</i> 是一个接口,包含了 <code>getPassword()</code>, <code>getUsername()</code> 等
+一系列方法. 在 <i>UserDetails</i> 中加入我们定义的 <i>login</i>,这是靠实现
+<code>UserDetailsService</code> 接口来做到的. 这个接口只包含一个方法,这个方法
+接受一个 <i>String</i> 参数,并返回一个实现了 <code>UserDetails</code> 接口的对象.目
+前在org.team.drill.security包中的 <code>UserDetailsService</code> 类里面,龙伟
+权实现了这个方法,并且将 <code>org.team.drill.domain.User</code> 的 <i>login</i> 包
+装到实现了 <i>UserDetails</i> 接口的
+<code>org.springframework.security.core.userdetails.User</code> 类中.
+</p>
+
+<p>
+到这里,我试着把 <i>SecurityContextHolder</i> 到 <i>UserDetails</i> 串起来. 个
+人认为,在通过
+<code>SecurityContextHolder.getContext().getAuthentication().getPrincipal()</code>
+来获取 <i>UserDetails</i> 的时候,spring通过调用实现了
+<code>org.springframework.security.core.userdetails.UserDetailsService</code>
+接口的对象的方法来尝试获取 <i>UserDetails</i>, 这个方法本身接受一个
+String参数. <font color='red'>又绕回来了,这个String参数是
+从哪来的?依靠http协议?还是session?</font>
+因为某种原因,
+<i>getPrincipal</i> 方法返回的是一个 <i>Object</i>,那么实际上给出了一种可能性,就
+是通过某个实现了 <i>UserDetails</i> 的类使用额外的业务逻辑.我们可以创建
+一个实现了 <i>UserDetals</i> 的类 <b>A</b>,在 <i>UserDetailsService</i> 中返回 <b>A</b>
+的对象,然后将 <i>getPrincipal()</i> 返回的对象强制转换为 <b>A</b> 并调用相关
+方法.当然,强制转换类型总是有风险的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> <code>GrantedAuthority</code></h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+<code>Authentication</code> 提供两个重要的方法,第一个是上面说过的
+<i>getPrincipal</i>,另一个则是 <i>getAuthorities</i> .它返回一个
+<i>GrantedAuthoriy</i> 对象数组.顾名思义,这是用来管理用户权限的.在
+<i>UserDetailsService</i> 里面进行加载.目前drill中加载的是
+<code>SimpleGrantedAuthority</code> 数组,每个 <i>SimpleGrantedAuthority</i> 里面包
+含一个字符串,代表某种权限(自定义于
+<code>org.team.drill.security.Authority</code> 中).
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> 其它</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+用 <code>random.nextBytes</code> 来产生 <i>PersistentToken</i> 的序列号,不怕重复?
+虽然16位Byte确实已经很大(10亿的4次方).
+</p>
+</div>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-11-26T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-11-26-parallelism.html" itemprop="url">Parallelism</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Installation</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Local Machine</a></li>
+<li><a href="#sec-1-2">1.2. Virtual Machine</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Ocatve</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Run octave code with mpi.</a></li>
+<li><a href="#sec-2-2">2.2. Programming</a></li>
+<li><a href="#sec-2-3">2.3. Summary</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. C</a></li>
+<li><a href="#sec-4">4. Performance Comparison</a></li>
+</ul>
+</div>
+</div>
+<p>
+In this article, I will introduce the installation and basic use of MPI
+framework through octave. Matlab is widely used in many scientific
+domains as it enables the developers focus on the algorithms other
+than programming skills. However, the support of parallelism computing
+from Matlab is limited and expensive, especially for computing on
+clusters. Currently, two parallelism frameworks are widely used: MPI
+(Message Passage Interface) and MapReduce. Hadoop, which is an Java
+implementation of MapReduce, does not currently support Matlab or
+Octave. Therefore, I choose the MPI + Octave as a parallelism solution
+for Matlab users.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-11-26-parallelism.html"><span class="section-number-2">1</span> Installation</a></h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Local Machine</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Install open-mpi.
+<ul class="org-ul">
+<li>On Mac OS X with homebrew, <code>brew install open-mpi</code>
+</li>
+<li>On Ubuntu, the direct way is install the packages via package
+manager <code>sudo apt-get install openmpi-bin openmpi-common
+        openmpi-checkpoint libopenmpi-dev libopenmpi-X.X</code>. However,
+the OpenMPI installed through this method does not work with
+the octave-mpi package due to a library linkage problem. A
+fast cue is compiling and installing it manually with specific
+configurations.
+Download the openmpi package <a href="http://www.open-mpi.org/software/ompi/v1.8/">openmpi-1.8.3.tar.gz</a>.
+<div class="org-src-container">
+
+<pre class="src src-bash">tar xzvf openmpi-1.8.3.tar.gz
+cd openmpi-1.8.3
+./configure --dsiable-dlopen
+make
+sudo make install
+</pre>
+</div>
+</li>
+</ul>
+</li>
+<li>Install octave
+<ul class="org-ul">
+<li>On Mac OS X with homebrew
+<ol class="org-ol">
+<li>install XQuartz from image file downloaded from <a href="http://xquartz.macosforge.org/landing/">http://xquartz.macosforge.org/landing/</a>.
+</li>
+<li><code>brew tap homebrew/science</code>
+</li>
+<li>install gfortran <code>brew install gcc</code>
+</li>
+<li><code>brew install octave</code>
+</li>
+</ol>
+</li>
+<li>On Ubuntu
+<code>sudo apt-get install octave</code>
+</li>
+</ul>
+</li>
+<li>Install octave mpi package
+<ul class="org-ul">
+<li>Inside octave
+<div class="org-src-container">
+
+<pre class="src src-octave">putenv (<span style="color: #2aa198;">"PATH"</span><span style="color: #6c71c4;">,</span> [<span style="color: #2aa198;">"path/to/mpic++/:"</span> getenv(<span style="color: #2aa198;">"PATH"</span>)]) <span style="color: #93a1a1; font-style: italic;">% optional</span>
+pkg install <span style="color: #6c71c4;">-</span>forge mpi      <span style="color: #93a1a1; font-style: italic;">% install mpi from internet or</span>
+pkg install PATH<span style="color: #6c71c4;">/</span>TO<span style="color: #6c71c4;">/</span>PACKAGE <span style="color: #93a1a1; font-style: italic;">% install mpi from downloaded package</span>
+</pre>
+</div>
+</li>
+<li>Through package manager in Ubuntu (deprecated), run <code>apt-get
+        install octave-openmpi-ext</code>. As the pakcage manager could
+automatically install the OpenMPI package, which does not work
+with the octave-mpi actually, we suggest do NOT use this
+method.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Virtual Machine</h3>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Ocatve</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Run octave code with mpi.</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>First way is run code from shell/terminal/ssh.
+<div class="org-src-container">
+
+<pre class="src src-bash">mpirun [OPTIONS] octave -q --eval '[octave code, function or script name]'
+</pre>
+</div>
+</li>
+<li>Second way is call the system command inside octave.
+<div class="org-src-container">
+
+<pre class="src src-octave">system (<span style="color: #2aa198;">"mpirun octave -q --eval '[octave code, function or script name]"</span>)<span style="color: #6c71c4;">;</span>
+</pre>
+</div>
+</li>
+<li>Octave mpi package contains some simple examples to show you
+how to write the octave code that enables the parallelism via
+MPI. These codes are in two possible locations if you install
+the octave mpi package globally:
+<ul class="org-ul">
+<li><code>/usr/share/doc/octave-mpi/examples/</code>
+</li>
+<li><code>/usr/share/octave/packages/mpi-1.2.0/</code>
+</li>
+</ul>
+<p>
+If you install the package under user&#8217;s home folder, you can
+find exmaple codes under <code>$HOME/octave/packages/mpi-1.2.0/</code>. To
+test the example inside octave, run command
+<code>[info res] = system ("mpirun octave -q --eval 'pkg load mpi; helloworld
+       ()'");</code>. <b>The displayed string of the funciton, e.g. <code>helloworld()</code>, will return by this invokation. Therefore your can embed it in another
+serial computing octave script context (use str2num()).</b>
+</p>
+</li>
+<li>Frequently used mpirun options: <code>--hostfile</code> indicate the file
+that contains the hostnames of cluster; <code>-np</code> number of
+processes to run.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Programming</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The interface provided by octave mpi package is a subset of all
+MPI functions.
+</p>
+
+<p>
+Example 1, basic example about initializing the environment, send
+and receive messages/variables. Basically, these functions are
+enough to create the parallelism program.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-octave">MPI_Init()<span style="color: #6c71c4;">;</span>
+communicator <span style="color: #6c71c4;">=</span> MPI_Comm_Load(<span style="color: #2aa198;">"a label string"</span>) <span style="color: #93a1a1; font-style: italic;">% one can use multiple communicators indicated by different label</span>
+my_rank <span style="color: #6c71c4;">=</span> MPI_Comm_rank(communicator) <span style="color: #93a1a1; font-style: italic;">% rank is the indicator(id) of current process</span>
+p <span style="color: #6c71c4;">=</span> MPI_Comm_size(CW) <span style="color: #93a1a1; font-style: italic;">% the size of a communicator is the number of processes handled by the communicator</span>
+[info] <span style="color: #6c71c4;">=</span> MPI_Send(value<span style="color: #6c71c4;">,</span> ranks<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)<span style="color: #6c71c4;">;</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  a octave variable</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">ranks:  a vector that contains the id of destination processes, can be an integer</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">TAG:    an integer to identify the message (when there are many messages sent in the same context)</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">info:   an integer that indicates the success of failure state of process</span>
+[value<span style="color: #6c71c4;">,</span> info] <span style="color: #6c71c4;">=</span> MPI_Recv(source<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">source: the id the process that send this message</span>
+<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">receive from any process if source is -1</span>
+<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">process starts from 0 and process 0 is usually used as master process</span>
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  received variable</span>
+MPI_Finalize()
+</pre>
+</div>
+
+<p>
+Process sequence control functions:
+</p>
+<ul class="org-ul">
+<li>Function <code>MPI_Barrier(communicator)</code> will block the process until
+all the processes reached this location.
+</li>
+
+<li>Function <code>MPI_Probe(RANK, TAG, COMM)</code> test if process [RANK] send
+a message with TAG from communicator COMM. Block the process if
+no message arrive.
+</li>
+
+<li>Function <code>MPI_Iprobe(RANK, TAG, COMM)</code> test if process [RANK] send
+a message with TAG from communicator COMM. NOT block the process
+if no message arrive.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Summary</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+If you run the octave with MPI, you will find multiple octave
+processes in the process monitor. Once you run your MPI program,
+multiple clones of your program are craeted. Each of them is a
+full clone, <i>which means the content before <code>MPI_Init</code> or
+<code>MPI_Finalize</code> will be run in each process</i>. You can test it by
+putting some random function before <code>MPI_Init</code> and see the
+result. So, if you have a complex application and only want to use
+MPI to accelerate a specific function, you should call the MPI
+program as a independent application and get the result in
+indirect way. For example, you can write the result into a file
+and read it in your main application. But that would require a
+distributed file system, which is out of the range of this article.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> C</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The MPI interface for C language is much more powerful than that
+for octave. But basically, it follows the same procedure:
+initializing MPI environment (world), communication with process id
+and message tag. I recommend the tutorial from
+[<a href="https://computing.llnl.gov/tutorials/mpi/">https://computing.llnl.gov/tutorials/mpi/</a>] as a learning
+material. It provides many exercises for basic features of MPI in
+C.
+</p>
+
+<p>
+Compile C source file using the command below, for more options,
+please check the document of the version you installed.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">mpicc [YOUR_C_SOURCE_FILE]
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Point-to-point communication
+<ul class="org-ul">
+<li>blocked
+<code>MPI_Send(buffer,count,type,dest,tag,comm)</code>
+<code>MPI_Recv(buffer,count,type,source,tag,comm, status)</code>
+<ul class="org-ul">
+<li><b>buffer</b>
+Buffer is the variable you want to send or you want to
+receive the data. In C, you have to pass the buffer by
+reference <code>&amp;var</code>.
+</li>
+<li><b>count</b>
+Count is the number of data element to be sent since with the
+address/reference you send, the reciever can read an array.
+</li>
+<li><b>type</b>
+MPI defiend series of data types for each C type. These types
+are used for transfering between processes (on network for
+clusters).
+</li>
+<li><b>dest/source</b>
+The id (rank) of process you want to send or you want to
+receive from.
+</li>
+<li><b>tag</b>
+Tag is used to identify the data you received. Since MPI is
+an interface that can be used to transfer data through
+network, it is possible that the data you send later arrives
+earlier. If the processes of your MPI application have to
+communicate multiple times, tag is necessary to receive the
+data and execute on them in correct order.
+</li>
+<li><b>comm</b>
+The communicator or called MPI_COMM_WORLD, which is the
+MPI context created at the beginning of application.
+</li>
+<li><b>status</b>
+         Em, it is status, but I have no idea what it exactly is&#x2026;
+</li>
+</ul>
+</li>
+<li>non-blocked
+<code>MPI_ISend(buffer,count,type,dest,tag,comm,request)</code>
+<code>MPI_IRecv(buffer,count,type,source,tag,comm,request)</code>
+First, I have to clarify the blocking/non-blocking concept in this
+context. It is different to the block/non-block in multiple
+thread programming. Blocking means the application will not
+continue until the data in the application buffer is completely
+sent out (through internet protocol). Non-blocking means the
+application continue without waiting. Pay attention, it wait
+until the data is <b>sent out</b>, not <b>received</b> by other
+processes. And I think that is why tag is necessary in both
+cases, because if the application block until data received,
+the tag is not necessary and the application becomes
+sequential. Besides, you cannot put receive before send because
+it is blocked.
+
+<p>
+What is the benefit of non-blocking? You don&#8217;t have to wait for
+the receiving of data. In the example code below, we can see
+that processes receive data before sending them.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #d33682;">#include</span> <span style="color: #2aa198;">"mpi.h"</span>
+<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
+
+<span style="color: #b58900;">main</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">argc</span>, <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">argv</span>[])  {
+<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">numtasks</span>, <span style="color: #6c71c4;">rank</span>, <span style="color: #6c71c4;">next</span>, <span style="color: #6c71c4;">prev</span>, <span style="color: #6c71c4;">buf</span>[2], <span style="color: #6c71c4;">tag1</span>=1, <span style="color: #6c71c4;">tag2</span>=2;
+<span style="color: #268bd2;">MPI_Request</span> <span style="color: #6c71c4;">reqs</span>[4];
+<span style="color: #268bd2;">MPI_Status</span> <span style="color: #6c71c4;">stats</span>[4];
+
+MPI_Init(&amp;argc,&amp;argv);
+MPI_Comm_size(MPI_COMM_WORLD, &amp;numtasks);
+MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
+
+prev = rank-1;
+next = rank+1;
+<span style="color: #859900;">if</span> (rank == 0)  prev = numtasks - 1;
+<span style="color: #859900;">if</span> (rank == (numtasks - 1))  next = 0;
+
+MPI_Irecv(&amp;buf[0], 1, MPI_INT, prev, tag1, MPI_COMM_WORLD, &amp;reqs[0]);
+MPI_Irecv(&amp;buf[1], 1, MPI_INT, next, tag2, MPI_COMM_WORLD, &amp;reqs[1]);
+
+MPI_Isend(&amp;rank, 1, MPI_INT, prev, tag2, MPI_COMM_WORLD, &amp;reqs[2]);
+MPI_Isend(&amp;rank, 1, MPI_INT, next, tag1, MPI_COMM_WORLD, &amp;reqs[3]);
+
+      {  <span style="color: #859900;">do</span> some work  }
+
+MPI_Waitall(4, reqs, stats);
+
+MPI_Finalize();
+}
+</pre>
+</div>
+</li>
+</ul>
+</li>
+<li>Collective communication
+Basically, all the collective communications can be implemented
+using the point-to-point communication methods.
+<ul class="org-ul">
+<li>MPI_Reduce
+Split data to processes, gather the result as reducing
+operation such as the sum of array.
+</li>
+<li>MPI_Scatter
+       Split data from one processes to all the processes.
+</li>
+<li>MPI_Gather
+       Gather data from all the processes to one process
+</li>
+<li>MPI_Barrier
+       For synchronizing.
+</li>
+</ul>
+</li>
+<li>Derived data type
+Though the MPI provides series of primitive types, it is also
+useful to let useser to define their own data type. You can
+define a variable of type and use it as the MPI type.
+<ol class="org-ol">
+<li>Contiguous
+TODO
+</li>
+<li>Vector
+TODO
+</li>
+<li>Indexed
+TODO
+</li>
+<li>Struct
+TODO
+</li>
+</ol>
+</li>
+<li>Group and communicator management
+Group is an ordered set of processes, where the id(rank) of
+process go from zero to N-1. Communicator encompoasses a group of
+processes. Communicator that comprises all tasks is represented
+by MPI_COMM_WORLD. They are the same thing for programmer.
+
+<p>
+Groups can be destroyed and created during execution. One process
+can be in multiple groups.
+</p>
+</li>
+<li>Virtual topology routine
+Organize the processors in geometric way, like orginizing the
+processors in a two-dimensional array.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Performance Comparison</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<iframe
+src="https://docs.google.com/spreadsheets/d/1kOLf_azmw872VHm6lmOxsPUvpD0hs-ZvbPUJDOjMBFM/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
+width="900" height="600"></iframe>
+</p>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-29T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html" itemprop="url">Writing Blog Using Org-mode and Octopress</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Octopress Installation</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Installation of old version ruby with rbenv</a></li>
+<li><a href="#sec-1-2">1.2. Setup the octopress</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1. Copy octopress repository</a></li>
+<li><a href="#sec-1-2-2">1.2.2. Install dependencies</a></li>
+<li><a href="#sec-1-2-3">1.2.3. Install the default theme</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Common usage</a></li>
+<li><a href="#sec-3">3. Emacs Configurations</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Lisp package org-jekyll</a></li>
+<li><a href="#sec-3-2">3.2. Org-octopress package</a></li>
+<li><a href="#sec-3-3">3.3. Conflict and Test</a></li>
+<li><a href="#sec-3-4">3.4. <span class="todo TODO">TODO</span> <code>[1/4]</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+After the installation  and the configuration of jekyll along with
+the org-mode. I tried to find some configurations to facilitate the
+creation of org files (create file with date in front of file name,
+insert heads, etc.) I did not realize the existence of relative
+emacs packages in elpa and asked google for solutions. My
+inefficient search key-words let the google returns undesired
+answer: the <b>octopress</b>. Octopress is based on the jekyll, but
+provide richer blog settings. Finally, I migrated to octopress and
+use it to manager my github pages.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html"><span class="section-number-2">1</span> Octopress Installation</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Installation of octopress is little complex since it requires low
+version ruby.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Installation of old version ruby with rbenv</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+You can following the instructions on the <a href="http://octopress.org/docs/setup/rbenv">official manual</a>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>
+git clone git://github.com/sstephenson/rbenv.git .rbenv
+git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
+</pre>
+</div>
+<p>
+Add two lines into the end of shell profile (.zshrc in my case).
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>
+<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>
+</pre>
+</div>
+<p>
+Then reload the profile by <code>source ~/.zshrc</code> or resume the
+terminal.
+The installation of rbenv and ruby-build can be replaced by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">brew update
+brew install rbenv
+brew install ruby-build
+</pre>
+</div>
+<p>
+Attention: the shell profile must be modified with both
+installation methods.
+</p>
+
+<p>
+Then install ruby 1.9.3, which is required by octopress.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rbenv install 1.9.3-p0
+rbenv local 1.9.3-p0
+rbenv rehash
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Setup the octopress</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+My setup experience is basically the same with the <a href="http://octopress.org/docs/setup/">official
+manual</a>. However, after the installation, I replaced the octopress
+directory to <code>~/WorkSpace/xiaoliuai.github.io</code> because it actually
+becomes the repository of my github pages (<b>magnificent!</b>). So I
+suggest to clone the octopress git repository into the directory
+with the same name of the repository of your github pages at the
+beginning.
+</p>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Copy octopress repository</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+(_I suggest to clone shallow copy with option_ <code>depth</code>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress
+<span style="color: #6c71c4;">cd</span> octopress
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Install dependencies</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">gem install bundler
+rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>
+bundle install
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> Install the default theme</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+(_I suggest to ignore this step and install the 3rd-party theme
+       directly_)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rake install
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Common usage</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Local site
+
+<p>
+The octopress puts the generated web site, including the pages,
+layouts, images, etc. into the <code>public</code> folder for <b>local</b> preview. The <code>source</code>
+folder contains all the source files used to generate the site,
+including the layout HTML files, Java-scripts, style-sheets,
+etc. It can be seemed as a hyper <code>_posts</code> folder that contains
+source files more than blog HTML files. The familiar <code>_posts</code>
+folder used in jekyll is under this folder. Let&#8217;s <a href="http://octopress.org/docs/blogging/">start blogging</a>.
+</p>
+
+<p>
+First, go into the octopress folder, type <code>rake
+      new_post["title"]</code>, octopress will ask you to give a blog tile,
+then creates a <code>markdown</code> file into the <code>_posts</code> folder with
+jekyll format (concatenate date and the title as the file name).
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>
+</pre>
+</div>
+<p>
+This file should be edited respect to the jekyll protocol.
+</p>
+
+<p>
+Second, ran <code>rake generate</code> to generate the site in <code>public</code>
+and then ran <code>rake preview</code> to mount a web-server at
+<a href="http://localhost:4000">http://localhost:4000</a>.
+</p>
+</li>
+
+<li>Deploying to Github Pages
+
+<p>
+Octopress integrated commands to let you deploy the generated
+site to the github.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rake setup_github_pages
+</pre>
+</div>
+<p>
+This command will ask you for a URL of the Github repo, then it
+will store your Github pages repository URL as the <i>origin</i>
+remote and change the octopress remote to <i>octopress</i>. The
+directory of octopress becomes the repository of the <b>source</b>
+branch of the origin remote (your Github Pages repo). The
+<code>_deploy</code> directory, becomes the <b>master</b> branch of the origin
+remote.
+Run command:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rake deploy
+</pre>
+</div>
+<p>
+will update the files in <code>public</code> to <code>_deploy</code>, then push the
+changes to the master branch of the origin remote. To keep your
+settings and sources tracked, run
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git add .
+git commit -m<span style="color: #2aa198;">'Your message'</span>
+git push origin source
+</pre>
+</div>
+<p>
+to push the contents in octopress directory to the source branch
+of the origin remote.
+</p>
+
+<p>
+<span class="underline">One thing confusing is that one repository (master branch) is</span>
+<span class="underline">under another repository. But the directory <code>_deploy</code> is in the</span>
+<span class="underline"><code>gitignore</code> of source branch, hence solve the self-contain
+problem.</span>
+</p>
+</li>
+</ul>
+
+<p>
+
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Emacs Configurations</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Lisp package org-jekyll</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+There are lisp packages in melpa that provide smart org-jekyll edit
+functions.The great advantage of this package is that it generates
+blogs with respect to the entries with <code>blog</code> tag. In detail, it
+generates HTML files with proper time stamp before the file
+names. Therefore you don&#8217;t have to take care about the file names (you
+have to manage the org file name if you use other tools). Note you
+have to specify the time stamp in property of entry.
+This package does only export the section names, modify the elisp
+script following the <a href="https://github.com/juanre/org-jekyll/issues/11">issue</a> to export the contents. Use
+<code>org-jekyll-export-blog</code> to export the blog HTML files.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">change</span>
+<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span>
+                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">))</span>
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">to</span>
+<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-show-subtree<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">)))</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Org-octopress package</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+The package can be installed from elpa, but it does not support the
+tags. Hence, I modified the ox-jekyll.el file, duplicated all the
+variables and expressions contain <code>categories</code> and then replace
+them by <code>tags</code>. After reopening emacs, it successfully exports the
+tags into HTML files under _posts.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Conflict and Test</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+  标准的org-mode模式在导出为jekyll的HTML片段的时候,有一些导出格式需要
+  相应的css或者header支持.
+不兼容列表
+</p>
+<ul class="org-ul">
+<li>下划线
+</li>
+<li>表格竖边框
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> <span class="todo TODO">TODO</span> <code>[1/4]</code></h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li><code>[X]</code> tags
+</li>
+<li><code>[&#xa0;]</code> functions of contents in setupfile.org
+</li>
+<li><code>[&#xa0;]</code> org-octopress generate <code>publish</code> folder.
+</li>
+<li><code>[&#xa0;]</code> In <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">org-jekyll</a>, YAML markup is mentioned many times. I have to
+study into it when I have time.
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-29T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-10-29-initialize-the-first-blog.html" itemprop="url">Initialize the First Blog</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Install necessary softwares <b>org-mode</b> in <b>emacs</b>, <b>jekyll</b>.</a></li>
+<li><a href="#sec-2">2. Initialize the web folder by jekyll.</a></li>
+<li><a href="#sec-3">3. From org-mode to jekyll</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Configuration of emacs org setting</a></li>
+<li><a href="#sec-3-2">3.2. The head inserted into the org file for blog.</a></li>
+<li><a href="#sec-3-3">3.3. Comments</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Build the server.</a></li>
+<li><a href="#sec-5">5. Configuration</a></li>
+</ul>
+</div>
+</div>
+<p>
+This is my first blog that is generated using org-mode, jekyll and is
+published on GitHub.
+I made this page following the instructions on <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">org-jekyll</a>.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-10-29-initialize-the-first-blog.html"><span class="section-number-2">1</span> Install necessary softwares <b>org-mode</b> in <b>emacs</b>, <b>jekyll</b>.</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Note that the built-in org-mode in emacs might be outdated, the best
+solution is to remove the built-in org-mode and reinstall it from
+the package manager via <code>M-x list-packages</code>. Jekyll can be installed
+through <b>RubyGem</b>. On my OSX, the ruby and gem are preinstalled, so
+<code>gem install jekyll</code> works for me.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Initialize the web folder by jekyll.</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+As my final goal is posting the blog to GitHub, the working folder
+of my blog is <code>xiaoliuai.github.io</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">jekyll new xiaoliuai.github.io
+cd xiaoliuai.github.io
+jekyll serve
+</pre>
+</div>
+<p>
+Then you can see the portal page by opening <code>localhost:4000</code> in
+your web browser.
+</p>
+
+<p>
+Now I would like to introudce the directory hierarchy of jekyll. Since
+I will move to octopress, which is a wrapper of jekyll with different
+directory setting, I just introduce the essential part to make the
+things work.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">xiaoliuai.github.io/
+-- _posts/
+-- _sites/
+...
+</pre>
+</div>
+<p>
+Two main directories need special attention, that are,
+<code>_posts</code> and <code>_sites</code>. The first folder contains the <i>source</i> files,
+which are markdown file, html file, etc. as input for jekyll; the
+second folder contains the generated static server pages. All the
+project should be uploaded to github to be displayed where the
+<code>index.html</code> file is the portal of web site. The GitHub Pages
+understand this directory configuration and will automatically display
+the contents in <code>_sites</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> From org-mode to jekyll</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Configuration of emacs org setting</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-org"</span>
+ <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
+ <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
+
+ <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
+ <span style="color: #6c71c4;">:recursive</span> t
+ <span style="color: #6c71c4;">:publishing-function</span> org-html-publish-to-html
+ <span style="color: #6c71c4;">:headline-levels</span> 4
+ <span style="color: #6c71c4;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
+ <span style="color: #6c71c4;">:body-only</span> t <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
+ <span style="color: #6c71c4;">:with-toc</span> nil <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">don't export toc, it clobbers the YAML front matter</span>
+ <span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-static"</span>
+ <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
+ <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">js</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">png</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gif</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">pdf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">mp3</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">swf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gz</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">txt</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">el"</span>
+ <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
+ <span style="color: #6c71c4;">:recursive</span> t
+ <span style="color: #6c71c4;">:publishing-function</span> org-publish-attachment
+ <span style="color: #657b83;">)</span>
+<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog"</span><span style="color: #6c71c4;">:components</span> <span style="color: #2aa198;">(</span><span style="color: #2aa198;">"blog-org"</span> <span style="color: #2aa198;">"blog-static"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+With this org-mode configuration, you have to create a folder <code>_posts</code>
+under the <code>~/Emacs/org/blog</code>, then org-mode will export the folder and
+html files into the right place.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> The head inserted into the org file for blog.</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+STARTUP: showall indent</span>
+<span style="color: #93a1a1; font-style: italic;">#+STARTUP: hidestars</span>
+<span style="color: #93a1a1; font-style: italic;">#+BEGIN_HTML</span>
+<span style="color: #cb4b16;">---</span>
+<span style="color: #cb4b16;">layout: default</span>
+<span style="color: #cb4b16;">title: Xiao Liu's First Blog</span>
+<span style="color: #cb4b16;">excerpt: First blog with org-mode, jekyll.</span>
+<span style="color: #cb4b16;">categories:</span>
+<span style="color: #cb4b16;">    - org</span>
+<span style="color: #cb4b16;">---</span>
+<span style="color: #93a1a1; font-style: italic;">#+END_HTML</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Comments</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+The two lines with comments form the main differences to ordinary
+html exportation. Jekyll will read the body of html files
+generated by org-mode and add it&#8217;s own heads to specify the
+styles. Org-mode will export the table of contents (TOC) at the
+beginning of exported html file, hence mask the YAML Front
+Matter. <a href="http://ccom.uprrp.edu/~humberto//blog/2013/11/03/org-jekyll-is-awesome/">Disable the TOC</a> can sovle this problem. However, there
+might be other solutions to change the position of TOC.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Build the server.</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+
+<pre class="src src-bash">cd xiaoliuai.github.io
+jekyll build
+jekyll serve
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Configuration</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The simplest personalization of the blog site is editting
+<code>_config.yml</code> under the project directory. Following the attribute
+names in this file, you can easily understand how to specify the blog
+name, description, email address, etc.
+</p>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+    </div>
+
+    <ul class="pager">
+      
+        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+        <li class="next"><a href="/index.html">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
+  </div>
+
+  
+    <aside class="sidebar col-md-3">
+      
+        <section>
+  <div class="panel-heading">
+    <h3 class="panel-title">About Me</h3>
+        </div>
+        <div class="list-group">
+        <p class="list-group-item" style="text-align: center; max-height: 400px">
+                <img src="/images/Me.png" height=150 width=Auto>
+        </p>
+        <p class="list-group-item">穷苦的科研狗一只</p>
+        <p class="list-group-item"></p>
+        </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-pom-configuration.html">POM Configuration</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-functional-programming-on-coursera.html">Functional Programming on Coursera</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-17-mongodb-strategy.html">Mongodb Strategy</a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/blog/categories/geek/index.html">
+        <span class="badge">2</span>
+        geek
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/parallelism/index.html">
+        <span class="badge">1</span>
+        parallelism
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/web/index.html">
+        <span class="badge">5</span>
+        web
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/database/index.html">
+        <span class="badge">2</span>
+        database
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/language/index.html">
+        <span class="badge">2</span>
+        language
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/management/index.html">
+        <span class="badge">2</span>
+        management
+      </a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+    <div class="panel-heading">
+            <h2 class="panel-title">标签列表</h2>
+    </div>
+    <ul class="list-group">
+        <li class="tag-cloud list-group-item">
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
+<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/scala/">Scala<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/java/">Java<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/spring/">Spring<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/gulp/">gulp<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/mpi/">MPI<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+
+        </li>
+    </ul>
+    <!-- <div class="list-group">
+        <ul class="tag-cloud">
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
+<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/scala/">Scala<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/java/">Java<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/spring/">Spring<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/gulp/">gulp<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/mpi/">MPI<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+
+        </ul>
+    </div> &#8211;>
+</section>
+
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/xiaoliuai">@xiaoliuai</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiaoliuai',
+            count: 2,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+      
+    </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2015 - Xiao Liu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+  </body>
+</html>

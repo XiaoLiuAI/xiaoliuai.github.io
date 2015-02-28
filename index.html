@@ -114,6 +114,1018 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-28T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015-02-28-start-maven-example.html" itemprop="url">Start Maven Example</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Simple POM</a></li>
+<li><a href="#sec-2">2. Basic command</a></li>
+<li><a href="#sec-3">3. Directory layout</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-02-28-start-maven-example.html"><span class="section-number-2">1</span> Simple POM</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Maven projects are defined with an XML file named <i>pom.xml</i>. This
+file gives the project&#8217;s name, version, and dependencies that it
+has on external libraries. Here is an <a href="http://spring.io/guides/gs/maven/#initial">example</a>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;?<span style="color: #859900;">xml</span> <span style="color: #6c71c4;">version</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">1.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">encoding</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">UTF-8</span><span style="color: #2aa198;">"</span>?&gt;
+&lt;<span style="color: #b58900;">project</span> <span style="color: #6c71c4;">xmlns</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">xmlns</span>:<span style="color: #6c71c4;">xsi</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://www.w3.org/2001/XMLSchema-instance</span><span style="color: #2aa198;">"</span>
+    <span style="color: #6c71c4;">xsi</span>:<span style="color: #6c71c4;">schemaLocation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd</span><span style="color: #2aa198;">"</span>&gt;
+    &lt;<span style="color: #b58900;">modelVersion</span>&gt;4.0.0&lt;/<span style="color: #b58900;">modelVersion</span>&gt;
+    &lt;<span style="color: #b58900;">groupId</span>&gt;org.springframework&lt;/<span style="color: #b58900;">groupId</span>&gt;
+    &lt;<span style="color: #b58900;">artifactId</span>&gt;gs-maven&lt;/<span style="color: #b58900;">artifactId</span>&gt;
+    &lt;<span style="color: #b58900;">packaging</span>&gt;jar&lt;/<span style="color: #b58900;">packaging</span>&gt;
+    &lt;<span style="color: #b58900;">version</span>&gt;0.1.0&lt;/<span style="color: #b58900;">version</span>&gt;
+
+    &lt;<span style="color: #b58900;">build</span>&gt;
+        &lt;<span style="color: #b58900;">plugins</span>&gt;
+            &lt;<span style="color: #b58900;">plugin</span>&gt;
+                &lt;<span style="color: #b58900;">groupId</span>&gt;org.apache.maven.plugins&lt;/<span style="color: #b58900;">groupId</span>&gt;
+                &lt;<span style="color: #b58900;">artifactId</span>&gt;maven-shade-plugin&lt;/<span style="color: #b58900;">artifactId</span>&gt;
+                &lt;<span style="color: #b58900;">version</span>&gt;2.1&lt;/<span style="color: #b58900;">version</span>&gt;
+                &lt;<span style="color: #b58900;">executions</span>&gt;
+                    &lt;<span style="color: #b58900;">execution</span>&gt;
+                        &lt;<span style="color: #b58900;">phase</span>&gt;package&lt;/<span style="color: #b58900;">phase</span>&gt;
+                        &lt;<span style="color: #b58900;">goals</span>&gt;
+                            &lt;<span style="color: #b58900;">goal</span>&gt;shade&lt;/<span style="color: #b58900;">goal</span>&gt;
+                        &lt;/<span style="color: #b58900;">goals</span>&gt;
+                        &lt;<span style="color: #b58900;">configuration</span>&gt;
+                            &lt;<span style="color: #b58900;">transformers</span>&gt;
+                                &lt;<span style="color: #b58900;">transformer</span>
+                                    <span style="color: #6c71c4;">implementation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">org.apache.maven.plugins.shade.resource.ManifestResourceTransformer</span><span style="color: #2aa198;">"</span>&gt;
+                                    &lt;<span style="color: #b58900;">mainClass</span>&gt;hello.HelloWorld&lt;/<span style="color: #b58900;">mainClass</span>&gt;
+                                &lt;/<span style="color: #b58900;">transformer</span>&gt;
+                            &lt;/<span style="color: #b58900;">transformers</span>&gt;
+                        &lt;/<span style="color: #b58900;">configuration</span>&gt;
+                    &lt;/<span style="color: #b58900;">execution</span>&gt;
+                &lt;/<span style="color: #b58900;">executions</span>&gt;
+            &lt;/<span style="color: #b58900;">plugin</span>&gt;
+        &lt;/<span style="color: #b58900;">plugins</span>&gt;
+    &lt;/<span style="color: #b58900;">build</span>&gt;
+&lt;/<span style="color: #b58900;">project</span>&gt;
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>&lt;modelVerion&gt;</code> POM model version
+</li>
+<li><code>&lt;groupId&gt;</code> Domain name of the group or organization.
+</li>
+<li><code>&lt;artifactId&gt;</code> Name to the project&#8217;s library artifact (name of
+JAR file)
+</li>
+<li><code>&lt;version&gt;</code> Version of the project
+</li>
+<li><code>&lt;packaging&gt;</code> How it should be packaged (in JAR or WAR file)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Basic command</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-bash">mvn compile
+mvn package
+mvn install
+</pre>
+</div>
+<p>
+The first command compiles the project, and the <i>.classfiles</i> shold be
+in the <i>target/classes</i> directory.
+The second command compile the code, run tests and finish by
+packaging the code up in a JAR file in the <i>target</i> directory.
+Tht third command does the same thing as the second command, then
+copy the JAR file into the local <span class="underline">dependency repository</span>, under the
+directories with name of groupId, artifactId and version. So on my
+machine, its location is
+<code>~/.m2/repository/org/springframework/gs-maven/0.1.0/gs-maven-0.1.0.jar</code>.
+</p>
+
+<p>
+Add dependencies of project into the <i>pom.xml</i> file, in the
+<code>&lt;project&gt;</code> element.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;<span style="color: #b58900;">dependencies</span>&gt;
+     &lt;<span style="color: #b58900;">dependency</span>&gt;
+         &lt;<span style="color: #b58900;">groupId</span>&gt;joda-time&lt;/<span style="color: #b58900;">groupId</span>&gt;
+         &lt;<span style="color: #b58900;">artifactId</span>&gt;joda-time&lt;/<span style="color: #b58900;">artifactId</span>&gt;
+         &lt;<span style="color: #b58900;">version</span>&gt;2.2&lt;/<span style="color: #b58900;">version</span>&gt;
+     &lt;/<span style="color: #b58900;">dependency</span>&gt;
+ &lt;/<span style="color: #b58900;">dependencies</span>&gt;
+</pre>
+</div>
+<p>
+This description will tell the maven to get the <i>joda-time</i> package
+as external library. You can specify a <code>&lt;scope&gt;</code> element to specify
+if the dependencies are required for compiling the code but will be
+provided during runtime by <code>provided</code>; or decalre the dependencies
+are only necessary for compiling and running tests.
+</p>
+
+<p>
+When I compile the command, <i>maven</i> downloads the <i>joda-time</i>
+pakcage from <a href="https://repo.maven.apache.org/maven2/joda-time/">https://repo.maven.apache.org/maven2/joda-time/</a>. Does
+the maven use its domain when the group id does not contain the
+domain by default?
+</p>
+
+<p>
+<b>You can also create a project from scratch</b>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Directory layout</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+
+<pre class="src src-bash">project
+    src
+        main
+            java
+            [scala]
+            resources
+                environment.properties
+                environment.test.properties
+                environment.prod.properties
+                config
+                    application.yml
+                    application-dev.yml
+                    application-[profile].yml
+                [other]
+        test
+            java
+            [scala]
+    target
+        classes
+            the classes with the same structure as src/main
+            the directories in src/main/resources
+        test-classes
+            the classes with the same structure as src/mainproject
+        xxx.jar
+    target
+</pre>
+</div>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-28T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html" itemprop="url">Principles of Reactive Programming on Coursera</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Monad</a></li>
+<li><a href="#sec-2">2. ScalaCheck &amp; ScalaTest</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Tutorial of ScalaCheck</a></li>
+<li><a href="#sec-2-2">2.2. ScalaTest</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html"><span class="section-number-2">1</span> Monad</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Honestly, I don&#8217;t understand it. But I collect my thoughts about it
+here. First, the monda is used to chain operations and if the first
+(preceding) operation fails, the whole chain stops. An example that
+I understand is the usage of for-expression with pattern match. If
+the pattern matches, go next operation, else skip this element.
+</p>
+
+<p>
+Another point of view is about the unit operation. A monad flatMap
+with its unit operation will return the monad itself.
+</p>
+
+<p>
+<b>My conclusion</b>:
+</p>
+
+<p>
+A monad is a container that supports operation chain and follows
+the monad laws. The basic operations of this container are
+<code>flatMap</code> and <code>unit</code>, where <code>flatMap</code> actually accepts a function
+that maps each element to a container, then binds these containers
+together; <code>unit</code> returns a container given an element. Monad laws
+guarantee the reliability of operation chain on these contains.
+</p>
+
+<p>
+Monad seems like a design pattern that enables the operation chain
+along with pattern match in functional programming. Because
+<code>flatMap</code> chain with different functions is equivalent to nested
+<code>flatMap</code>, the for-expression is a syntax sugar based on <code>flatMap</code>
+chain. The advantage of this design pattern is avoding side effect.
+</p>
+
+<p>
+Generator is created by <code>yield</code> as well as
+<b>for-expression</b>. Pay attention, there is no generator
+class/type/trait. The genrator created through for-expression has
+the same type of the sequence/iterator/stream used in
+for-expression. That proves the for-expression is a syntax sugar of
+monad types. So, guess what will happen when we create a
+for-expression using both <b>list</b> and <b>stream</b>?
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">fibo</span>:Stream[Int] = 1 #:: 1 #:: fibo.zip(fibo.tail).map(x=&gt;x._1+x._2)
+val l = List(1,2,3,4,5)
+val lsg = <span style="color: #859900;">for</span>{x &lt;- l; fib &lt;- fibo} yield (x,fib)<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">infinite loop, crash the software/your machine</span>
+val slg = <span style="color: #859900;">for</span>{fib &lt;- fibo; x &lt;- l} yield (x,fib)<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">return a stream</span>
+</pre>
+</div>
+<p>
+Following the definition of Monad, the first mixture <code>lsg</code> actually
+makes <code>l flatMap (x =&gt; fibo)</code>, which returns a List that tries to
+expand infinite stream <code>fibo</code>, hence block your machine. The second
+mixture <code>slg</code> returns a Stream that expand the list <code>l</code>, hence,
+works well. Besides, I have to clarify one thing: different monads
+demonstrated above all accept <code>GenTraversableOnce</code> as parameter and
+return monad of their own type. That is why they can be mixed
+together and the first expression decides the type of the final
+output of for-expression.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> ScalaCheck &amp; ScalaTest</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+It is a tool for property-based testing for scala. It has <b>NO</b>
+external dependencies and integrated in the test frameworks
+<b>ScalaTest</b>. It can also be used standalone, with its built-in test
+runner.
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Tutorial of ScalaCheck</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+First, create a class that extends class
+<code>org.scalacheck.Properties</code> with the name of data object that you
+want to test. It is used for the library to generate test data to
+test your algorithm.
+</p>
+
+<p>
+Second, create test case by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java">property(<span style="color: #2aa198;">"NAME_OF_FUNCTION"</span>) = forAll{
+    CONTAINER_OF_DATA =&gt; TEST_CASE_WITH_TARGET_FUNCTION
+}
+</pre>
+</div>
+<p>
+<code>forAll</code> is the function <code>org.scalacheck.Prop.forAll</code>.
+</p>
+
+<p>
+Third, to run the tests, you can put the properties in
+<code>src/test/scala</code> then use test task to check them.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> ScalaTest</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+In the example provided by the oneline course, they used <b>JUnit</b>,
+<b>ScalaTest</b> and <b>ScalaCheck</b> together, which is much more complext
+than the tutorial. In their example, the class of <code>Properties</code> is
+in <code>src/main/scala</code> and is called by another class defined under
+<code>src/test/scala</code>. In the class under test folder, many instances
+of the <code>Properties</code> class are created to check different children
+classes of the target class.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">@RunWith</span>(<span style="color: #268bd2;">classOf</span>[JUnitRunner])
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckSuite</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">FunSuite</span> with Checkers {
+  <span style="color: #268bd2;">def</span> <span style="color: #b58900;">checkBogus</span>(p: Prop) {
+    <span style="color: #268bd2;">var</span> <span style="color: #6c71c4;">ok</span> = <span style="color: #268bd2;">false</span>
+    <span style="color: #859900;">try</span> {
+      check(p)
+    } <span style="color: #859900;">catch</span> {
+      <span style="color: #859900;">case</span> e: TestFailedException =&gt;
+        ok = <span style="color: #268bd2;">true</span>
+    }
+    assert(ok, <span style="color: #2aa198;">"A bogus heap should NOT satisfy all properties. Try to find the bug!"</span>)
+  }
+
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Binomial heap satisfies properties."</span>) {
+    check(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with BinomialHeap)
+  }
+
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (1) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus1BinomialHeap)
+  }
+
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (2) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus2BinomialHeap)
+  }
+
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (3) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus3BinomialHeap)
+  }
+
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (4) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus4BinomialHeap)
+  }
+
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (5) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus5BinomialHeap)
+  }
+}
+</pre>
+</div>
+<ul class="org-ul">
+<li>This class uses the junit framework for unittest. JUnit will
+invoke the class with <code>@RunWith</code> annotation (extend by type
+hierarchies) to run the tests. The annotation parameter in the
+example is a class of the type <code>JUnitRunner</code>. In fact, any class
+extends <code>Runner</code> is acceptabel. Notice that function <code>classOf</code>
+acts the same as <code>obj.getClass()</code>.
+</li>
+<li>The annotation uses class of <code>JUnitRunner</code> as parameter. This
+class is provided by scala-test framework.
+</li>
+<li>It is mentioned on <a href="http://www.scalatest.org/user_guide/using_the_scalatest_maven_plugin">ScalaTest Maven Plugin</a> that this annotaiton
+is necessary to run the test without this plugin. So you can run
+tests without this annotation by using this plugin.
+<ul class="org-ul">
+<li><b>Maven</b> Running tests with command <code>mvn test</code>. In fact, you
+<b>cannot</b> run the tests with the example above. <b>Solution</b> is
+to change the name <code>QuickCheckSuite</code> to <code>QuickCheckSuiteTest</code>
+or <code>TestQuickCheckSuite</code> or <code>QuickCheckSuiteTestCase</code> to run
+the tests. Even I did not explicitly specify plugin
+<code>surefire</code>, maven uses this plugin to run test with my
+configuration. By default, maven following name convertions
+when looking for tests to run. So I have to change the name or
+modify the <code>surefire</code> configuration to apply new name
+convertion rules.
+</li>
+<li><b>ScalaTest</b> plugin. <b>TODO</b>
+</li>
+</ul>
+</li>
+<li><code>org.scalatest.FunSuite</code> and <code>org.scalatest.prop.Checkers</code>.
+<b>TODO</b>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-28T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015-02-28-pom-configuration.html" itemprop="url">POM Configuration</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Identify our project</a></li>
+<li><a href="#sec-2">2. Inheritance</a></li>
+<li><a href="#sec-3">3. Tasks</a></li>
+</ul>
+</div>
+</div>
+
+<p>
+See example  <a href="http://maven.apache.org/guides/introduction/introduction-to-the-pom.html">POM Configuration</a>.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-02-28-pom-configuration.html"><span class="section-number-2">1</span> Identify our project</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Fully qualified name of project is
+&#8220;&lt;groupId&gt;:&lt;artifactId&gt;:&lt;version&gt;&#8221;. If <i>groupId</i> is a domain, it
+will be transformed into directory path while downloading. Download
+something with <i>groupId=org.X.A</i> from <i>url.com</i> will download
+things from <i>url.com/org/X/A</i> in the end.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Inheritance</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+When we have two projects, A and B, A is supposed to be parent
+project of B. You have to specify the <i>pom.xml</i> of project B to
+indicate that the <i>parent</i> of B is A with the <i>groupId</i>,
+<i>artifactId</i> and <i>version</i> of A. You can remove the <i>groupId</i> and
+<i>version of B to make A and B have the same /groupId</i> and
+<i>version</i>. One can also indicate the <code>&lt;relativePath&gt;</code> for parent
+project to put the A and B in the same directory level.
+</p>
+
+<p>
+B inherite the dependencies from A.所以parent用来继承POM,dependency
+用来解决代码依赖. <b>parent的项目在代码上没有关系.</b>
+</p>
+
+<p>
+The packages downloaded by <i>maven</i> are put under
+<i>HOME</i>.m2/repository/.
+</p>
+
+<p>
+所有 <i>POM.xml</i> 里面的元素都可以用 <code>${project.A.B.C}</code> 的方式进行引用.比
+方说如果在 <i>XML</i> 根路径下有这样的结构
+<code>&lt;A&gt;&lt;B&gt;lalala&lt;C&gt;blabla&lt;C/&gt;&lt;/B&gt;&lt;/A&gt;</code>, <code>${project.A.B.C}</code> 就等于
+<code>blabla</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Tasks</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+首先,maven可以使用一系列的plugin来支持各种功能,包括发布,运行测试等
+等.在使用 <code>spring-boot-maven-plugin</code> 的时候,可以用 <code>mvn
+   spring-boot:run</code> 来运行程序. <code>spring-boot</code> 应该是plugin的名字, <code>run</code>
+则是定义好的task. 在使用 <code>maven-scala-plugin</code> 的时候,如果加入以下设
+置
+</p>
+<div class="org-src-container">
+
+<pre class="src src-xml">&lt;<span style="color: #b58900;">executions</span>&gt;
+    &lt;<span style="color: #b58900;">execution</span>&gt;
+        &lt;<span style="color: #b58900;">goals</span>&gt;
+            &lt;<span style="color: #b58900;">goal</span>&gt;compile&lt;/<span style="color: #b58900;">goal</span>&gt;
+            &lt;<span style="color: #b58900;">goal</span>&gt;testCompile&lt;/<span style="color: #b58900;">goal</span>&gt;
+        &lt;/<span style="color: #b58900;">goals</span>&gt;
+    &lt;/<span style="color: #b58900;">execution</span>&gt;
+&lt;/<span style="color: #b58900;">executions</span>&gt;
+</pre>
+</div>
+<p>
+运行 <code>mvn scala:testCompile</code> 则只会编译test部分的代码.
+</p>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-28T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015-02-28-functional-programming-on-coursera.html" itemprop="url">Functional Programming on Coursera</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Lambda function</a></li>
+<li><a href="#sec-2">2. Type hierachy</a></li>
+<li><a href="#sec-3">3. Pattern match</a></li>
+<li><a href="#sec-4">4. Implicit</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Implicit Parameter</a></li>
+<li><a href="#sec-4-2">4.2. Implicit Function</a></li>
+<li><a href="#sec-4-3">4.3. Implicit Class</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Collections</a></li>
+<li><a href="#sec-6">6. Stream, Iterator, Generator and <code>lazy</code></a>
+<ul>
+<li><a href="#sec-6-1">6.1. Stream</a></li>
+<li><a href="#sec-6-2">6.2. Iterator</a></li>
+<li><a href="#sec-6-3">6.3. <code>lazy val</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-02-28-functional-programming-on-coursera.html"><span class="section-number-2">1</span> Lambda function</a></h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>function is value,
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">f</span> = (x:Int) =&gt; x*x
+</pre>
+</div>
+<p>
+One difference between <code>def f = ...</code> and <code>val f = ...</code> is: <code>def</code>
+is evaluated on call and returns a new function instance every
+time.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">val</span> <span style="color: #b58900;">test</span>: () =&gt; Int = {
+    println(<span style="color: #2aa198;">"val"</span>)
+    val r = <span style="color: #268bd2;">util</span>.Random.nextInt
+    () =&gt; r
+}
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">returns the same result every time you call test(),</span>
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">"val" will be printed after definition</span>
+
+<span style="color: #268bd2;">def</span> <span style="color: #b58900;">test</span>: () =&gt; Int = {
+    println(<span style="color: #2aa198;">"def"</span>)
+    val r = <span style="color: #268bd2;">util</span>.Random.nextInt
+    () =&gt; r
+}
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">returns the difference results every time you call test(),</span>
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">"def" will be printed every time you call it.</span>
+
+<span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">tt</span> = test
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">acts like the first example</span>
+
+val test = () =&gt; <span style="color: #268bd2;">util</span>.Random.nextInt
+def test = () =&gt; <span style="color: #268bd2;">util</span>.Random.nextInt
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">they are the same from behavior, you have to call the function by test()</span>
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">the def declaration actually defined a function that returns a function.</span>
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">if you type test without parenthesis, you will receive a function value.</span>
+
+def test = <span style="color: #268bd2;">util</span>.Random.nextInt
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">this line directly assign the test function to the nextInt function,</span>
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">you can call the function directly by name without the parenthesis</span>
+</pre>
+</div>
+<p>
+method/expression starts by <code>def</code> will be evaluated when you call
+<code>obj.f</code> while those starts by <code>val</code> will be evaluated
+once. In addition, if you declare a <code>val</code> that assigns to <code>def</code>,
+the <code>def</code> will be evaluated immediately, and the new <code>val</code> acts
+like the first case in the examples above.
+</p>
+</li>
+<li>Abbreviation:
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">l</span> = List(1,2,3)
+l.map((x) =&gt; x*x)
+l.map( x =&gt; x*x) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">ignore the parenthese</span>
+l.map( _ % 2 == 0) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">ignore the parameter, using the placeholder for expression</span>
+l.map(f(_)) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">using the placeholder for function</span>
+l.map(f) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">ignore the placeholder for function</span>
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Type hierachy</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+abstract class is like Java, trait is like interface in
+Java. However, trait can have parameters and defined methods. In
+addition, trait is not abstract class since it cannot has
+constructors.
+</p>
+<ul class="org-ul">
+<li>Logical problem: is List&lt;Parent&gt; the parent of List&lt;Childe&gt;?
+
+<p>
+It is not true for mutable collection.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">var</span> <span style="color: #6c71c4;">s</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Array</span>[Man](<span style="color: #859900;">new</span> <span style="color: #268bd2;">Man</span>())
+var t:Array[Human] = s
+t[0] = <span style="color: #859900;">new</span> <span style="color: #268bd2;">Woman</span>()
+var m:Man = s[0]<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">what is it? man or woman?</span>
+</pre>
+</div>
+<p>
+But we can use imutable collection.
+</p>
+</li>
+
+<li>Covariant, Contvariant, Invariant
+<ul class="org-ul">
+<li>Covariant: defined by Class&lt;+T&gt;, Class&lt;Parent&gt; is the parent of
+Class&lt;Child&gt;
+</li>
+
+<li>Contvariant: defined by Class&lt;-T&gt;, Function&lt;Parent&gt; is the
+child of Function&lt;Child&gt;
+</li>
+</ul>
+<p>
+The principle is: child type can do anything that can be done by
+parent type.
+</p>
+</li>
+
+<li>Check Rules and Boundary
+
+<p>
+To avoid conflict, the compile force the +T can only be used for
+returned type, the -T can only be used for argument type. A
+method to by pass this problem is using boundary.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">class</span> <span style="color: #268bd2;">List</span>&lt;+T&gt;{
+     <span style="color: #268bd2;">def</span> <span style="color: #6c71c4;">prepend</span>[U &gt;: T](<span style="color: #268bd2;">U</span> <span style="color: #6c71c4;">elem</span>)
+}
+</pre>
+</div>
+<p>
+Notice that in generic type definition, one can use <code>A&gt;:B</code> and
+<code>A&lt;:B</code> to add constraint to the meta type.
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Pattern match</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Case class enables you to make classes with different parameters
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">abstract</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">CodeTree</span>
+<span style="color: #859900;">case</span> <span style="color: #859900;">class</span> Fork(left: CodeTree, right: CodeTree, chars: List[Char], weight: Int) <span style="color: #859900;">extends</span> <span style="color: #268bd2;">CodeTree</span>
+<span style="color: #859900;">case</span> <span style="color: #859900;">class</span> Leaf(<span style="color: #268bd2;">char</span>: Char, weight: Int) <span style="color: #859900;">extends</span> <span style="color: #268bd2;">CodeTree</span>
+</pre>
+</div>
+<p>
+For the classes listed above, you cannot directly access to any
+paramter (field) of <code>Fork</code> or <code>Leaf</code>. You have to use <code>case
+   Fork(a,b,_,_)</code> to access to the paramters.
+</p>
+
+<p>
+<code>case</code> match can also be used in lambda function as a short
+version.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java">List.map(p =&gt; p._1 * p._2)
+
+List.map({<span style="color: #859900;">case</span> (x,y) =&gt; x * y})
+<span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">List.map{case (x,y) =&gt; x * y} also works</span>
+</pre>
+</div>
+
+<p>
+Option calsss used for the condition that the returned type can be
+empty/null, etc.
+</p>
+
+<p>
+If you want to match a variable in context, you have to weither use
+a capitalized variable name <code>Variable</code> or wrap it by backticks
+<code>`variable`</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Implicit</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Implicit Parameter</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Implicit parameter looks similar to default parameter, but their
+principles are completely different. Default parameter has a
+default value to be used when the parameter is not given. Implicit
+parameter will search the context to get an appropriate
+value/variable as parameter.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">abstract</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">Logger</span> {<span style="color: #268bd2;">def</span> <span style="color: #b58900;">log</span>(s: String)}
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">FileLogger</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Logger</span> {
+  <span style="color: #268bd2;">def</span> <span style="color: #b58900;">log</span>(s: String) {println(<span style="color: #2aa198;">"Log in file: "</span> + s)}
+}
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">StdoutLogger</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Logger</span> {
+  <span style="color: #268bd2;">def</span> <span style="color: #b58900;">log</span>(s: String) {println(<span style="color: #2aa198;">"Stdout: "</span> + s)}
+}
+
+<span style="color: #268bd2;">def</span> <span style="color: #b58900;">Add</span>(a: Int, b: Int)(<span style="color: #268bd2;">implicit</span> <span style="color: #6c71c4;">logger</span>: Logger) {
+  <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">sum</span> = a + b
+  logger.log(<span style="color: #2aa198;">"%d + %d = %d"</span>.format(a, b, sum ))
+}
+
+<span style="color: #268bd2;">implicit</span> <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">log</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">FileLogger</span>
+
+Add(1,2)
+Add(2,3)(<span style="color: #859900;">new</span> <span style="color: #268bd2;">StdoutLogger</span>) <span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">you may do it explicitly</span>
+</pre>
+</div>
+<p>
+If there is no <code>implicit val log = new FileLogger</code>, the compiler
+will report error. <i>It is similar to injection by type.</i>
+</p>
+
+<p>
+Question: what if there are two possible candidates in the context?
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Implicit Function</h3>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Implicit Class</h3>
+</div>
+</div>
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Collections</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>List is a chain while Vector is a tree that each node is an array
+that contains 32 elements. Vector groups in depth slowly
+<code>log_{32}(N)</code>. Important functions: <code>map</code>, <code>filter</code>,
+<code>reduceRight</code>, <code>reduceLeft</code>, <code>foldRight</code>, <code>foldLeft</code>, <code>flatten</code>,
+<code>flatMap</code>, <code>take</code>, <code>drop</code>, <code>takeWhile, =dropWhile</code>, <code>span</code>,
+<code>group</code>, <code>groupBy</code>.
+
+<p>
+Sequence as parameter list is represented by <code>this(par: T*)</code>.
+</p>
+</li>
+<li>Map.
+<ul class="org-ul">
+<li>The <code>+</code> and <code>++</code> operations overwrite the existing key.
+</li>
+<li>Initialized by <code>Map(k1-&gt;v1, k2-&gt;v2, k3-&gt;v3)</code>
+</li>
+
+<li>Set default value by <code>withDefaultValue</code>, this function returns
+a new map (everything in this course are immutable).
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Stream, Iterator, Generator and <code>lazy</code></h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Stream</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Stream, acts like sequence, but it does not evaluate until be
+called. It can be used to ignore unecessary computation and coding
+infinite concepts.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">fibo</span>:Stream[Int] = 1 #:: 1 #:: fibo.zip(fibo.tail).map(x=&gt;x._1+x._2)
+println(fibo.take(10).toList)
+
+def from(n: Int): Stream[Int] = n #:: from(n+1) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">infinite integer stream starts from n</span>
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">recursive stream</span>
+def sieve(s: Stream[Int]): Stream[Int] =
+   s.head #:: sieve(s.<span style="color: #268bd2;">tail</span> <span style="color: #6c71c4;">filter</span> (_ % s.head !=0)) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">stream of primes &#36136;&#25968;</span>
+
+val primes = sieve(from(2))
+primes.take(10).toList <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">the first 10 primes starts from 2.</span>
+</pre>
+</div>
+
+<p>
+Three ways of using stream
+</p>
+<ul class="org-ul">
+<li>Transform from other collections, then you use functions like
+map, etc. to generate new stream.
+</li>
+<li><code>elem #:: Stream</code>
+</li>
+<li>Transform from iterator, use for loop to create an iterator with
+what you want and then convert it into a stream.
+</li>
+</ul>
+
+<p>
+Because Stream has consistent API as List/Seq/Vector, you can use
+it as if you have a collection that contains everything.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Iterator</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+The difference between stream and iterator is stream memories the
+values while iterator doesn&#8217;t.
+</p>
+
+<p>
+Iterator can be used in for-expression. For-expression can
+also use <b>pattern match</b>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">for</span>{ pattern(x) &lt;- seq; pattern2(y) = x(k); ...} yield ...
+</pre>
+</div>
+<p>
+As show in the example above, you can apply pattern to loop on the
+elements of sequence, you can even add some simple statements in
+the for-expression. It is equivalent to:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java">seq.withFilter({<span style="color: #859900;">case</span> pattern(x) =&gt; <span style="color: #268bd2;">true</span>; <span style="color: #859900;">case</span> _ =&gt; <span style="color: #268bd2;">false</span>})
+   .map({<span style="color: #859900;">case</span> pattern(x) =&gt; x(k)})
+   .withFilter({<span style="color: #859900;">case</span> pattern2(y) =&gt; <span style="color: #268bd2;">true</span>; <span style="color: #859900;">case</span> _ =&gt; <span style="color: #268bd2;">false</span>})
+   .map({<span style="color: #859900;">case</span> pattern2(y) =&gt; y})
+   ...
+</pre>
+</div>
+<p>
+The function <code>withFilter</code> returns a <code>FilterMonadic</code>, which
+provides four functions <code>flatMap</code>, <code>map</code>, <code>foreach</code>,
+<code>withFilter</code>. It works like list of call backs in programming
+point of view.
+From wikipedia:
+/In functional programming, a monad is a structure that represents computations defined as sequences of steps: a type with a monad structure defines what it means to chain operations, or nest functions of that type together.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> <code>lazy val</code></h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+<code>lazy val</code> is only evaluated once when called. You can also define
+a lazy parameter by <code>def myFUnc[T](param: =&gt; T)</code>, then the
+parameter will be evaluated when it is called in <code>myFunc</code> if the
+param is returned by an expression/function.
+</p>
+</div>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-17T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -144,7 +1156,8 @@
 <li><a href="#sec-3-2-2">3.2.2. Nested Sets</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-3">3.3. Others</a></li>
+<li><a href="#sec-3-3">3.3. Index</a></li>
+<li><a href="#sec-3-4">3.4. Others</a></li>
 </ul>
 </li>
 </ul>
@@ -326,8 +1339,70 @@ indicators.
 </div>
 
 <div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Others</h3>
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Index</h3>
 <div class="outline-text-3" id="text-3-3">
+<p>
+One of the main benefit of indexing is sorting, the application
+can quickly find the matched document by traveling through the
+ordered indices very quickly
+</p>
+<ul class="org-ul">
+<li>Single field index
+</li>
+<li>Compound key index<br  />
+      Note that if one set compound index by
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.ensureIndex<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>key1: 1, key2: -1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+It can help the <code>sort</code> funciton using <code>{key1: 1, key2: -1}</code>,
+<code>{key1: -1, key2: 1}</code>, but cannot help sorting with the key
+<code>{key1: 1, key2: 1}</code>.
+</p>
+</li>
+<li>Multi-key index<br  />
+      It refers to using array as index. You cannot using compound key
+for two arrays.
+</li>
+<li>Hased index<br  />
+      It is not compatible with multi-key index.
+</li>
+<li>Geospatial index<br  />
+      This index is used to index the geometric data, such as lines,
+points, shapes.
+</li>
+<li>Text index<br  />
+      Support text search with language stop words, will use very
+large space.
+</li>
+<li>Hashed index<br  />
+      Compute the hash for entire document while <b>??collapse??</b> the
+sub-document.
+</li>
+</ul>
+
+<p>
+Index also support properties like:
+</p>
+<ul class="org-ul">
+<li><i>TTL</i> index is used to remove outdated index
+</li>
+<li><i>Uniqu</i> index, which reject duplicate value of indexed filed for all the document. ??Can we use it to ensure that
+elements in array has unique value in document (can be repeat in
+different document)??
+</li>
+<li><i>Sparse</i> index, documents without the field are not indexed. By
+default, these documents will be indexed to null.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Others</h3>
+<div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Atomic operation
 <code>update</code>, <code>findAddUpdate</code>, <code>remove</code> are atomic. Put fields in one
@@ -426,6 +1501,7 @@ database name).
 <li><a href="#sec-5">5. Remove</a></li>
 <li><a href="#sec-6">6. Commands</a></li>
 <li><a href="#sec-7">7. Query Cursor Methods</a></li>
+<li><a href="#sec-8">8. MapReduce</a></li>
 </ul>
 </div>
 </div>
@@ -522,19 +1598,39 @@ This projection will returns all the elments with the path
 </div>
 <p>
 <code>$elemMatch</code> can be used in the second argument to limit the
-returned elements in array. However, it cannot be used in nested
-array.
+returned elements in array. However, it <b>CANNOT</b> be used in nested
+array and only returns the <b>FIRST</b> element.
 </p>
 </li>
 <li>get elements in nested array.
 
 <p>
 <b>Aggregation framework/unwind.</b>
+Aggregations are operations that process data records and return
+computed results.
+<b>Pipeline</b>
+</p>
+
+<p>
+You can expand the nested arrays by several <code>$unwind</code>
+operations to get a large number of documents that each one
+contains a single combination of elements in different levels
+of nested arrays. Then match the elements you need and maybe
+regroup them together. However, if you want to aggregate the
+matched elements in nested arrays into array after <code>$unwind</code>
+operation, it is very complex.
+</p>
+
+<p>
+However, you can just return the tasks by <code>$group</code> operation
+that matches, for example, the nested element attributes.
 </p>
 </li>
 </ul>
 </div>
 </div>
+
+
 
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4"><span class="section-number-2">4</span> Update</h2>
@@ -594,9 +1690,20 @@ If you want to update multiple elments, use forEach function.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">x=db.COLLECTION.findOne<span style="color: #657b83;">(</span>...<span style="color: #657b83;">)</span>;
-x.name1.forEach<span style="color: #657b83;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">obj</span><span style="color: #2aa198;">){</span>obj.name2=value;<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
-db.COLLECTION.save<span style="color: #657b83;">(</span>x<span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">db.Projects.find<span style="color: #657b83;">()</span>.forEach<span style="color: #657b83;">(</span>
+    <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">pj</span><span style="color: #2aa198;">){</span>
+        pj.groups.forEach<span style="color: #b58900;">(</span>
+            <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">gp</span><span style="color: #859900;">){</span>
+                gp.tasks.forEach<span style="color: #268bd2;">(</span>
+                    <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">task</span><span style="color: #657b83;">){</span>
+                        <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>task.name.match<span style="color: #b58900;">(</span><span style="color: #2aa198;">/update/</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">){</span>
+                            task.weight=5;
+                        <span style="color: #2aa198;">}</span>
+                    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;
+            <span style="color: #859900;">}</span><span style="color: #b58900;">)</span>;
+        db.Projects.save<span style="color: #b58900;">(</span>pj<span style="color: #b58900;">)</span>;
+    <span style="color: #2aa198;">}</span>
+<span style="color: #657b83;">)</span>
 </pre>
 </div>
 </li>
@@ -647,7 +1754,8 @@ remove all documents when condition is not provided.
 <li>remove database
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #657b83;">{</span>dropDatabase: 1<span style="color: #657b83;">}</span>
+<pre class="src src-javascript">use DATABASE
+db.dropDatabase<span style="color: #657b83;">()</span>
 </pre>
 </div>
 </li>
@@ -703,6 +1811,37 @@ value can be 1, &#8220;&#8221;, true/false.
 <li><code>sort()</code>
 </li>
 <li><code>toArray()</code>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> MapReduce</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.mapReduce<span style="color: #657b83;">(</span>mapFunction,
+                        reduceFunction,
+                        <span style="color: #2aa198;">{</span>
+                            query: <span style="color: #2aa198;">"query performed at the beginning"</span>,
+                            out: <span style="color: #2aa198;">"out collection name"</span>,
+                            finalize: finalizeFunction
+                        <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+Query -&gt; map -&gt; reduce -&gt; finalize -&gt; out.
+</p>
+<ul class="org-ul">
+<li>The <i>reduce</i> function muse return object with the same type of the output
+of the <i>map</i> function.
+</li>
+<li>The order of emited elements should not affect the output of
+reduce function.
+</li>
+<li>The reduce function must be <i>Idempotent</i>, which means
+<i>f(f(x))=f(x)</i>.
 </li>
 </ul>
 </div>
@@ -1993,1446 +3132,11 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-18T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-12-18-drilljava.html" itemprop="url">Drill的Java后端</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. 环境与配置加载</a>
-<ul>
-<li><a href="#sec-1-1">1.1. 配置文件</a></li>
-<li><a href="#sec-1-2">1.2. 获取配置内容</a></li>
-<li><a href="#sec-1-3">1.3. 根据配置进行渲染</a></li>
-</ul>
-</li>
-<li><a href="#sec-2">2. 持久化</a></li>
-<li><a href="#sec-3">3. 业务层</a>
-<ul>
-<li><a href="#sec-3-1">3.1. Controller</a>
-<ul>
-<li><a href="#sec-3-1-1">3.1.1. <code>AccountResource</code></a></li>
-<li><a href="#sec-3-1-2">3.1.2. <code>UserResource</code></a></li>
-</ul>
-</li>
-<li><a href="#sec-3-2">3.2. Service</a></li>
-<li><a href="#sec-3-3">3.3. DTO</a></li>
-</ul>
-</li>
-<li><a href="#sec-4">4. Security</a>
-<ul>
-<li><a href="#sec-4-1">4.1. <code>SecurityContextHolder</code></a></li>
-<li><a href="#sec-4-2">4.2. <code>UserDetails</code></a></li>
-<li><a href="#sec-4-3">4.3. <code>GrantedAuthority</code></a></li>
-<li><a href="#sec-4-4">4.4. 其它</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<p>
-Java后端负责业务逻辑,数据持久化(数据库),安全等等.目前接触到的内容有
-账号注册登录管理,本地化设置等等.将整个后端当做一个应用,那么在主目录
-下有一个 <code>Application.java</code> 类作为整个应用的入口.这个类最基本的应用需要
-<code>@ComponentScan</code> 和 <code>@EnableAutoConfiguration</code> 两个标签来声明自动配
-置和扫描组件;同时在 <code>main</code> 函数里实例化一个 <code>SpringApplication</code> 对象
-并调用对象函数 <code>run()</code> 就行了. 目前的程序里还用
-<code>app.setAdditionalProfiles</code> 在没有命令行参数的时候默认加载dev配置.
-</p>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-12-18-drilljava.html"><span class="section-number-2">1</span> 环境与配置加载</a></h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 配置文件</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-<code>SpringApplication</code> 会自动搜索以下路径来寻找
-<code>application.properties</code> 作为配置文件.
-</p>
-<ol class="org-ol">
-<li>当前路径下地 <code>/config</code> 子文件夹
-</li>
-<li>当前路径
-</li>
-<li><code>classpath:/config</code>
-</li>
-<li><code>classpath</code>
-</li>
-</ol>
-<p>
-同时,SpringApplication还支持 <font
-    color='blue'>YAML</font> 文件,即 <i>applicaiton.yml</i>.
-函数 <code>SpringApplication.setAdditionalProfiles("dev")</code> 则会额外加载
-<i>application-dev.yml</i> (或者 <i>application-dev.properties</i>), 而不是
-<i>dev.yml</i>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 获取配置内容</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-当我们有类继承了EnvironmentAware这个接口的时候,框架会自动调用这个类
-的 <code>setEnvironment</code> 方法,将一个 <code>Environment</code> 对象交给这个类的对象
-从而使这个类获得配置文件中提供的参数. <code>LocaleConfiguration</code> 和
-<code>MailConfiguration</code> 两个类展示了相关的编程方法.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {
-        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);
-    }
-}
-</pre>
-</div>
-
-<p>
-另一种方法是直接 <code>@Inject</code> 一个 <code>Environment</code> 的对象.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailService</span> {
-    <span style="color: #268bd2;">@Inject</span>
-    <span style="color: #859900;">private</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;
-}
-</pre>
-</div>
-<p>
-<b><font color='red'>&lt;&#x2013;这种方法跟之前所介绍的有什么区别,暂时不知道.&#x2013;&gt;</font></b>
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 根据配置进行渲染</h3>
-<div class="outline-text-3" id="text-1-3">
-<p>
-<code>LocalResolver</code> 和 <code>Interceptor</code>. 在接受请求的时候, <code>Interceptor</code>
-拦截请求中特定的参数值,并且调用 <code>LocalResolver</code> 的函数来进行相关渲
-染处理.在 <code>LocaleConfiguration</code> 中,龙伟权通过定义Bean来指定特定的
-<code>LocalResolver</code>, 即 <code>AngularCookieLocaleResolver</code>.
-</p>
-
-<p>
-问题:
-</p>
-<ol class="org-ol">
-<li><code>LocaleConfiguration</code> 和 <code>ThymeleafConfiguration</code> 都有方法返回
-<code>MessageSource</code>, <code>MailService</code> 里面貌似引用的是
-<code>LocaleConfiguration</code> 返回的对象,为什么?
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 持久化</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-对象的关联问题.Mongodb本身作为NoSql的典范,内部以文件和类似json的数
-据形式来储存数据.Mongodb中一个Document可以看做关系数据库中的一行数
-据,一个Repository可以看做关系数据库中的一个表(table).目前我们有三个
-标记为 <code>@Document</code> 的类 <code>PersistentToken,Task,User</code> 和对应的
-<code>Repository</code> 类.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 业务层</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Controller</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-控制器类都在org.team.drill.web下面,统一以 <i>XXXResource</i> 命名.
-</p>
-</div>
-<div id="outline-container-sec-3-1-1" class="outline-4">
-<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> <code>AccountResource</code></h4>
-<div class="outline-text-4" id="text-3-1-1">
-<ul class="org-ul">
-<li>registerAccount
-注册账户,接受新账户信息,验证账户,创建账户,发送激活邮件.
-</li>
-<li>activateAccount
-激活账户,通过激活key来确定当前User.
-</li>
-<li>isAuthenticate
-这个什么时候会用到?
-<ul class="org-ul">
-<li>HttpServletRequest request.getRemoteUser()
-</li>
-</ul>
-</li>
-<li>getAccount
-这个貌似是浏览账户信息的时候用, 返回 <i>UserDTO</i>
-</li>
-<li>saveAccount
-这个是修改用户信息用, email 地址必须唯一
-</li>
-<li>changePassword (newPassword)
-这个是修改用户密码用
-</li>
-<li>getCurrentSession
-貌似是获得所有当前用户的登录记录(多地自动登录产生多个记录)
-</li>
-<li>invalideSession
-取消某个登录记录(已登录)
-</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-sec-3-1-2" class="outline-4">
-<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> <code>UserResource</code></h4>
-<div class="outline-text-4" id="text-3-1-2">
-<ul class="org-ul">
-<li>getUser
-通过String login获取user, 直接返回 <i>User</i>
-</li>
-</ul>
-
-<p>
-登录功能是在 <i>SecurityConfig</i> 中间接实现的.
-</p>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Service</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-<i>Service</i> 里面通过 <i>SecurityContextHolder</i> 来获取当前用户.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> DTO</h3>
-<div class="outline-text-3" id="text-3-3">
-<p>
-位于 <i>web.dto</i> 包下面的 <code>UserDTO</code> 类型,似乎是用来作为JS交互的数据
-对象?但是内容上跟 <i>domain</i> 里的 <code>User</code> 差不多,用来保证安全.在更复
-杂的应用环境中有用.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Security</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-不论是Service还是Resource,都是靠 <code>SecurityUtils.getCurrentLogin()</code>
-来获取当前用户的.那么问题来了,SecurityUtils如何知道当前用户是谁?
-</p>
-<div class="org-src-container">
-
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">final</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityUtils</span> {
-
-    <span style="color: #859900;">private</span> <span style="color: #b58900;">SecurityUtils</span>() {
-    }
-
-    <span style="color: #d33682;">/**</span>
-<span style="color: #d33682;">     * Get the login of the current user.</span>
-<span style="color: #d33682;">     */</span>
-    <span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {
-        <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();
-        <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();
-        <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;
-        <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;
-
-        <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {
-            <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {
-                springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();
-                userName = springSecurityUser.getUsername();
-            } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {
-                userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();
-            }
-        }
-
-        <span style="color: #859900;">return</span> userName;
-    }
-}
-</pre>
-</div>
-</div>
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> <code>SecurityContextHolder</code></h3>
-<div class="outline-text-3" id="text-4-1">
-<p>
-包含安全上下文信息,并且默认为/ThreadLocal/,即对于一个线程采用一
-个统一的安全上下文信息.同时,=SecurityContextHolder= 中还储存了当前
-与App进行交互的主体(<i>principal</i>)的详情,用 <code>Authentication</code> 对象来表
-示.上面的代码示例中体现的是获取当前用户信息的标准用法.
-</p>
-
-<p>
-<b><font color='red'>&lt;&#x2013;spring应用内部线程到底是如何管理
-的?&#x2013;&gt;</font></b>
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> <code>UserDetails</code></h3>
-<div class="outline-text-3" id="text-4-2">
-<p>
-在以上代码片段中我们可以看到一个特殊的类 <code>UserDetails</code>,在获取当前主
-体的时候,返回的可能是一个 <i>String</i> 或者一个 <i>UserDetails</i> 的对象.那
-么这个/UserDetails/到底是什么东西,为什么它的方法 <code>getUsername()</code> 刚
-好能包含我们的 <code>User</code> 类所需的 <i>login</i>?
-</p>
-
-<p>
-<i>UserDetails</i> 是一个接口,包含了 <code>getPassword()</code>, <code>getUsername()</code> 等
-一系列方法. 在 <i>UserDetails</i> 中加入我们定义的 <i>login</i>,这是靠实现
-<code>UserDetailsService</code> 接口来做到的. 这个接口只包含一个方法,这个方法
-接受一个 <i>String</i> 参数,并返回一个实现了 <code>UserDetails</code> 接口的对象.目
-前在org.team.drill.security包中的 <code>UserDetailsService</code> 类里面,龙伟
-权实现了这个方法,并且将 <code>org.team.drill.domain.User</code> 的 <i>login</i> 包
-装到实现了 <i>UserDetails</i> 接口的
-<code>org.springframework.security.core.userdetails.User</code> 类中.
-</p>
-
-<p>
-到这里,我试着把 <i>SecurityContextHolder</i> 到 <i>UserDetails</i> 串起来. 个
-人认为,在通过
-<code>SecurityContextHolder.getContext().getAuthentication().getPrincipal()</code>
-来获取 <i>UserDetails</i> 的时候,spring通过调用实现了
-<code>org.springframework.security.core.userdetails.UserDetailsService</code>
-接口的对象的方法来尝试获取 <i>UserDetails</i>, 这个方法本身接受一个
-String参数. <font color='red'>又绕回来了,这个String参数是
-从哪来的?依靠http协议?还是session?</font>
-因为某种原因,
-<i>getPrincipal</i> 方法返回的是一个 <i>Object</i>,那么实际上给出了一种可能性,就
-是通过某个实现了 <i>UserDetails</i> 的类使用额外的业务逻辑.我们可以创建
-一个实现了 <i>UserDetals</i> 的类 <b>A</b>,在 <i>UserDetailsService</i> 中返回 <b>A</b>
-的对象,然后将 <i>getPrincipal()</i> 返回的对象强制转换为 <b>A</b> 并调用相关
-方法.当然,强制转换类型总是有风险的.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> <code>GrantedAuthority</code></h3>
-<div class="outline-text-3" id="text-4-3">
-<p>
-<code>Authentication</code> 提供两个重要的方法,第一个是上面说过的
-<i>getPrincipal</i>,另一个则是 <i>getAuthorities</i> .它返回一个
-<i>GrantedAuthoriy</i> 对象数组.顾名思义,这是用来管理用户权限的.在
-<i>UserDetailsService</i> 里面进行加载.目前drill中加载的是
-<code>SimpleGrantedAuthority</code> 数组,每个 <i>SimpleGrantedAuthority</i> 里面包
-含一个字符串,代表某种权限(自定义于
-<code>org.team.drill.security.Authority</code> 中).
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> 其它</h3>
-<div class="outline-text-3" id="text-4-4">
-<p>
-用 <code>random.nextBytes</code> 来产生 <i>PersistentToken</i> 的序列号,不怕重复?
-虽然16位Byte确实已经很大(10亿的4次方).
-</p>
-</div>
-</div>
-</div>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-11-26T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-11-26-parallelism.html" itemprop="url">Parallelism</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. Installation</a>
-<ul>
-<li><a href="#sec-1-1">1.1. Local Machine</a></li>
-<li><a href="#sec-1-2">1.2. Virtual Machine</a></li>
-</ul>
-</li>
-<li><a href="#sec-2">2. Ocatve</a>
-<ul>
-<li><a href="#sec-2-1">2.1. Run octave code with mpi.</a></li>
-<li><a href="#sec-2-2">2.2. Programming</a></li>
-<li><a href="#sec-2-3">2.3. Summary</a></li>
-</ul>
-</li>
-<li><a href="#sec-3">3. C</a></li>
-<li><a href="#sec-4">4. Performance Comparison</a></li>
-</ul>
-</div>
-</div>
-<p>
-In this article, I will introduce the installation and basic use of MPI
-framework through octave. Matlab is widely used in many scientific
-domains as it enables the developers focus on the algorithms other
-than programming skills. However, the support of parallelism computing
-from Matlab is limited and expensive, especially for computing on
-clusters. Currently, two parallelism frameworks are widely used: MPI
-(Message Passage Interface) and MapReduce. Hadoop, which is an Java
-implementation of MapReduce, does not currently support Matlab or
-Octave. Therefore, I choose the MPI + Octave as a parallelism solution
-for Matlab users.
-</p>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-11-26-parallelism.html"><span class="section-number-2">1</span> Installation</a></h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Local Machine</h3>
-<div class="outline-text-3" id="text-1-1">
-<ul class="org-ul">
-<li>Install open-mpi.
-<ul class="org-ul">
-<li>On Mac OS X with homebrew, <code>brew install open-mpi</code>
-</li>
-<li>On Ubuntu, the direct way is install the packages via package
-manager <code>sudo apt-get install openmpi-bin openmpi-common
-        openmpi-checkpoint libopenmpi-dev libopenmpi-X.X</code>. However,
-the OpenMPI installed through this method does not work with
-the octave-mpi package due to a library linkage problem. A
-fast cue is compiling and installing it manually with specific
-configurations.
-Download the openmpi package <a href="http://www.open-mpi.org/software/ompi/v1.8/">openmpi-1.8.3.tar.gz</a>.
-<div class="org-src-container">
-
-<pre class="src src-bash">tar xzvf openmpi-1.8.3.tar.gz
-cd openmpi-1.8.3
-./configure --dsiable-dlopen
-make
-sudo make install
-</pre>
-</div>
-</li>
-</ul>
-</li>
-<li>Install octave
-<ul class="org-ul">
-<li>On Mac OS X with homebrew
-<ol class="org-ol">
-<li>install XQuartz from image file downloaded from <a href="http://xquartz.macosforge.org/landing/">http://xquartz.macosforge.org/landing/</a>.
-</li>
-<li><code>brew tap homebrew/science</code>
-</li>
-<li>install gfortran <code>brew install gcc</code>
-</li>
-<li><code>brew install octave</code>
-</li>
-</ol>
-</li>
-<li>On Ubuntu
-<code>sudo apt-get install octave</code>
-</li>
-</ul>
-</li>
-<li>Install octave mpi package
-<ul class="org-ul">
-<li>Inside octave
-<div class="org-src-container">
-
-<pre class="src src-octave">putenv (<span style="color: #2aa198;">"PATH"</span><span style="color: #6c71c4;">,</span> [<span style="color: #2aa198;">"path/to/mpic++/:"</span> getenv(<span style="color: #2aa198;">"PATH"</span>)]) <span style="color: #93a1a1; font-style: italic;">% optional</span>
-pkg install <span style="color: #6c71c4;">-</span>forge mpi      <span style="color: #93a1a1; font-style: italic;">% install mpi from internet or</span>
-pkg install PATH<span style="color: #6c71c4;">/</span>TO<span style="color: #6c71c4;">/</span>PACKAGE <span style="color: #93a1a1; font-style: italic;">% install mpi from downloaded package</span>
-</pre>
-</div>
-</li>
-<li>Through package manager in Ubuntu (deprecated), run <code>apt-get
-        install octave-openmpi-ext</code>. As the pakcage manager could
-automatically install the OpenMPI package, which does not work
-with the octave-mpi actually, we suggest do NOT use this
-method.
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Virtual Machine</h3>
-</div>
-</div>
-
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Ocatve</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Run octave code with mpi.</h3>
-<div class="outline-text-3" id="text-2-1">
-<ul class="org-ul">
-<li>First way is run code from shell/terminal/ssh.
-<div class="org-src-container">
-
-<pre class="src src-bash">mpirun [OPTIONS] octave -q --eval '[octave code, function or script name]'
-</pre>
-</div>
-</li>
-<li>Second way is call the system command inside octave.
-<div class="org-src-container">
-
-<pre class="src src-octave">system (<span style="color: #2aa198;">"mpirun octave -q --eval '[octave code, function or script name]"</span>)<span style="color: #6c71c4;">;</span>
-</pre>
-</div>
-</li>
-<li>Octave mpi package contains some simple examples to show you
-how to write the octave code that enables the parallelism via
-MPI. These codes are in two possible locations if you install
-the octave mpi package globally:
-<ul class="org-ul">
-<li><code>/usr/share/doc/octave-mpi/examples/</code>
-</li>
-<li><code>/usr/share/octave/packages/mpi-1.2.0/</code>
-</li>
-</ul>
-<p>
-If you install the package under user&#8217;s home folder, you can
-find exmaple codes under <code>$HOME/octave/packages/mpi-1.2.0/</code>. To
-test the example inside octave, run command
-<code>[info res] = system ("mpirun octave -q --eval 'pkg load mpi; helloworld
-       ()'");</code>. <b>The displayed string of the funciton, e.g. <code>helloworld()</code>, will return by this invokation. Therefore your can embed it in another
-serial computing octave script context (use str2num()).</b>
-</p>
-</li>
-<li>Frequently used mpirun options: <code>--hostfile</code> indicate the file
-that contains the hostnames of cluster; <code>-np</code> number of
-processes to run.
-</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Programming</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-The interface provided by octave mpi package is a subset of all
-MPI functions.
-</p>
-
-<p>
-Example 1, basic example about initializing the environment, send
-and receive messages/variables. Basically, these functions are
-enough to create the parallelism program.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-octave">MPI_Init()<span style="color: #6c71c4;">;</span>
-communicator <span style="color: #6c71c4;">=</span> MPI_Comm_Load(<span style="color: #2aa198;">"a label string"</span>) <span style="color: #93a1a1; font-style: italic;">% one can use multiple communicators indicated by different label</span>
-my_rank <span style="color: #6c71c4;">=</span> MPI_Comm_rank(communicator) <span style="color: #93a1a1; font-style: italic;">% rank is the indicator(id) of current process</span>
-p <span style="color: #6c71c4;">=</span> MPI_Comm_size(CW) <span style="color: #93a1a1; font-style: italic;">% the size of a communicator is the number of processes handled by the communicator</span>
-[info] <span style="color: #6c71c4;">=</span> MPI_Send(value<span style="color: #6c71c4;">,</span> ranks<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)<span style="color: #6c71c4;">;</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  a octave variable</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">ranks:  a vector that contains the id of destination processes, can be an integer</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">TAG:    an integer to identify the message (when there are many messages sent in the same context)</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">info:   an integer that indicates the success of failure state of process</span>
-[value<span style="color: #6c71c4;">,</span> info] <span style="color: #6c71c4;">=</span> MPI_Recv(source<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">source: the id the process that send this message</span>
-<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">receive from any process if source is -1</span>
-<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">process starts from 0 and process 0 is usually used as master process</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  received variable</span>
-MPI_Finalize()
-</pre>
-</div>
-
-<p>
-Process sequence control functions:
-</p>
-<ul class="org-ul">
-<li>Function <code>MPI_Barrier(communicator)</code> will block the process until
-all the processes reached this location.
-</li>
-
-<li>Function <code>MPI_Probe(RANK, TAG, COMM)</code> test if process [RANK] send
-a message with TAG from communicator COMM. Block the process if
-no message arrive.
-</li>
-
-<li>Function <code>MPI_Iprobe(RANK, TAG, COMM)</code> test if process [RANK] send
-a message with TAG from communicator COMM. NOT block the process
-if no message arrive.
-</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Summary</h3>
-<div class="outline-text-3" id="text-2-3">
-<p>
-If you run the octave with MPI, you will find multiple octave
-processes in the process monitor. Once you run your MPI program,
-multiple clones of your program are craeted. Each of them is a
-full clone, <i>which means the content before <code>MPI_Init</code> or
-<code>MPI_Finalize</code> will be run in each process</i>. You can test it by
-putting some random function before <code>MPI_Init</code> and see the
-result. So, if you have a complex application and only want to use
-MPI to accelerate a specific function, you should call the MPI
-program as a independent application and get the result in
-indirect way. For example, you can write the result into a file
-and read it in your main application. But that would require a
-distributed file system, which is out of the range of this article.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> C</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-The MPI interface for C language is much more powerful than that
-for octave. But basically, it follows the same procedure:
-initializing MPI environment (world), communication with process id
-and message tag. I recommend the tutorial from
-[<a href="https://computing.llnl.gov/tutorials/mpi/">https://computing.llnl.gov/tutorials/mpi/</a>] as a learning
-material. It provides many exercises for basic features of MPI in
-C.
-</p>
-
-<p>
-Compile C source file using the command below, for more options,
-please check the document of the version you installed.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-bash">mpicc [YOUR_C_SOURCE_FILE]
-</pre>
-</div>
-
-<ul class="org-ul">
-<li>Point-to-point communication
-<ul class="org-ul">
-<li>blocked
-<code>MPI_Send(buffer,count,type,dest,tag,comm)</code>
-<code>MPI_Recv(buffer,count,type,source,tag,comm, status)</code>
-<ul class="org-ul">
-<li><b>buffer</b>
-Buffer is the variable you want to send or you want to
-receive the data. In C, you have to pass the buffer by
-reference <code>&amp;var</code>.
-</li>
-<li><b>count</b>
-Count is the number of data element to be sent since with the
-address/reference you send, the reciever can read an array.
-</li>
-<li><b>type</b>
-MPI defiend series of data types for each C type. These types
-are used for transfering between processes (on network for
-clusters).
-</li>
-<li><b>dest/source</b>
-The id (rank) of process you want to send or you want to
-receive from.
-</li>
-<li><b>tag</b>
-Tag is used to identify the data you received. Since MPI is
-an interface that can be used to transfer data through
-network, it is possible that the data you send later arrives
-earlier. If the processes of your MPI application have to
-communicate multiple times, tag is necessary to receive the
-data and execute on them in correct order.
-</li>
-<li><b>comm</b>
-The communicator or called MPI_COMM_WORLD, which is the
-MPI context created at the beginning of application.
-</li>
-<li><b>status</b>
-         Em, it is status, but I have no idea what it exactly is&#x2026;
-</li>
-</ul>
-</li>
-<li>non-blocked
-<code>MPI_ISend(buffer,count,type,dest,tag,comm,request)</code>
-<code>MPI_IRecv(buffer,count,type,source,tag,comm,request)</code>
-First, I have to clarify the blocking/non-blocking concept in this
-context. It is different to the block/non-block in multiple
-thread programming. Blocking means the application will not
-continue until the data in the application buffer is completely
-sent out (through internet protocol). Non-blocking means the
-application continue without waiting. Pay attention, it wait
-until the data is <b>sent out</b>, not <b>received</b> by other
-processes. And I think that is why tag is necessary in both
-cases, because if the application block until data received,
-the tag is not necessary and the application becomes
-sequential. Besides, you cannot put receive before send because
-it is blocked.
-
-<p>
-What is the benefit of non-blocking? You don&#8217;t have to wait for
-the receiving of data. In the example code below, we can see
-that processes receive data before sending them.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #d33682;">#include</span> <span style="color: #2aa198;">"mpi.h"</span>
-<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
-
-<span style="color: #b58900;">main</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">argc</span>, <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">argv</span>[])  {
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">numtasks</span>, <span style="color: #6c71c4;">rank</span>, <span style="color: #6c71c4;">next</span>, <span style="color: #6c71c4;">prev</span>, <span style="color: #6c71c4;">buf</span>[2], <span style="color: #6c71c4;">tag1</span>=1, <span style="color: #6c71c4;">tag2</span>=2;
-<span style="color: #268bd2;">MPI_Request</span> <span style="color: #6c71c4;">reqs</span>[4];
-<span style="color: #268bd2;">MPI_Status</span> <span style="color: #6c71c4;">stats</span>[4];
-
-MPI_Init(&amp;argc,&amp;argv);
-MPI_Comm_size(MPI_COMM_WORLD, &amp;numtasks);
-MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
-
-prev = rank-1;
-next = rank+1;
-<span style="color: #859900;">if</span> (rank == 0)  prev = numtasks - 1;
-<span style="color: #859900;">if</span> (rank == (numtasks - 1))  next = 0;
-
-MPI_Irecv(&amp;buf[0], 1, MPI_INT, prev, tag1, MPI_COMM_WORLD, &amp;reqs[0]);
-MPI_Irecv(&amp;buf[1], 1, MPI_INT, next, tag2, MPI_COMM_WORLD, &amp;reqs[1]);
-
-MPI_Isend(&amp;rank, 1, MPI_INT, prev, tag2, MPI_COMM_WORLD, &amp;reqs[2]);
-MPI_Isend(&amp;rank, 1, MPI_INT, next, tag1, MPI_COMM_WORLD, &amp;reqs[3]);
-
-      {  <span style="color: #859900;">do</span> some work  }
-
-MPI_Waitall(4, reqs, stats);
-
-MPI_Finalize();
-}
-</pre>
-</div>
-</li>
-</ul>
-</li>
-<li>Collective communication
-Basically, all the collective communications can be implemented
-using the point-to-point communication methods.
-<ul class="org-ul">
-<li>MPI_Reduce
-Split data to processes, gather the result as reducing
-operation such as the sum of array.
-</li>
-<li>MPI_Scatter
-       Split data from one processes to all the processes.
-</li>
-<li>MPI_Gather
-       Gather data from all the processes to one process
-</li>
-<li>MPI_Barrier
-       For synchronizing.
-</li>
-</ul>
-</li>
-<li>Derived data type
-Though the MPI provides series of primitive types, it is also
-useful to let useser to define their own data type. You can
-define a variable of type and use it as the MPI type.
-<ol class="org-ol">
-<li>Contiguous
-TODO
-</li>
-<li>Vector
-TODO
-</li>
-<li>Indexed
-TODO
-</li>
-<li>Struct
-TODO
-</li>
-</ol>
-</li>
-<li>Group and communicator management
-Group is an ordered set of processes, where the id(rank) of
-process go from zero to N-1. Communicator encompoasses a group of
-processes. Communicator that comprises all tasks is represented
-by MPI_COMM_WORLD. They are the same thing for programmer.
-
-<p>
-Groups can be destroyed and created during execution. One process
-can be in multiple groups.
-</p>
-</li>
-<li>Virtual topology routine
-Organize the processors in geometric way, like orginizing the
-processors in a two-dimensional array.
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Performance Comparison</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-<iframe
-src="https://docs.google.com/spreadsheets/d/1kOLf_azmw872VHm6lmOxsPUvpD0hs-ZvbPUJDOjMBFM/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
-width="900" height="600"></iframe>
-</p>
-</div>
-</div>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-29T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html" itemprop="url">Writing Blog Using Org-mode and Octopress</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. Octopress Installation</a>
-<ul>
-<li><a href="#sec-1-1">1.1. Installation of old version ruby with rbenv</a></li>
-<li><a href="#sec-1-2">1.2. Setup the octopress</a>
-<ul>
-<li><a href="#sec-1-2-1">1.2.1. Copy octopress repository</a></li>
-<li><a href="#sec-1-2-2">1.2.2. Install dependencies</a></li>
-<li><a href="#sec-1-2-3">1.2.3. Install the default theme</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-2">2. Common usage</a></li>
-<li><a href="#sec-3">3. Emacs Configurations</a>
-<ul>
-<li><a href="#sec-3-1">3.1. Lisp package org-jekyll</a></li>
-<li><a href="#sec-3-2">3.2. Org-octopress package</a></li>
-<li><a href="#sec-3-3">3.3. Conflict and Test</a></li>
-<li><a href="#sec-3-4">3.4. <span class="todo TODO">TODO</span> <code>[1/4]</code></a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<p>
-After the installation  and the configuration of jekyll along with
-the org-mode. I tried to find some configurations to facilitate the
-creation of org files (create file with date in front of file name,
-insert heads, etc.) I did not realize the existence of relative
-emacs packages in elpa and asked google for solutions. My
-inefficient search key-words let the google returns undesired
-answer: the <b>octopress</b>. Octopress is based on the jekyll, but
-provide richer blog settings. Finally, I migrated to octopress and
-use it to manager my github pages.
-</p>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-10-29-writing-blog-using-org-mode-and-octopress.html"><span class="section-number-2">1</span> Octopress Installation</a></h2>
-<div class="outline-text-2" id="text-1">
-<p>
-Installation of octopress is little complex since it requires low
-version ruby.
-</p>
-</div>
-
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Installation of old version ruby with rbenv</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-You can following the instructions on the <a href="http://octopress.org/docs/setup/rbenv">official manual</a>.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>
-git clone git://github.com/sstephenson/rbenv.git .rbenv
-git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
-</pre>
-</div>
-<p>
-Add two lines into the end of shell profile (.zshrc in my case).
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>
-<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>
-</pre>
-</div>
-<p>
-Then reload the profile by <code>source ~/.zshrc</code> or resume the
-terminal.
-The installation of rbenv and ruby-build can be replaced by
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">brew update
-brew install rbenv
-brew install ruby-build
-</pre>
-</div>
-<p>
-Attention: the shell profile must be modified with both
-installation methods.
-</p>
-
-<p>
-Then install ruby 1.9.3, which is required by octopress.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">rbenv install 1.9.3-p0
-rbenv local 1.9.3-p0
-rbenv rehash
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Setup the octopress</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-My setup experience is basically the same with the <a href="http://octopress.org/docs/setup/">official
-manual</a>. However, after the installation, I replaced the octopress
-directory to <code>~/WorkSpace/xiaoliuai.github.io</code> because it actually
-becomes the repository of my github pages (<b>magnificent!</b>). So I
-suggest to clone the octopress git repository into the directory
-with the same name of the repository of your github pages at the
-beginning.
-</p>
-</div>
-
-<div id="outline-container-sec-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Copy octopress repository</h4>
-<div class="outline-text-4" id="text-1-2-1">
-<p>
-(_I suggest to clone shallow copy with option_ <code>depth</code>)
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress
-<span style="color: #6c71c4;">cd</span> octopress
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2-2" class="outline-4">
-<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Install dependencies</h4>
-<div class="outline-text-4" id="text-1-2-2">
-<div class="org-src-container">
-
-<pre class="src src-sh">gem install bundler
-rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>
-bundle install
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2-3" class="outline-4">
-<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> Install the default theme</h4>
-<div class="outline-text-4" id="text-1-2-3">
-<p>
-(_I suggest to ignore this step and install the 3rd-party theme
-       directly_)
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">rake install
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Common usage</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li>Local site
-
-<p>
-The octopress puts the generated web site, including the pages,
-layouts, images, etc. into the <code>public</code> folder for <b>local</b> preview. The <code>source</code>
-folder contains all the source files used to generate the site,
-including the layout HTML files, Java-scripts, style-sheets,
-etc. It can be seemed as a hyper <code>_posts</code> folder that contains
-source files more than blog HTML files. The familiar <code>_posts</code>
-folder used in jekyll is under this folder. Let&#8217;s <a href="http://octopress.org/docs/blogging/">start blogging</a>.
-</p>
-
-<p>
-First, go into the octopress folder, type <code>rake
-      new_post["title"]</code>, octopress will ask you to give a blog tile,
-then creates a <code>markdown</code> file into the <code>_posts</code> folder with
-jekyll format (concatenate date and the title as the file name).
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>
-</pre>
-</div>
-<p>
-This file should be edited respect to the jekyll protocol.
-</p>
-
-<p>
-Second, ran <code>rake generate</code> to generate the site in <code>public</code>
-and then ran <code>rake preview</code> to mount a web-server at
-<a href="http://localhost:4000">http://localhost:4000</a>.
-</p>
-</li>
-
-<li>Deploying to Github Pages
-
-<p>
-Octopress integrated commands to let you deploy the generated
-site to the github.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">rake setup_github_pages
-</pre>
-</div>
-<p>
-This command will ask you for a URL of the Github repo, then it
-will store your Github pages repository URL as the <i>origin</i>
-remote and change the octopress remote to <i>octopress</i>. The
-directory of octopress becomes the repository of the <b>source</b>
-branch of the origin remote (your Github Pages repo). The
-<code>_deploy</code> directory, becomes the <b>master</b> branch of the origin
-remote.
-Run command:
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">rake deploy
-</pre>
-</div>
-<p>
-will update the files in <code>public</code> to <code>_deploy</code>, then push the
-changes to the master branch of the origin remote. To keep your
-settings and sources tracked, run
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">git add .
-git commit -m<span style="color: #2aa198;">'Your message'</span>
-git push origin source
-</pre>
-</div>
-<p>
-to push the contents in octopress directory to the source branch
-of the origin remote.
-</p>
-
-<p>
-<span class="underline">One thing confusing is that one repository (master branch) is</span>
-<span class="underline">under another repository. But the directory <code>_deploy</code> is in the</span>
-<span class="underline"><code>gitignore</code> of source branch, hence solve the self-contain
-problem.</span>
-</p>
-</li>
-</ul>
-
-<p>
-
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Emacs Configurations</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Lisp package org-jekyll</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-There are lisp packages in melpa that provide smart org-jekyll edit
-functions.The great advantage of this package is that it generates
-blogs with respect to the entries with <code>blog</code> tag. In detail, it
-generates HTML files with proper time stamp before the file
-names. Therefore you don&#8217;t have to take care about the file names (you
-have to manage the org file name if you use other tools). Note you
-have to specify the time stamp in property of entry.
-This package does only export the section names, modify the elisp
-script following the <a href="https://github.com/juanre/org-jekyll/issues/11">issue</a> to export the contents. Use
-<code>org-jekyll-export-blog</code> to export the blog HTML files.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-elisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">change</span>
-<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span>
-                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">))</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">to</span>
-<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-show-subtree<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">)))</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Org-octopress package</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-The package can be installed from elpa, but it does not support the
-tags. Hence, I modified the ox-jekyll.el file, duplicated all the
-variables and expressions contain <code>categories</code> and then replace
-them by <code>tags</code>. After reopening emacs, it successfully exports the
-tags into HTML files under _posts.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Conflict and Test</h3>
-<div class="outline-text-3" id="text-3-3">
-<p>
-  标准的org-mode模式在导出为jekyll的HTML片段的时候,有一些导出格式需要
-  相应的css或者header支持.
-不兼容列表
-</p>
-<ul class="org-ul">
-<li>下划线
-</li>
-<li>表格竖边框
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4"><span class="section-number-3">3.4</span> <span class="todo TODO">TODO</span> <code>[1/4]</code></h3>
-<div class="outline-text-3" id="text-3-4">
-<ul class="org-ul">
-<li><code>[X]</code> tags
-</li>
-<li><code>[&#xa0;]</code> functions of contents in setupfile.org
-</li>
-<li><code>[&#xa0;]</code> org-octopress generate <code>publish</code> folder.
-</li>
-<li><code>[&#xa0;]</code> In <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">org-jekyll</a>, YAML markup is mentioned many times. I have to
-study into it when I have time.
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-29T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-10-29-initialize-the-first-blog.html" itemprop="url">Initialize the First Blog</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. Install necessary softwares <b>org-mode</b> in <b>emacs</b>, <b>jekyll</b>.</a></li>
-<li><a href="#sec-2">2. Initialize the web folder by jekyll.</a></li>
-<li><a href="#sec-3">3. From org-mode to jekyll</a>
-<ul>
-<li><a href="#sec-3-1">3.1. Configuration of emacs org setting</a></li>
-<li><a href="#sec-3-2">3.2. The head inserted into the org file for blog.</a></li>
-<li><a href="#sec-3-3">3.3. Comments</a></li>
-</ul>
-</li>
-<li><a href="#sec-4">4. Build the server.</a></li>
-<li><a href="#sec-5">5. Configuration</a></li>
-</ul>
-</div>
-</div>
-<p>
-This is my first blog that is generated using org-mode, jekyll and is
-published on GitHub.
-I made this page following the instructions on <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">org-jekyll</a>.
-</p>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-10-29-initialize-the-first-blog.html"><span class="section-number-2">1</span> Install necessary softwares <b>org-mode</b> in <b>emacs</b>, <b>jekyll</b>.</a></h2>
-<div class="outline-text-2" id="text-1">
-<p>
-Note that the built-in org-mode in emacs might be outdated, the best
-solution is to remove the built-in org-mode and reinstall it from
-the package manager via <code>M-x list-packages</code>. Jekyll can be installed
-through <b>RubyGem</b>. On my OSX, the ruby and gem are preinstalled, so
-<code>gem install jekyll</code> works for me.
-</p>
-</div>
-</div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Initialize the web folder by jekyll.</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-As my final goal is posting the blog to GitHub, the working folder
-of my blog is <code>xiaoliuai.github.io</code>.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-bash">jekyll new xiaoliuai.github.io
-cd xiaoliuai.github.io
-jekyll serve
-</pre>
-</div>
-<p>
-Then you can see the portal page by opening <code>localhost:4000</code> in
-your web browser.
-</p>
-
-<p>
-Now I would like to introudce the directory hierarchy of jekyll. Since
-I will move to octopress, which is a wrapper of jekyll with different
-directory setting, I just introduce the essential part to make the
-things work.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-sh">xiaoliuai.github.io/
--- _posts/
--- _sites/
-...
-</pre>
-</div>
-<p>
-Two main directories need special attention, that are,
-<code>_posts</code> and <code>_sites</code>. The first folder contains the <i>source</i> files,
-which are markdown file, html file, etc. as input for jekyll; the
-second folder contains the generated static server pages. All the
-project should be uploaded to github to be displayed where the
-<code>index.html</code> file is the portal of web site. The GitHub Pages
-understand this directory configuration and will automatically display
-the contents in <code>_sites</code>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> From org-mode to jekyll</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Configuration of emacs org setting</h3>
-<div class="outline-text-3" id="text-3-1">
-<div class="org-src-container">
-
-<pre class="src src-elisp"><span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-org"</span>
- <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
- <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
-
- <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
- <span style="color: #6c71c4;">:recursive</span> t
- <span style="color: #6c71c4;">:publishing-function</span> org-html-publish-to-html
- <span style="color: #6c71c4;">:headline-levels</span> 4
- <span style="color: #6c71c4;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
- <span style="color: #6c71c4;">:body-only</span> t <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
- <span style="color: #6c71c4;">:with-toc</span> nil <span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">don't export toc, it clobbers the YAML front matter</span>
- <span style="color: #657b83;">)</span>
-<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog-static"</span>
- <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/Emacs/org/blog"</span>
- <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">js</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">png</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gif</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">pdf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">mp3</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">swf</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gz</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">txt</span><span style="color: #6c71c4;">\\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">el"</span>
- <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/WorkSpace/xiaoliuai.github.io/"</span>
- <span style="color: #6c71c4;">:recursive</span> t
- <span style="color: #6c71c4;">:publishing-function</span> org-publish-attachment
- <span style="color: #657b83;">)</span>
-<span style="color: #657b83;">(</span><span style="color: #2aa198;">"blog"</span><span style="color: #6c71c4;">:components</span> <span style="color: #2aa198;">(</span><span style="color: #2aa198;">"blog-org"</span> <span style="color: #2aa198;">"blog-static"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
-</pre>
-</div>
-<p>
-With this org-mode configuration, you have to create a folder <code>_posts</code>
-under the <code>~/Emacs/org/blog</code>, then org-mode will export the folder and
-html files into the right place.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> The head inserted into the org file for blog.</h3>
-<div class="outline-text-3" id="text-3-2">
-<div class="org-src-container">
-
-<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+STARTUP: showall indent</span>
-<span style="color: #93a1a1; font-style: italic;">#+STARTUP: hidestars</span>
-<span style="color: #93a1a1; font-style: italic;">#+BEGIN_HTML</span>
-<span style="color: #cb4b16;">---</span>
-<span style="color: #cb4b16;">layout: default</span>
-<span style="color: #cb4b16;">title: Xiao Liu's First Blog</span>
-<span style="color: #cb4b16;">excerpt: First blog with org-mode, jekyll.</span>
-<span style="color: #cb4b16;">categories:</span>
-<span style="color: #cb4b16;">    - org</span>
-<span style="color: #cb4b16;">---</span>
-<span style="color: #93a1a1; font-style: italic;">#+END_HTML</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Comments</h3>
-<div class="outline-text-3" id="text-3-3">
-<p>
-The two lines with comments form the main differences to ordinary
-html exportation. Jekyll will read the body of html files
-generated by org-mode and add it&#8217;s own heads to specify the
-styles. Org-mode will export the table of contents (TOC) at the
-beginning of exported html file, hence mask the YAML Front
-Matter. <a href="http://ccom.uprrp.edu/~humberto//blog/2013/11/03/org-jekyll-is-awesome/">Disable the TOC</a> can sovle this problem. However, there
-might be other solutions to change the position of TOC.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Build the server.</h2>
-<div class="outline-text-2" id="text-4">
-<div class="org-src-container">
-
-<pre class="src src-bash">cd xiaoliuai.github.io
-jekyll build
-jekyll serve
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Configuration</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-The simplest personalization of the blog site is editting
-<code>_config.yml</code> under the project directory. Following the attribute
-names in this file, you can easily understand how to specify the blog
-name, description, email address, etc.
-</p>
-</div>
-</div>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
       
-        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
+        <li class="previous"><a href="/posts/2">&larr;&nbsp;Older</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
       
@@ -3463,15 +3167,15 @@ name, description, email address, etc.
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-pom-configuration.html">POM Configuration</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-functional-programming-on-coursera.html">Functional Programming on Coursera</a>
+    
     <a class="list-group-item " href="/blog/2015-02-17-mongodb-strategy.html">Mongodb Strategy</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-14-basic-mongodb-instructions.html">Basic Mongodb Instructions</a>
-    
-    <a class="list-group-item " href="/blog/2015-01-30-javascript-overview.html">JavaScript Overview</a>
-    
-    <a class="list-group-item " href="/blog/2014-12-25-angularjs-developer-guide-.html">AngularJS Developer Guide 开发指南学习笔记</a>
-    
-    <a class="list-group-item " href="/blog/2014-12-24-angularjs-tutorial-.html">AngularJS Tutorial 入门教程学习笔记</a>
     
   </div>
 </section>
@@ -3505,27 +3209,70 @@ name, description, email address, etc.
         database
       </a>
     
+    
+    <a class="list-group-item " href="/blog/categories/language/index.html">
+        <span class="badge">2</span>
+        language
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/management/index.html">
+        <span class="badge">2</span>
+        management
+      </a>
+    
   </div>
 </section>
 <section class="panel panel-default">
-        <div class="panel-heading">
-                <h2 class="panel-title">标签列表</h2>
-        </div>
-        <div class="list-group">
-                        <ul class="tag-cloud">
-                                <a style="font-size: 210%" href="/tags/angularjs/">AngularJS</a>
-<a style="font-size: 210%" href="/tags/github/">GitHub</a>
-<a style="font-size: 90%" href="/tags/java/">Java</a>
-<a style="font-size: 90%" href="/tags/jekyll/">Jekyll</a>
-<a style="font-size: 90%" href="/tags/mpi/">MPI</a>
-<a style="font-size: 90%" href="/tags/matlab/">Matlab</a>
-<a style="font-size: 210%" href="/tags/mongodb/">Mongodb</a>
-<a style="font-size: 90%" href="/tags/octave/">Octave</a>
-<a style="font-size: 90%" href="/tags/octopress/">Octopress</a>
-<a style="font-size: 210%" href="/tags/org-mode/">Org-mode</a>
+    <div class="panel-heading">
+            <h2 class="panel-title">标签列表</h2>
+    </div>
+    <ul class="list-group">
+        <li class="tag-cloud list-group-item">
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
+<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/scala/">Scala<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/java/">Java<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/spring/">Spring<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/gulp/">gulp<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/mpi/">MPI<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
 
-                        </ul>
-        </div>
+        </li>
+    </ul>
+    <!-- <div class="list-group">
+        <ul class="tag-cloud">
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
+<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/scala/">Scala<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/java/">Java<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/spring/">Spring<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/gulp/">gulp<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/mpi/">MPI<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+
+        </ul>
+    </div> &#8211;>
 </section>
 
 <section class="panel panel-default clearfix">

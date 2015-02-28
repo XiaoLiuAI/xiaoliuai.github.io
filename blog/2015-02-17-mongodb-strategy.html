@@ -143,7 +143,8 @@
 <li><a href="#sec-3-2-2">3.2.2. Nested Sets</a></li>
 </ul>
 </li>
-<li><a href="#sec-3-3">3.3. Others</a></li>
+<li><a href="#sec-3-3">3.3. Index</a></li>
+<li><a href="#sec-3-4">3.4. Others</a></li>
 </ul>
 </li>
 </ul>
@@ -325,8 +326,70 @@ indicators.
 </div>
 
 <div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Others</h3>
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Index</h3>
 <div class="outline-text-3" id="text-3-3">
+<p>
+One of the main benefit of indexing is sorting, the application
+can quickly find the matched document by traveling through the
+ordered indices very quickly
+</p>
+<ul class="org-ul">
+<li>Single field index
+</li>
+<li>Compound key index<br  />
+      Note that if one set compound index by
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.ensureIndex<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>key1: 1, key2: -1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+<p>
+It can help the <code>sort</code> funciton using <code>{key1: 1, key2: -1}</code>,
+<code>{key1: -1, key2: 1}</code>, but cannot help sorting with the key
+<code>{key1: 1, key2: 1}</code>.
+</p>
+</li>
+<li>Multi-key index<br  />
+      It refers to using array as index. You cannot using compound key
+for two arrays.
+</li>
+<li>Hased index<br  />
+      It is not compatible with multi-key index.
+</li>
+<li>Geospatial index<br  />
+      This index is used to index the geometric data, such as lines,
+points, shapes.
+</li>
+<li>Text index<br  />
+      Support text search with language stop words, will use very
+large space.
+</li>
+<li>Hashed index<br  />
+      Compute the hash for entire document while <b>??collapse??</b> the
+sub-document.
+</li>
+</ul>
+
+<p>
+Index also support properties like:
+</p>
+<ul class="org-ul">
+<li><i>TTL</i> index is used to remove outdated index
+</li>
+<li><i>Uniqu</i> index, which reject duplicate value of indexed filed for all the document. ??Can we use it to ensure that
+elements in array has unique value in document (can be repeat in
+different document)??
+</li>
+<li><i>Sparse</i> index, documents without the field are not indexed. By
+default, these documents will be indexed to null.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Others</h3>
+<div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Atomic operation
 <code>update</code>, <code>findAddUpdate</code>, <code>remove</code> are atomic. Put fields in one
@@ -429,6 +492,8 @@ database name).
             <li class="previous"><a href="/blog/2015-02-14-basic-mongodb-instructions.html" title="Previous Post: Basic Mongodb Instructions">&laquo; Basic Mongodb Instructions</a></li>
             
             
+            <li class="next"><a href="/blog/2015-02-28-functional-programming-on-coursera.html" title="Next Post: Functional Programming on Coursera">Functional Programming on Coursera &raquo;</a></li>
+            
           </ul>
         
       </footer>
@@ -446,15 +511,15 @@ database name).
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-pom-configuration.html">POM Configuration</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-functional-programming-on-coursera.html">Functional Programming on Coursera</a>
+    
     <a class="list-group-item active" href="/blog/2015-02-17-mongodb-strategy.html">Mongodb Strategy</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-14-basic-mongodb-instructions.html">Basic Mongodb Instructions</a>
-    
-    <a class="list-group-item " href="/blog/2015-01-30-javascript-overview.html">JavaScript Overview</a>
-    
-    <a class="list-group-item " href="/blog/2014-12-25-angularjs-developer-guide-.html">AngularJS Developer Guide 开发指南学习笔记</a>
-    
-    <a class="list-group-item " href="/blog/2014-12-24-angularjs-tutorial-.html">AngularJS Tutorial 入门教程学习笔记</a>
     
   </div>
 </section>
@@ -526,27 +591,70 @@ database name).
         database
       </a>
     
+    
+    <a class="list-group-item " href="/blog/categories/language/index.html">
+        <span class="badge">2</span>
+        language
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/management/index.html">
+        <span class="badge">2</span>
+        management
+      </a>
+    
   </div>
 </section>
 <section class="panel panel-default">
-        <div class="panel-heading">
-                <h2 class="panel-title">标签列表</h2>
-        </div>
-        <div class="list-group">
-                        <ul class="tag-cloud">
-                                <a style="font-size: 210%" href="/tags/angularjs/">AngularJS</a>
-<a style="font-size: 210%" href="/tags/github/">GitHub</a>
-<a style="font-size: 90%" href="/tags/java/">Java</a>
-<a style="font-size: 90%" href="/tags/jekyll/">Jekyll</a>
-<a style="font-size: 90%" href="/tags/mpi/">MPI</a>
-<a style="font-size: 90%" href="/tags/matlab/">Matlab</a>
-<a style="font-size: 210%" href="/tags/mongodb/">Mongodb</a>
-<a style="font-size: 90%" href="/tags/octave/">Octave</a>
-<a style="font-size: 90%" href="/tags/octopress/">Octopress</a>
-<a style="font-size: 210%" href="/tags/org-mode/">Org-mode</a>
+    <div class="panel-heading">
+            <h2 class="panel-title">标签列表</h2>
+    </div>
+    <ul class="list-group">
+        <li class="tag-cloud list-group-item">
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
+<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/scala/">Scala<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/java/">Java<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/spring/">Spring<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/gulp/">gulp<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/mpi/">MPI<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
 
-                        </ul>
-        </div>
+        </li>
+    </ul>
+    <!-- <div class="list-group">
+        <ul class="tag-cloud">
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
+<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/scala/">Scala<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/java/">Java<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/spring/">Spring<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/gulp/">gulp<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/mpi/">MPI<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+
+        </ul>
+    </div> &#8211;>
 </section>
 
     

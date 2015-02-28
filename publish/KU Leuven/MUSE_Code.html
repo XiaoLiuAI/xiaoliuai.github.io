@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Notes of Reading MUSE Project</title>
+<!-- 2015-02-28 Sat 22:37 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Notes of Reading MUSE Project</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Muse_Python</a></li>
+<li><a href="#sec-2">2. Terence and Lindo</a>
+<ul>
+<li><a href="#sec-2-1">2.1. LINDO</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1. be.lindo.api*</a>
+<ul>
+<li><a href="#sec-2-1-1-1">2.1.1.1. be.lindo.api.ml</a></li>
+<li><a href="#sec-2-1-1-2">2.1.1.2. be.lindo.api.timex</a></li>
+<li><a href="#sec-2-1-1-3">2.1.1.3. be.lindo.api.tlnk</a></li>
+<li><a href="#sec-2-1-1-4">2.1.1.4. be.lindo.api*</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-1-2">2.1.2. be.liir.TempEval2013 &amp; be.liir.TimeML</a>
+<ul>
+<li><a href="#sec-2-1-2-1">2.1.2.1. be.liir.TempEval2013</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2. Dependency of terence to lindo</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. All refered classes</a>
+<ul>
+<li><a href="#sec-2-2-1-1">2.2.1.1. Package <i>messages</i></a></li>
+<li><a href="#sec-2-2-1-2">2.2.1.2. Pacakges <i>api</i></a></li>
+<li><a href="#sec-2-2-1-3">2.2.1.3. Packages <i>experiment</i></a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2-2">2.2.2. Terence references</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Muse_Python</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The muse_python part is an interface to launch Stanford CoreNLP
+package to make tokenization, coreference resolution, <i>etc</i>. This
+package provides two ways of invoking the parser: 1) interactive style
+provided by StanfordCoreNLP class, 2) batch_parse.
+</p>
+
+<p>
+This package use <a href="https://pexpect.readthedocs.org/en/latest/">pexpect</a> to call the corenlp as in an interactive
+command line. Besides, the author likes <b>json</b> very much. I also found
+the package xmltodict (handle xml like json). Below, I list all the
+standard python package and site-packages used in this project.
+</p>
+
+<ul class="org-ul">
+<li>standard
+<ul class="org-ul">
+<li>json
+</li>
+<li>os, re, sys, shutil, tempfile, collections
+</li>
+<li>traceback <i>used in verbose mode</i>
+</li>
+<li>subprocess <i>call command to process the xml output file to bypass the command-line interface limit</i>
+</li>
+</ul>
+</li>
+<li>site-package
+<ul class="org-ul">
+<li>pexpect <i>run application as under an interactive command-line</i>
+</li>
+<li>xmltodict <i>parse xml to ordered dict</i>
+</li>
+<li>progressbar <i>show progressbar in verbose mode</i>
+</li>
+<li>unidecode <i>decode, encode unicode?</i>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+From the <code>default.properties</code> file, the Stanford corenlp pakcage
+execute the tokenization, sentence splitting, POS tag, lemmatization,
+NER, parsing and coreference resolution tasks. There are also many
+commented options.
+</p>
+
+<p>
+The class StanfordCoreNLP works in a server mode along with pexpect? I
+am not sure.
+</p>
+
+<p>
+Except the <code>corenlp</code> module, there is a <code>muse</code> module in this
+package. It contains many things.
+</p>
+<ul class="org-ul">
+<li>io       read CoNLL and LiirCoref data
+</li>
+<li>lm       supposed to be an interface to work with the RNNLM, not
+complished yet?
+</li>
+<li>modules
+</li>
+<li>represe  representation of texts, sentences, <i>etc</i> in python data
+structure
+</li>
+<li>resource Read SemLink data. VerbClassManager cooperates with
+nltk.corpus.VerbnetCorpusReader. <font color=red>What is SemLink?
+What exactly does the VerbClassManager work for?</font>
+</li>
+<li>spliter  Sentence splitter, tokenizer
+</li>
+<li>srl      semiSupervised?
+</li>
+<li>taggers  SimplePOSTagger
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Terence and Lindo</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> LINDO</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>be.liir.TimeML* as well as be.liir.TempEval2013* are created for
+specific tasks
+</li>
+<li>be.lindo.api* should be used as api for normal usage
+</li>
+<li>be.lindo.experiments* <i>?maybe for experiments settings?</i>
+</li>
+<li>be.lindo.messages* contains the classes used to model from
+document to token, from annotation to parse.
+</li>
+<li>be.lindo.objects, be.lindo.test, be.lindo.utils
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> be.lindo.api*</h4>
+<div class="outline-text-4" id="text-2-1-1">
+</div><div id="outline-container-sec-2-1-1-1" class="outline-5">
+<h5 id="sec-2-1-1-1"><span class="section-number-5">2.1.1.1</span> be.lindo.api.ml</h5>
+<div class="outline-text-5" id="text-2-1-1-1">
+<p>
+Classifier and Features
+</p>
+<ul class="org-ul">
+<li>AbstractClassifier
+<ul class="org-ul">
+<li>String classify(Parse, SmartFeatureGenerator)
+</li>
+<li>getPositiveClassProb(Parse, SmartFeatureGenerator, String posClassLabel)
+</li>
+<li>evaluate: recognize timexes from Statement and evaluate the
+results. The results is a list of Parse.
+</li>
+<li>detect: detect if a parse corresponds to a timex.
+</li>
+</ul>
+</li>
+<li>SmartFeatureGenerator
+<ul class="org-ul">
+<li>float[] transformFeatures(String[], String[])
+string to float, the second array of string is used to store
+the substring before last "=" of string in the first array,
+which is the featureValues. float value will be parsed from the
+substring after the last "=".
+</li>
+<li>String[] getFeatures(Parse phrase, Statement context)
+<ul class="org-ul">
+<li>getWordBasedFeatures
+get the most probable temporal token in phrase, add its
+lemma, word, POS. Special attention is made to cadinal
+numbers (CD). POS list of phrase, phrase pattern. etc.
+<ul class="org-ul">
+<li>getCharacterPattern: "Word 32" =&gt; "Xxxx_99", compact form
+is "Xx_9". Symbol replaced "./&#x00ad;"
+</li>
+<li>getTokenList: get list of String, numbers are converted
+into patterns.
+</li>
+<li>getAllTokens: concatenate strings by whitespace.
+</li>
+<li>getSimpleEnding: end characters.
+</li>
+<li>getGoldLabel: get MlLabel of token
+</li>
+<li>getToken: get next token in parse.
+</li>
+</ul>
+</li>
+<li>getParseBasedFeatures
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-1-1-2" class="outline-5">
+<h5 id="sec-2-1-1-2"><span class="section-number-5">2.1.1.2</span> be.lindo.api.timex</h5>
+</div>
+<div id="outline-container-sec-2-1-1-3" class="outline-5">
+<h5 id="sec-2-1-1-3"><span class="section-number-5">2.1.1.3</span> be.lindo.api.tlnk</h5>
+</div>
+<div id="outline-container-sec-2-1-1-4" class="outline-5">
+<h5 id="sec-2-1-1-4"><span class="section-number-5">2.1.1.4</span> be.lindo.api*</h5>
+</div>
+</div>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> be.liir.TempEval2013 &amp; be.liir.TimeML</h4>
+<div class="outline-text-4" id="text-2-1-2">
+</div><div id="outline-container-sec-2-1-2-1" class="outline-5">
+<h5 id="sec-2-1-2-1"><span class="section-number-5">2.1.2.1</span> be.liir.TempEval2013</h5>
+<div class="outline-text-5" id="text-2-1-2-1">
+<ul class="org-ul">
+<li>event
+<ul class="org-ul">
+<li>EventDetector
+<b>String classify(Token, FeatureGenerator)</b> It
+gets features by feature generator using the token and token
+context. transform the features to float array and new
+strings by feature generator. Uses model to eval the new
+strings and float numbers to get a list of results and then
+find the best one.
+</li>
+<li>FeatureGenerator extends SmartFeatureGeneator
+Provides many functions, but keep the transform function the
+same as the parent class.
+add word, POS, CPOS, end2, end3,
+<ul class="org-ul">
+<li>hypernyms
+</li>
+<li>synonyms
+</li>
+<li>derivations
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Dependency of terence to lindo</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> All refered classes</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">corpus</span>.<span style="color: #268bd2;">CorpusReader</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">Outcomes</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">features</span>.<span style="color: #268bd2;">CPOSTag</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">features</span>.<span style="color: #268bd2;">Form</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">features</span>.<span style="color: #268bd2;">Lemma</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">features</span>.<span style="color: #268bd2;">POSTag</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">ml</span>.<span style="color: #268bd2;">dependency</span>.<span style="color: #268bd2;">malt</span>.<span style="color: #268bd2;">MaltDataWriter</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">nlp</span>.<span style="color: #268bd2;">adapters</span>.<span style="color: #268bd2;">OpenNLPFactory</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">nlp</span>.<span style="color: #268bd2;">adapters</span>.<span style="color: #268bd2;">WebNLPFactoryLoader</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">timex</span>.<span style="color: #268bd2;">model</span>.<span style="color: #268bd2;">Calendar</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">tlink</span>.<span style="color: #268bd2;">EventStemFrequency</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">util</span>.<span style="color: #268bd2;">Const</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">util</span>.<span style="color: #268bd2;">EditDistance</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">util</span>.<span style="color: #268bd2;">WebConst</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">api</span>.<span style="color: #268bd2;">util</span>.<span style="color: #268bd2;">WordNet</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">experiments</span>.<span style="color: #268bd2;">recognition</span>.<span style="color: #268bd2;">Classifier</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">experiments</span>.<span style="color: #268bd2;">tlinks</span>.<span style="color: #268bd2;">fables</span>.<span style="color: #268bd2;">FablesFeatureGenerator</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">experiments</span>.<span style="color: #268bd2;">tlinks</span>.<span style="color: #268bd2;">fables</span>.<span style="color: #268bd2;">parse</span>.<span style="color: #268bd2;">MaltFeatureGenerator</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">experiments</span>.<span style="color: #268bd2;">tlinks</span>.<span style="color: #268bd2;">fables</span>.<span style="color: #268bd2;">parse</span>.<span style="color: #268bd2;">MaltParser</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">AnnotatedElement</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">Event</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">Parse</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">Statement</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">TLink</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">TimeX</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">Token</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">messages</span>.<span style="color: #268bd2;">malt</span>.<span style="color: #268bd2;">Node</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">utils</span>.<span style="color: #268bd2;">Container</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">utils</span>.<span style="color: #268bd2;">LINDOConsts</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">be</span>.<span style="color: #268bd2;">lindo</span>.<span style="color: #268bd2;">utils</span>.<span style="color: #268bd2;">TimexUtils</span>;&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+Lindo is designed for question answering.
+</p>
+</div>
+
+<div id="outline-container-sec-2-2-1-1" class="outline-5">
+<h5 id="sec-2-2-1-1"><span class="section-number-5">2.2.1.1</span> Package <i>messages</i></h5>
+<div class="outline-text-5" id="text-2-2-1-1">
+<ul class="org-ul">
+<li>AnnotatedElement extends Statement implements Comparable
+<ul class="org-ul">
+<li>NamedNodeMap attributes// dom name (String) to nodes
+</li>
+<li>Node annotatingNode // dom xml node
+</li>
+<li>String id; String fileName; int startIndex // index of the first token in the sentence
+</li>
+<li>HashMap&lt;String, String&gt; // two maps from attribute name to
+value and vise versa.
+</li>
+<li>ArrayList&lt;String&gt; // annotationLines, annotationAttributeLines
+</li>
+<li>ArrayList&lt;Integer&gt; tokenNums
+</li>
+</ul>
+</li>
+<li>Event extends AnnotatedElement
+</li>
+<li>Timex extends AnnotatedElement
+<ul class="org-ul">
+<li>Type: date, duration, time, set
+</li>
+<li>Role: creation_time, modification_time, etc.
+</li>
+<li>Value: duration, weekdate, season, etc.
+</li>
+<li>String[] features
+</li>
+<li>Calendar// define seasons, quarters, etc, parse a time and
+get the corresponding equivalent time expressions like date
+-&gt; day in week -&gt; season.
+</li>
+</ul>
+</li>
+<li>TLink
+<ul class="org-ul">
+<li>type
+</li>
+<li>ids of entities and link
+</li>
+</ul>
+</li>
+<li>Parse
+<ul class="org-ul">
+<li>Parse: parent, head
+</li>
+<li>List&lt;Parse&gt;: parts
+</li>
+<li>Span, String: type, List&lt;Token&gt; tokens.
+</li>
+</ul>
+</li>
+<li>Statement extends Question
+<ul class="org-ul">
+<li>Question implements Serializable, Cloneable
+<ul class="org-ul">
+<li>String //string representation, etc., List&lt;Token&gt;,
+Parse //the syntatic parse, List&lt;String&gt; chunks
+</li>
+<li>ArrayList&lt;ArrayList&lt;SemanticLabel&gt;&gt;
+</li>
+<li>String normlizedQuestion, originalQuestion.
+</li>
+<li>ArrayList&lt;AnnotatedElement&gt; annotatedEvent,
+recognizedEvent, annotated timex, recognized timex, annotatedSignals
+</li>
+<li>ArrayList&lt;ArrayList&lt;Token&gt;&gt; ngrams
+</li>
+<li>String sourceFile, dct.
+</li>
+<li>ArrayList&lt;String&gt; timex, ArrayList&lt;Parse&gt; candidates;
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Token implements Serializable
+<ul class="org-ul">
+<li>index in sentence, String annotationLine?, pos, int (start,
+end), String convertedString, some boolean for syntactic
+states, Span, String chunkTag. Statement //sentence. String[]
+features.
+<ul class="org-ul">
+<li>HashMap&lt;Integer, ArrayList&lt;RuleResults&gt;&gt; ?. integer means level
+</li>
+<li>HashMap&lt;Sematic,String&gt; different labels in different context?
+</li>
+<li>HashMap&lt;Enum, ArrayList&lt;Object&gt;&gt; map of TimeML label -&gt; BIO
+labels? In Question, they only treate the first element and
+planned to make warm if there are more than one
+label. <i>twist design.</i> The second(why second?) Object is converted into a NamedNodeMap.
+</li>
+<li>ArrayList&lt;Container&lt;String, Double&gt;&gt; contextSynonyms.
+Synonyms and probabilities
+</li>
+<li>ArrayList&lt;Container&lt;String, Double&gt;&gt; contextIndependentSynonyms
+</li>
+<li>Parse parentParse ?
+</li>
+</ul>
+</li>
+<li>Span int (start, end), String merge?
+</li>
+<li>SemanticLabel
+String role; String chunk; ArrayList&lt;Token&gt; tokens;
+</li>
+</ul>
+</li>
+<li>malt.Node
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-1-2" class="outline-5">
+<h5 id="sec-2-2-1-2"><span class="section-number-5">2.2.1.2</span> Pacakges <i>api</i></h5>
+<div class="outline-text-5" id="text-2-2-1-2">
+<ul class="org-ul">
+<li>CorpusReader, read/get files under directory
+</li>
+<li>ml.Outcomes; confusion matrix?
+</li>
+<li>ml.dependency.features.CPOSTag; return concise POS of the head token
+</li>
+<li>ml.dependency.features.Form; get token from
+Token/AnnotatedElement(Quasi head token, which is the last
+token)
+</li>
+<li>ml.dependency.features.Lemma; Lemma of token returned by Form
+</li>
+<li>ml.dependency.features.POSTag; POS of token returned by Form
+</li>
+<li>ml.dependency.malt.MaltDataWriter;
+</li>
+<li>nlp.adapters.OpenNLPFactory; OpenNLP processors
+</li>
+<li>nlp.adapters.WebNLPFactoryLoader; wrapper for web.
+</li>
+<li>timex.model.Calendar; time convertor
+</li>
+<li>tlink.EventStemFrequency; load frequency from file
+</li>
+<li>util.Const;
+</li>
+<li>util.EditDistance;
+</li>
+<li>util.WebConst;
+</li>
+<li>util.WordNet;
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-1-3" class="outline-5">
+<h5 id="sec-2-2-1-3"><span class="section-number-5">2.2.1.3</span> Packages <i>experiment</i></h5>
+<div class="outline-text-5" id="text-2-2-1-3">
+<ul class="org-ul">
+<li>recognition.Classifier;
+GISModel&#x2026;
+List&lt;Parse&gt; = AbstractClassifier.simpleEvaluate(Question, classifier,
+outcomes, false, SmartFeatureGenerator)
+<ul class="org-ul">
+<li>AbstractClassifier.simpleDetect
+<font color='red'>*to do, very long function*</font>
+</li>
+</ul>
+</li>
+<li>tlinks.fables.FablesFeatureGenerator; generate features for tlinks
+</li>
+<li>tlinks.fables.parse.MaltFeatureGenerator; ???
+</li>
+<li>tlinks.fables.parse.MaltParser; invoke malt parser (dependency parser)
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> Terence references</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+start at be.liir.nlptools.adapters.TAFAdapter
+steps:
+</p>
+<ul class="org-ul">
+<li>init (protected)
+</li>
+<li>processStory(string)
+<ul class="org-ul">
+<li>preProcess(string) for pg // replace ';' by '.'
+</li>
+<li>processSyntax(string)
+</li>
+<li>Document result = processSemantics(string)
+for each sentence
+<ul class="org-ul">
+<li>timexAdapter
+</li>
+<li>UMLSAdapter.detectMedicalConcepts
+</li>
+<li>eventAdapter
+</li>
+<li>getEventParticipants (tokens, empty map, empty list, empty
+map)
+remove events with participants, but if the map is empty, <b>do nothing!</b>
+</li>
+<li>participantProcess
+will create HasParticipant, but does nothing when previous
+step does nothing.
+</li>
+<li>&#x2026;
+</li>
+<li>eventProcess, construct the maps and collections between/of
+tokens and events
+</li>
+<li>clinkAdapter
+<ul class="org-ul">
+<li>getCauseLinksWithSUBJ// only process HasParticipant objects.
+</li>
+<li>getCauseLinks// HasParticipant with diff constraints
+</li>
+<li>getCauseLinksNoSUBJ// use word match and dependency
+rules(hard coded)
+</li>
+<li>getCauseLinksbyCausePhrases// use word match and dependency
+rules(hard coded)
+</li>
+<li>postProcess
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>getTLinks if !pg //
+<ul class="org-ul">
+<li>factual events
+</li>
+<li>parse dependency for factual events // strange
+</li>
+</ul>
+</li>
+<li>tLinkPostProcess(tlinks, jaoContent)
+editTLinks(tlinks,clinks)// use case links to calibrate
+BEFORE, AFTER tlinks relations.
+</li>
+</ul>
+</li>
+
+<li>postProcess(Document result)
+</li>
+<li>return result
+</li>
+<li>createNewDocument(string)
+<ul class="org-ul">
+<li>new timexAdapter, clinkAdapter
+</li>
+<li>createSentences
+</li>
+<li>for each sentence
+<ul class="org-ul">
+<li>Statement.processIt // data structure from lindo
+doTokenize, doTag, doParse, not doSemanticParse, not isAtimex
+</li>
+<li>SPreprocAdapter.replaceTokens
+replace string of token for parentheses (e.g. -LRB- to "(")
+</li>
+<li><b>timexAdapter.getTimexes</b>
+return List&lt;Parse&gt; by classifier.simpleDetect(Statement,
+classifier, new Outcomes(new String[]{"0", "1"})). detect
+<i>parse</i>, <i>sub-parse</i>.
+</li>
+<li>convert to new data structure (JAO tokens)
+</li>
+<li>eventAdapter.annotate
+use EventDetector from lindo.
+opennlp.maxent.GISModel classify vector generated by
+FeatureGenerator. classify each tokens.
+</li>
+<li>parseDependency (for relations)
+Relation here represents the dependency relation between tokens.
+</li>
+<li>getEventParticipants
+filter sub-obj relations, return such kind of relations
+associated to events.
+</li>
+<li>participantProcess
+get the participant tokens (JAO)
+</li>
+<li>eventProcess
+creating maps and list for tokens and events.
+</li>
+<li>clinkAdapter.getLinks // Cause Link
+<ul class="org-ul">
+<li>getCauseLinksWithSUBJ
+</li>
+<li>getCauseLinks
+</li>
+<li>getCauseLinksNoSUBJ
+</li>
+<li>getCauseLinksbyCausePhrases
+</li>
+<li>getCauseLinksbyCausePhrases
+</li>
+<li>postProcess
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tLinkPostProcess// set tlinks to null before invoking this
+function, it would do nothing!
+use cLinks
+<ul class="org-ul">
+<li>Link, source, targets, label, id, innerId
+两次调用getLinksWith,得到所有包含当前link的target和source的
+link(可以对调)
+</li>
+<li>Optional commented code getTLinks
+<ul class="org-ul">
+<li>remove modal and negated events
+</li>
+<li>parse dependency for the filtered event token sequence? strange.
+</li>
+<li>create tlink for each dependency relation
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>getCoferClusters
+</li>
+<li>postProcess // merge duplicated entityMentions
+</li>
+</ul>
+</li>
+<li>preprocessing: srl, coref, action (server service)
+</li>
+</ul>
+<p>
+task definition:
+</p>
+<ul class="org-ul">
+<li>Timex3
+</li>
+<li>Relation
+</li>
+<li>Event
+</li>
+<li>Document
+</li>
+</ul>
+<p>
+feature:
+model:
+train:
+test:
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2015-02-28 Sat 22:37</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

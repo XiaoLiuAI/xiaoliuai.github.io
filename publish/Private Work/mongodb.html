@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Notes of Mongodb</title>
+<!-- 2015-02-28 Sat 22:37 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Xiao LIU" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="/~xiaoliu/publish/css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="/publish/css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Notes of Mongodb</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Basic Mongodb Instructions&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></a>
+<ul>
+<li><a href="#sec-1-1">1.1. Insert</a></li>
+<li><a href="#sec-1-2">1.2. Find</a></li>
+<li><a href="#sec-1-3">1.3. Select</a></li>
+<li><a href="#sec-1-4">1.4. Update</a></li>
+<li><a href="#sec-1-5">1.5. Remove</a></li>
+<li><a href="#sec-1-6">1.6. Commands</a></li>
+<li><a href="#sec-1-7">1.7. Query Cursor Methods</a></li>
+<li><a href="#sec-1-8">1.8. MapReduce</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Mongodb Admin</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Backup</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Mongodb Strategy&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></a>
+<ul>
+<li><a href="#sec-3-1">3.1. Two-phase commits</a></li>
+<li><a href="#sec-3-2">3.2. Concurrency control</a></li>
+<li><a href="#sec-3-3">3.3. Model</a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1. Relationships between documents</a>
+<ul>
+<li><a href="#sec-3-3-1-1">3.3.1.1. One-to-One Embeded</a></li>
+<li><a href="#sec-3-3-1-2">3.3.1.2. One-to-Many Embeded/References</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3-2">3.3.2. Tree Structures</a>
+<ul>
+<li><a href="#sec-3-3-2-1">3.3.2.1. References</a></li>
+<li><a href="#sec-3-3-2-2">3.3.2.2. Nested Sets</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3-3">3.3.3. Index</a></li>
+<li><a href="#sec-3-3-4">3.3.4. Others</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Mongoose</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Schema</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Basic Mongodb Instructions&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></h2>
+<div class="outline-text-2" id="text-1">
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Insert</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.insert<span style="color: #657b83;">(</span>doc/docs<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+You can insert one document or a list of documents.  When you
+insert a list of documents, the operation is not atomic.  The
+returned result shows the statistics of the write operations
+including the write errors and the number of successfully inserted
+documents.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Find</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>name: value, <span style="color: #2aa198;">'name1.name2.name3'</span>:value/condition<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57345;
+</pre>
+</div>
+<p>
+Check all the elements in array when 'name#' corresponds to
+array. Special conditions
+</p>
+<ul class="org-ul">
+<li><code>$in, $ne, $nin, $lt, $gt, $lte, $gte</code>
+</li>
+<li><code>$and, $or, $not, $nor</code>
+</li>
+<li><code>$exists, $type</code>
+</li>
+<li><code>$regex, $text, $where, $mod</code>
+</li>
+<li><code>$all, $elemMatch, $size</code>
+</li>
+<li><code>$, $slice</code>
+</li>
+</ul>
+
+<p>
+Difference between with/without <code>$elemMatch</code> is that: <code>$elemMatch</code>
+restrict that one element in array should match all the conditions,
+while without <code>$elemMatch</code>, different elements in the array can
+match different part of the conditions.
+</p>
+
+<p>
+Match <b>element</b> / <b>array</b> can be done by query <code>{name: value}</code> when value
+is a single <b>variable/object</b> or an <b>array</b>.
+</p>
+
+<p>
+Elements in array can be retrieved by index
+<code>db.COLLECTION.find({'name.0': value})</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Select</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>get attribute
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+</li>
+<li>get elements in array
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span><span style="color: #2aa198;">'name1.name2'</span>:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+This projection will returns all the elments with the path
+'name1.name2' when any one in the path represents an array.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name1: <span style="color: #b58900;">{</span>$elemMatch: <span style="color: #859900;">{</span>name2:value<span style="color: #859900;">}</span><span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+<code>$elemMatch</code> can be used in the second argument to limit the
+returned elements in array. However, it <b>CANNOT</b> be used in nested
+array and only returns the <b>FIRST</b> element.
+</p>
+</li>
+<li>get elements in nested array.
+
+<p>
+<b>Aggregation framework/unwind.</b>
+Aggregations are operations that process data records and return
+computed results.
+<b>Pipeline</b>
+</p>
+
+<p>
+You can expand the nested arrays by several <code>$unwind</code>
+operations to get a large number of documents that each one
+contains a single combination of elements in different levels
+of nested arrays. Then match the elements you need and maybe
+regroup them together. However, if you want to aggregate the
+matched elements in nested arrays into array after <code>$unwind</code>
+operation, it is very complex.
+</p>
+
+<p>
+However, you can just return the tasks by <code>$group</code> operation
+that matches, for example, the nested element attributes.
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Update</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>update attribute:
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$set: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+<code>$inc</code> increase number, etc. <code>upsert</code> will insert element when it
+does not exist in collection.
+</p>
+</li>
+<li>update array:
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$push/$pull: value<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.students.update<span style="color: #657b83;">(</span>&#57344;&#57345;&#57345;
+  <span style="color: #2aa198;">{</span> _id: 1 <span style="color: #2aa198;">}</span>,&#57344;&#57345;&#57345;
+  <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  $push: <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+          scores: <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+             $each: <span style="color: #268bd2;">[</span> <span style="color: #657b83;">{</span> attempt: 3, score: 7 <span style="color: #657b83;">}</span>, <span style="color: #657b83;">{</span> attempt: 4, score: 4 <span style="color: #657b83;">}</span> <span style="color: #268bd2;">]</span>,&#57344;&#57345;
+             $sort: <span style="color: #268bd2;">{</span> score: 1 <span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+             $slice: -3&#57344;&#57345;&#57345;
+          <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+The command above append 2 elements, then sort them by ascending
+<i>score</i>, then keep the last 3 elements of the ordered array.
+</p>
+</li>
+<li>update element in array:
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$set:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2:value}})</span>&#57344;&#57345;
+</pre>
+</div>
+<p>
+It only works for one match.
+</p>
+
+<p>
+If you want to update multiple elments, use forEach function.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.Projects.find<span style="color: #657b83;">()</span>.forEach<span style="color: #657b83;">(</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">pj</span><span style="color: #2aa198;">){</span>&#57344;&#57345;&#57345;
+        pj.groups.forEach<span style="color: #b58900;">(</span>&#57344;&#57345;&#57345;
+            <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">gp</span><span style="color: #859900;">){</span>&#57344;&#57345;&#57345;
+                gp.tasks.forEach<span style="color: #268bd2;">(</span>&#57344;&#57345;&#57345;
+                    <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">task</span><span style="color: #657b83;">){</span>&#57344;&#57345;&#57345;
+                        <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>task.name.match<span style="color: #b58900;">(</span><span style="color: #2aa198;">/update/</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">){</span>&#57344;&#57345;&#57345;
+                            task.weight=5;&#57344;&#57345;&#57345;
+                        <span style="color: #2aa198;">}</span>&#57344;&#57345;&#57345;
+                    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+            <span style="color: #859900;">}</span><span style="color: #b58900;">)</span>;&#57344;&#57345;&#57345;
+        db.Projects.save<span style="color: #b58900;">(</span>pj<span style="color: #b58900;">)</span>;&#57344;&#57345;&#57345;
+    <span style="color: #2aa198;">}</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+</li>
+<li>update element in nested array.
+
+<p>
+<b>Impossible</b> for only one query. The issue is reported on 2010, but
+is still there on 2015&#x2026;
+</p>
+</li>
+</ul>
+
+<p>
+Functional key words:
+</p>
+<ul class="org-ul">
+<li><code>$currentDate, $inc, $max, $min, $mul, $rename, $setOnInsert, $set, $unset</code>
+</li>
+<li><code>$, $addToSet, $pop, $pullAll, $pull, $pushAll, $push</code>
+</li>
+<li><code>$each, $position, $slice, $sort</code>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Remove</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>remove document
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.remove<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+remove all documents when condition is not provided.
+</p>
+</li>
+<li>remove colleciton
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.drop<span style="color: #657b83;">()</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+</li>
+<li>remove database
+<div class="org-src-container">
+
+<pre class="src src-javascript">use DATABASE&#57344;&#57345;&#57345;
+db.dropDatabase<span style="color: #657b83;">()</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+</li>
+<li>remove attribute
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find, <span style="color: #2aa198;">{</span>$unset: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+value can be 1, "", true/false.
+</p>
+</li>
+<li>remove element in array
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$unset:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2'</span>:1<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Commands</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+<code>show dbs</code>
+<code>use DB</code>
+<code>show collection</code>
+<code>help</code>
+<code>db.help()</code>
+<code>db.COLLECTION.help()</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Query Cursor Methods</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li><code>count()</code> // count of documents returned in a curcor
+</li>
+<li><code>explain()</code> // report
+</li>
+<li><code>hint()</code> // Forces MongoDB to use a specific index for a query
+</li>
+<li><code>limit()</code> // constraints size of returned results
+</li>
+<li><code>skip()</code> // skip the first number of documents
+</li>
+<li><code>sort()</code>
+</li>
+<li><code>toArray()</code>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> MapReduce</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.mapReduce<span style="color: #657b83;">(</span>mapFunction,&#57344;&#57345;&#57345;
+                        reduceFunction,&#57344;&#57345;&#57345;
+                        <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+                            query: <span style="color: #2aa198;">"query performed at the beginning"</span>,&#57345;
+                            out: <span style="color: #2aa198;">"out collection name"</span>,&#57344;&#57345;&#57345;
+                            finalize: finalizeFunction&#57344;&#57345;&#57345;
+                        <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+Query -&gt; map -&gt; reduce -&gt; finalize -&gt; out.
+</p>
+<ul class="org-ul">
+<li>The <i>reduce</i> function muse return object with the same type of the output
+of the <i>map</i> function.
+</li>
+<li>The order of emited elements should not affect the output of
+reduce function.
+</li>
+<li>The reduce function must be <i>Idempotent</i>, which means
+<i>f(f(x))=f(x)</i>.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Mongodb Admin</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Backup</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+One method to backup mongodb is <b>copying</b> the database files
+directly. As extension, any methods for file backup can be applied
+here such as <i>file system snapshots</i>. With normal solutions using
+<code>copy</code>, <code>rsync</code>, etc., you have to stop the mongod before copying
+the files for data consistency since the copying operation is not
+atomic. <b>Drawbacks</b>: not easy for large clusters, do not support
+point in time recovery for replica sets.
+</p>
+
+<p>
+<b>mongodump</b> creats smaller copy files, which are BSON files. Then
+you can use <b>mongorestore</b> to import these data into database.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Mongodb Strategy&#xa0;&#xa0;&#xa0;<span class="tag"><span class="blog">blog</span></span></h2>
+<div class="outline-text-2" id="text-3">
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Two-phase commits</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Two-phase commits is used to update multiple documents as a fake
+atomic operation. The principle of two-phase commits is creating
+temporary, inter-media records to support rollback operations
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Concurrency control</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+The first method is adding a label to indicate the current accessing
+application.
+</p>
+
+<p>
+The second method is using the old value of files to update as a part
+of query to ensure that the target fields of current document is
+not updated.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myDoc</span> = db.COLLECTION.findOne<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span><span style="color: #657b83;">(</span>myDoc<span style="color: #657b83;">){</span>&#57344;&#57345;&#57345;
+   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">oldValue</span> = myDoc.value;&#57344;&#57345;&#57345;
+   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">results</span> = db.COLLECTION.update<span style="color: #2aa198;">(</span>&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+           _id: myDoc._id,&#57344;&#57345;&#57345;
+           value: oldValue&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">}</span>,&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+           $inc:<span style="color: #859900;">{</span>value: -fee<span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">}</span>&#57344;&#57345;&#57345;
+       <span style="color: #2aa198;">)</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+Another possible option is: if you want to deduct an amount of
+money from an account and the rest money should not be negative,
+you can use following commands:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>_id: id, value: <span style="color: #b58900;">{</span>$gte: fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$inc:<span style="color: #b58900;">{</span>value: -fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
+</pre>
+</div>
+<p>
+It means the account will be updated only if the value is enough.
+</p>
+
+<p>
+The third method is add an unique field (<i>version</i>) to the
+document.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Model</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Relationships between documents</h4>
+<div class="outline-text-4" id="text-3-3-1">
+</div><div id="outline-container-sec-3-3-1-1" class="outline-5">
+<h5 id="sec-3-3-1-1"><span class="section-number-5">3.3.1.1</span> One-to-One Embeded</h5>
+<div class="outline-text-5" id="text-3-3-1-1">
+<p>
+Example: <i>patron</i> and <i>address</i>. User informations should be put
+together, such as the account info (password, email) and
+application relative info (balance in account).
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-1-2" class="outline-5">
+<h5 id="sec-3-3-1-2"><span class="section-number-5">3.3.1.2</span> One-to-Many Embeded/References</h5>
+<div class="outline-text-5" id="text-3-3-1-2">
+<p>
+It is used for <i>one-to-few</i> such as the authors of a book. One
+can use array in a document to model such relations. However, if
+the values of embedded elements are few, it is better to save them
+in another documents using references. For example, the
+publishers of books. Another principle is DO NOT create large
+arrays in document. Large arrays in document is inefficient for
+three reasons:
+</p>
+<ul class="org-ul">
+<li>When document size is increased, the MongoDB will move the
+document, which lead to rewriting the entire document.
+</li>
+<li>Indexing the elements in array is inefficient.
+</li>
+<li>Query a large document for a small part of array is
+inconvenient.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> Tree Structures</h4>
+<div class="outline-text-4" id="text-3-3-2">
+</div><div id="outline-container-sec-3-3-2-1" class="outline-5">
+<h5 id="sec-3-3-2-1"><span class="section-number-5">3.3.2.1</span> References</h5>
+<div class="outline-text-5" id="text-3-3-2-1">
+<ul class="org-ul">
+<li>Parent Refs.
+
+<p>
+Save each node as a document that contains the reference to the
+parent
+</p>
+</li>
+
+<li>Child Refs
+
+<p>
+Save each node as document that contains an array of references
+to children nodes.
+</p>
+</li>
+
+<li>Extension
+
+<p>
+It is also useful to add additional relations such as ancestors
+of nodes into the document.
+</p>
+
+<p>
+Another way to accelerate the searching of a tree is
+<i>materialize paths</i>. This method add a <code>path</code> attribute that
+describe the path using a string. Searching such string requires
+using of regular expression, but is faster than the previous
+solution.
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-2-2" class="outline-5">
+<h5 id="sec-3-3-2-2"><span class="section-number-5">3.3.2.2</span> Nested Sets</h5>
+<div class="outline-text-5" id="text-3-3-2-2">
+<p>
+This method is tricky. It likes a binary tree that use values to
+indicate the relative nodes.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript"> db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Books"</span>, parent: 0, left: 1, right: 12 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Programming"</span>, parent: <span style="color: #2aa198;">"Books"</span>, left: 2, right: 11 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Languages"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 3, right: 4 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 5, right: 10 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+&#65532;db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"MongoDB"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 6, right: 7 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"dbm"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 8, right: 9<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
+&#57344;&#57345;&#57345;
+ <span style="color: #859900;">var</span> <span style="color: #6c71c4;">databaseCategory</span> = db.categories.findOne<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span> <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>;&#57345;
+ db.categories.find<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> left: <span style="color: #b58900;">{</span> $gt: databaseCategory.left <span style="color: #b58900;">}</span>, right: <span style="color: #b58900;">{</span> $lt: databaseCategory.right <span style="color: #b58900;">}</span> <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
+</pre>
+</div>
+<p>
+One can retrieve the children nodes by using the left and right
+indicators.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> Index</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+One of the main benefit of indexing is sorting, the application
+can quickly find the matched document by traveling through the
+ordered indices very quickly
+</p>
+<ul class="org-ul">
+<li>Single field index
+</li>
+<li>Compound key index<br  />
+      Note that if one set compound index by
+<div class="org-src-container">
+
+<pre class="src src-javascript">db.COLLECTION.ensureIndex<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>key1: 1, key2: -1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+It can help the <code>sort</code> funciton using <code>{key1: 1, key2: -1}</code>,
+<code>{key1: -1, key2: 1}</code>, but cannot help sorting with the key
+<code>{key1: 1, key2: 1}</code>.
+</p>
+</li>
+<li>Multi-key index<br  />
+      It refers to using array as index. You cannot using compound key
+for two arrays.
+</li>
+<li>Hased index<br  />
+      It is not compatible with multi-key index.
+</li>
+<li>Geospatial index<br  />
+      This index is used to index the geometric data, such as lines,
+points, shapes.
+</li>
+<li>Text index<br  />
+      Support text search with language stop words, will use very
+large space.
+</li>
+<li>Hashed index<br  />
+      Compute the hash for entire document while <b>??collapse??</b> the
+sub-document.
+</li>
+</ul>
+
+<p>
+Index also support properties like:
+</p>
+<ul class="org-ul">
+<li><i>TTL</i> index is used to remove outdated index
+</li>
+<li><i>Uniqu</i> index, which reject duplicate value of indexed filed for all the document. ??Can we use it to ensure that
+elements in array has unique value in document (can be repeat in
+different document)??
+</li>
+<li><i>Sparse</i> index, documents without the field are not indexed. By
+default, these documents will be indexed to null.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-4" class="outline-4">
+<h4 id="sec-3-3-4"><span class="section-number-4">3.3.4</span> Others</h4>
+<div class="outline-text-4" id="text-3-3-4">
+<ul class="org-ul">
+<li>Atomic operation
+<code>update</code>, <code>findAddUpdate</code>, <code>remove</code> are atomic. Put fields in one
+document can ensure the write operations are atomic.
+</li>
+
+<li>Support keyword search
+Putting strings in an array, then create a multi-key index
+enables keyword search.
+
+<p>
+Keyword search cannot provide NLP/IE functions, such as
+stemming, synonyms, ranking, which are usually required by
+search engine.
+</p>
+</li>
+
+<li>Document limit
+
+<ul class="org-ul">
+<li>Field names cannot start with <code>$</code>, cannot contain <code>.</code>, cannot
+contain <code>null</code>.
+</li>
+
+<li>Field value has a maximum index key length limit to be used as
+index.
+</li>
+
+<li>Maximum document size is 16M. GridFS supports large file,
+which is represented by a group of files that contain
+different pieces of contents.
+</li>
+
+<li><code>_id</code> field may be any BSON data type except the array. It is
+<code>ObjectId</code> by default.
+</li>
+</ul>
+</li>
+
+<li>DBRef
+
+<p>
+DBRefs are used to representing a document rather a specific
+reference type. It contains the name of collection (optional:
+database name).
+</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Mongoose</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Schema</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>methods
+<ul class="org-ul">
+<li>instance
+</li>
+<li>static
+</li>
+</ul>
+</li>
+<li>virtual
+</li>
+<li>options
+collection?
+read?
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Xiao LIU</p>
+<p class="date">Created: 2015-02-28 Sat 22:37</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>
