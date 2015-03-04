@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Management | 记往开来]]></title>
   <link href="http://xiaoliuai.github.io/blog/categories/management/atom.xml" rel="self"/>
   <link href="http://xiaoliuai.github.io/"/>
-  <updated>2015-03-01T00:54:50+01:00</updated>
+  <updated>2015-03-04T23:12:55+01:00</updated>
   <id>http://xiaoliuai.github.io/</id>
   <author>
     <name><![CDATA[Xiao Liu]]></name>
@@ -158,6 +158,11 @@ domain by default?
 <pre class="src src-bash">mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 </pre>
 </div>
+
+<p>
+<code>mvn scala:console</code> can launch the scala console with the pom
+configurations (you have to specify maven-scala-plugin).
+</p>
 </div>
 </div>
 

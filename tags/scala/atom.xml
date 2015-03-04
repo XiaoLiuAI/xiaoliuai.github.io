@@ -3,7 +3,7 @@
 <title><![CDATA[Tag: Scala | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/scala/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2015-03-01T00:54:50+01:00</updated>
+<updated>2015-03-04T23:12:55+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
@@ -21,10 +21,27 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">1. Monad</a></li>
-<li><a href="#sec-2">2. ScalaCheck &amp; ScalaTest</a>
+<li><a href="#sec-2">2. ScalaCheck &amp; ScalaTest &amp; JUnit</a>
 <ul>
 <li><a href="#sec-2-1">2.1. Tutorial of ScalaCheck</a></li>
-<li><a href="#sec-2-2">2.2. ScalaTest</a></li>
+<li><a href="#sec-2-2">2.2. ScalaTest</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. With JUnit</a></li>
+<li><a href="#sec-2-2-2">2.2.2. With ScalaCheck</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Async</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Exception =&gt; Future</a></li>
+<li><a href="#sec-3-2">3.2. Iterable =&gt; Observable</a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. Subject</a></li>
+<li><a href="#sec-3-2-2">3.2.2. Notification</a></li>
+<li><a href="#sec-3-2-3">3.2.3. Subscription</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -106,20 +123,80 @@ output of for-expression.
 
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> ScalaCheck &amp; ScalaTest</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> ScalaCheck &amp; ScalaTest &amp; JUnit</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-It is a tool for property-based testing for scala. It has <b>NO</b>
-external dependencies and integrated in the test frameworks
-<b>ScalaTest</b>. It can also be used standalone, with its built-in test
-runner.
+In the example provided by the oneline course, they used <b>JUnit</b>,
+<b>ScalaTest</b> and <b>ScalaCheck</b> together. In their example, the class
+of <code>Properties</code> is in <code>src/main/scala</code> and is called by another
+class defined under <code>src/test/scala</code>. In the class under test
+folder, many instances of the <code>Properties</code> class are created to
+check different children classes of the target class.
 </p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">abstract</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckHeap</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Properties</span>(<span style="color: #2aa198;">"Heap"</span>) with IntHeap {
+
+  property(<span style="color: #2aa198;">"min1"</span>) = forAll { <span style="color: #268bd2;">a</span>: Int =&gt;
+    val h = insert(a, empty)
+    findMin(h) == a
+  }
+
+  lazy <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">genHeap</span>: Gen[H] = <span style="color: #859900;">for</span> {
+    a &lt;- arbitrary[Int]
+    h &lt;- oneOf(value(empty), genHeap)
+  } <span style="color: #268bd2;">yield</span> <span style="color: #b58900;">insert</span>(<span style="color: #268bd2;">a</span>, <span style="color: #268bd2;">h</span>)
+
+  implicit lazy val arbHeap: Arbitrary[H] = Arbitrary(genHeap)
+
+}
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">@RunWith</span>(<span style="color: #268bd2;">classOf</span>[JUnitRunner])
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckSuite</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">FunSuite</span> with Checkers {
+  <span style="color: #268bd2;">def</span> <span style="color: #b58900;">checkBogus</span>(p: Prop) {
+    <span style="color: #268bd2;">var</span> <span style="color: #6c71c4;">ok</span> = <span style="color: #268bd2;">false</span>
+    <span style="color: #859900;">try</span> {
+      check(p)
+    } <span style="color: #859900;">catch</span> {
+      <span style="color: #859900;">case</span> e: TestFailedException =&gt;
+        ok = <span style="color: #268bd2;">true</span>
+    }
+    assert(ok, <span style="color: #2aa198;">"A bogus heap should NOT satisfy all properties. Try to find the bug!"</span>)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Binomial heap satisfies properties."</span>) {
+    check(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (1) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus1BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (2) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus2BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (3) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus3BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (4) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus4BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (5) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus5BinomialHeap)
+  }
+}
+</pre>
+</div>
 </div>
 
 <div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1"><span class="section-number-3">2.1</span> Tutorial of ScalaCheck</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
+It is a tool for <b>property-based</b> testing for scala. It has <b>NO</b>
+external dependencies and integrated in the test frameworks
+<b>ScalaTest</b>. It can also be used standalone, with its built-in test
+runner.
 First, create a class that extends class
 <code>org.scalacheck.Properties</code> with the name of data object that you
 want to test. It is used for the library to generate test data to
@@ -151,89 +228,225 @@ Third, to run the tests, you can put the properties in
 <h3 id="sec-2-2"><span class="section-number-3">2.2</span> ScalaTest</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-In the example provided by the oneline course, they used <b>JUnit</b>,
-<b>ScalaTest</b> and <b>ScalaCheck</b> together, which is much more complext
-than the tutorial. In their example, the class of <code>Properties</code> is
-in <code>src/main/scala</code> and is called by another class defined under
-<code>src/test/scala</code>. In the class under test folder, many instances
-of the <code>Properties</code> class are created to check different children
-classes of the target class.
+This is a test framework that integrates all together. ScalaTest
+provides many test styles: <code>FunSuit</code>, <code>FlatSpec</code>, <code>FuncSpec</code>,
+<code>WordSpec</code>, <code>FreeSpec</code>, <code>Spec</code>, <code>PropSpec</code>, <code>FeatureSpec</code>. They
+are mainly different on syntax styles. It is recommanded that the
+user creates a base class that extends all the required features
+(as a subset of all the provided features) and extends this base
+class through everywhere of the project to make the style
+consistent.
 </p>
-<div class="org-src-container">
-
-<pre class="src src-java"><span style="color: #268bd2;">@RunWith</span>(<span style="color: #268bd2;">classOf</span>[JUnitRunner])
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckSuite</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">FunSuite</span> with Checkers {
-  <span style="color: #268bd2;">def</span> <span style="color: #b58900;">checkBogus</span>(p: Prop) {
-    <span style="color: #268bd2;">var</span> <span style="color: #6c71c4;">ok</span> = <span style="color: #268bd2;">false</span>
-    <span style="color: #859900;">try</span> {
-      check(p)
-    } <span style="color: #859900;">catch</span> {
-      <span style="color: #859900;">case</span> e: TestFailedException =&gt;
-        ok = <span style="color: #268bd2;">true</span>
-    }
-    assert(ok, <span style="color: #2aa198;">"A bogus heap should NOT satisfy all properties. Try to find the bug!"</span>)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Binomial heap satisfies properties."</span>) {
-    check(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (1) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus1BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (2) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus2BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (3) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus3BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (4) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus4BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (5) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus5BinomialHeap)
-  }
-}
-</pre>
 </div>
-<ul class="org-ul">
-<li>This class uses the junit framework for unittest. JUnit will
+
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> With JUnit</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+This class uses the junit framework for unittest. JUnit will
 invoke the class with <code>@RunWith</code> annotation (extend by type
 hierarchies) to run the tests. The annotation parameter in the
 example is a class of the type <code>JUnitRunner</code>. In fact, any class
 extends <code>Runner</code> is acceptabel. Notice that function <code>classOf</code>
 acts the same as <code>obj.getClass()</code>.
-</li>
-<li>The annotation uses class of <code>JUnitRunner</code> as parameter. This
-class is provided by scala-test framework.
-</li>
-<li>It is mentioned on <a href="http://www.scalatest.org/user_guide/using_the_scalatest_maven_plugin">ScalaTest Maven Plugin</a> that this annotaiton
-is necessary to run the test without this plugin. So you can run
-tests without this annotation by using this plugin.
+</p>
+
+<p>
+<b>Maven</b> Running tests with command <code>mvn test</code>. In fact, you
+<b>cannot</b> run the tests with the example above. <b>Solution</b> is to
+change the name <code>QuickCheckSuite</code> to <code>QuickCheckSuiteTest</code> or
+<code>TestQuickCheckSuite</code> or <code>QuickCheckSuiteTestCase</code> to run the
+tests. Even I did not explicitly specify plugin <code>surefire</code>, maven
+uses this plugin to run test with my configuration. By default,
+maven following name convertions when looking for tests to
+run. So I have to change the name or modify the <code>surefire</code>
+configuration to apply new name convertion rules.
+</p>
+
+<p>
+The annotation uses class of <code>JUnitRunner</code> as parameter. This
+class is provided by scala-test framework that connect
+scala-test and junit.
+</p>
 <ul class="org-ul">
-<li><b>Maven</b> Running tests with command <code>mvn test</code>. In fact, you
-<b>cannot</b> run the tests with the example above. <b>Solution</b> is
-to change the name <code>QuickCheckSuite</code> to <code>QuickCheckSuiteTest</code>
-or <code>TestQuickCheckSuite</code> or <code>QuickCheckSuiteTestCase</code> to run
-the tests. Even I did not explicitly specify plugin
-<code>surefire</code>, maven uses this plugin to run test with my
-configuration. By default, maven following name convertions
-when looking for tests to run. So I have to change the name or
-modify the <code>surefire</code> configuration to apply new name
-convertion rules.
-</li>
-<li><b>ScalaTest</b> plugin. <b>TODO</b>
+<li>As mentioned on <a href="http://www.scalatest.org/user_guide/using_the_scalatest_maven_plugin">ScalaTest Maven Plugin</a>, you can run tests
+without this annotation by using this plugin. <b>TODO</b>
 </li>
 </ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> With ScalaCheck</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+To work with ScalaCheck, you have to mix the trait
+<code>org.scalatest.prop.Checkers</code> to your test class. <code>Checkers</code>
+class contains <code>check</code> method to perform ScalaCheck property
+checks, which are provided in the class <code>QuickCheckHeap</code> in the
+example above. In fact, you can also use the <code>check</code> method in
+JUnit directly. This method will generate a large number of
+possible inputs to look for an input that the property does not
+hold.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Async</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Exception =&gt; Future</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Exception is handled by <b>Try[T]</b>, which is used as return type like
+Option. But Try[T] maches Success with result or Failure with
+throwable. As Try[T] is also a monad, operations of element T are
+usually propagated to monad methods of Try[T] to get a new Try[U],
+<b>map Try[T] by f should return a new Try[f(T)]</b>.
+</p>
+
+<p>
+<b>Future[T]</b> is a container of Try[T]. User provide
+operations/callbacks that deal with Try[T] and future will call
+them at certain time. <b>Future</b> and <b>Try</b> form a nested monad,
+monad operations are propagated and you cannot see direct
+operation on T in the source code of scala library. But take it
+easy, usually, you won&#8217;t have to do it yourself.
+</p>
+
+<p>
+To <b>get/compose</b> a future (that can be our job), therer are four
+methods:
+</p>
+<ol class="org-ol">
+<li>Use the member function of a <code>Future</code> such as <code>flatMap</code>
+<ol class="org-ol">
+<li><code>flatMap</code>, binary bind operation of futures. Register promise
+to <i>this</i> when failed of exception of call funtion; register
+promise to <i>that</i> when successed.
 </li>
-<li><code>org.scalatest.FunSuite</code> and <code>org.scalatest.prop.Checkers</code>.
-<b>TODO</b>
+<li><code>onComplete</code>, parameter is a function <code>Try[T] =&gt; U</code>. This is
+a funtamental funciton of <code>map</code>, <code>foreach</code>, <code>failed</code>, etc. It
+propagate the Try mechanism.
 </li>
-</ul>
+<li><code>collect</code>
+</li>
+<li><code>recover</code>
+</li>
+<li><code>fallbackTo</code>
+</li>
+<li><code>zip</code>
+</li>
+<li><code>andThen</code>
+</li>
+</ol>
+</li>
+<li>Create a promise and register the complete method to current
+futures, then return a new Future of this promise.
+
+<p>
+<code>Promise</code> acts like a mailbox, to compose a new future, the old
+future has to put the result, which is a Try[T], into the
+promise by <code>complete</code> method. Then the new future will call its
+callback when the <code>complete</code> of promise is called.
+</p>
+
+<p>
+In my opinion, promise can be merged with feature as one
+unit. Because it is more straight to think in the way that:
+<i>feature calls the callbacks when it is completed</i>. In fact,
+the <code>DefaultPromise</code> is actually extends the <code>Future</code> trait. Of
+course, the designers of scala have their proper reason.
+</p>
+
+<p>
+Currently, I think promise is used in race (concurrent
+processing of futures results) or to provide a new future for
+initailization of fold operations.
+</p>
+</li>
+<li>Use <code>for-expression</code>, which is a syntax sugar of <code>flatMap</code>
+</li>
+<li>Use <code>async...await</code> grammar.
+<ol class="org-ol">
+<li><b>The scala implementation of await
+is translated to onComplete by the macro</b>.
+</li>
+<li><b>await method throw
+directly the excepetion when future failed</b>.
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Iterable =&gt; Observable</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<code>Try</code> and <code>Future</code> are dual, so as <code>Iterable</code> and
+<code>Observable</code>. For iterable, you can get an iterator and using
+<code>hasNext</code> and <code>next</code> to get elements. For <code>Obserable</code>, you use
+<code>Subscribe</code> and <code>onNext</code>, <code>onComplete</code> to get elements.
+</p>
+
+<p>
+<code>flatten</code> after <code>map</code> returns an observable that merges several
+streams randomly. <code>concat</code> after <code>map</code> returns an observable, in
+which, elements of each stream are grouped together sequentially
+as well as the order of the streams.
+</p>
+
+<p>
+<b>Don&#8217;t understand well the way of creating observable with a
+function from Observer to Subscription -_-!</b>
+</p>
+</div>
+
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Subject</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+It works like promise, which is used as bridge or chain between
+Obsever and Observable. Four types of subjects are provided:
+</p>
+<ol class="org-ol">
+<li>PublishSubject: send current value.
+</li>
+<li>BehaviorSubject: cache the latest output.
+</li>
+<li>AsyncSubject: cache the final output. You only get the final
+output.
+</li>
+<li>ReplaySubject: cache the whole history.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> Notification</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+Like Try
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> Subscription</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+a handle that enables process to stop receiving messages from
+Observable.
+</p>
+</div>
 </div>
 </div>
 </div>

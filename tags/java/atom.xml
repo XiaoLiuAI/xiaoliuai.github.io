@@ -3,13 +3,488 @@
 <title><![CDATA[Tag: Java | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/java/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2015-03-01T00:54:50+01:00</updated>
+<updated>2015-03-04T23:12:55+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
 
 </author>
 <generator uri="http://octopress.org/">Octopress</generator>
+
+<entry>
+<title type="html"><![CDATA[Spring Tutorial]]></title>
+<link href="http://xiaoliuai.github.io/blog/2015-03-04-spring-tutorial.html"/>
+<updated>2015-03-04T00:00:00+01:00</updated>
+<id>http://xiaoliuai.github.io/blog/spring-tutorial</id>
+<content type="html"><![CDATA[<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Project file structure</a></li>
+<li><a href="#sec-2">2. Management with Maven</a></li>
+<li><a href="#sec-3">3. Application Configuration</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Inject configurations</a></li>
+<li><a href="#sec-3-2">3.2. Load configuration files.</a></li>
+<li><a href="#sec-3-3">3.3. Define configuration source class</a></li>
+<li><a href="#sec-3-4">3.4. Automatically assign properties.</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Authentication &amp; Securing</a></li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/tags/java/atom.xml"><span class="section-number-2">1</span> Project file structure</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Generally, we use maven to manage the directory layout. Hence, you
+will get a <b>standard directory</b> layout like below:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">project
+    src
+        main
+            java
+            [scala]
+            resources
+                environment.properties
+                environment.test.properties
+                environment.prod.properties
+                config
+                    application.yml
+                    application-dev.yml
+                    application-[profile].yml
+                [other]
+        test
+            java
+            [scala]
+    target
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Management with Maven</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The files <code>environment.[profile].properties</code> are used to provide
+different profiles to <b><a href="http://maven.apache.org/guides/mini/guide-building-for-different-environments.html">maven</a></b>.
+</p>
+
+<p>
+Since maven is used to manage the package dependencies, different
+maven profiles enables you to use different dependencies for
+development and production, e.g. run different tasks. I am not
+farmiliar with maven, and cannot tell how and when it can be used.
+</p>
+
+<p>
+You have to add <code>spring-boot-maven-plugin</code> as one of the plugins
+under <code>build</code> node in pom.xml.
+</p>
+<ul class="org-ul">
+<li>Development
+<ul class="org-ul">
+<li>Compile the project by <code>maven clean insatll</code>
+</li>
+<li>More than Build
+
+<p>
+Maven can help running test, web application and produceing
+reports by plugins. TODO
+</p>
+</li>
+<li><b>Compile and run</b>: <code>mvn spring-boot:run</code> to run the
+application with default profile; <code>mvn -Pprod spring-boot:run</code>
+to run the application with <i>prod</i> profile.
+</li>
+</ul>
+</li>
+<li>Production
+<ul class="org-ul">
+<li>Package the files
+
+<ul class="org-ul">
+<li><b>Jar file</b>. Run <code>mvn clean package</code> to build the jar file
+and run it through command line.
+</li>
+
+<li><b>War file</b>. Add <code>&lt;packaging&gt;war&lt;/packaging&gt;</code> in pom.xml
+file, under the root node. Then run <code>mvn package</code> as
+building the jar file.
+</li>
+</ul>
+</li>
+
+<li>Deploy
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+From command line, you can run the jar file with specification of
+profile.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">java -jar -Dspring.profiles.active=production YOUR_JAR.jar
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Application Configuration</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The files <code>application-[profile].yml</code> are used to provide different
+configurations for <b><a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">spring</a></b>.
+</p>
+
+<p>
+Spring configuration files let you to inject different
+configurations for development and production. For example, you can
+use different database for development and production (different
+host, port, username and password, etc.).
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Inject configurations</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+You can get access to these configurations through many ways
+</p>
+<ul class="org-ul">
+<li>Inject the value of configuration to attribute of this class by
+<code>@Value("${NAME:DEFAULT_VALUE}")</code>.
+</li>
+<li>You can also inject <code>Environment</code> object.
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">This line is not about get the property, but about define</span>
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">property and let it accessible by somewhere else.</span>
+<span style="color: #268bd2;">@Configuration</span>
+<span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">AppConfig</span> {
+    <span style="color: #268bd2;">@Inject</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;
+
+    <span style="color: #268bd2;">@Bean</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">MyBean</span> <span style="color: #b58900;">myBean</span>() {
+        <span style="color: #268bd2;">MyBean</span> <span style="color: #6c71c4;">myBean</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">MyBean</span>();
+        myBean.setName(env.getProperty(<span style="color: #2aa198;">"bean.name"</span>));
+        <span style="color: #859900;">return</span> myBean;
+    }
+}
+</pre>
+</div>
+</li>
+<li>You can also implement the <code>EnvironmentAware</code> interface to get
+an environment object to get the property.
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {
+        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);
+    }
+}
+</pre>
+</div>
+</li>
+</ul>
+
+<p>
+One difference between <code>Environment</code> and <code>@Value</code> is that we can
+access the information related to profiles. The environment can
+determine which profiles are currently active, and which profile
+should be active by default.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java">env.acceptsProfiles(<span style="color: #268bd2;">String</span>... <span style="color: #6c71c4;">profiles</span>)
+env.getActiveProfiles() <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">return an array of strings</span>
+</pre>
+</div>
+<p>
+<code>Environment</code> interface extends <code>PropertyResolver</code>, which is used
+to acess the properties. You can get property directly from the
+environment object. The example above provide a way that get
+properties by key name following a relaxed rule.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Load configuration files.</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Different property sources are loaded in predefined order. You
+can set the default additional property file by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">SimpleCommandLinePropertySource</span> <span style="color: #6c71c4;">source</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">SimpleCommandLinePropertySource</span>(args);
+<span style="color: #859900;">if</span> (<span style="color: #268bd2;">!</span>source.containsProperty(<span style="color: #2aa198;">"spring.profiles.active"</span>)){
+    app.setAdditionalProfiles([profile_name])
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Define configuration source class</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+ A class is recognized as a source of configuration if it has the
+<code>@Configuration</code> class. <code>@Bean</code> defined in this class can be
+accessed from <code>AnnotationConfigApplicationContext</code>. It is a
+replacement of XML configuration files that defines beans.
+Get the configuration from configuration class in some where
+else.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">ConfigurationTest</span> {
+    <span style="color: #268bd2;">@Test</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">testHelloworld</span> () {
+        <span style="color: #268bd2;">AnnotationConfigApplicationContext</span> <span style="color: #6c71c4;">ctx</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">AnnotationConfigApplicationContext</span>(AppConfig.<span style="color: #859900;">class</span>);
+        Assert.assertEquals(<span style="color: #2aa198;">"hello"</span>, ctx.getBean(<span style="color: #2aa198;">"message"</span>)); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">message is the name of the Bean method in configuration class</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it can also be used to get any kind of object</span>
+    }
+}
+</pre>
+</div>
+<p>
+<code>AppConfig</code> is the class that used as configuration source.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Automatically assign properties.</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+In configuration source, add
+<code>@EnableConfigurationProperties(A.class)</code>. In target class <code>A</code>,
+add <code>@ConfigurationProperties(prefix = "PREFIX")</code>. Then the
+properties under <code>PREFIX</code> will be automatically assigned to the
+attributes of class <code>A</code>. <b>DETAILS OF THE CONFIGURATION SOURCE</b>???
+</p>
+
+<p>
+<code>@EnableAutoConfiguration</code> auto configure the application. I
+don&#8217;t know the details of this annotation, but it auto wires the
+configurations into the embedded tomcat. Besides, it also
+configures the database (host and port) automatically when
+database template is injected in the project.
+</p>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Authentication &amp; Securing</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+It is mainly implemented by <code>HttpSecurity</code>, which can be injected
+and configured in method of class that extends
+<code>WebSecurityConfigurerAdapter</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityConfig</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">WebSecurityConfigurerAdapter</span> {
+    <span style="color: #268bd2;">@Inject</span>
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">UserDetailsService</span> <span style="color: #6c71c4;">userDetailsService</span>;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">class access to the user database</span>
+
+    <span style="color: #268bd2;">@Value</span>(<span style="color: #2aa198;">"${drill.security.rememberme.key}"</span>)
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">remerberMeKey</span>;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">key for cookies</span>
+
+    <span style="color: #268bd2;">@Inject</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configureGlobal</span>(<span style="color: #268bd2;">AuthenticationManagerBuilder</span> <span style="color: #6c71c4;">auth</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        auth
+            .userDetailsService(userDetailsService) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">the point that connect the authentication module and user database</span>
+            .passwordEncoder(passwordEncoder());
+    }
+
+    <span style="color: #268bd2;">@Override</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">WebSecurity</span> <span style="color: #6c71c4;">web</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Spring security ignore following URL</span>
+        web.ignoring()
+            .antMatchers(<span style="color: #2aa198;">"/bower_components/**"</span>)
+            .antMatchers(<span style="color: #2aa198;">"/fonts/**"</span>)
+            .antMatchers(<span style="color: #2aa198;">"/images/**"</span>)
+            ...;
+    }
+
+    <span style="color: #268bd2;">@Override</span>
+    <span style="color: #859900;">protected</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">HttpSecurity</span> <span style="color: #6c71c4;">http</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        http.authorizeRequests()
+                .antMatchers(<span style="color: #2aa198;">"/app/**"</span>).authenticated()
+                .antMatchers(<span style="color: #2aa198;">"/app/rest/register"</span>).permitAll()
+                .antMatchers(<span style="color: #2aa198;">"/app/rest/logs/**"</span>).hasAuthority(<span style="color: #268bd2;">Authority</span>.ADMIN)
+                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">set authorities</span>
+            .and()
+                .formLogin()
+                .usernameParameter(<span style="color: #2aa198;">"username"</span>)
+                .passwordParameter(<span style="color: #2aa198;">"password"</span>)
+                .loginProcessingUrl(<span style="color: #2aa198;">"/app/authentication"</span>)
+                .successHandler(ajaxAuthenticationSuccessHandler)
+                .failureHandler(ajaxAuthenticationFailureHandler)
+                .permitAll()
+                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">set login service url</span>
+            .and()
+                .logout()
+                .logoutUrl(<span style="color: #2aa198;">"/app/logout"</span>)
+                .logoutSuccessHandler(ajaxLogoutSuccessHandler)
+                .deleteCookies(<span style="color: #2aa198;">"JSESSIONID"</span>)
+                .permitAll()
+            .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
+            .and()
+                .rememberMe()
+                .rememberMeServices(rememberMeServices)
+                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it is not persistent token</span>
+                .key(remerberMeKey)
+            .and()
+                .csrf().disable()  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">not clear</span>
+                .headers().cacheControl(); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">not clear</span>
+    }
+}
+</pre>
+</div>
+
+<p>
+The foundation of user securing is about session and cookies. Once
+the user logged in, the server will set the cookies in
+browser. Then browser will send the cookies via HTTP protocol
+everytime it send new request to the server. On the server side,
+<i>session</i> is also kept with a unique random id to identify the
+client. Look another blog <i>Init the project</i> to see how to replace
+the in memory user store by a repository that connects to
+database. On the server side, programmer can get the user
+information by:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {
+    <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();
+    <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();
+    <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;
+    <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;
+
+    <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {
+        <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {
+            springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();
+            userName = springSecurityUser.getUsername();
+        } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {
+            userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();
+        }
+    }
+
+    <span style="color: #859900;">return</span> userName;
+}
+</pre>
+</div>
+</div>
+</div>
+
+]]></content>
+</entry>
+
+<entry>
+<title type="html"><![CDATA[Spring Guide Examples]]></title>
+<link href="http://xiaoliuai.github.io/blog/2015-03-04-spring-guide-examples.html"/>
+<updated>2015-03-04T00:00:00+01:00</updated>
+<id>http://xiaoliuai.github.io/blog/spring-guide-examples</id>
+<content type="html"><![CDATA[<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Start RESTFul Server</a></li>
+<li><a href="#sec-2">2. Securing Web</a></li>
+</ul>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/tags/java/atom.xml"><span class="section-number-2">1</span> Start RESTFul Server</a></h2>
+</div>
+
+
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Securing Web</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+This example uses WebMvc framework, which uses
+<code>WebMvcConfigurerAdapter</code> and <code>ViewControllerRegistry</code> to connect
+the urls and html templates.
+</p>
+
+<p>
+Add <code>spring-boot-starter-security</code> into dependency, make
+<code>WebSecurityConfig.java</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">@Configuration</span>
+<span style="color: #268bd2;">@EnableWebMvcSecurity</span>
+<span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">WebSecurityConfig</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">WebSecurityConfigurerAdapter</span> {
+    <span style="color: #268bd2;">@Override</span>
+    <span style="color: #859900;">protected</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">HttpSecurity</span> <span style="color: #6c71c4;">http</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        http
+            .authorizeRequests()
+                .antMatchers(<span style="color: #2aa198;">"/"</span>, <span style="color: #2aa198;">"/home"</span>).permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage(<span style="color: #2aa198;">"/login"</span>)
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll();
+    }
+
+    <span style="color: #268bd2;">@Autowired</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configureGlobal</span>(<span style="color: #268bd2;">AuthenticationManagerBuilder</span> <span style="color: #6c71c4;">auth</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        auth
+            .inMemoryAuthentication()
+                .withUser(<span style="color: #2aa198;">"user"</span>).password(<span style="color: #2aa198;">"password"</span>).roles(<span style="color: #2aa198;">"USER"</span>);
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">user repository in memory with username = "user" and password = "password"</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it is just for demon</span>
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+]]></content>
+</entry>
 
 <entry>
 <title type="html"><![CDATA[Drill的Java后端]]></title>

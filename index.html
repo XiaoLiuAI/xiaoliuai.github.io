@@ -114,6 +114,517 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-03-04T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015-03-04-spring-tutorial.html" itemprop="url">Spring Tutorial</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Project file structure</a></li>
+<li><a href="#sec-2">2. Management with Maven</a></li>
+<li><a href="#sec-3">3. Application Configuration</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Inject configurations</a></li>
+<li><a href="#sec-3-2">3.2. Load configuration files.</a></li>
+<li><a href="#sec-3-3">3.3. Define configuration source class</a></li>
+<li><a href="#sec-3-4">3.4. Automatically assign properties.</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Authentication &amp; Securing</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-03-04-spring-tutorial.html"><span class="section-number-2">1</span> Project file structure</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Generally, we use maven to manage the directory layout. Hence, you
+will get a <b>standard directory</b> layout like below:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">project
+    src
+        main
+            java
+            [scala]
+            resources
+                environment.properties
+                environment.test.properties
+                environment.prod.properties
+                config
+                    application.yml
+                    application-dev.yml
+                    application-[profile].yml
+                [other]
+        test
+            java
+            [scala]
+    target
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Management with Maven</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The files <code>environment.[profile].properties</code> are used to provide
+different profiles to <b><a href="http://maven.apache.org/guides/mini/guide-building-for-different-environments.html">maven</a></b>.
+</p>
+
+<p>
+Since maven is used to manage the package dependencies, different
+maven profiles enables you to use different dependencies for
+development and production, e.g. run different tasks. I am not
+farmiliar with maven, and cannot tell how and when it can be used.
+</p>
+
+<p>
+You have to add <code>spring-boot-maven-plugin</code> as one of the plugins
+under <code>build</code> node in pom.xml.
+</p>
+<ul class="org-ul">
+<li>Development
+<ul class="org-ul">
+<li>Compile the project by <code>maven clean insatll</code>
+</li>
+<li>More than Build
+
+<p>
+Maven can help running test, web application and produceing
+reports by plugins. TODO
+</p>
+</li>
+<li><b>Compile and run</b>: <code>mvn spring-boot:run</code> to run the
+application with default profile; <code>mvn -Pprod spring-boot:run</code>
+to run the application with <i>prod</i> profile.
+</li>
+</ul>
+</li>
+<li>Production
+<ul class="org-ul">
+<li>Package the files
+
+<ul class="org-ul">
+<li><b>Jar file</b>. Run <code>mvn clean package</code> to build the jar file
+and run it through command line.
+</li>
+
+<li><b>War file</b>. Add <code>&lt;packaging&gt;war&lt;/packaging&gt;</code> in pom.xml
+file, under the root node. Then run <code>mvn package</code> as
+building the jar file.
+</li>
+</ul>
+</li>
+
+<li>Deploy
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+From command line, you can run the jar file with specification of
+profile.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">java -jar -Dspring.profiles.active=production YOUR_JAR.jar
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Application Configuration</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The files <code>application-[profile].yml</code> are used to provide different
+configurations for <b><a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">spring</a></b>.
+</p>
+
+<p>
+Spring configuration files let you to inject different
+configurations for development and production. For example, you can
+use different database for development and production (different
+host, port, username and password, etc.).
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Inject configurations</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+You can get access to these configurations through many ways
+</p>
+<ul class="org-ul">
+<li>Inject the value of configuration to attribute of this class by
+<code>@Value("${NAME:DEFAULT_VALUE}")</code>.
+</li>
+<li>You can also inject <code>Environment</code> object.
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">This line is not about get the property, but about define</span>
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">property and let it accessible by somewhere else.</span>
+<span style="color: #268bd2;">@Configuration</span>
+<span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">AppConfig</span> {
+    <span style="color: #268bd2;">@Inject</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;
+
+    <span style="color: #268bd2;">@Bean</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">MyBean</span> <span style="color: #b58900;">myBean</span>() {
+        <span style="color: #268bd2;">MyBean</span> <span style="color: #6c71c4;">myBean</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">MyBean</span>();
+        myBean.setName(env.getProperty(<span style="color: #2aa198;">"bean.name"</span>));
+        <span style="color: #859900;">return</span> myBean;
+    }
+}
+</pre>
+</div>
+</li>
+<li>You can also implement the <code>EnvironmentAware</code> interface to get
+an environment object to get the property.
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {
+        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);
+    }
+}
+</pre>
+</div>
+</li>
+</ul>
+
+<p>
+One difference between <code>Environment</code> and <code>@Value</code> is that we can
+access the information related to profiles. The environment can
+determine which profiles are currently active, and which profile
+should be active by default.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java">env.acceptsProfiles(<span style="color: #268bd2;">String</span>... <span style="color: #6c71c4;">profiles</span>)
+env.getActiveProfiles() <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">return an array of strings</span>
+</pre>
+</div>
+<p>
+<code>Environment</code> interface extends <code>PropertyResolver</code>, which is used
+to acess the properties. You can get property directly from the
+environment object. The example above provide a way that get
+properties by key name following a relaxed rule.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Load configuration files.</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Different property sources are loaded in predefined order. You
+can set the default additional property file by
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">SimpleCommandLinePropertySource</span> <span style="color: #6c71c4;">source</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">SimpleCommandLinePropertySource</span>(args);
+<span style="color: #859900;">if</span> (<span style="color: #268bd2;">!</span>source.containsProperty(<span style="color: #2aa198;">"spring.profiles.active"</span>)){
+    app.setAdditionalProfiles([profile_name])
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Define configuration source class</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+ A class is recognized as a source of configuration if it has the
+<code>@Configuration</code> class. <code>@Bean</code> defined in this class can be
+accessed from <code>AnnotationConfigApplicationContext</code>. It is a
+replacement of XML configuration files that defines beans.
+Get the configuration from configuration class in some where
+else.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">ConfigurationTest</span> {
+    <span style="color: #268bd2;">@Test</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">testHelloworld</span> () {
+        <span style="color: #268bd2;">AnnotationConfigApplicationContext</span> <span style="color: #6c71c4;">ctx</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">AnnotationConfigApplicationContext</span>(AppConfig.<span style="color: #859900;">class</span>);
+        Assert.assertEquals(<span style="color: #2aa198;">"hello"</span>, ctx.getBean(<span style="color: #2aa198;">"message"</span>)); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">message is the name of the Bean method in configuration class</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it can also be used to get any kind of object</span>
+    }
+}
+</pre>
+</div>
+<p>
+<code>AppConfig</code> is the class that used as configuration source.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Automatically assign properties.</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+In configuration source, add
+<code>@EnableConfigurationProperties(A.class)</code>. In target class <code>A</code>,
+add <code>@ConfigurationProperties(prefix = "PREFIX")</code>. Then the
+properties under <code>PREFIX</code> will be automatically assigned to the
+attributes of class <code>A</code>. <b>DETAILS OF THE CONFIGURATION SOURCE</b>???
+</p>
+
+<p>
+<code>@EnableAutoConfiguration</code> auto configure the application. I
+don&#8217;t know the details of this annotation, but it auto wires the
+configurations into the embedded tomcat. Besides, it also
+configures the database (host and port) automatically when
+database template is injected in the project.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Authentication &amp; Securing</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+It is mainly implemented by <code>HttpSecurity</code>, which can be injected
+and configured in method of class that extends
+<code>WebSecurityConfigurerAdapter</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityConfig</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">WebSecurityConfigurerAdapter</span> {
+    <span style="color: #268bd2;">@Inject</span>
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">UserDetailsService</span> <span style="color: #6c71c4;">userDetailsService</span>;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">class access to the user database</span>
+
+    <span style="color: #268bd2;">@Value</span>(<span style="color: #2aa198;">"${drill.security.rememberme.key}"</span>)
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">remerberMeKey</span>;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">key for cookies</span>
+
+    <span style="color: #268bd2;">@Inject</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configureGlobal</span>(<span style="color: #268bd2;">AuthenticationManagerBuilder</span> <span style="color: #6c71c4;">auth</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        auth
+            .userDetailsService(userDetailsService) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">the point that connect the authentication module and user database</span>
+            .passwordEncoder(passwordEncoder());
+    }
+
+    <span style="color: #268bd2;">@Override</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">WebSecurity</span> <span style="color: #6c71c4;">web</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Spring security ignore following URL</span>
+        web.ignoring()
+            .antMatchers(<span style="color: #2aa198;">"/bower_components/**"</span>)
+            .antMatchers(<span style="color: #2aa198;">"/fonts/**"</span>)
+            .antMatchers(<span style="color: #2aa198;">"/images/**"</span>)
+            ...;
+    }
+
+    <span style="color: #268bd2;">@Override</span>
+    <span style="color: #859900;">protected</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">HttpSecurity</span> <span style="color: #6c71c4;">http</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        http.authorizeRequests()
+                .antMatchers(<span style="color: #2aa198;">"/app/**"</span>).authenticated()
+                .antMatchers(<span style="color: #2aa198;">"/app/rest/register"</span>).permitAll()
+                .antMatchers(<span style="color: #2aa198;">"/app/rest/logs/**"</span>).hasAuthority(<span style="color: #268bd2;">Authority</span>.ADMIN)
+                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">set authorities</span>
+            .and()
+                .formLogin()
+                .usernameParameter(<span style="color: #2aa198;">"username"</span>)
+                .passwordParameter(<span style="color: #2aa198;">"password"</span>)
+                .loginProcessingUrl(<span style="color: #2aa198;">"/app/authentication"</span>)
+                .successHandler(ajaxAuthenticationSuccessHandler)
+                .failureHandler(ajaxAuthenticationFailureHandler)
+                .permitAll()
+                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">set login service url</span>
+            .and()
+                .logout()
+                .logoutUrl(<span style="color: #2aa198;">"/app/logout"</span>)
+                .logoutSuccessHandler(ajaxLogoutSuccessHandler)
+                .deleteCookies(<span style="color: #2aa198;">"JSESSIONID"</span>)
+                .permitAll()
+            .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
+            .and()
+                .rememberMe()
+                .rememberMeServices(rememberMeServices)
+                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it is not persistent token</span>
+                .key(remerberMeKey)
+            .and()
+                .csrf().disable()  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">not clear</span>
+                .headers().cacheControl(); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">not clear</span>
+    }
+}
+</pre>
+</div>
+
+<p>
+The foundation of user securing is about session and cookies. Once
+the user logged in, the server will set the cookies in
+browser. Then browser will send the cookies via HTTP protocol
+everytime it send new request to the server. On the server side,
+<i>session</i> is also kept with a unique random id to identify the
+client. Look another blog <i>Init the project</i> to see how to replace
+the in memory user store by a repository that connects to
+database. On the server side, programmer can get the user
+information by:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {
+    <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();
+    <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();
+    <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;
+    <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;
+
+    <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {
+        <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {
+            springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();
+            userName = springSecurityUser.getUsername();
+        } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {
+            userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();
+        }
+    }
+
+    <span style="color: #859900;">return</span> userName;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-03-04T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015-03-04-spring-guide-examples.html" itemprop="url">Spring Guide Examples</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Start RESTFul Server</a></li>
+<li><a href="#sec-2">2. Securing Web</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-03-04-spring-guide-examples.html"><span class="section-number-2">1</span> Start RESTFul Server</a></h2>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Securing Web</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+This example uses WebMvc framework, which uses
+<code>WebMvcConfigurerAdapter</code> and <code>ViewControllerRegistry</code> to connect
+the urls and html templates.
+</p>
+
+<p>
+Add <code>spring-boot-starter-security</code> into dependency, make
+<code>WebSecurityConfig.java</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">@Configuration</span>
+<span style="color: #268bd2;">@EnableWebMvcSecurity</span>
+<span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">WebSecurityConfig</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">WebSecurityConfigurerAdapter</span> {
+    <span style="color: #268bd2;">@Override</span>
+    <span style="color: #859900;">protected</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">HttpSecurity</span> <span style="color: #6c71c4;">http</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        http
+            .authorizeRequests()
+                .antMatchers(<span style="color: #2aa198;">"/"</span>, <span style="color: #2aa198;">"/home"</span>).permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage(<span style="color: #2aa198;">"/login"</span>)
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll();
+    }
+
+    <span style="color: #268bd2;">@Autowired</span>
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configureGlobal</span>(<span style="color: #268bd2;">AuthenticationManagerBuilder</span> <span style="color: #6c71c4;">auth</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
+        auth
+            .inMemoryAuthentication()
+                .withUser(<span style="color: #2aa198;">"user"</span>).password(<span style="color: #2aa198;">"password"</span>).roles(<span style="color: #2aa198;">"USER"</span>);
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">user repository in memory with username = "user" and password = "password"</span>
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it is just for demon</span>
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-28T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -258,6 +769,11 @@ domain by default?
 <pre class="src src-bash">mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 </pre>
 </div>
+
+<p>
+<code>mvn scala:console</code> can launch the scala console with the pom
+configurations (you have to specify maven-scala-plugin).
+</p>
 </div>
 </div>
 
@@ -336,10 +852,27 @@ domain by default?
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">1. Monad</a></li>
-<li><a href="#sec-2">2. ScalaCheck &amp; ScalaTest</a>
+<li><a href="#sec-2">2. ScalaCheck &amp; ScalaTest &amp; JUnit</a>
 <ul>
 <li><a href="#sec-2-1">2.1. Tutorial of ScalaCheck</a></li>
-<li><a href="#sec-2-2">2.2. ScalaTest</a></li>
+<li><a href="#sec-2-2">2.2. ScalaTest</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. With JUnit</a></li>
+<li><a href="#sec-2-2-2">2.2.2. With ScalaCheck</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Async</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Exception =&gt; Future</a></li>
+<li><a href="#sec-3-2">3.2. Iterable =&gt; Observable</a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. Subject</a></li>
+<li><a href="#sec-3-2-2">3.2.2. Notification</a></li>
+<li><a href="#sec-3-2-3">3.2.3. Subscription</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -415,20 +948,80 @@ output of for-expression.
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> ScalaCheck &amp; ScalaTest</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> ScalaCheck &amp; ScalaTest &amp; JUnit</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-It is a tool for property-based testing for scala. It has <b>NO</b>
-external dependencies and integrated in the test frameworks
-<b>ScalaTest</b>. It can also be used standalone, with its built-in test
-runner.
+In the example provided by the oneline course, they used <b>JUnit</b>,
+<b>ScalaTest</b> and <b>ScalaCheck</b> together. In their example, the class
+of <code>Properties</code> is in <code>src/main/scala</code> and is called by another
+class defined under <code>src/test/scala</code>. In the class under test
+folder, many instances of the <code>Properties</code> class are created to
+check different children classes of the target class.
 </p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">abstract</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckHeap</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Properties</span>(<span style="color: #2aa198;">"Heap"</span>) with IntHeap {
+
+  property(<span style="color: #2aa198;">"min1"</span>) = forAll { <span style="color: #268bd2;">a</span>: Int =&gt;
+    val h = insert(a, empty)
+    findMin(h) == a
+  }
+
+  lazy <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">genHeap</span>: Gen[H] = <span style="color: #859900;">for</span> {
+    a &lt;- arbitrary[Int]
+    h &lt;- oneOf(value(empty), genHeap)
+  } <span style="color: #268bd2;">yield</span> <span style="color: #b58900;">insert</span>(<span style="color: #268bd2;">a</span>, <span style="color: #268bd2;">h</span>)
+
+  implicit lazy val arbHeap: Arbitrary[H] = Arbitrary(genHeap)
+
+}
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">@RunWith</span>(<span style="color: #268bd2;">classOf</span>[JUnitRunner])
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckSuite</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">FunSuite</span> with Checkers {
+  <span style="color: #268bd2;">def</span> <span style="color: #b58900;">checkBogus</span>(p: Prop) {
+    <span style="color: #268bd2;">var</span> <span style="color: #6c71c4;">ok</span> = <span style="color: #268bd2;">false</span>
+    <span style="color: #859900;">try</span> {
+      check(p)
+    } <span style="color: #859900;">catch</span> {
+      <span style="color: #859900;">case</span> e: TestFailedException =&gt;
+        ok = <span style="color: #268bd2;">true</span>
+    }
+    assert(ok, <span style="color: #2aa198;">"A bogus heap should NOT satisfy all properties. Try to find the bug!"</span>)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Binomial heap satisfies properties."</span>) {
+    check(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (1) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus1BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (2) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus2BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (3) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus3BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (4) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus4BinomialHeap)
+  }
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (5) binomial heap does not satisfy properties."</span>) {
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus5BinomialHeap)
+  }
+}
+</pre>
+</div>
 </div>
 
 <div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1"><span class="section-number-3">2.1</span> Tutorial of ScalaCheck</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
+It is a tool for <b>property-based</b> testing for scala. It has <b>NO</b>
+external dependencies and integrated in the test frameworks
+<b>ScalaTest</b>. It can also be used standalone, with its built-in test
+runner.
 First, create a class that extends class
 <code>org.scalacheck.Properties</code> with the name of data object that you
 want to test. It is used for the library to generate test data to
@@ -460,89 +1053,223 @@ Third, to run the tests, you can put the properties in
 <h3 id="sec-2-2"><span class="section-number-3">2.2</span> ScalaTest</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-In the example provided by the oneline course, they used <b>JUnit</b>,
-<b>ScalaTest</b> and <b>ScalaCheck</b> together, which is much more complext
-than the tutorial. In their example, the class of <code>Properties</code> is
-in <code>src/main/scala</code> and is called by another class defined under
-<code>src/test/scala</code>. In the class under test folder, many instances
-of the <code>Properties</code> class are created to check different children
-classes of the target class.
+This is a test framework that integrates all together. ScalaTest
+provides many test styles: <code>FunSuit</code>, <code>FlatSpec</code>, <code>FuncSpec</code>,
+<code>WordSpec</code>, <code>FreeSpec</code>, <code>Spec</code>, <code>PropSpec</code>, <code>FeatureSpec</code>. They
+are mainly different on syntax styles. It is recommanded that the
+user creates a base class that extends all the required features
+(as a subset of all the provided features) and extends this base
+class through everywhere of the project to make the style
+consistent.
 </p>
-<div class="org-src-container">
-
-<pre class="src src-java"><span style="color: #268bd2;">@RunWith</span>(<span style="color: #268bd2;">classOf</span>[JUnitRunner])
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckSuite</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">FunSuite</span> with Checkers {
-  <span style="color: #268bd2;">def</span> <span style="color: #b58900;">checkBogus</span>(p: Prop) {
-    <span style="color: #268bd2;">var</span> <span style="color: #6c71c4;">ok</span> = <span style="color: #268bd2;">false</span>
-    <span style="color: #859900;">try</span> {
-      check(p)
-    } <span style="color: #859900;">catch</span> {
-      <span style="color: #859900;">case</span> e: TestFailedException =&gt;
-        ok = <span style="color: #268bd2;">true</span>
-    }
-    assert(ok, <span style="color: #2aa198;">"A bogus heap should NOT satisfy all properties. Try to find the bug!"</span>)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Binomial heap satisfies properties."</span>) {
-    check(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (1) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus1BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (2) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus2BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (3) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus3BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (4) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus4BinomialHeap)
-  }
-
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (5) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus5BinomialHeap)
-  }
-}
-</pre>
 </div>
-<ul class="org-ul">
-<li>This class uses the junit framework for unittest. JUnit will
+
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> With JUnit</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+This class uses the junit framework for unittest. JUnit will
 invoke the class with <code>@RunWith</code> annotation (extend by type
 hierarchies) to run the tests. The annotation parameter in the
 example is a class of the type <code>JUnitRunner</code>. In fact, any class
 extends <code>Runner</code> is acceptabel. Notice that function <code>classOf</code>
 acts the same as <code>obj.getClass()</code>.
-</li>
-<li>The annotation uses class of <code>JUnitRunner</code> as parameter. This
-class is provided by scala-test framework.
-</li>
-<li>It is mentioned on <a href="http://www.scalatest.org/user_guide/using_the_scalatest_maven_plugin">ScalaTest Maven Plugin</a> that this annotaiton
-is necessary to run the test without this plugin. So you can run
-tests without this annotation by using this plugin.
+</p>
+
+<p>
+<b>Maven</b> Running tests with command <code>mvn test</code>. In fact, you
+<b>cannot</b> run the tests with the example above. <b>Solution</b> is to
+change the name <code>QuickCheckSuite</code> to <code>QuickCheckSuiteTest</code> or
+<code>TestQuickCheckSuite</code> or <code>QuickCheckSuiteTestCase</code> to run the
+tests. Even I did not explicitly specify plugin <code>surefire</code>, maven
+uses this plugin to run test with my configuration. By default,
+maven following name convertions when looking for tests to
+run. So I have to change the name or modify the <code>surefire</code>
+configuration to apply new name convertion rules.
+</p>
+
+<p>
+The annotation uses class of <code>JUnitRunner</code> as parameter. This
+class is provided by scala-test framework that connect
+scala-test and junit.
+</p>
 <ul class="org-ul">
-<li><b>Maven</b> Running tests with command <code>mvn test</code>. In fact, you
-<b>cannot</b> run the tests with the example above. <b>Solution</b> is
-to change the name <code>QuickCheckSuite</code> to <code>QuickCheckSuiteTest</code>
-or <code>TestQuickCheckSuite</code> or <code>QuickCheckSuiteTestCase</code> to run
-the tests. Even I did not explicitly specify plugin
-<code>surefire</code>, maven uses this plugin to run test with my
-configuration. By default, maven following name convertions
-when looking for tests to run. So I have to change the name or
-modify the <code>surefire</code> configuration to apply new name
-convertion rules.
-</li>
-<li><b>ScalaTest</b> plugin. <b>TODO</b>
+<li>As mentioned on <a href="http://www.scalatest.org/user_guide/using_the_scalatest_maven_plugin">ScalaTest Maven Plugin</a>, you can run tests
+without this annotation by using this plugin. <b>TODO</b>
 </li>
 </ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> With ScalaCheck</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+To work with ScalaCheck, you have to mix the trait
+<code>org.scalatest.prop.Checkers</code> to your test class. <code>Checkers</code>
+class contains <code>check</code> method to perform ScalaCheck property
+checks, which are provided in the class <code>QuickCheckHeap</code> in the
+example above. In fact, you can also use the <code>check</code> method in
+JUnit directly. This method will generate a large number of
+possible inputs to look for an input that the property does not
+hold.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Async</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Exception =&gt; Future</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Exception is handled by <b>Try[T]</b>, which is used as return type like
+Option. But Try[T] maches Success with result or Failure with
+throwable. As Try[T] is also a monad, operations of element T are
+usually propagated to monad methods of Try[T] to get a new Try[U],
+<b>map Try[T] by f should return a new Try[f(T)]</b>.
+</p>
+
+<p>
+<b>Future[T]</b> is a container of Try[T]. User provide
+operations/callbacks that deal with Try[T] and future will call
+them at certain time. <b>Future</b> and <b>Try</b> form a nested monad,
+monad operations are propagated and you cannot see direct
+operation on T in the source code of scala library. But take it
+easy, usually, you won&#8217;t have to do it yourself.
+</p>
+
+<p>
+To <b>get/compose</b> a future (that can be our job), therer are four
+methods:
+</p>
+<ol class="org-ol">
+<li>Use the member function of a <code>Future</code> such as <code>flatMap</code>
+<ol class="org-ol">
+<li><code>flatMap</code>, binary bind operation of futures. Register promise
+to <i>this</i> when failed of exception of call funtion; register
+promise to <i>that</i> when successed.
 </li>
-<li><code>org.scalatest.FunSuite</code> and <code>org.scalatest.prop.Checkers</code>.
-<b>TODO</b>
+<li><code>onComplete</code>, parameter is a function <code>Try[T] =&gt; U</code>. This is
+a funtamental funciton of <code>map</code>, <code>foreach</code>, <code>failed</code>, etc. It
+propagate the Try mechanism.
 </li>
-</ul>
+<li><code>collect</code>
+</li>
+<li><code>recover</code>
+</li>
+<li><code>fallbackTo</code>
+</li>
+<li><code>zip</code>
+</li>
+<li><code>andThen</code>
+</li>
+</ol>
+</li>
+<li>Create a promise and register the complete method to current
+futures, then return a new Future of this promise.
+
+<p>
+<code>Promise</code> acts like a mailbox, to compose a new future, the old
+future has to put the result, which is a Try[T], into the
+promise by <code>complete</code> method. Then the new future will call its
+callback when the <code>complete</code> of promise is called.
+</p>
+
+<p>
+In my opinion, promise can be merged with feature as one
+unit. Because it is more straight to think in the way that:
+<i>feature calls the callbacks when it is completed</i>. In fact,
+the <code>DefaultPromise</code> is actually extends the <code>Future</code> trait. Of
+course, the designers of scala have their proper reason.
+</p>
+
+<p>
+Currently, I think promise is used in race (concurrent
+processing of futures results) or to provide a new future for
+initailization of fold operations.
+</p>
+</li>
+<li>Use <code>for-expression</code>, which is a syntax sugar of <code>flatMap</code>
+</li>
+<li>Use <code>async...await</code> grammar.
+<ol class="org-ol">
+<li><b>The scala implementation of await
+is translated to onComplete by the macro</b>.
+</li>
+<li><b>await method throw
+directly the excepetion when future failed</b>.
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Iterable =&gt; Observable</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<code>Try</code> and <code>Future</code> are dual, so as <code>Iterable</code> and
+<code>Observable</code>. For iterable, you can get an iterator and using
+<code>hasNext</code> and <code>next</code> to get elements. For <code>Obserable</code>, you use
+<code>Subscribe</code> and <code>onNext</code>, <code>onComplete</code> to get elements.
+</p>
+
+<p>
+<code>flatten</code> after <code>map</code> returns an observable that merges several
+streams randomly. <code>concat</code> after <code>map</code> returns an observable, in
+which, elements of each stream are grouped together sequentially
+as well as the order of the streams.
+</p>
+
+<p>
+<b>Don&#8217;t understand well the way of creating observable with a
+function from Observer to Subscription -_-!</b>
+</p>
+</div>
+
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Subject</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+It works like promise, which is used as bridge or chain between
+Obsever and Observable. Four types of subjects are provided:
+</p>
+<ol class="org-ol">
+<li>PublishSubject: send current value.
+</li>
+<li>BehaviorSubject: cache the latest output.
+</li>
+<li>AsyncSubject: cache the final output. You only get the final
+output.
+</li>
+<li>ReplaySubject: cache the whole history.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> Notification</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+Like Try
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> Subscription</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+a handle that enables process to stop receiving messages from
+Observable.
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -2693,445 +3420,6 @@ controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'F
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-24T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-12-24-angularjs-tutorial-.html" itemprop="url">AngularJS Tutorial 入门教程学习笔记</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. 01和02,静态模板和AngularJS模板</a></li>
-<li><a href="#sec-2">2. 03 迭代器</a></li>
-<li><a href="#sec-3">3. 04双向绑定</a></li>
-<li><a href="#sec-4">4. 05XHR和依赖注入</a></li>
-<li><a href="#sec-5">5. 06链接与图片模板</a></li>
-<li><a href="#sec-6">6. 07路由与多视图 &amp; 08更多模板</a></li>
-<li><a href="#sec-7">7. 09过滤器</a></li>
-<li><a href="#sec-8">8. 10事件</a></li>
-<li><a href="#sec-9">9. 11Rest和定制服务</a></li>
-<li><a href="#sec-10">10. 12 Animations</a></li>
-</ul>
-</div>
-</div>
-<p>
-学习<a href="http://angularjs.cn/T006">AngularJS入门教程</a>, <a href="https://docs.angularjs.org/tutorial">英文版</a>
-</p>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-12-24-angularjs-tutorial-.html"><span class="section-number-2">1</span> 01和02,静态模板和AngularJS模板</a></h2>
-<div class="outline-text-2" id="text-1">
-<p>
-在HTML里面用np-app来定义Angular的上下文,可以用
-<code>ng-app="AAA"</code> 来制定一个名字空间.JS中
-通过这个名字来获取HTML里的上下文 <code>var AAA = angular.module('AAA',
-   []);</code>.
-</p>
-
-<p>
-在HTML中Angular的范围内,用
-<code>ng-controller="BBB"</code>标记一个div,在里
-面用一些Angular命令(ng-repeat)和表达式设定显示方式.在JS里面用
-<code>AAA.controller('BBB',function ...)</code> 给Angular表达式中的域赋值.
-</p>
-
-<p>
-<i>AAA</i> 中的 <code>$scope$</code> 是AAA的根作用域,控制器的作用域则在 <i>BBB</i> 之中.也
-就是说,如果在AAA下面有多个 <i>controller</i>, <i>controller X</i> 的数据绑定
-在 <i>controller Y</i> 下是无效的. <a href="http://docs.angularjs.org/api/ng.$rootScope.Scope">AngularJS作用域文档</a>.
-</p>
-
-<p>
-略:AngularJS的开发者倾向于使用 <i>Jasmine</i> 行为驱动开发(BBD)框架进行
-测试.
-</p>
-
-<p>
-<i><b>写在后面,对angular.module是所有JS中创建,注册和获取模组的地方.HTML里
-面通过ng-app=&#8221;AA&#8221;来绑定模组AA的上下文</b></i>
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 03 迭代器</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-建立输入表单 <code>&lt;input
-ng-model="query"&gt;</code> ,修改 <code>ng-repeat</code> 为
-<code>&lt;li ng-repeat="x in
-list|filter:query"&gt;</code>.只要在输入框里输入文本,就会自动
-地修改列表,只显示包含这个文本的项目.这代表两点:1. 数据绑定同名变量
-query,值的同步是实时的; 2.filter过滤器,生成新数组,自动更新视图.
-</p>
-
-<p>
-略:Angular端到端测试.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 04双向绑定</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-在HTML里面添加选择器
-</p>
-<div class="org-src-container">
-
-<pre class="src src-html">&lt;<span style="color: #b58900;">select</span> <span style="color: #6c71c4;">ng-model</span>=<span style="color: #2aa198;">"orderProp"</span>&gt;
-  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"name"</span>&gt;Alphabetical&lt;/<span style="color: #b58900;">option</span>&gt;
-  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"age"</span>&gt;Newest&lt;/<span style="color: #b58900;">option</span>&gt;
-&lt;/<span style="color: #b58900;">select</span>&gt;
-</pre>
-</div>
-<p>
-同时在迭代器中加入条件
-<code>&lt;li ng-repeat="phone in phones | filter:query |
-orderBy:orderProp"&gt;</code>
-</p>
-
-<p>
-JS中给每个数据加上 <i>age</i> 这个属性,同时设定
-<code>$scope.orderProp = 'age'</code>设定选择器
-的默认值.
-</p>
-
-<p>
-<code>select</code> 的元素和 <code>orderProp</code> 之间建立了双向绑定.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 05XHR和依赖注入</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-通过 <code>$http.get(AA/BB.json)</code> 来读取json文件. <i>$http</i> 是AngularJS提
-供的内建服务,通过依赖注入DI子系统.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-javascript">phonecatApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneListCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$http'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/phones.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
-        $scope.phones = data;
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 06链接与图片模板</h2>
-<div class="outline-text-2" id="text-5">
-<div class="org-src-container">
-
-<pre class="src src-html">&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phones"</span>&gt;
-  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"phone in phones | filter:query | orderBy:orderProp"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumbnail"</span>&gt;
-    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumb"</span>&gt;&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;
-    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;
-    &lt;<span style="color: #b58900;">p</span>&gt;&lt;/<span style="color: #b58900;">p</span>&gt;
-  &lt;/<span style="color: #b58900;">li</span>&gt;
-&lt;/<span style="color: #b58900;">ul</span>&gt;
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> 07路由与多视图 &amp; 08更多模板</h2>
-<div class="outline-text-2" id="text-6">
-<p>
-用 <code>$routeProvider</code> 重定向url,把某个url路径定向到某个HTML模板上去,
-并指定相对应的controller. <i>index.html</i> 中定义一个域,加载所有JS文件.加
-载的 <i>app.js</i> 设定重定向规则.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-javascript">phonecatApp.config<span style="color: #657b83;">(</span><span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$routeProvider'</span>,
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$routeProvider</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    $routeProvider.
-      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones'</span>, <span style="color: #268bd2;">{</span>
-        templateUrl: <span style="color: #2aa198;">'partials/phone-list.html'</span>,
-        controller: <span style="color: #2aa198;">'PhoneListCtrl'</span>
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.
-      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones/:phoneId'</span>, <span style="color: #268bd2;">{</span>
-        templateUrl: <span style="color: #2aa198;">'partials/phone-detail.html'</span>,
-        controller: <span style="color: #2aa198;">'PhoneDetailCtrl'</span>
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.
-      otherwise<span style="color: #859900;">(</span><span style="color: #268bd2;">{</span>
-        redirectTo: <span style="color: #2aa198;">'/phones'</span>
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
-</pre>
-</div>
-<p>
-<code>:phoneId</code> 是从将URL路径的对应部分作为变量.这个变量通过
-<code>$routeParams</code> 来访问.
-</p>
-
-<p>
-最后,在index.html里面加上 <code>&lt;div ng-view&gt;&lt;/div&gt;</code> 来为当前路由把对应
-视图加上去.
-</p>
-
-<p>
-<i>08更多模板</i> 之中用 <i>$http</i> 加载不同的json文件来根据phoneId生成每
-部手机的细节说明网页.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 09过滤器</h2>
-<div class="outline-text-2" id="text-7">
-<p>
-建立自己的 <i>filter FF</i>,实现更复杂的规则,然后像之前使用 <code>| filter:query</code>
-一样用类似pipe的语法把输出传给自己的filter <code>| FF</code>.filter并不限定在
-<i>ng-repeat</i> 中使用.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatFilters'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'checkmark'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    <span style="color: #859900;">return</span> input ? <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2713'</span> : <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2718'</span>;
-  <span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
-</pre>
-</div>
-
-<p>
-<a href="http://code.angularjs.org/1.1.0/docs/api/ng.$filter">AngularJS内置过滤器</a> <i>uppercase</i>, <i>json</i>, <i>date</i>,
-<i>date:&#8221;MM/dd/yyy@ h:mma&#8221;</i>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> 10事件</h2>
-<div class="outline-text-2" id="text-8">
-<p>
-通过JS在上下文中定义函数,通过 <code>ng-click</code> 来设定点击事件,调用函数.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-javascript">phonecatControllers.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneDetailCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$routeParams'</span>, <span style="color: #2aa198;">'$http'</span>,
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$routeParams</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/'</span> + $routeParams.phoneId + <span style="color: #2aa198;">'.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
-      $scope.phone = data;
-      $scope.mainImageUrl = data.images<span style="color: #657b83;">[</span>0<span style="color: #657b83;">]</span>;
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-
-    $scope.setImage = <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">imageUrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
-      $scope.mainImageUrl = imageUrl;
-    <span style="color: #859900;">}</span>
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
-</pre>
-</div>
-<p>
-<code>$scope.setImage</code> 就是绑定的函数.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-html">&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone"</span>&gt;
-
-...
-
-&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone-thumbs"</span>&gt;
-  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"img in phone.images"</span>&gt;
-    &lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"setImage(img)"</span>&gt;
-  &lt;/<span style="color: #b58900;">li</span>&gt;
-&lt;/<span style="color: #b58900;">ul</span>&gt;
-</pre>
-</div>
-<p>
-点击图片的时候调用函数,把 <code>mainImageUrl</code> 的值设定为当前图片.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> 11Rest和定制服务</h2>
-<div class="outline-text-2" id="text-9">
-<p>
-依赖为 <i>angular-resource/angular-resource.js</i>.一般我们的JS相应功能
-命名为 <i>XXXService</i>.首先注册 <i>Service</i> 模块.
-</p>
-<div class="org-src-container">
-
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">phonecatServices</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatServices'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'ngResource'</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
-
-phonecatServices.factory<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Phone'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$resource'</span>,
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$resource</span><span style="color: #b58900;">){</span>
-    <span style="color: #859900;">return</span> $resource<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/:phoneId.json'</span>, <span style="color: #268bd2;">{}</span>, <span style="color: #268bd2;">{</span>
-      query: <span style="color: #657b83;">{</span>method:<span style="color: #2aa198;">'GET'</span>, params:<span style="color: #2aa198;">{</span>phoneId:<span style="color: #2aa198;">'phones'</span><span style="color: #2aa198;">}</span>, isArray:<span style="color: #268bd2;">true</span><span style="color: #657b83;">}</span>
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
-</pre>
-</div>
-<p>
-建立一个 <i>Phone</i> 工厂,用 <i>$resource</i> 来取得数据.相应的controller改
-为<code>$scope.phone =
-Phone.get({phoneId:$routeParams.phoneId})</code>和
-<code>$scope.phones = Phone.query()</code>.
-</p>
-
-<p>
-<code>query</code> 方法是自己声明和定义的 <code>query: {method:'GET', params:{phoneId:'phones'}, isArray:true}</code>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> 12 Animations</h2>
-<div class="outline-text-2" id="text-10">
-<p>
-TODO
-</p>
-
-<p>
-更多的教程 <a href="http://angularjs.cn/tag/AngularJS_%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97">开发指南</a> 和 <a href="http://docs.angularjs.org/cookbook/index">Cookbook</a>. 推荐使用<a href="https://github.com/angular/angular-seed">AngularJS种子项目</a>来引导开发新项目
-</p>
-</div>
-</div>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-22T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014-12-22-.html" itemprop="url">背景知识</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. JSP</a>
-<ul>
-<li><a href="#sec-1-1">1.1. Servelet</a></li>
-<li><a href="#sec-1-2">1.2. CGI 和 WSGI</a></li>
-</ul>
-</li>
-<li><a href="#sec-2">2. Tomcat + Apache</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2014-12-22-.html"><span class="section-number-2">1</span> JSP</a></h2>
-<div class="outline-text-2" id="text-1">
-<p>
-JavaServer Page(JSP)是一种动态网页技术标准.在HTML中插入Java片段
-(Scriptlet),以.jsp为文件后缀.在接到客户端请求的时候,服务器根据XXX.jsp文
-件生成XXXServlet.java文件,然后编译运行,最后返回结果给客户端.
-</p>
-</div>
-
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Servelet</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-Servelet是一种 <i>独立于平台和协议</i> 的 <i>服务器端</i> 的Java应用程序,生
-成动态页面.为HTTP客户端跟HTTP服务器程序的中间层.好处是快(比CGI快),
-每个用户请求被激活成程序中的一个线程.Servlet是纯粹的Java,jsp介于
-html和java质检,有助于美工人员来设计界面.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> CGI 和 WSGI</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
-既然上一节提到了CGI,这里稍微展开一下.Common Gateway Interface
-(CGI)是一种利用程序的标准输入,输出流来完成HTTP通信的方式.HTTP本身
-是文本协议,请求是由服务器(Apache)处理,而应用程序可能由各种语言来实
-现.CGI则将这个文本协议以标准输入流的方式传递给服务器端的CGI程序.
-与之类似的还有WSGI,原理类似,但是是Python专用的协议.对于实现了
-<i><span class="underline"><span class="underline">call</span></span></i> 的对象,将 <i>request</i> 经过包装作为参数传入,同时也返回进过
-包装的 <i>response</i>.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Tomcat + Apache</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-Apache和Tomcat都是提供服务器功能的软件.Apache可以使用
-PHP,CGI,Perl,Tomcat在Apache后端提供对Java的支持.Apache+Tomcat处理
-JSP的时候,Apache只是转发.Apache是Web服务器,Tomcat是应用服务器,是
-Servlet容器,可以单独运行.
-</p>
-
-<p>
-Tomcat是Servlet的容器,可以独立运行,也可以作为现有服务器的附加(支持
-Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
-</p>
-</div>
-</div>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -3167,15 +3455,15 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-03-04-spring-tutorial.html">Spring Tutorial</a>
+    
+    <a class="list-group-item " href="/blog/2015-03-04-spring-guide-examples.html">Spring Guide Examples</a>
+    
     <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
     
     <a class="list-group-item " href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
     
     <a class="list-group-item " href="/blog/2015-02-28-pom-configuration.html">POM Configuration</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-functional-programming-on-coursera.html">Functional Programming on Coursera</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-17-mongodb-strategy.html">Mongodb Strategy</a>
     
   </div>
 </section>
@@ -3199,7 +3487,7 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
     
     
     <a class="list-group-item " href="/blog/categories/web/index.html">
-        <span class="badge">5</span>
+        <span class="badge">7</span>
         web
       </a>
     
@@ -3229,47 +3517,49 @@ Apache,IIS,Netscape).配置Tomcat的时候选择运行模式.
     </div>
     <ul class="list-group">
         <li class="tag-cloud list-group-item">
-                <a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
+                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
+<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
 <a style="font-size: 152%" href="/tags/scala/">Scala<sup>2</sup></a>
 <a style="font-size: 152%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
 <a style="font-size: 152%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
 <a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/java/">Java<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/spring/">Spring<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/gulp/">gulp<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/mpi/">MPI<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/maven/">Maven<sup>1</sup></a>
 
         </li>
     </ul>
     <!-- <div class="list-group">
         <ul class="tag-cloud">
-                <a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
+                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
+<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
 <a style="font-size: 145%" href="/tags/scala/">Scala<sup>2</sup></a>
 <a style="font-size: 145%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
 <a style="font-size: 145%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
 <a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/java/">Java<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/spring/">Spring<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/gulp/">gulp<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/mpi/">MPI<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/maven/">Maven<sup>1</sup></a>
 
         </ul>
     </div> &#8211;>
