@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Management | 记往开来]]></title>
   <link href="http://xiaoliuai.github.io/blog/categories/management/atom.xml" rel="self"/>
   <link href="http://xiaoliuai.github.io/"/>
-  <updated>2015-03-04T23:12:55+01:00</updated>
+  <updated>2015-12-10T22:17:02+01:00</updated>
   <id>http://xiaoliuai.github.io/</id>
   <author>
     <name><![CDATA[Xiao Liu]]></name>
@@ -42,41 +42,41 @@ has on external libraries. Here is an <a href="http://spring.io/guides/gs/maven/
 </p>
 <div class="org-src-container">
 
-<pre class="src src-xml">&lt;?<span style="color: #859900;">xml</span> <span style="color: #6c71c4;">version</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">1.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">encoding</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">UTF-8</span><span style="color: #2aa198;">"</span>?&gt;
-&lt;<span style="color: #b58900;">project</span> <span style="color: #6c71c4;">xmlns</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">xmlns</span>:<span style="color: #6c71c4;">xsi</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://www.w3.org/2001/XMLSchema-instance</span><span style="color: #2aa198;">"</span>
-    <span style="color: #6c71c4;">xsi</span>:<span style="color: #6c71c4;">schemaLocation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd</span><span style="color: #2aa198;">"</span>&gt;
-    &lt;<span style="color: #b58900;">modelVersion</span>&gt;4.0.0&lt;/<span style="color: #b58900;">modelVersion</span>&gt;
-    &lt;<span style="color: #b58900;">groupId</span>&gt;org.springframework&lt;/<span style="color: #b58900;">groupId</span>&gt;
-    &lt;<span style="color: #b58900;">artifactId</span>&gt;gs-maven&lt;/<span style="color: #b58900;">artifactId</span>&gt;
-    &lt;<span style="color: #b58900;">packaging</span>&gt;jar&lt;/<span style="color: #b58900;">packaging</span>&gt;
-    &lt;<span style="color: #b58900;">version</span>&gt;0.1.0&lt;/<span style="color: #b58900;">version</span>&gt;
-
-    &lt;<span style="color: #b58900;">build</span>&gt;
-        &lt;<span style="color: #b58900;">plugins</span>&gt;
-            &lt;<span style="color: #b58900;">plugin</span>&gt;
-                &lt;<span style="color: #b58900;">groupId</span>&gt;org.apache.maven.plugins&lt;/<span style="color: #b58900;">groupId</span>&gt;
-                &lt;<span style="color: #b58900;">artifactId</span>&gt;maven-shade-plugin&lt;/<span style="color: #b58900;">artifactId</span>&gt;
-                &lt;<span style="color: #b58900;">version</span>&gt;2.1&lt;/<span style="color: #b58900;">version</span>&gt;
-                &lt;<span style="color: #b58900;">executions</span>&gt;
-                    &lt;<span style="color: #b58900;">execution</span>&gt;
-                        &lt;<span style="color: #b58900;">phase</span>&gt;package&lt;/<span style="color: #b58900;">phase</span>&gt;
-                        &lt;<span style="color: #b58900;">goals</span>&gt;
-                            &lt;<span style="color: #b58900;">goal</span>&gt;shade&lt;/<span style="color: #b58900;">goal</span>&gt;
-                        &lt;/<span style="color: #b58900;">goals</span>&gt;
-                        &lt;<span style="color: #b58900;">configuration</span>&gt;
-                            &lt;<span style="color: #b58900;">transformers</span>&gt;
-                                &lt;<span style="color: #b58900;">transformer</span>
-                                    <span style="color: #6c71c4;">implementation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">org.apache.maven.plugins.shade.resource.ManifestResourceTransformer</span><span style="color: #2aa198;">"</span>&gt;
-                                    &lt;<span style="color: #b58900;">mainClass</span>&gt;hello.HelloWorld&lt;/<span style="color: #b58900;">mainClass</span>&gt;
-                                &lt;/<span style="color: #b58900;">transformer</span>&gt;
-                            &lt;/<span style="color: #b58900;">transformers</span>&gt;
-                        &lt;/<span style="color: #b58900;">configuration</span>&gt;
-                    &lt;/<span style="color: #b58900;">execution</span>&gt;
-                &lt;/<span style="color: #b58900;">executions</span>&gt;
-            &lt;/<span style="color: #b58900;">plugin</span>&gt;
-        &lt;/<span style="color: #b58900;">plugins</span>&gt;
-    &lt;/<span style="color: #b58900;">build</span>&gt;
-&lt;/<span style="color: #b58900;">project</span>&gt;
+<pre class="src src-xml">&lt;?<span style="color: #859900;">xml</span> <span style="color: #6c71c4;">version</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">1.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">encoding</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">UTF-8</span><span style="color: #2aa198;">"</span>?&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">project</span> <span style="color: #6c71c4;">xmlns</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">xmlns</span>:<span style="color: #6c71c4;">xsi</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://www.w3.org/2001/XMLSchema-instance</span><span style="color: #2aa198;">"</span>&#57344;&#57345;
+    <span style="color: #6c71c4;">xsi</span>:<span style="color: #6c71c4;">schemaLocation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd</span><span style="color: #2aa198;">"</span>&gt;&#57344;&#57345;
+    &lt;<span style="color: #b58900;">modelVersion</span>&gt;4.0.0&lt;/<span style="color: #b58900;">modelVersion</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">groupId</span>&gt;org.springframework&lt;/<span style="color: #b58900;">groupId</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">artifactId</span>&gt;gs-maven&lt;/<span style="color: #b58900;">artifactId</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">packaging</span>&gt;jar&lt;/<span style="color: #b58900;">packaging</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">version</span>&gt;0.1.0&lt;/<span style="color: #b58900;">version</span>&gt;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">build</span>&gt;&#57344;&#57345;&#57345;
+        &lt;<span style="color: #b58900;">plugins</span>&gt;&#57344;&#57345;&#57345;
+            &lt;<span style="color: #b58900;">plugin</span>&gt;&#57344;&#57345;&#57345;
+                &lt;<span style="color: #b58900;">groupId</span>&gt;org.apache.maven.plugins&lt;/<span style="color: #b58900;">groupId</span>&gt;&#57344;&#57345;&#57345;
+                &lt;<span style="color: #b58900;">artifactId</span>&gt;maven-shade-plugin&lt;/<span style="color: #b58900;">artifactId</span>&gt;&#57344;&#57345;&#57345;
+                &lt;<span style="color: #b58900;">version</span>&gt;2.1&lt;/<span style="color: #b58900;">version</span>&gt;&#57344;&#57345;&#57345;
+                &lt;<span style="color: #b58900;">executions</span>&gt;&#57344;&#57345;&#57345;
+                    &lt;<span style="color: #b58900;">execution</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;<span style="color: #b58900;">phase</span>&gt;package&lt;/<span style="color: #b58900;">phase</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;<span style="color: #b58900;">goals</span>&gt;&#57344;&#57345;&#57345;
+                            &lt;<span style="color: #b58900;">goal</span>&gt;shade&lt;/<span style="color: #b58900;">goal</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;/<span style="color: #b58900;">goals</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;<span style="color: #b58900;">configuration</span>&gt;&#57344;&#57345;&#57345;
+                            &lt;<span style="color: #b58900;">transformers</span>&gt;&#57344;&#57345;&#57345;
+                                &lt;<span style="color: #b58900;">transformer</span>&#57344;&#57345;&#57345;
+                                    <span style="color: #6c71c4;">implementation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">org.apache.maven.plugins.shade.resource.ManifestResourceTransformer</span><span style="color: #2aa198;">"</span>&gt;&#57344;&#57345;
+                                    &lt;<span style="color: #b58900;">mainClass</span>&gt;hello.HelloWorld&lt;/<span style="color: #b58900;">mainClass</span>&gt;&#57344;&#57345;
+                                &lt;/<span style="color: #b58900;">transformer</span>&gt;&#57344;&#57345;&#57345;
+                            &lt;/<span style="color: #b58900;">transformers</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;/<span style="color: #b58900;">configuration</span>&gt;&#57344;&#57345;&#57345;
+                    &lt;/<span style="color: #b58900;">execution</span>&gt;&#57344;&#57345;&#57345;
+                &lt;/<span style="color: #b58900;">executions</span>&gt;&#57344;&#57345;&#57345;
+            &lt;/<span style="color: #b58900;">plugin</span>&gt;&#57344;&#57345;&#57345;
+        &lt;/<span style="color: #b58900;">plugins</span>&gt;&#57344;&#57345;&#57345;
+    &lt;/<span style="color: #b58900;">build</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">project</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <ul class="org-ul">
@@ -126,13 +126,13 @@ Add dependencies of project into the <i>pom.xml</i> file, in the
 </p>
 <div class="org-src-container">
 
-<pre class="src src-xml">&lt;<span style="color: #b58900;">dependencies</span>&gt;
-     &lt;<span style="color: #b58900;">dependency</span>&gt;
-         &lt;<span style="color: #b58900;">groupId</span>&gt;joda-time&lt;/<span style="color: #b58900;">groupId</span>&gt;
-         &lt;<span style="color: #b58900;">artifactId</span>&gt;joda-time&lt;/<span style="color: #b58900;">artifactId</span>&gt;
-         &lt;<span style="color: #b58900;">version</span>&gt;2.2&lt;/<span style="color: #b58900;">version</span>&gt;
-     &lt;/<span style="color: #b58900;">dependency</span>&gt;
- &lt;/<span style="color: #b58900;">dependencies</span>&gt;
+<pre class="src src-xml">&lt;<span style="color: #b58900;">dependencies</span>&gt;&#57344;&#57345;&#57345;
+     &lt;<span style="color: #b58900;">dependency</span>&gt;&#57344;&#57345;&#57345;
+         &lt;<span style="color: #b58900;">groupId</span>&gt;joda-time&lt;/<span style="color: #b58900;">groupId</span>&gt;&#57344;&#57345;&#57345;
+         &lt;<span style="color: #b58900;">artifactId</span>&gt;joda-time&lt;/<span style="color: #b58900;">artifactId</span>&gt;&#57344;&#57345;&#57345;
+         &lt;<span style="color: #b58900;">version</span>&gt;2.2&lt;/<span style="color: #b58900;">version</span>&gt;&#57344;&#57345;&#57345;
+     &lt;/<span style="color: #b58900;">dependency</span>&gt;&#57344;&#57345;&#57345;
+ &lt;/<span style="color: #b58900;">dependencies</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -296,14 +296,14 @@ The packages downloaded by <i>maven</i> are put under
 </p>
 <div class="org-src-container">
 
-<pre class="src src-xml">&lt;<span style="color: #b58900;">executions</span>&gt;
-    &lt;<span style="color: #b58900;">execution</span>&gt;
-        &lt;<span style="color: #b58900;">goals</span>&gt;
-            &lt;<span style="color: #b58900;">goal</span>&gt;compile&lt;/<span style="color: #b58900;">goal</span>&gt;
-            &lt;<span style="color: #b58900;">goal</span>&gt;testCompile&lt;/<span style="color: #b58900;">goal</span>&gt;
-        &lt;/<span style="color: #b58900;">goals</span>&gt;
-    &lt;/<span style="color: #b58900;">execution</span>&gt;
-&lt;/<span style="color: #b58900;">executions</span>&gt;
+<pre class="src src-xml">&lt;<span style="color: #b58900;">executions</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">execution</span>&gt;&#57344;&#57345;&#57345;
+        &lt;<span style="color: #b58900;">goals</span>&gt;&#57344;&#57345;&#57345;
+            &lt;<span style="color: #b58900;">goal</span>&gt;compile&lt;/<span style="color: #b58900;">goal</span>&gt;&#57344;&#57345;&#57345;
+            &lt;<span style="color: #b58900;">goal</span>&gt;testCompile&lt;/<span style="color: #b58900;">goal</span>&gt;&#57344;&#57345;&#57345;
+        &lt;/<span style="color: #b58900;">goals</span>&gt;&#57344;&#57345;&#57345;
+    &lt;/<span style="color: #b58900;">execution</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">executions</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>

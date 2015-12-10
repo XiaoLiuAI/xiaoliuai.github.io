@@ -144,41 +144,41 @@ has on external libraries. Here is an <a href="http://spring.io/guides/gs/maven/
 </p>
 <div class="org-src-container">
 
-<pre class="src src-xml">&lt;?<span style="color: #859900;">xml</span> <span style="color: #6c71c4;">version</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">1.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">encoding</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">UTF-8</span><span style="color: #2aa198;">"</span>?&gt;
-&lt;<span style="color: #b58900;">project</span> <span style="color: #6c71c4;">xmlns</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">xmlns</span>:<span style="color: #6c71c4;">xsi</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://www.w3.org/2001/XMLSchema-instance</span><span style="color: #2aa198;">"</span>
-    <span style="color: #6c71c4;">xsi</span>:<span style="color: #6c71c4;">schemaLocation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd</span><span style="color: #2aa198;">"</span>&gt;
-    &lt;<span style="color: #b58900;">modelVersion</span>&gt;4.0.0&lt;/<span style="color: #b58900;">modelVersion</span>&gt;
-    &lt;<span style="color: #b58900;">groupId</span>&gt;org.springframework&lt;/<span style="color: #b58900;">groupId</span>&gt;
-    &lt;<span style="color: #b58900;">artifactId</span>&gt;gs-maven&lt;/<span style="color: #b58900;">artifactId</span>&gt;
-    &lt;<span style="color: #b58900;">packaging</span>&gt;jar&lt;/<span style="color: #b58900;">packaging</span>&gt;
-    &lt;<span style="color: #b58900;">version</span>&gt;0.1.0&lt;/<span style="color: #b58900;">version</span>&gt;
-
-    &lt;<span style="color: #b58900;">build</span>&gt;
-        &lt;<span style="color: #b58900;">plugins</span>&gt;
-            &lt;<span style="color: #b58900;">plugin</span>&gt;
-                &lt;<span style="color: #b58900;">groupId</span>&gt;org.apache.maven.plugins&lt;/<span style="color: #b58900;">groupId</span>&gt;
-                &lt;<span style="color: #b58900;">artifactId</span>&gt;maven-shade-plugin&lt;/<span style="color: #b58900;">artifactId</span>&gt;
-                &lt;<span style="color: #b58900;">version</span>&gt;2.1&lt;/<span style="color: #b58900;">version</span>&gt;
-                &lt;<span style="color: #b58900;">executions</span>&gt;
-                    &lt;<span style="color: #b58900;">execution</span>&gt;
-                        &lt;<span style="color: #b58900;">phase</span>&gt;package&lt;/<span style="color: #b58900;">phase</span>&gt;
-                        &lt;<span style="color: #b58900;">goals</span>&gt;
-                            &lt;<span style="color: #b58900;">goal</span>&gt;shade&lt;/<span style="color: #b58900;">goal</span>&gt;
-                        &lt;/<span style="color: #b58900;">goals</span>&gt;
-                        &lt;<span style="color: #b58900;">configuration</span>&gt;
-                            &lt;<span style="color: #b58900;">transformers</span>&gt;
-                                &lt;<span style="color: #b58900;">transformer</span>
-                                    <span style="color: #6c71c4;">implementation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">org.apache.maven.plugins.shade.resource.ManifestResourceTransformer</span><span style="color: #2aa198;">"</span>&gt;
-                                    &lt;<span style="color: #b58900;">mainClass</span>&gt;hello.HelloWorld&lt;/<span style="color: #b58900;">mainClass</span>&gt;
-                                &lt;/<span style="color: #b58900;">transformer</span>&gt;
-                            &lt;/<span style="color: #b58900;">transformers</span>&gt;
-                        &lt;/<span style="color: #b58900;">configuration</span>&gt;
-                    &lt;/<span style="color: #b58900;">execution</span>&gt;
-                &lt;/<span style="color: #b58900;">executions</span>&gt;
-            &lt;/<span style="color: #b58900;">plugin</span>&gt;
-        &lt;/<span style="color: #b58900;">plugins</span>&gt;
-    &lt;/<span style="color: #b58900;">build</span>&gt;
-&lt;/<span style="color: #b58900;">project</span>&gt;
+<pre class="src src-xml">&lt;?<span style="color: #859900;">xml</span> <span style="color: #6c71c4;">version</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">1.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">encoding</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">UTF-8</span><span style="color: #2aa198;">"</span>?&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">project</span> <span style="color: #6c71c4;">xmlns</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0</span><span style="color: #2aa198;">"</span> <span style="color: #6c71c4;">xmlns</span>:<span style="color: #6c71c4;">xsi</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://www.w3.org/2001/XMLSchema-instance</span><span style="color: #2aa198;">"</span>&#57344;&#57345;
+    <span style="color: #6c71c4;">xsi</span>:<span style="color: #6c71c4;">schemaLocation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd</span><span style="color: #2aa198;">"</span>&gt;&#57344;&#57345;
+    &lt;<span style="color: #b58900;">modelVersion</span>&gt;4.0.0&lt;/<span style="color: #b58900;">modelVersion</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">groupId</span>&gt;org.springframework&lt;/<span style="color: #b58900;">groupId</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">artifactId</span>&gt;gs-maven&lt;/<span style="color: #b58900;">artifactId</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">packaging</span>&gt;jar&lt;/<span style="color: #b58900;">packaging</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">version</span>&gt;0.1.0&lt;/<span style="color: #b58900;">version</span>&gt;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">build</span>&gt;&#57344;&#57345;&#57345;
+        &lt;<span style="color: #b58900;">plugins</span>&gt;&#57344;&#57345;&#57345;
+            &lt;<span style="color: #b58900;">plugin</span>&gt;&#57344;&#57345;&#57345;
+                &lt;<span style="color: #b58900;">groupId</span>&gt;org.apache.maven.plugins&lt;/<span style="color: #b58900;">groupId</span>&gt;&#57344;&#57345;&#57345;
+                &lt;<span style="color: #b58900;">artifactId</span>&gt;maven-shade-plugin&lt;/<span style="color: #b58900;">artifactId</span>&gt;&#57344;&#57345;&#57345;
+                &lt;<span style="color: #b58900;">version</span>&gt;2.1&lt;/<span style="color: #b58900;">version</span>&gt;&#57344;&#57345;&#57345;
+                &lt;<span style="color: #b58900;">executions</span>&gt;&#57344;&#57345;&#57345;
+                    &lt;<span style="color: #b58900;">execution</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;<span style="color: #b58900;">phase</span>&gt;package&lt;/<span style="color: #b58900;">phase</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;<span style="color: #b58900;">goals</span>&gt;&#57344;&#57345;&#57345;
+                            &lt;<span style="color: #b58900;">goal</span>&gt;shade&lt;/<span style="color: #b58900;">goal</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;/<span style="color: #b58900;">goals</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;<span style="color: #b58900;">configuration</span>&gt;&#57344;&#57345;&#57345;
+                            &lt;<span style="color: #b58900;">transformers</span>&gt;&#57344;&#57345;&#57345;
+                                &lt;<span style="color: #b58900;">transformer</span>&#57344;&#57345;&#57345;
+                                    <span style="color: #6c71c4;">implementation</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">org.apache.maven.plugins.shade.resource.ManifestResourceTransformer</span><span style="color: #2aa198;">"</span>&gt;&#57344;&#57345;
+                                    &lt;<span style="color: #b58900;">mainClass</span>&gt;hello.HelloWorld&lt;/<span style="color: #b58900;">mainClass</span>&gt;&#57344;&#57345;
+                                &lt;/<span style="color: #b58900;">transformer</span>&gt;&#57344;&#57345;&#57345;
+                            &lt;/<span style="color: #b58900;">transformers</span>&gt;&#57344;&#57345;&#57345;
+                        &lt;/<span style="color: #b58900;">configuration</span>&gt;&#57344;&#57345;&#57345;
+                    &lt;/<span style="color: #b58900;">execution</span>&gt;&#57344;&#57345;&#57345;
+                &lt;/<span style="color: #b58900;">executions</span>&gt;&#57344;&#57345;&#57345;
+            &lt;/<span style="color: #b58900;">plugin</span>&gt;&#57344;&#57345;&#57345;
+        &lt;/<span style="color: #b58900;">plugins</span>&gt;&#57344;&#57345;&#57345;
+    &lt;/<span style="color: #b58900;">build</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">project</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <ul class="org-ul">
@@ -225,13 +225,13 @@ Add dependencies of project into the <i>pom.xml</i> file, in the
 </p>
 <div class="org-src-container">
 
-<pre class="src src-xml">&lt;<span style="color: #b58900;">dependencies</span>&gt;
-     &lt;<span style="color: #b58900;">dependency</span>&gt;
-         &lt;<span style="color: #b58900;">groupId</span>&gt;joda-time&lt;/<span style="color: #b58900;">groupId</span>&gt;
-         &lt;<span style="color: #b58900;">artifactId</span>&gt;joda-time&lt;/<span style="color: #b58900;">artifactId</span>&gt;
-         &lt;<span style="color: #b58900;">version</span>&gt;2.2&lt;/<span style="color: #b58900;">version</span>&gt;
-     &lt;/<span style="color: #b58900;">dependency</span>&gt;
- &lt;/<span style="color: #b58900;">dependencies</span>&gt;
+<pre class="src src-xml">&lt;<span style="color: #b58900;">dependencies</span>&gt;&#57344;&#57345;&#57345;
+     &lt;<span style="color: #b58900;">dependency</span>&gt;&#57344;&#57345;&#57345;
+         &lt;<span style="color: #b58900;">groupId</span>&gt;joda-time&lt;/<span style="color: #b58900;">groupId</span>&gt;&#57344;&#57345;&#57345;
+         &lt;<span style="color: #b58900;">artifactId</span>&gt;joda-time&lt;/<span style="color: #b58900;">artifactId</span>&gt;&#57344;&#57345;&#57345;
+         &lt;<span style="color: #b58900;">version</span>&gt;2.2&lt;/<span style="color: #b58900;">version</span>&gt;&#57344;&#57345;&#57345;
+     &lt;/<span style="color: #b58900;">dependency</span>&gt;&#57344;&#57345;&#57345;
+ &lt;/<span style="color: #b58900;">dependencies</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -369,15 +369,15 @@ configurations (you have to specify maven-scala-plugin).
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-12-10-summary-and-task-list.html">Summary and Task List</a>
+    
+    <a class="list-group-item " href="/blog/2015-03-13-akka.html">Akka</a>
+    
     <a class="list-group-item " href="/blog/2015-03-04-spring-tutorial.html">Spring Tutorial</a>
     
     <a class="list-group-item " href="/blog/2015-03-04-spring-guide-examples.html">Spring Guide Examples</a>
     
     <a class="list-group-item active" href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-pom-configuration.html">POM Configuration</a>
     
   </div>
 </section>
@@ -451,7 +451,7 @@ configurations (you have to specify maven-scala-plugin).
     
     
     <a class="list-group-item " href="/blog/categories/language/index.html">
-        <span class="badge">2</span>
+        <span class="badge">3</span>
         language
       </a>
     
@@ -459,6 +459,12 @@ configurations (you have to specify maven-scala-plugin).
     <a class="list-group-item " href="/blog/categories/management/index.html">
         <span class="badge">2</span>
         management
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jushan/index.html">
+        <span class="badge">1</span>
+        jushan
       </a>
     
   </div>
@@ -469,17 +475,17 @@ configurations (you have to specify maven-scala-plugin).
     </div>
     <ul class="list-group">
         <li class="tag-cloud list-group-item">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 152%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 173%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 135%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -488,22 +494,23 @@ configurations (you have to specify maven-scala-plugin).
 <a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </li>
     </ul>
     <!-- <div class="list-group">
         <ul class="tag-cloud">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 145%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 169%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 125%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -512,6 +519,7 @@ configurations (you have to specify maven-scala-plugin).
 <a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </ul>
     </div> &#8211;>

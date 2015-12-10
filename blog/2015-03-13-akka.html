@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Akka - 记往开来</title>
+  <meta name="author" content="Xiao Liu">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xiaoliuai.github.io/blog/2015-03-13-akka.html">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="记往开来" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://xiaoliuai.github.io/blog/2015-03-13-akka.html">
+  <meta property="og:title" content="Akka - 记往开来">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">记往开来</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:xiaoliuai.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="记往开来" />
+    
+    <meta itemprop="url" content="http://xiaoliuai.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-03-13T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Akka
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Actors</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Falt toleration</a></li>
+<li><a href="#sec-1-2">1.2. Persistent Actor</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Cluster</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Simple Cluster</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1. Configuration</a></li>
+<li><a href="#sec-2-1-2">2.1.2. Code</a></li>
+<li><a href="#sec-2-1-3">2.1.3. Running</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2. Dial-in example</a></li>
+<li><a href="#sec-2-3">2.3. Cluster Aware Routers</a>
+<ul>
+<li><a href="#sec-2-3-1">2.3.1. <b>Group router</b></a></li>
+<li><a href="#sec-2-3-2">2.3.2. <b>Pool router</b></a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">2.4. Adaptive Load Balancing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-03-13-akka.html"><span class="section-number-2">1</span> Actors</a></h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">import</span> akka.<span style="color: #268bd2;">actor</span>.{ ActorRef, ActorSystem, Props, Actor, Inbox }&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> scala.concurrent.duration.<span style="color: #268bd2;">_</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Three messages, one is object, two are case classes</span>&#57344;&#57345;&#57345;
+<span style="color: #859900;">case</span> object Greet&#57344;&#57345;&#57345;
+<span style="color: #859900;">case</span> <span style="color: #859900;">class</span> WhoToGreet(who: String)&#57344;&#57345;&#57345;
+<span style="color: #859900;">case</span> <span style="color: #859900;">class</span> Greeting(message: String)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #859900;">class</span> Greeter <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Actor</span> {&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">var</span> <span style="color: #6c71c4;">greeting</span> = <span style="color: #2aa198;">""</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  def receive = {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> WhoToGreet(who) =&gt; greeting = s<span style="color: #2aa198;">"hello, $who"</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> Greet           =&gt; sender <span style="color: #268bd2;">!</span> Greeting(greeting)&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Send the current greeting back to the sender</span>&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">object</span> <span style="color: #6c71c4;">HelloAkkaScala</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">App</span> {&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Create the 'helloakka' actor system</span>&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">system</span> = ActorSystem(<span style="color: #2aa198;">"helloakka"</span>)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Create the 'greeter' actor</span>&#57344;&#57345;&#57345;
+  val greeter = system.actorOf(<span style="color: #268bd2;">Props</span>[Greeter], <span style="color: #2aa198;">"greeter"</span>)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Create an "actor-in-a-box"</span>&#57344;&#57345;&#57345;
+  val inbox = Inbox.create(system)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Tell the 'greeter' to change its 'greeting' message</span>&#57344;&#57345;&#57345;
+  greeter.tell(WhoToGreet(<span style="color: #2aa198;">"akka"</span>), ActorRef.noSender)&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Ask the 'greeter for the latest 'greeting'</span>&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Reply should go to the "actor-in-a-box"</span>&#57344;&#57345;&#57345;
+  inbox.send(greeter, Greet)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Wait 5 seconds for the reply with the 'greeting' message</span>&#57344;&#57345;&#57345;
+  val Greeting(message1) = inbox.receive(5.seconds)&#57344;&#57345;&#57345;
+  println(s<span style="color: #2aa198;">"Greeting: $message1"</span>)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Change the greeting and ask for it again</span>&#57344;&#57345;&#57345;
+  greeter.tell(WhoToGreet(<span style="color: #2aa198;">"typesafe"</span>), ActorRef.noSender)&#57344;&#57345;&#57345;
+  inbox.send(greeter, Greet)&#57344;&#57345;&#57345;
+  val Greeting(message2) = inbox.receive(5.seconds)&#57344;&#57345;&#57345;
+  println(s<span style="color: #2aa198;">"Greeting: $message2"</span>)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  val greetPrinter = system.actorOf(<span style="color: #268bd2;">Props</span>[GreetPrinter])&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">after zero seconds, send a Greet message every second to the greeter with a sender of the greetPrinter</span>&#57344;&#57345;
+  system.scheduler.schedule(0.seconds, 1.second, greeter, Greet)(system.dispatcher, greetPrinter)&#57344;&#57345;
+&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">prints a greeting</span>&#57344;&#57345;&#57345;
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">GreetPrinter</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Actor</span> {&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">def</span> <span style="color: #6c71c4;">receive</span> = {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> Greeting(message) =&gt; println(message)&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Sending messages
+<ol class="org-ol">
+<li><code>actor ! message</code> or <code>actor.tell(message, sender)</code>.
+</li>
+<li><code>inbox.send(sender, message)</code>
+</li>
+<li><code>system.scheduler.schedule(initDelay, interval, receiver,
+        message)(executor, sender)</code>
+</li>
+<li><code>actor ? message</code>, it means &#8220;ask&#8221;, which resturns a <code>Future</code>
+representing a possible reply. When you implement ask
+function, you have to catch the exception and send a Failure
+to the sender
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">try</span> {&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">result</span> = operation()&#57344;&#57345;&#57345;
+  sender() <span style="color: #268bd2;">!</span> result&#57344;&#57345;&#57345;
+} <span style="color: #859900;">catch</span> {&#57344;&#57345;&#57345;
+  <span style="color: #859900;">case</span> e: Exception =&gt;&#57344;&#57345;&#57345;
+    sender() <span style="color: #268bd2;">!</span> <span style="color: #268bd2;">akka</span>.<span style="color: #268bd2;">actor</span>.<span style="color: #268bd2;">Status</span>.Failure(e)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">throw</span> e&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+You can set a timeout period for the <code>Future</code> by implicit
+value <code>implicit val timeout = Timeout(5 seconds)</code> or using
+curry function <code>myActor.ask(msg)(5 seconds)</code>.
+</p>
+</li>
+</ol>
+</li>
+<li>Receiving messages
+<ol class="org-ol">
+<li><code>receive</code> defined method in actor will be called when message
+comes. <b>Attention:</b>, the <code>sender()</code> method returns the current
+sender when the method is called, <b>DO NOT</b> use this function
+in callbacks since the sender method may returns wrong sender
+(deadletter in many cases) when the callback is actually
+invoked.
+</li>
+<li><code>inbox.receive</code>
+</li>
+<li>Set timeout period for receiving method,
+<code>context.setReceiveTimeout(30 milliseconds)</code>. Then you can
+catch this event by receiving message <code>case ReceiveTimeout</code>.
+</li>
+</ol>
+</li>
+<li>Forward message
+<code>target forward message</code>, it will keep the sender unchanged. A
+send msg to B, B forward msg to C, the sender for C is still A
+instead of B
+</li>
+<li>Stop actor
+<code>akka.actor.PoisonPill</code> message will stop the
+actor. <code>gracefulStop</code> is useful to wait for termination or
+compose ordered termination of several actors. It is a pattern,
+not precoded, it sends a user defined message to the actor and
+returns a <code>Future</code>, you can <code>Await</code> this future for a duration.
+
+<p>
+<code>actor ! Kill</code> will also stop this actor, but it causes the actor
+to throw a <code>ActorKilledException</code>. This actor will suspend and
+like the supervisor to decide how to handle the failure.
+</p>
+</li>
+<li>Become/Unbecome
+<code>context.become</code> method in Actor can setting the receive
+function, hence the behavior of Actor is changed. <code>unbecome</code> lets
+the actor returns to previews behavior.
+
+<p>
+You can use <code>stash</code> and <code>unstash</code> to save mails into a queue in
+one behavior and get them back in another behavior. Of course,
+you have to mix the trait <code>Stash</code> to be able to use it.
+</p>
+</li>
+<li>Extend actor and intialization patterns
+Use <code>PartialFunction#orElse</code> to chain the <code>receive</code> function of
+the extended actor.
+
+<p>
+Three init patterns
+</p>
+<ol class="org-ol">
+<li>constructor
+</li>
+<li>preStart
+</li>
+<li>Message
+</li>
+</ol>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Falt toleration</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Example code from document.
+</p>
+<ol class="org-ol">
+<li><code>Counter</code>, increment and save count to storage, return current
+count number
+</li>
+<li><code>Storage</code>, simulate database, store (String, Long) pairs.
+</li>
+<li><code>CounterService</code>, override supervisorStrategy by
+<code>OneForOneStrategy</code>
+<div class="org-src-container">
+
+<pre class="src src-java">override <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">supervisorStrategy</span> = OneForOneStrategy(maxNrOfRetries = 3,&#57344;&#57345;
+  withinTimeRange = 5.seconds) {&#57344;&#57345;&#57345;
+  <span style="color: #859900;">case</span> _: <span style="color: #268bd2;">Storage</span>.StorageException =&gt; Restart&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+init with actor refererences to the wrapper (watcher) of
+storage, tell counter (when initialized?) to use the storage.
+</p>
+
+<p>
+forward message (increment, getCurrentCount) to counter if it
+exists; save <code>sender-&gt;msg</code> pair to log if counter is not
+available.
+</p>
+
+<p>
+if storage is terminated, tell counter that storage is not
+available, schedule task to initStorage again (reconnect).
+</p>
+</li>
+<li><code>Worker</code>, stop when receiving message from CounterService. init
+<code>CounterService</code> actor.
+</li>
+<li><code>Listener</code>, shutdown the system while timeout. Listen
+<code>Progress</code>, which is a case class of <code>Worker</code>.
+</li>
+<li>App object init worker and listener. Tell worker to assign the
+listener, which will schedule task to use the <code>CounterService</code>
+to increment count and pipe the message to listener.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Persistent Actor</h3>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Cluster</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Simple Cluster</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Configuration</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+To run cluster, you have to first creat a configuration file that
+specify the URI, actors, etc.
+</p>
+<pre class="example">
+akka {
+  actor {
+    provider = "akka.cluster.ClusterActorRefProvider"
+  }
+  remote {
+    log-remote-lifecycle-events = off
+    netty.tcp {
+      hostname = "127.0.0.1"
+      port = 0
+    }
+  }
+
+  cluster {
+    seed-nodes = [
+      "akka.tcp://ClusterSystem@127.0.0.1:2551",
+      "akka.tcp://ClusterSystem@127.0.0.1:2552"]
+
+    auto-down-unreachable-after = 10s
+  }
+}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Code</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #859900;">package</span> sample.cluster.<span style="color: #268bd2;">simple</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">com</span>.<span style="color: #268bd2;">typesafe</span>.<span style="color: #268bd2;">config</span>.<span style="color: #268bd2;">ConfigFactory</span>&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">akka</span>.<span style="color: #268bd2;">actor</span>.<span style="color: #268bd2;">ActorSystem</span>&#57344;&#57345;&#57345;
+<span style="color: #859900;">import</span> <span style="color: #268bd2;">akka</span>.<span style="color: #268bd2;">actor</span>.<span style="color: #268bd2;">Props</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">object</span> <span style="color: #6c71c4;">SimpleClusterApp</span> {&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">def</span> <span style="color: #6c71c4;">main</span>(args: Array[String]): Unit = {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">if</span> (args.isEmpty)&#57344;&#57345;&#57345;
+      startup(Seq(<span style="color: #2aa198;">"2551"</span>, <span style="color: #2aa198;">"2552"</span>, <span style="color: #2aa198;">"0"</span>))&#57344;&#57345;&#57345;
+    <span style="color: #859900;">else</span>&#57344;&#57345;&#57345;
+      startup(args)&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">def</span> <span style="color: #6c71c4;">startup</span>(ports: Seq[String]): Unit = {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">ports</span> <span style="color: #6c71c4;">foreach</span> { port =&gt;&#57344;&#57345;&#57345;
+      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Override the configuration of the port</span>&#57344;&#57345;&#57345;
+      val config = ConfigFactory.parseString(<span style="color: #2aa198;">"akka.remote.netty.tcp.port="</span> + port).&#57344;&#57345;
+        withFallback(ConfigFactory.load())&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Create an Akka system</span>&#57344;&#57345;&#57345;
+      val system = ActorSystem(<span style="color: #2aa198;">"ClusterSystem"</span>, config)&#57344;&#57345;&#57345;
+      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">One system on one port?</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Create an actor that handles cluster domain events</span>&#57344;&#57345;&#57345;
+      system.actorOf(<span style="color: #268bd2;">Props</span>[SimpleClusterListener], name = <span style="color: #2aa198;">"clusterListener"</span>)&#57344;&#57345;
+    }&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">SimpleClusterListener</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Actor</span> with ActorLogging {&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">cluster</span> = Cluster(context.system)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">subscribe to cluster changes, re-subscribe when restart</span>&#57344;&#57345;&#57345;
+  override def preStart(): Unit = {&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">#subscribe</span>&#57344;&#57345;&#57345;
+    cluster.subscribe(self, initialStateMode = InitialStateAsEvents,&#57344;&#57345;&#57345;
+      classOf[MemberEvent], classOf[UnreachableMember])&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">//</span><span style="color: #93a1a1; font-style: italic;">#subscribe</span>&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+  override <span style="color: #268bd2;">def</span> <span style="color: #b58900;">postStop</span>(): Unit = cluster.unsubscribe(self)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  def receive = {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> MemberUp(member) =&gt;&#57344;&#57345;&#57345;
+      log.info(<span style="color: #2aa198;">"Member is Up: {}"</span>, member.address)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> UnreachableMember(member) =&gt;&#57344;&#57345;&#57345;
+      log.info(<span style="color: #2aa198;">"Member detected as unreachable: {}"</span>, member)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> MemberRemoved(member, previousStatus) =&gt;&#57344;&#57345;&#57345;
+      log.info(<span style="color: #2aa198;">"Member is Removed: {} after {}"</span>,&#57344;&#57345;&#57345;
+        member.address, previousStatus)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> _: MemberEvent =&gt; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">ignore</span>&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3"><span class="section-number-4">2.1.3</span> Running</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+Log when starting the second seed node:
+[info] [INFO] [03/10/2015 23:57:27.799]
+[ClusterSystem-akka.actor.default-dispatcher-14]
+[Cluster(akka://ClusterSystem)] Cluster Node
+[akka.tcp://ClusterSystem@127.0.0.1:2551] - Node
+[akka.tcp://ClusterSystem@127.0.0.1:2552] is JOINING, roles []
+</p>
+
+<p>
+This code defines a cluster (集群), each node runs as dependennt
+processes (different JVMs) since they all run on my local
+machine. A cluster is indentified by <code>akka://CllusterSystem</code>,
+while each node is indentified by IP address and port number. The
+IP address seems like to be defined by application.config.
+</p>
+
+<ul class="org-ul">
+<li><b>seed nodes</b> are configured contact points for initial,
+automatic, join of the cluster. Hence, the <code>seed-nodes</code> figure
+out where to join the cluster to current node. The seed nodes can
+also be configured by command line options when starting the JVM
+using the following syntax:
+<div class="org-src-container">
+
+<pre class="src src-bash">-Dakka.cluster.seed-nodes.0=akka.tcp://ClusterSystem@host1:2552
+-Dakka.cluster.seed-nodes.1=akka.tcp://ClusterSystem@host1:2552
+</pre>
+</div>
+<p>
+Starting seed notes can be async and not all the seed nodes are
+necessary to run. But the first node must be started when
+starting a cluster.
+</p>
+
+<p>
+It is also possible to join the cluster manually via <a href="http://doc.akka.io/docs/akka/2.3.9/scala/cluster-usage.html#cluster-jmx-scala"><i>JMX</i></a> or
+<a href="http://doc.akka.io/docs/akka/2.3.9/scala/cluster-usage.html#cluster-command-line-scala"><i>Command Line Management</i></a> or via programatic method with
+<code>Cluster.get(system).join(address)</code> or
+<code>Cluster(system).joinSeedNodes</code>.
+</p>
+</li>
+<li><code>hostname</code> in <code>remote</code> in configuration specify the IP of
+current node. <b>Question:</b> /what if I specify the IP to another
+machine? The application should be deploy to another machine
+before running? What protocole does it uses?/
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Dial-in example</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Frontend-backend pattern (not those in Group router):
+</p>
+<ol class="org-ol">
+<li>Backed subscribes to the cluster service to register new
+frontend
+</li>
+<li>Frontend watch the backend and define the <code>receive</code> method for
+the case of <code>Terminated(a)</code>.
+</li>
+<li>Frontend redirect received jobs to backend.
+</li>
+<li>Roles of node is defined in the configuration property named
+<code>akka.cluster.roles</code> or in start script as a system property
+or environment variable.
+</li>
+</ol>
+
+<p>
+Number of members restriction:
+<code>akka.cluster.min-nr-of-members = 3</code>, the leader will not
+change the status of nodes to &#8216;Up&#8217; until this number of
+members reached. Finer configuration:
+</p>
+<p>
+#+beign_src yaml
+akka.cluster.role {
+  frontend.min-nr-of-members = 1
+  backend.min-nr-of-members = 2
+}
+</p>
+<p>
+#+end_src
+Define callback to be invoked when the current member status is
+changed to &#8216;Up&#8217;
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">Cluster</span>(<span style="color: #268bd2;">system</span>) registerOnMemberUp {&#57344;&#57345;&#57345;
+  system.actorOf(Props(classOf[FactorialFrontend], upToN, <span style="color: #268bd2;">true</span>),&#57344;&#57345;&#57345;
+    name = <span style="color: #2aa198;">"factorialFrontend"</span>)&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Cluster Aware Routers</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Router is one that receive and send tasks to actors, while the
+ref to actors are called routees.
+</p>
+</div>
+
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> <b>Group router</b></h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+在示例代码中,每一个node上面都有一个StatsService,和一个
+StatsWorker. StatsService里面包含了指向StatsWorker的router并且负
+责接受和转发任务. 每次Client将一个任务传给Cluster时,Cluster中某
+个一node上的StatsService会接收并分发任务,因为分发任务是依靠
+router来实现的,所以任务会被分发到不同node上的StatsWorker上去.这
+个例子中,每个node上的Service和Worker都是显式创建的.
+</p>
+
+<p>
+<b>Group example: Server side</b>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-yaml">akka.actor.deployment {&#57344;&#57345;&#57345;
+  /statsService/workerRouter {&#57344;&#57345;&#57345;
+      router = consistent-hashing-group&#57344;&#57345;&#57345;
+      // specify the router, you have also other options like round-robin-pool&#57344;&#57345;
+      nr-of-instances = 100&#57344;&#57345;&#57345;
+      routees.paths = [<span style="color: #2aa198;">"/user/statsWorker"</span>]&#57344;&#57345;&#57345;
+      cluster {&#57344;&#57345;&#57345;
+        enabled = on&#57344;&#57345;&#57345;
+        allow-local-routees = on&#57344;&#57345;&#57345;
+        use-role = compute&#57344;&#57345;&#57345;
+      }&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+With this configuration, relative actor paths defined in
+<code>routees.paths</code> are used for selecting actors to send the message
+by the router.
+在创建System的时候将这个配置文件包含到配置中去, 然后在这个system
+下面任意地方用 <code>actorOf(FromConfig.props(Props[YourClass]))</code> 来
+得到router actor. 发送任务时将任务发给router actor,它会自动转发
+给cluster中的注册在 &#8220;user&#8221; 下面的注册名为 &#8220;statsWorker&#8221; 的actor
+(不一定是StatsWorker,你可以随意将不同类型的Actor注册在这个名字下
+面). 更多的配置,查看<a href="http://doc.akka.io/docs/akka/snapshot/scala/routing.html">routing</a>.
+</p>
+
+<p>
+下面的代码是用编程的方式实现配置文件里的配置.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">workerRouter</span> = context.actorOf(&#57344;&#57345;&#57345;
+    ClusterRouterGroup(ConsistentHashingGroup(Nil), ClusterRouterGroupSettings(&#57344;&#57345;
+      totalInstances = 100, routeesPaths = List(<span style="color: #2aa198;">"/user/statsWorker"</span>),&#57344;&#57345;&#57345;
+      allowLocalRoutees = <span style="color: #268bd2;">true</span>, useRole = Some(<span style="color: #2aa198;">"compute"</span>))).props(),&#57344;&#57345;&#57345;
+    name = <span style="color: #2aa198;">"workerRouter2"</span>)&#57344;&#57345;&#57345;
+</pre>
+</div>
+
+<p>
+<b>Group example: Client side</b>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #268bd2;">object</span> <span style="color: #6c71c4;">StatsSampleClient</span> {&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">def</span> <span style="color: #6c71c4;">main</span>(args: Array[String]): Unit = {&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">note that client is not a compute node, role not defined</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">system</span> = ActorSystem(<span style="color: #2aa198;">"ClusterSystem"</span>)&#57344;&#57345;&#57345;
+    system.actorOf(Props(classOf[StatsSampleClient], <span style="color: #2aa198;">"/user/statsService"</span>), <span style="color: #2aa198;">"client"</span>)&#57344;&#57345;
+  }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">StatsSampleClient</span>(servicePath: String) <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Actor</span> {&#57344;&#57345;&#57345;
+  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">servicePath is "/user/statsService", which is the second argument of the Props.</span>&#57344;&#57345;
+  <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">cluster</span> = Cluster(context.system)&#57344;&#57345;&#57345;
+  val servicePathElements = servicePath match {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> RelativeActorPath(elements) =&gt; {&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">//      </span><span style="color: #93a1a1; font-style: italic;">println("servicePath is: "+servicePath) ;</span>&#57344;&#57345;&#57345;
+      elements}&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> _ =&gt; <span style="color: #859900;">throw</span> <span style="color: #859900;">new</span> <span style="color: #268bd2;">IllegalArgumentException</span>(&#57344;&#57345;&#57345;
+      <span style="color: #2aa198;">"servicePath [%s] is not a valid relative actor path"</span> format servicePath)&#57344;&#57345;
+  }&#57344;&#57345;&#57345;
+  <span style="color: #859900;">import</span> context.<span style="color: #268bd2;">dispatcher</span>&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">tickTask</span> = context.system.scheduler.schedule(2.seconds, 10.seconds, self, <span style="color: #2aa198;">"tick"</span>)&#57344;&#57345;
+&#57344;&#57345;&#57345;
+  var nodes = Set.empty[Address]&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  override def preStart(): Unit = {&#57344;&#57345;&#57345;
+    cluster.subscribe(self, classOf[MemberEvent], classOf[ReachabilityEvent])&#57344;&#57345;
+  }&#57344;&#57345;&#57345;
+  override <span style="color: #268bd2;">def</span> <span style="color: #b58900;">postStop</span>(): Unit = {&#57344;&#57345;&#57345;
+    cluster.unsubscribe(self)&#57344;&#57345;&#57345;
+    tickTask.cancel()&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">def</span> <span style="color: #6c71c4;">receive</span> = {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> <span style="color: #2aa198;">"tick"</span> <span style="color: #859900;">if</span> nodes.nonEmpty =&gt;&#57344;&#57345;&#57345;
+      <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">just pick any one</span>&#57344;&#57345;&#57345;
+      val address = nodes.toIndexedSeq(ThreadLocalRandom.current.nextInt(nodes.size))&#57344;&#57345;
+      val service = context.actorSelection(<span style="color: #268bd2;">RootActorPath</span>(<span style="color: #268bd2;">address</span>) / servicePathElements)&#57344;&#57345;
+      service <span style="color: #268bd2;">!</span> StatsJob(<span style="color: #2aa198;">"this is the text that will be analyzed"</span>)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> result: StatsResult =&gt;&#57344;&#57345;&#57345;
+      println(result)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> failed: JobFailed =&gt;&#57344;&#57345;&#57345;
+      println(failed)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> state: CurrentClusterState =&gt;&#57344;&#57345;&#57345;
+      nodes = state.members.collect {&#57344;&#57345;&#57345;
+        <span style="color: #859900;">case</span> m <span style="color: #859900;">if</span> m.hasRole(<span style="color: #2aa198;">"compute"</span>) &amp;&amp; m.status == <span style="color: #268bd2;">MemberStatus</span>.Up =&gt; m.address&#57344;&#57345;
+      }&#57344;&#57345;&#57345;
+    <span style="color: #859900;">case</span> MemberUp(m) <span style="color: #859900;">if</span> m.hasRole(<span style="color: #2aa198;">"compute"</span>)        =&gt; nodes += m.address&#57344;&#57345;
+    <span style="color: #859900;">case</span> other: MemberEvent                         =&gt; nodes -= other.member.address&#57344;&#57345;
+    <span style="color: #859900;">case</span> UnreachableMember(m)                       =&gt; nodes -= m.address&#57344;&#57345;
+    <span style="color: #859900;">case</span> ReachableMember(m) <span style="color: #859900;">if</span> m.hasRole(<span style="color: #2aa198;">"compute"</span>) =&gt; nodes += m.address&#57344;&#57345;
+  }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
+</pre>
+</div>
+<p>
+而在客户端代码中,首先向cluster订阅成员事件来获取所有的成员. 然后
+根据成员的role来筛选出相应的node. 真正开始发送任务的时候,随机排
+列这些node,然后使用
+<code>context.actorSelection(RootActorPath(address) /
+      servicePathElements)</code> 这句话返回一个 <code>ActorSelection</code> 的对象,对它
+发送信息能自动地发送到某个注册在cluster上的某个node上的某个actor
+上面去.准确地说,后半段确定Actor的URN,前半段应该是URL.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> <b>Pool router</b></h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+利用ClusterSingletonManager作为StatsService的外包,虽然每个node上
+都运行了创建代码,但实际上只有一个StatsService被创建,从而实现单例.
+在node被创建之后,node沟通其它node并加入cluster,随后连接上singleton
+下的statsService,如果是第一个node则会创建router,然后创建3个
+worker. 之后的node直接在连上statsService之后创建3个worker. worer是
+由workerRouter创建的,3个worker的设定在配置文件里
+<code>max-nr-of-instances-per-node = 3</code>. 这个设定只对pool有效,group里
+面就算设定了也不会创建worker.
+</p>
+
+<p>
+<i>singlton意味着Actor在整个集群上只有一个,目前看来是先创建的node
+上面载有这个单例,如果这个node挂了怎么办?</i>
+</p>
+
+<p>
+singletonManager 被映射到 /user/singleton 上作为 StatsService 的
+容器, StatsService 自然就映射到其下
+<code>/user/singleton/statsService</code>.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Adaptive Load Balancing</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+AdaptiveLoadBalanceing <b>Pool</b> 和 AdaptiveLoadBalancing <b>Group</b> 两种
+实现方式.中心是cluster metrics和配置adaptive的router.
+</p>
+<ol class="org-ol">
+<li>注意,不要在 <code>preStart</code> 里面发送信息,这个时候路由还没有设置好,发
+送的message全部/部分都会变成 <i>dead letter</i>.
+</li>
+<li>另外一个坑是:router会按照算法把负载分布到cluster的每个node上去.在
+例子中,用role来区分前后端的node,所以router只会向后端node发送信
+息.但是后端node不代表有后端actor,这一点router是无法探知的.所以
+如果你把只运行有前端actor的node也标记为后端,router仍然会向其发
+送信息,最后会导致信息送丢了. <b>node的身份取只决于system config里
+面的role,不取决于里面到底运行了什么actor.</b>
+</li>
+<li>追加一个坑:不要在callback里面调用任何状态相关的函数,除非你确定
+你需要这个副作用.在callback里面调用 <code>sender()</code> 经常会返回
+<code>deadLetter</code>, 因为 <code>sender()</code> 真正被调用的时候不是接收到信息的
+时候.
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Xiao Liu</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-03-13T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/language/'>language</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://xiaoliuai.github.io/blog/2015-03-13-akka.html" data-via="" data-counturl="http://xiaoliuai.github.io/blog/2015-03-13-akka.html" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2015-03-04-spring-tutorial.html" title="Previous Post: Spring Tutorial">&laquo; Spring Tutorial</a></li>
+            
+            
+            <li class="next"><a href="/blog/2015-12-10-summary-and-task-list.html" title="Next Post: Summary and task list">Summary and task list &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2015-12-10-summary-and-task-list.html">Summary and Task List</a>
+    
+    <a class="list-group-item active" href="/blog/2015-03-13-akka.html">Akka</a>
+    
+    <a class="list-group-item " href="/blog/2015-03-04-spring-tutorial.html">Spring Tutorial</a>
+    
+    <a class="list-group-item " href="/blog/2015-03-04-spring-guide-examples.html">Spring Guide Examples</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
+    
+  </div>
+</section>
+
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/xiaoliuai">@xiaoliuai</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'xiaoliuai',
+            count: 2,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/blog/categories/geek/index.html">
+        <span class="badge">2</span>
+        geek
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/parallelism/index.html">
+        <span class="badge">1</span>
+        parallelism
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/web/index.html">
+        <span class="badge">7</span>
+        web
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/database/index.html">
+        <span class="badge">2</span>
+        database
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/language/index.html">
+        <span class="badge">3</span>
+        language
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/management/index.html">
+        <span class="badge">2</span>
+        management
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jushan/index.html">
+        <span class="badge">1</span>
+        jushan
+      </a>
+    
+  </div>
+</section>
+<section class="panel panel-default">
+    <div class="panel-heading">
+            <h2 class="panel-title">标签列表</h2>
+    </div>
+    <ul class="list-group">
+        <li class="tag-cloud list-group-item">
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 173%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 135%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/gulp/">gulp<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/mpi/">MPI<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jushan/">Jushan<sup>1</sup></a>
+
+        </li>
+    </ul>
+    <!-- <div class="list-group">
+        <ul class="tag-cloud">
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 169%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 125%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
+<a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/gulp/">gulp<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/mpi/">MPI<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jushan/">Jushan<sup>1</sup></a>
+
+        </ul>
+    </div> &#8211;>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2015 - Xiao Liu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+  </body>
+</html>

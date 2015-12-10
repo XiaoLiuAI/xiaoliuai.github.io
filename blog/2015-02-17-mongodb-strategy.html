@@ -176,19 +176,19 @@ not updated.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myDoc</span> = db.COLLECTION.findOne<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>;
-<span style="color: #859900;">if</span><span style="color: #657b83;">(</span>myDoc<span style="color: #657b83;">){</span>
-   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">oldValue</span> = myDoc.value;
-   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">results</span> = db.COLLECTION.update<span style="color: #2aa198;">(</span>
-       <span style="color: #b58900;">{</span>
-           _id: myDoc._id,
-           value: oldValue
-       <span style="color: #b58900;">}</span>,
-       <span style="color: #b58900;">{</span>
-           $inc:<span style="color: #859900;">{</span>value: -fee<span style="color: #859900;">}</span>
-       <span style="color: #b58900;">}</span>
-       <span style="color: #2aa198;">)</span>
-<span style="color: #657b83;">}</span>
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myDoc</span> = db.COLLECTION.findOne<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span><span style="color: #657b83;">(</span>myDoc<span style="color: #657b83;">){</span>&#57344;&#57345;&#57345;
+   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">oldValue</span> = myDoc.value;&#57344;&#57345;&#57345;
+   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">results</span> = db.COLLECTION.update<span style="color: #2aa198;">(</span>&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+           _id: myDoc._id,&#57344;&#57345;&#57345;
+           value: oldValue&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">}</span>,&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+           $inc:<span style="color: #859900;">{</span>value: -fee<span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">}</span>&#57344;&#57345;&#57345;
+       <span style="color: #2aa198;">)</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -198,7 +198,7 @@ you can use following commands:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>_id: id, value: <span style="color: #b58900;">{</span>$gte: fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$inc:<span style="color: #b58900;">{</span>value: -fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>_id: id, value: <span style="color: #b58900;">{</span>$gte: fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$inc:<span style="color: #b58900;">{</span>value: -fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
 </pre>
 </div>
 <p>
@@ -306,15 +306,15 @@ indicate the relative nodes.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"> db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Books"</span>, parent: 0, left: 1, right: 12 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
- db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Programming"</span>, parent: <span style="color: #2aa198;">"Books"</span>, left: 2, right: 11 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
- db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Languages"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 3, right: 4 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
- db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 5, right: 10 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
-&#65532;db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"MongoDB"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 6, right: 7 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
- db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"dbm"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 8, right: 9<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
-
- <span style="color: #859900;">var</span> <span style="color: #6c71c4;">databaseCategory</span> = db.categories.findOne<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span> <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>;
- db.categories.find<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> left: <span style="color: #b58900;">{</span> $gt: databaseCategory.left <span style="color: #b58900;">}</span>, right: <span style="color: #b58900;">{</span> $lt: databaseCategory.right <span style="color: #b58900;">}</span> <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript"> db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Books"</span>, parent: 0, left: 1, right: 12 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Programming"</span>, parent: <span style="color: #2aa198;">"Books"</span>, left: 2, right: 11 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Languages"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 3, right: 4 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 5, right: 10 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+&#65532;db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"MongoDB"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 6, right: 7 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"dbm"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 8, right: 9<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
+&#57344;&#57345;&#57345;
+ <span style="color: #859900;">var</span> <span style="color: #6c71c4;">databaseCategory</span> = db.categories.findOne<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span> <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>;&#57345;
+ db.categories.find<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> left: <span style="color: #b58900;">{</span> $gt: databaseCategory.left <span style="color: #b58900;">}</span>, right: <span style="color: #b58900;">{</span> $lt: databaseCategory.right <span style="color: #b58900;">}</span> <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
 </pre>
 </div>
 <p>
@@ -340,7 +340,7 @@ ordered indices very quickly
       Note that if one set compound index by
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.ensureIndex<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>key1: 1, key2: -1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.ensureIndex<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>key1: 1, key2: -1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -511,15 +511,15 @@ database name).
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-12-10-summary-and-task-list.html">Summary and Task List</a>
+    
+    <a class="list-group-item " href="/blog/2015-03-13-akka.html">Akka</a>
+    
     <a class="list-group-item " href="/blog/2015-03-04-spring-tutorial.html">Spring Tutorial</a>
     
     <a class="list-group-item " href="/blog/2015-03-04-spring-guide-examples.html">Spring Guide Examples</a>
     
     <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-pom-configuration.html">POM Configuration</a>
     
   </div>
 </section>
@@ -593,7 +593,7 @@ database name).
     
     
     <a class="list-group-item " href="/blog/categories/language/index.html">
-        <span class="badge">2</span>
+        <span class="badge">3</span>
         language
       </a>
     
@@ -601,6 +601,12 @@ database name).
     <a class="list-group-item " href="/blog/categories/management/index.html">
         <span class="badge">2</span>
         management
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jushan/index.html">
+        <span class="badge">1</span>
+        jushan
       </a>
     
   </div>
@@ -611,17 +617,17 @@ database name).
     </div>
     <ul class="list-group">
         <li class="tag-cloud list-group-item">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 152%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 173%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 135%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -630,22 +636,23 @@ database name).
 <a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </li>
     </ul>
     <!-- <div class="list-group">
         <ul class="tag-cloud">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 145%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 169%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 125%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -654,6 +661,7 @@ database name).
 <a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </ul>
     </div> &#8211;>

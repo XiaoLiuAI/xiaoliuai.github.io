@@ -144,7 +144,7 @@
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.insert<span style="color: #657b83;">(</span>doc/docs<span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.insert<span style="color: #657b83;">(</span>doc/docs<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -162,7 +162,7 @@ documents.
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>name: value, <span style="color: #2aa198;">'name1.name2.name3'</span>:value/condition<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>name: value, <span style="color: #2aa198;">'name1.name2.name3'</span>:value/condition<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57345;
 </pre>
 </div>
 <p>
@@ -209,14 +209,14 @@ Elements in array can be retrieved by index
 <li>get attribute
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
 <li>get elements in array
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span><span style="color: #2aa198;">'name1.name2'</span>:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span><span style="color: #2aa198;">'name1.name2'</span>:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -226,7 +226,7 @@ This projection will returns all the elments with the path
 
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name1: <span style="color: #b58900;">{</span>$elemMatch: <span style="color: #859900;">{</span>name2:value<span style="color: #859900;">}</span><span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name1: <span style="color: #b58900;">{</span>$elemMatch: <span style="color: #859900;">{</span>name2:value<span style="color: #859900;">}</span><span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -272,7 +272,7 @@ that matches, for example, the nested element attributes.
 <li>update attribute:
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$set: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$set: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -283,24 +283,24 @@ does not exist in collection.
 <li>update array:
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$push/$pull: value<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$push/$pull: value<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.students.update<span style="color: #657b83;">(</span>
-  <span style="color: #2aa198;">{</span> _id: 1 <span style="color: #2aa198;">}</span>,
-  <span style="color: #2aa198;">{</span>
-  $push: <span style="color: #b58900;">{</span>
-          scores: <span style="color: #859900;">{</span>
-             $each: <span style="color: #268bd2;">[</span> <span style="color: #657b83;">{</span> attempt: 3, score: 7 <span style="color: #657b83;">}</span>, <span style="color: #657b83;">{</span> attempt: 4, score: 4 <span style="color: #657b83;">}</span> <span style="color: #268bd2;">]</span>,
-             $sort: <span style="color: #268bd2;">{</span> score: 1 <span style="color: #268bd2;">}</span>,
-             $slice: -3
-          <span style="color: #859900;">}</span>
-  <span style="color: #b58900;">}</span>
-
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.students.update<span style="color: #657b83;">(</span>&#57344;&#57345;&#57345;
+  <span style="color: #2aa198;">{</span> _id: 1 <span style="color: #2aa198;">}</span>,&#57344;&#57345;&#57345;
+  <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  $push: <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+          scores: <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+             $each: <span style="color: #268bd2;">[</span> <span style="color: #657b83;">{</span> attempt: 3, score: 7 <span style="color: #657b83;">}</span>, <span style="color: #657b83;">{</span> attempt: 4, score: 4 <span style="color: #657b83;">}</span> <span style="color: #268bd2;">]</span>,&#57344;&#57345;
+             $sort: <span style="color: #268bd2;">{</span> score: 1 <span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+             $slice: -3&#57344;&#57345;&#57345;
+          <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -311,7 +311,7 @@ The command above append 2 elements, then sort them by ascending
 <li>update element in array:
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$set:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2:value}})</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$set:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2:value}})</span>&#57344;&#57345;
 </pre>
 </div>
 <p>
@@ -323,20 +323,20 @@ If you want to update multiple elments, use forEach function.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.Projects.find<span style="color: #657b83;">()</span>.forEach<span style="color: #657b83;">(</span>
-    <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">pj</span><span style="color: #2aa198;">){</span>
-        pj.groups.forEach<span style="color: #b58900;">(</span>
-            <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">gp</span><span style="color: #859900;">){</span>
-                gp.tasks.forEach<span style="color: #268bd2;">(</span>
-                    <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">task</span><span style="color: #657b83;">){</span>
-                        <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>task.name.match<span style="color: #b58900;">(</span><span style="color: #2aa198;">/update/</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">){</span>
-                            task.weight=5;
-                        <span style="color: #2aa198;">}</span>
-                    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;
-            <span style="color: #859900;">}</span><span style="color: #b58900;">)</span>;
-        db.Projects.save<span style="color: #b58900;">(</span>pj<span style="color: #b58900;">)</span>;
-    <span style="color: #2aa198;">}</span>
-<span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.Projects.find<span style="color: #657b83;">()</span>.forEach<span style="color: #657b83;">(</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">pj</span><span style="color: #2aa198;">){</span>&#57344;&#57345;&#57345;
+        pj.groups.forEach<span style="color: #b58900;">(</span>&#57344;&#57345;&#57345;
+            <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">gp</span><span style="color: #859900;">){</span>&#57344;&#57345;&#57345;
+                gp.tasks.forEach<span style="color: #268bd2;">(</span>&#57344;&#57345;&#57345;
+                    <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">task</span><span style="color: #657b83;">){</span>&#57344;&#57345;&#57345;
+                        <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>task.name.match<span style="color: #b58900;">(</span><span style="color: #2aa198;">/update/</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">){</span>&#57344;&#57345;&#57345;
+                            task.weight=5;&#57344;&#57345;&#57345;
+                        <span style="color: #2aa198;">}</span>&#57344;&#57345;&#57345;
+                    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+            <span style="color: #859900;">}</span><span style="color: #b58900;">)</span>;&#57344;&#57345;&#57345;
+        db.Projects.save<span style="color: #b58900;">(</span>pj<span style="color: #b58900;">)</span>;&#57344;&#57345;&#57345;
+    <span style="color: #2aa198;">}</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
@@ -370,7 +370,7 @@ Functional key words:
 <li>remove document
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.remove<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.remove<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -380,22 +380,22 @@ remove all documents when condition is not provided.
 <li>remove colleciton
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.drop<span style="color: #657b83;">()</span>
+<pre class="src src-javascript">db.COLLECTION.drop<span style="color: #657b83;">()</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
 <li>remove database
 <div class="org-src-container">
 
-<pre class="src src-javascript">use DATABASE
-db.dropDatabase<span style="color: #657b83;">()</span>
+<pre class="src src-javascript">use DATABASE&#57344;&#57345;&#57345;
+db.dropDatabase<span style="color: #657b83;">()</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
 <li>remove attribute
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find, <span style="color: #2aa198;">{</span>$unset: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find, <span style="color: #2aa198;">{</span>$unset: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -405,7 +405,7 @@ value can be 1, &#8220;&#8221;, true/false.
 <li>remove element in array
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$unset:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2'</span>:1<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$unset:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2'</span>:1<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
 </pre>
 </div>
 </li>
@@ -454,13 +454,13 @@ value can be 1, &#8220;&#8221;, true/false.
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.mapReduce<span style="color: #657b83;">(</span>mapFunction,
-                        reduceFunction,
-                        <span style="color: #2aa198;">{</span>
-                            query: <span style="color: #2aa198;">"query performed at the beginning"</span>,
-                            out: <span style="color: #2aa198;">"out collection name"</span>,
-                            finalize: finalizeFunction
-                        <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.mapReduce<span style="color: #657b83;">(</span>mapFunction,&#57344;&#57345;&#57345;
+                        reduceFunction,&#57344;&#57345;&#57345;
+                        <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+                            query: <span style="color: #2aa198;">"query performed at the beginning"</span>,&#57345;
+                            out: <span style="color: #2aa198;">"out collection name"</span>,&#57344;&#57345;&#57345;
+                            finalize: finalizeFunction&#57344;&#57345;&#57345;
+                        <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -549,15 +549,15 @@ reduce function.
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-12-10-summary-and-task-list.html">Summary and Task List</a>
+    
+    <a class="list-group-item " href="/blog/2015-03-13-akka.html">Akka</a>
+    
     <a class="list-group-item " href="/blog/2015-03-04-spring-tutorial.html">Spring Tutorial</a>
     
     <a class="list-group-item " href="/blog/2015-03-04-spring-guide-examples.html">Spring Guide Examples</a>
     
     <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-pom-configuration.html">POM Configuration</a>
     
   </div>
 </section>
@@ -631,7 +631,7 @@ reduce function.
     
     
     <a class="list-group-item " href="/blog/categories/language/index.html">
-        <span class="badge">2</span>
+        <span class="badge">3</span>
         language
       </a>
     
@@ -639,6 +639,12 @@ reduce function.
     <a class="list-group-item " href="/blog/categories/management/index.html">
         <span class="badge">2</span>
         management
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jushan/index.html">
+        <span class="badge">1</span>
+        jushan
       </a>
     
   </div>
@@ -649,17 +655,17 @@ reduce function.
     </div>
     <ul class="list-group">
         <li class="tag-cloud list-group-item">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 152%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 173%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 135%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -668,22 +674,23 @@ reduce function.
 <a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </li>
     </ul>
     <!-- <div class="list-group">
         <ul class="tag-cloud">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 145%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 169%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 125%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -692,6 +699,7 @@ reduce function.
 <a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </ul>
     </div> &#8211;>

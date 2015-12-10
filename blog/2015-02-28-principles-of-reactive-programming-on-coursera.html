@@ -203,10 +203,10 @@ for-expression using both <b>list</b> and <b>stream</b>?
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">fibo</span>:Stream[Int] = 1 #:: 1 #:: fibo.zip(fibo.tail).map(x=&gt;x._1+x._2)
-val l = List(1,2,3,4,5)
-val lsg = <span style="color: #859900;">for</span>{x &lt;- l; fib &lt;- fibo} yield (x,fib)<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">infinite loop, crash the software/your machine</span>
-val slg = <span style="color: #859900;">for</span>{fib &lt;- fibo; x &lt;- l} yield (x,fib)<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">return a stream</span>
+<pre class="src src-java"><span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">fibo</span>:Stream[Int] = 1 #:: 1 #:: fibo.zip(fibo.tail).map(x=&gt;x._1+x._2)&#57344;&#57345;
+val l = List(1,2,3,4,5)&#57344;&#57345;&#57345;
+val lsg = <span style="color: #859900;">for</span>{x &lt;- l; fib &lt;- fibo} yield (x,fib)<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">infinite loop, crash the software/your machine</span>&#57344;&#57345;
+val slg = <span style="color: #859900;">for</span>{fib &lt;- fibo; x &lt;- l} yield (x,fib)<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">return a stream</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -236,56 +236,56 @@ check different children classes of the target class.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">abstract</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckHeap</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Properties</span>(<span style="color: #2aa198;">"Heap"</span>) with IntHeap {
-
-  property(<span style="color: #2aa198;">"min1"</span>) = forAll { <span style="color: #268bd2;">a</span>: Int =&gt;
-    val h = insert(a, empty)
-    findMin(h) == a
-  }
-
-  lazy <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">genHeap</span>: Gen[H] = <span style="color: #859900;">for</span> {
-    a &lt;- arbitrary[Int]
-    h &lt;- oneOf(value(empty), genHeap)
-  } <span style="color: #268bd2;">yield</span> <span style="color: #b58900;">insert</span>(<span style="color: #268bd2;">a</span>, <span style="color: #268bd2;">h</span>)
-
-  implicit lazy val arbHeap: Arbitrary[H] = Arbitrary(genHeap)
-
-}
+<pre class="src src-java"><span style="color: #859900;">abstract</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckHeap</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">Properties</span>(<span style="color: #2aa198;">"Heap"</span>) with IntHeap {&#57344;&#57345;
+&#57344;&#57345;&#57345;
+  property(<span style="color: #2aa198;">"min1"</span>) = forAll { <span style="color: #268bd2;">a</span>: Int =&gt;&#57344;&#57345;&#57345;
+    val h = insert(a, empty)&#57344;&#57345;&#57345;
+    findMin(h) == a&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  lazy <span style="color: #268bd2;">val</span> <span style="color: #6c71c4;">genHeap</span>: Gen[H] = <span style="color: #859900;">for</span> {&#57344;&#57345;&#57345;
+    a &lt;- arbitrary[Int]&#57344;&#57345;&#57345;
+    h &lt;- oneOf(value(empty), genHeap)&#57344;&#57345;&#57345;
+  } <span style="color: #268bd2;">yield</span> <span style="color: #b58900;">insert</span>(<span style="color: #268bd2;">a</span>, <span style="color: #268bd2;">h</span>)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  implicit lazy val arbHeap: Arbitrary[H] = Arbitrary(genHeap)&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">@RunWith</span>(<span style="color: #268bd2;">classOf</span>[JUnitRunner])
-<span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckSuite</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">FunSuite</span> with Checkers {
-  <span style="color: #268bd2;">def</span> <span style="color: #b58900;">checkBogus</span>(p: Prop) {
-    <span style="color: #268bd2;">var</span> <span style="color: #6c71c4;">ok</span> = <span style="color: #268bd2;">false</span>
-    <span style="color: #859900;">try</span> {
-      check(p)
-    } <span style="color: #859900;">catch</span> {
-      <span style="color: #859900;">case</span> e: TestFailedException =&gt;
-        ok = <span style="color: #268bd2;">true</span>
-    }
-    assert(ok, <span style="color: #2aa198;">"A bogus heap should NOT satisfy all properties. Try to find the bug!"</span>)
-  }
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Binomial heap satisfies properties."</span>) {
-    check(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with BinomialHeap)
-  }
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (1) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus1BinomialHeap)
-  }
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (2) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus2BinomialHeap)
-  }
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (3) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus3BinomialHeap)
-  }
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (4) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus4BinomialHeap)
-  }
-  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (5) binomial heap does not satisfy properties."</span>) {
-    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus5BinomialHeap)
-  }
-}
+<pre class="src src-java"><span style="color: #268bd2;">@RunWith</span>(<span style="color: #268bd2;">classOf</span>[JUnitRunner])&#57344;&#57345;&#57345;
+<span style="color: #859900;">class</span> <span style="color: #268bd2;">QuickCheckSuite</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">FunSuite</span> with Checkers {&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">def</span> <span style="color: #b58900;">checkBogus</span>(p: Prop) {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">var</span> <span style="color: #6c71c4;">ok</span> = <span style="color: #268bd2;">false</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">try</span> {&#57344;&#57345;&#57345;
+      check(p)&#57344;&#57345;&#57345;
+    } <span style="color: #859900;">catch</span> {&#57344;&#57345;&#57345;
+      <span style="color: #859900;">case</span> e: TestFailedException =&gt;&#57344;&#57345;&#57345;
+        ok = <span style="color: #268bd2;">true</span>&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+    assert(ok, <span style="color: #2aa198;">"A bogus heap should NOT satisfy all properties. Try to find the bug!"</span>)&#57344;&#57345;
+  }&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Binomial heap satisfies properties."</span>) {&#57344;&#57345;&#57345;
+    check(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with BinomialHeap)&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (1) binomial heap does not satisfy properties."</span>) {&#57344;&#57345;&#57345;
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus1BinomialHeap)&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (2) binomial heap does not satisfy properties."</span>) {&#57344;&#57345;&#57345;
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus2BinomialHeap)&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (3) binomial heap does not satisfy properties."</span>) {&#57344;&#57345;&#57345;
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus3BinomialHeap)&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (4) binomial heap does not satisfy properties."</span>) {&#57344;&#57345;&#57345;
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus4BinomialHeap)&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">test</span>(<span style="color: #2aa198;">"Bogus (5) binomial heap does not satisfy properties."</span>) {&#57344;&#57345;&#57345;
+    checkBogus(<span style="color: #859900;">new</span> <span style="color: #268bd2;">QuickCheckHeap</span> with Bogus5BinomialHeap)&#57344;&#57345;&#57345;
+  }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -309,9 +309,9 @@ Second, create test case by
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java">property(<span style="color: #2aa198;">"NAME_OF_FUNCTION"</span>) = forAll{
-    CONTAINER_OF_DATA =&gt; TEST_CASE_WITH_TARGET_FUNCTION
-}
+<pre class="src src-java">property(<span style="color: #2aa198;">"NAME_OF_FUNCTION"</span>) = forAll{&#57344;&#57345;&#57345;
+    CONTAINER_OF_DATA =&gt; TEST_CASE_WITH_TARGET_FUNCTION&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -619,15 +619,15 @@ Observable.
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-12-10-summary-and-task-list.html">Summary and Task List</a>
+    
+    <a class="list-group-item " href="/blog/2015-03-13-akka.html">Akka</a>
+    
     <a class="list-group-item " href="/blog/2015-03-04-spring-tutorial.html">Spring Tutorial</a>
     
     <a class="list-group-item " href="/blog/2015-03-04-spring-guide-examples.html">Spring Guide Examples</a>
     
     <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
-    
-    <a class="list-group-item active" href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-pom-configuration.html">POM Configuration</a>
     
   </div>
 </section>
@@ -701,7 +701,7 @@ Observable.
     
     
     <a class="list-group-item " href="/blog/categories/language/index.html">
-        <span class="badge">2</span>
+        <span class="badge">3</span>
         language
       </a>
     
@@ -709,6 +709,12 @@ Observable.
     <a class="list-group-item " href="/blog/categories/management/index.html">
         <span class="badge">2</span>
         management
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jushan/index.html">
+        <span class="badge">1</span>
+        jushan
       </a>
     
   </div>
@@ -719,17 +725,17 @@ Observable.
     </div>
     <ul class="list-group">
         <li class="tag-cloud list-group-item">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 152%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 173%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 135%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -738,22 +744,23 @@ Observable.
 <a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </li>
     </ul>
     <!-- <div class="list-group">
         <ul class="tag-cloud">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 145%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 169%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 125%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -762,6 +769,7 @@ Observable.
 <a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </ul>
     </div> &#8211;>

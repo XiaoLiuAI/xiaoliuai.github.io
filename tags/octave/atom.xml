@@ -3,7 +3,7 @@
 <title><![CDATA[Tag: Octave | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/octave/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2015-03-04T23:12:55+01:00</updated>
+<updated>2015-12-10T22:17:02+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
@@ -111,9 +111,9 @@ sudo make install
 <li>Inside octave
 <div class="org-src-container">
 
-<pre class="src src-octave">putenv (<span style="color: #2aa198;">"PATH"</span><span style="color: #6c71c4;">,</span> [<span style="color: #2aa198;">"path/to/mpic++/:"</span> getenv(<span style="color: #2aa198;">"PATH"</span>)]) <span style="color: #93a1a1; font-style: italic;">% optional</span>
-pkg install <span style="color: #6c71c4;">-</span>forge mpi      <span style="color: #93a1a1; font-style: italic;">% install mpi from internet or</span>
-pkg install PATH<span style="color: #6c71c4;">/</span>TO<span style="color: #6c71c4;">/</span>PACKAGE <span style="color: #93a1a1; font-style: italic;">% install mpi from downloaded package</span>
+<pre class="src src-octave">putenv (<span style="color: #2aa198;">"PATH"</span><span style="color: #6c71c4;">,</span> [<span style="color: #2aa198;">"path/to/mpic++/:"</span> getenv(<span style="color: #2aa198;">"PATH"</span>)]) <span style="color: #93a1a1; font-style: italic;">% optional</span>&#57344;&#57345;&#57345;
+pkg install <span style="color: #6c71c4;">-</span>forge mpi      <span style="color: #93a1a1; font-style: italic;">% install mpi from internet or</span>&#57344;&#57345;&#57345;
+pkg install PATH<span style="color: #6c71c4;">/</span>TO<span style="color: #6c71c4;">/</span>PACKAGE <span style="color: #93a1a1; font-style: italic;">% install mpi from downloaded package</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
@@ -154,7 +154,7 @@ method.
 <li>Second way is call the system command inside octave.
 <div class="org-src-container">
 
-<pre class="src src-octave">system (<span style="color: #2aa198;">"mpirun octave -q --eval '[octave code, function or script name]"</span>)<span style="color: #6c71c4;">;</span>
+<pre class="src src-octave">system (<span style="color: #2aa198;">"mpirun octave -q --eval '[octave code, function or script name]"</span>)<span style="color: #6c71c4;">;</span>&#57344;&#57345;
 </pre>
 </div>
 </li>
@@ -199,21 +199,21 @@ enough to create the parallelism program.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-octave">MPI_Init()<span style="color: #6c71c4;">;</span>
-communicator <span style="color: #6c71c4;">=</span> MPI_Comm_Load(<span style="color: #2aa198;">"a label string"</span>) <span style="color: #93a1a1; font-style: italic;">% one can use multiple communicators indicated by different label</span>
-my_rank <span style="color: #6c71c4;">=</span> MPI_Comm_rank(communicator) <span style="color: #93a1a1; font-style: italic;">% rank is the indicator(id) of current process</span>
-p <span style="color: #6c71c4;">=</span> MPI_Comm_size(CW) <span style="color: #93a1a1; font-style: italic;">% the size of a communicator is the number of processes handled by the communicator</span>
-[info] <span style="color: #6c71c4;">=</span> MPI_Send(value<span style="color: #6c71c4;">,</span> ranks<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)<span style="color: #6c71c4;">;</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  a octave variable</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">ranks:  a vector that contains the id of destination processes, can be an integer</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">TAG:    an integer to identify the message (when there are many messages sent in the same context)</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">info:   an integer that indicates the success of failure state of process</span>
-[value<span style="color: #6c71c4;">,</span> info] <span style="color: #6c71c4;">=</span> MPI_Recv(source<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">source: the id the process that send this message</span>
-<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">receive from any process if source is -1</span>
-<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">process starts from 0 and process 0 is usually used as master process</span>
-<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  received variable</span>
-MPI_Finalize()
+<pre class="src src-octave">MPI_Init()<span style="color: #6c71c4;">;</span>&#57344;&#57345;&#57345;
+communicator <span style="color: #6c71c4;">=</span> MPI_Comm_Load(<span style="color: #2aa198;">"a label string"</span>) <span style="color: #93a1a1; font-style: italic;">% one can use multiple communicators indicated by different label</span>&#57344;&#57345;
+my_rank <span style="color: #6c71c4;">=</span> MPI_Comm_rank(communicator) <span style="color: #93a1a1; font-style: italic;">% rank is the indicator(id) of current process</span>&#57344;&#57345;
+p <span style="color: #6c71c4;">=</span> MPI_Comm_size(CW) <span style="color: #93a1a1; font-style: italic;">% the size of a communicator is the number of processes handled by the communicator</span>&#57344;&#57345;
+[info] <span style="color: #6c71c4;">=</span> MPI_Send(value<span style="color: #6c71c4;">,</span> ranks<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)<span style="color: #6c71c4;">;</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  a octave variable</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">ranks:  a vector that contains the id of destination processes, can be an integer</span>&#57344;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">TAG:    an integer to identify the message (when there are many messages sent in the same context)</span>&#57344;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">info:   an integer that indicates the success of failure state of process</span>&#57344;&#57345;
+[value<span style="color: #6c71c4;">,</span> info] <span style="color: #6c71c4;">=</span> MPI_Recv(source<span style="color: #6c71c4;">,</span> TAG<span style="color: #6c71c4;">,</span> communicator)&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">source: the id the process that send this message</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">receive from any process if source is -1</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">%         </span><span style="color: #93a1a1; font-style: italic;">process starts from 0 and process 0 is usually used as master process</span>&#57344;&#57345;
+<span style="color: #93a1a1; font-style: italic;">% </span><span style="color: #93a1a1; font-style: italic;">value:  received variable</span>&#57344;&#57345;&#57345;
+MPI_Finalize()&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -349,35 +349,35 @@ that processes receive data before sending them.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-C"><span style="color: #d33682;">#include</span> <span style="color: #2aa198;">"mpi.h"</span>
-<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>
-
-<span style="color: #b58900;">main</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">argc</span>, <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">argv</span>[])  {
-<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">numtasks</span>, <span style="color: #6c71c4;">rank</span>, <span style="color: #6c71c4;">next</span>, <span style="color: #6c71c4;">prev</span>, <span style="color: #6c71c4;">buf</span>[2], <span style="color: #6c71c4;">tag1</span>=1, <span style="color: #6c71c4;">tag2</span>=2;
-<span style="color: #268bd2;">MPI_Request</span> <span style="color: #6c71c4;">reqs</span>[4];
-<span style="color: #268bd2;">MPI_Status</span> <span style="color: #6c71c4;">stats</span>[4];
-
-MPI_Init(&amp;argc,&amp;argv);
-MPI_Comm_size(MPI_COMM_WORLD, &amp;numtasks);
-MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
-
-prev = rank-1;
-next = rank+1;
-<span style="color: #859900;">if</span> (rank == 0)  prev = numtasks - 1;
-<span style="color: #859900;">if</span> (rank == (numtasks - 1))  next = 0;
-
-MPI_Irecv(&amp;buf[0], 1, MPI_INT, prev, tag1, MPI_COMM_WORLD, &amp;reqs[0]);
-MPI_Irecv(&amp;buf[1], 1, MPI_INT, next, tag2, MPI_COMM_WORLD, &amp;reqs[1]);
-
-MPI_Isend(&amp;rank, 1, MPI_INT, prev, tag2, MPI_COMM_WORLD, &amp;reqs[2]);
-MPI_Isend(&amp;rank, 1, MPI_INT, next, tag1, MPI_COMM_WORLD, &amp;reqs[3]);
-
-      {  <span style="color: #859900;">do</span> some work  }
-
-MPI_Waitall(4, reqs, stats);
-
-MPI_Finalize();
-}
+<pre class="src src-C"><span style="color: #d33682;">#include</span> <span style="color: #2aa198;">"mpi.h"</span>&#57344;&#57345;&#57345;
+<span style="color: #d33682;">#include</span> <span style="color: #2aa198;">&lt;stdio.h&gt;</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #b58900;">main</span>(<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">argc</span>, <span style="color: #268bd2;">char</span> *<span style="color: #6c71c4;">argv</span>[])  {&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">int</span> <span style="color: #6c71c4;">numtasks</span>, <span style="color: #6c71c4;">rank</span>, <span style="color: #6c71c4;">next</span>, <span style="color: #6c71c4;">prev</span>, <span style="color: #6c71c4;">buf</span>[2], <span style="color: #6c71c4;">tag1</span>=1, <span style="color: #6c71c4;">tag2</span>=2;&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">MPI_Request</span> <span style="color: #6c71c4;">reqs</span>[4];&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">MPI_Status</span> <span style="color: #6c71c4;">stats</span>[4];&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Init(&amp;argc,&amp;argv);&#57344;&#57345;&#57345;
+MPI_Comm_size(MPI_COMM_WORLD, &amp;numtasks);&#57344;&#57345;&#57345;
+MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+prev = rank-1;&#57344;&#57345;&#57345;
+next = rank+1;&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span> (rank == 0)  prev = numtasks - 1;&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span> (rank == (numtasks - 1))  next = 0;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Irecv(&amp;buf[0], 1, MPI_INT, prev, tag1, MPI_COMM_WORLD, &amp;reqs[0]);&#57344;&#57345;&#57345;
+MPI_Irecv(&amp;buf[1], 1, MPI_INT, next, tag2, MPI_COMM_WORLD, &amp;reqs[1]);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Isend(&amp;rank, 1, MPI_INT, prev, tag2, MPI_COMM_WORLD, &amp;reqs[2]);&#57344;&#57345;&#57345;
+MPI_Isend(&amp;rank, 1, MPI_INT, next, tag1, MPI_COMM_WORLD, &amp;reqs[3]);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+      {  <span style="color: #859900;">do</span> some work  }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Waitall(4, reqs, stats);&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+MPI_Finalize();&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>

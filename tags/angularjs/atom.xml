@@ -3,7 +3,7 @@
 <title><![CDATA[Tag: AngularJS | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/angularjs/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2015-03-04T23:12:55+01:00</updated>
+<updated>2015-12-10T22:17:02+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
@@ -153,34 +153,34 @@ directive任何属性的变更,从而使directive能根据更新的数据来渲�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;
-  Root scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: 
-  &lt;<span style="color: #b58900;">ul</span>&gt;
-    &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"i in [1]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;
-      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$emit('MyEvent')"</span>&gt;$emit('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;
-      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$broadcast('MyEvent')"</span>&gt;$broadcast('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;
-      &lt;<span style="color: #b58900;">br</span>&gt;
-      Middle scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: 
-      &lt;<span style="color: #b58900;">ul</span>&gt;
-        &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"item in [1, 2]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;
-          Leaf scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: 
-        &lt;/<span style="color: #b58900;">li</span>&gt;
-      &lt;/<span style="color: #b58900;">ul</span>&gt;
-    &lt;/<span style="color: #b58900;">li</span>&gt;
-  &lt;/<span style="color: #b58900;">ul</span>&gt;
-&lt;/<span style="color: #b58900;">div</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;&#57344;&#57345;&#57345;
+  Root scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: &#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"i in [1]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;&#57344;&#57345;&#57345;
+      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$emit('MyEvent')"</span>&gt;$emit('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;&#57344;&#57345;&#57345;
+      &lt;<span style="color: #b58900;">button</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"$broadcast('MyEvent')"</span>&gt;$broadcast('MyEvent')&lt;/<span style="color: #b58900;">button</span>&gt;&#57344;&#57345;
+      &lt;<span style="color: #b58900;">br</span>&gt;&#57344;&#57345;&#57345;
+      Middle scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: &#57344;&#57345;&#57345;
+      &lt;<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+        &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"item in [1, 2]"</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"EventController"</span>&gt;&#57344;&#57345;
+          Leaf scope &lt;<span style="color: #b58900;">tt</span>&gt;<span style="color: #657b83; background-color: #fdf6e3;">MyEvent</span>&lt;/<span style="color: #b58900;">tt</span>&gt; count: &#57344;&#57345;&#57345;
+        &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+      &lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+    &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'eventExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
-.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'EventController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  $scope.count = 0;
-  $scope.$on<span style="color: #859900;">(</span><span style="color: #2aa198;">'MyEvent'</span>, <span style="color: #859900;">function</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>
-    $scope.count++;
-  <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'eventExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'EventController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+  $scope.count = 0;&#57344;&#57345;&#57345;
+  $scope.$on<span style="color: #859900;">(</span><span style="color: #2aa198;">'MyEvent'</span>, <span style="color: #859900;">function</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+    $scope.count++;&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -263,20 +263,20 @@ Provider是AngularJS的基础,Value,Factory,Service,Constant都建立在Provider
 <li>Value recipe
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myApp</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>;
-myApp.value<span style="color: #657b83;">(</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #2aa198;">'a12345654321x'</span><span style="color: #657b83;">)</span>;
-myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'DemoController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #859900;">function</span> DemoController<span style="color: #b58900;">(</span><span style="color: #6c71c4;">clientId</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  <span style="color: #268bd2;">this</span>.clientId = clientId;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myApp</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.value<span style="color: #657b83;">(</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #2aa198;">'a12345654321x'</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'DemoController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'clientId'</span>, <span style="color: #859900;">function</span> DemoController<span style="color: #b58900;">(</span><span style="color: #6c71c4;">clientId</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+  <span style="color: #268bd2;">this</span>.clientId = clientId;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">html</span> <span style="color: #6c71c4;">ng-app</span>=<span style="color: #2aa198;">"myApp"</span>&gt;
-  &lt;<span style="color: #b58900;">body</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"DemoController as demo"</span>&gt;
-    Client ID: 
-  &lt;/<span style="color: #b58900;">body</span>&gt;
-&lt;/<span style="color: #b58900;">html</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">html</span> <span style="color: #6c71c4;">ng-app</span>=<span style="color: #2aa198;">"myApp"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">body</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"DemoController as demo"</span>&gt;&#57344;&#57345;&#57345;
+    Client ID: &#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">body</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">html</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -298,14 +298,14 @@ myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa19
 定到注册的Provider名字上.
 <div class="org-src-container">
 
-<pre class="src src-javascript">myApp.provider<span style="color: #657b83;">(</span><span style="color: #2aa198;">'AAA'</span>, <span style="color: #859900;">function</span> AAAProvider<span style="color: #2aa198;">(){</span>
-    <span style="color: #268bd2;">this</span>.configFunc = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">bla</span><span style="color: #b58900;">){</span>blabla<span style="color: #b58900;">}</span>;
-    <span style="color: #268bd2;">this</span>.$get = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">lab</span><span style="color: #b58900;">){</span> <span style="color: #859900;">return</span> BBB<span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
-myApp.config<span style="color: #657b83;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAAProvider</span><span style="color: #2aa198;">){</span>
-    AAAProvider.configFunc<span style="color: #b58900;">(</span>...<span style="color: #b58900;">)</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
-myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'CCC'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAA</span><span style="color: #2aa198;">){</span> <span style="color: #93a1a1; font-style: italic;">/*</span><span style="color: #93a1a1; font-style: italic;">AAA is BBB*/</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">myApp.provider<span style="color: #657b83;">(</span><span style="color: #2aa198;">'AAA'</span>, <span style="color: #859900;">function</span> AAAProvider<span style="color: #2aa198;">(){</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">this</span>.configFunc = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">bla</span><span style="color: #b58900;">){</span>blabla<span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">this</span>.$get = <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">lab</span><span style="color: #b58900;">){</span> <span style="color: #859900;">return</span> BBB<span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.config<span style="color: #657b83;">(</span><span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAAProvider</span><span style="color: #2aa198;">){</span>&#57344;&#57345;&#57345;
+    AAAProvider.configFunc<span style="color: #b58900;">(</span>...<span style="color: #b58900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+myApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'CCC'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">AAA</span><span style="color: #2aa198;">){</span> <span style="color: #93a1a1; font-style: italic;">/*</span><span style="color: #93a1a1; font-style: italic;">AAA is BBB*/</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -371,10 +371,10 @@ class name.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">my-dir</span>&gt;&lt;/<span style="color: #b58900;">my-dir</span>&gt;
-&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">my-dir</span>=<span style="color: #2aa198;">"exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;
-<span style="color: #93a1a1; font-style: italic;">&lt;!-- </span><span style="color: #93a1a1; font-style: italic;">directive:my-dir exp</span><span style="color: #93a1a1; font-style: italic;">--&gt;</span>
-&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"my-dir: exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">my-dir</span>&gt;&lt;/<span style="color: #b58900;">my-dir</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">my-dir</span>=<span style="color: #2aa198;">"exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">&lt;!-- </span><span style="color: #93a1a1; font-style: italic;">directive:my-dir exp</span><span style="color: #93a1a1; font-style: italic;">--&gt;</span>&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">span</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"my-dir: exp"</span>&gt;&lt;/<span style="color: #b58900;">span</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -386,10 +386,10 @@ class name.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;
-&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">ng-attr-cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;
-&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">viewBox</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;
-&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">ng-attr-view-box</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">circle</span> <span style="color: #6c71c4;">ng-attr-cx</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">circle</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">viewBox</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">svg</span> <span style="color: #6c71c4;">ng-attr-view-box</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">svg</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -427,39 +427,39 @@ scope (上下文),element (当前元素),attrs (当前元素的属性), ctrl
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsTimeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
-.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  $scope.format = <span style="color: #2aa198;">'M/d/yy h:mm:ss a'</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>
-.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCurrentTime'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$interval'</span>, <span style="color: #2aa198;">'dateFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$interval</span>, <span style="color: #6c71c4;">dateFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-
-  <span style="color: #859900;">function</span> <span style="color: #b58900;">link</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">scope</span>, <span style="color: #6c71c4;">element</span>, <span style="color: #6c71c4;">attrs</span>, <span style="color: #6c71c4;">ctrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
-    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">format</span>,
-        timeoutId;
-
-    <span style="color: #859900;">function</span> <span style="color: #b58900;">updateTime</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>
-      element.text<span style="color: #657b83;">(</span>dateFilter<span style="color: #2aa198;">(</span><span style="color: #859900;">new</span> <span style="color: #268bd2;">Date</span><span style="color: #b58900;">()</span>, format<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>;
-    <span style="color: #268bd2;">}</span>
-
-    scope.$watch<span style="color: #268bd2;">(</span>attrs.myCurrentTime, <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">value</span><span style="color: #657b83;">)</span> <span style="color: #657b83;">{</span>
-      format = value;
-      updateTime<span style="color: #2aa198;">()</span>;
-    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;
-
-    element.on<span style="color: #268bd2;">(</span><span style="color: #2aa198;">'$destroy'</span>, <span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>
-      $interval.cancel<span style="color: #2aa198;">(</span>timeoutId<span style="color: #2aa198;">)</span>;
-    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;
-
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">start the UI update process; save the timeoutId for canceling</span>
-    timeoutId = $interval<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>
-      updateTime<span style="color: #2aa198;">()</span>; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">update DOM</span>
-    <span style="color: #657b83;">}</span>, 1000<span style="color: #268bd2;">)</span>;
-  <span style="color: #859900;">}</span>
-
-  <span style="color: #859900;">return</span> <span style="color: #859900;">{</span>
-    link: link
-  <span style="color: #859900;">}</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsTimeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+  $scope.format = <span style="color: #2aa198;">'M/d/yy h:mm:ss a'</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCurrentTime'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$interval'</span>, <span style="color: #2aa198;">'dateFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$interval</span>, <span style="color: #6c71c4;">dateFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #859900;">function</span> <span style="color: #b58900;">link</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">scope</span>, <span style="color: #6c71c4;">element</span>, <span style="color: #6c71c4;">attrs</span>, <span style="color: #6c71c4;">ctrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">format</span>,&#57344;&#57345;&#57345;
+        timeoutId;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">function</span> <span style="color: #b58900;">updateTime</span><span style="color: #268bd2;">()</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+      element.text<span style="color: #657b83;">(</span>dateFilter<span style="color: #2aa198;">(</span><span style="color: #859900;">new</span> <span style="color: #268bd2;">Date</span><span style="color: #b58900;">()</span>, format<span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    scope.$watch<span style="color: #268bd2;">(</span>attrs.myCurrentTime, <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">value</span><span style="color: #657b83;">)</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      format = value;&#57344;&#57345;&#57345;
+      updateTime<span style="color: #2aa198;">()</span>;&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    element.on<span style="color: #268bd2;">(</span><span style="color: #2aa198;">'$destroy'</span>, <span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      $interval.cancel<span style="color: #2aa198;">(</span>timeoutId<span style="color: #2aa198;">)</span>;&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">start the UI update process; save the timeoutId for canceling</span>&#57344;&#57345;&#57345;
+    timeoutId = $interval<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span><span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      updateTime<span style="color: #2aa198;">()</span>; <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">update DOM</span>&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span>, 1000<span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+    link: link&#57344;&#57345;&#57345;
+  <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -475,29 +475,29 @@ scope (上下文),element (当前元素),attrs (当前元素的属性), ctrl
 <div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsolateScopeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
-.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  $scope.naomi = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Naomi'</span>, address: <span style="color: #2aa198;">'1600 Amphitheatre'</span> <span style="color: #859900;">}</span>;
-  $scope.igor = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Igor'</span>, address: <span style="color: #2aa198;">'123 Somewhere'</span> <span style="color: #859900;">}</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>
-.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCustomer'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>
-    restrict: <span style="color: #2aa198;">'E'</span>,
-    scope: <span style="color: #859900;">{</span>
-      customerInfo: <span style="color: #2aa198;">'=info'</span>
-    <span style="color: #859900;">}</span>,
-    templateUrl: <span style="color: #2aa198;">'my-customer-iso.html'</span>
-  <span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsolateScopeDirective'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+  $scope.naomi = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Naomi'</span>, address: <span style="color: #2aa198;">'1600 Amphitheatre'</span> <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+  $scope.igor = <span style="color: #859900;">{</span> name: <span style="color: #2aa198;">'Igor'</span>, address: <span style="color: #2aa198;">'123 Somewhere'</span> <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myCustomer'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    restrict: <span style="color: #2aa198;">'E'</span>,&#57344;&#57345;&#57345;
+    scope: <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      customerInfo: <span style="color: #2aa198;">'=info'</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>,&#57344;&#57345;&#57345;
+    templateUrl: <span style="color: #2aa198;">'my-customer-iso.html'</span>&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;
-  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"naomi"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;
-  &lt;<span style="color: #b58900;">hr</span>&gt;
-  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"igor"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;
-&lt;/<span style="color: #b58900;">div</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"naomi"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">hr</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">my-customer</span> <span style="color: #6c71c4;">info</span>=<span style="color: #2aa198;">"igor"</span>&gt;&lt;/<span style="color: #b58900;">my-customer</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -527,35 +527,35 @@ controller里面绑定了 <i>naomi</i> 和 <i>ingor</i> 的值,html里面将dire
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsoFnBindExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
-.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$timeout'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$timeout</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  $scope.name = <span style="color: #2aa198;">'Tobias'</span>;
-  $scope.hideDialog = <span style="color: #859900;">function</span> <span style="color: #859900;">()</span> <span style="color: #859900;">{</span>
-    $scope.dialogIsHidden = <span style="color: #268bd2;">true</span>;
-    $timeout<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span> <span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>
-      $scope.dialogIsHidden = <span style="color: #268bd2;">false</span>;
-    <span style="color: #657b83;">}</span>, 2000<span style="color: #268bd2;">)</span>;
-  <span style="color: #859900;">}</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>
-.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myDialog'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>
-    restrict: <span style="color: #2aa198;">'E'</span>,
-    transclude: <span style="color: #268bd2;">true</span>,
-    scope: <span style="color: #859900;">{</span>
-      <span style="color: #2aa198;">'close'</span>: <span style="color: #2aa198;">'&amp;onClose'</span>
-    <span style="color: #859900;">}</span>,
-    templateUrl: <span style="color: #2aa198;">'&lt;div class="alert"&gt;&lt;a href class="close" ng-click="close()"&gt;&amp;times;&lt;/a&gt;&lt;div ng-transclude&gt;&lt;/div&gt;&lt;/div&gt;'</span>
-  <span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'docsIsoFnBindExample'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Controller'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$timeout'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$timeout</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+  $scope.name = <span style="color: #2aa198;">'Tobias'</span>;&#57344;&#57345;&#57345;
+  $scope.hideDialog = <span style="color: #859900;">function</span> <span style="color: #859900;">()</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+    $scope.dialogIsHidden = <span style="color: #268bd2;">true</span>;&#57344;&#57345;&#57345;
+    $timeout<span style="color: #268bd2;">(</span><span style="color: #859900;">function</span> <span style="color: #657b83;">()</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+      $scope.dialogIsHidden = <span style="color: #268bd2;">false</span>;&#57344;&#57345;&#57345;
+    <span style="color: #657b83;">}</span>, 2000<span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #859900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.directive<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myDialog'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    restrict: <span style="color: #2aa198;">'E'</span>,&#57344;&#57345;&#57345;
+    transclude: <span style="color: #268bd2;">true</span>,&#57344;&#57345;&#57345;
+    scope: <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      <span style="color: #2aa198;">'close'</span>: <span style="color: #2aa198;">'&amp;onClose'</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>,&#57344;&#57345;&#57345;
+    templateUrl: <span style="color: #2aa198;">'&lt;div class="alert"&gt;&lt;a href class="close" ng-click="close()"&gt;&amp;times;&lt;/a&gt;&lt;div ng-transclude&gt;&lt;/div&gt;&lt;/div&gt;'</span>&#57344;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;
-  &lt;<span style="color: #b58900;">my-dialog</span> <span style="color: #6c71c4;">ng-hide</span>=<span style="color: #2aa198;">"dialogIsHidden"</span> <span style="color: #6c71c4;">on-close</span>=<span style="color: #2aa198;">"hideDialog()"</span>&gt;
-    Check out the contents, !
-  &lt;/<span style="color: #b58900;">my-dialog</span>&gt;
-&lt;/<span style="color: #b58900;">div</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">div</span> <span style="color: #6c71c4;">ng-controller</span>=<span style="color: #2aa198;">"Controller"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">my-dialog</span> <span style="color: #6c71c4;">ng-hide</span>=<span style="color: #2aa198;">"dialogIsHidden"</span> <span style="color: #6c71c4;">on-close</span>=<span style="color: #2aa198;">"hideDialog()"</span>&gt;&#57344;&#57345;&#57345;
+    Check out the contents, !&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">my-dialog</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">div</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -582,10 +582,10 @@ isolate scope的时候,直接访问外部上下文.有isolate scope的时候,只
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">...
-<span style="color: #859900;">return</span> <span style="color: #657b83;">{</span>
-    template: &lt;div&gt;CONTENT IN JAVASCRIPT <span style="color: #2aa198;">(</span>DIRECTIVE SCOPE <span style="color: #b58900;">(</span>OUTER/ISOLATE SCOPE<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&lt;/div&gt;&lt;div ng-transclude&gt;CONTENT FROM HTML <span style="color: #2aa198;">(</span>OUTER SCOPE<span style="color: #2aa198;">)</span>&lt;/div&gt;
-<span style="color: #657b83;">}</span>
+<pre class="src src-javascript">...&#57344;&#57345;&#57345;
+<span style="color: #859900;">return</span> <span style="color: #657b83;">{</span>&#57344;&#57345;&#57345;
+    template: &lt;div&gt;CONTENT IN JAVASCRIPT <span style="color: #2aa198;">(</span>DIRECTIVE SCOPE <span style="color: #b58900;">(</span>OUTER/ISOLATE SCOPE<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&lt;/div&gt;&lt;div ng-transclude&gt;CONTENT FROM HTML <span style="color: #2aa198;">(</span>OUTER SCOPE<span style="color: #2aa198;">)</span>&lt;/div&gt;&#57344;&#57345;
+<span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -608,18 +608,18 @@ isolate scope的时候,直接访问外部上下文.有isolate scope的时候,只
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'FilterInControllerModule'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.
-controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'FilterController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'filterFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">filterFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-  <span style="color: #268bd2;">this</span>.array = <span style="color: #859900;">[</span>
-    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Tobias'</span><span style="color: #268bd2;">}</span>,
-    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Jeff'</span><span style="color: #268bd2;">}</span>,
-    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Brian'</span><span style="color: #268bd2;">}</span>,
-    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Igor'</span><span style="color: #268bd2;">}</span>,
-    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'James'</span><span style="color: #268bd2;">}</span>,
-    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Brad'</span><span style="color: #268bd2;">}</span>
-  <span style="color: #859900;">]</span>;
-  <span style="color: #268bd2;">this</span>.filteredArray = filterFilter<span style="color: #859900;">(</span><span style="color: #268bd2;">this</span>.array, <span style="color: #2aa198;">'a'</span><span style="color: #859900;">)</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'FilterInControllerModule'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.&#57344;&#57345;&#57345;
+controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'FilterController'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'filterFilter'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">filterFilter</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+  <span style="color: #268bd2;">this</span>.array = <span style="color: #859900;">[</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Tobias'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Jeff'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Brian'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Igor'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'James'</span><span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">{</span>name: <span style="color: #2aa198;">'Brad'</span><span style="color: #268bd2;">}</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">]</span>;&#57344;&#57345;&#57345;
+  <span style="color: #268bd2;">this</span>.filteredArray = filterFilter<span style="color: #859900;">(</span><span style="color: #268bd2;">this</span>.array, <span style="color: #2aa198;">'a'</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -627,21 +627,21 @@ controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'F
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myReverseFilterApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>
-.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'reverse'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span>, <span style="color: #6c71c4;">uppercase</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    input = input || <span style="color: #2aa198;">''</span>;
-    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">out</span> = <span style="color: #2aa198;">""</span>;
-    <span style="color: #859900;">for</span> <span style="color: #859900;">(</span><span style="color: #859900;">var</span> <span style="color: #6c71c4;">i</span> = 0; i &lt; input.length; i++<span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
-      out = input.charAt<span style="color: #268bd2;">(</span>i<span style="color: #268bd2;">)</span> + out;
-    <span style="color: #859900;">}</span>
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">conditional based on optional argument</span>
-    <span style="color: #859900;">if</span> <span style="color: #859900;">(</span>uppercase<span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
-      out = out.toUpperCase<span style="color: #268bd2;">()</span>;
-    <span style="color: #859900;">}</span>
-    <span style="color: #859900;">return</span> out;
-  <span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'myReverseFilterApp'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
+.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'reverse'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span>, <span style="color: #6c71c4;">uppercase</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    input = input || <span style="color: #2aa198;">''</span>;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">var</span> <span style="color: #6c71c4;">out</span> = <span style="color: #2aa198;">""</span>;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">for</span> <span style="color: #859900;">(</span><span style="color: #859900;">var</span> <span style="color: #6c71c4;">i</span> = 0; i &lt; input.length; i++<span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      out = input.charAt<span style="color: #268bd2;">(</span>i<span style="color: #268bd2;">)</span> + out;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">conditional based on optional argument</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">if</span> <span style="color: #859900;">(</span>uppercase<span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      out = out.toUpperCase<span style="color: #268bd2;">()</span>;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> out;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -798,10 +798,10 @@ query,值的同步是实时的; 2.filter过滤器,生成新数组,自动更新�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">select</span> <span style="color: #6c71c4;">ng-model</span>=<span style="color: #2aa198;">"orderProp"</span>&gt;
-  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"name"</span>&gt;Alphabetical&lt;/<span style="color: #b58900;">option</span>&gt;
-  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"age"</span>&gt;Newest&lt;/<span style="color: #b58900;">option</span>&gt;
-&lt;/<span style="color: #b58900;">select</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">select</span> <span style="color: #6c71c4;">ng-model</span>=<span style="color: #2aa198;">"orderProp"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"name"</span>&gt;Alphabetical&lt;/<span style="color: #b58900;">option</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">option</span> <span style="color: #6c71c4;">value</span>=<span style="color: #2aa198;">"age"</span>&gt;Newest&lt;/<span style="color: #b58900;">option</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">select</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -834,11 +834,11 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">phonecatApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneListCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$http'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/phones.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
-        $scope.phones = data;
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">phonecatApp.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneListCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$http'</span>, <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;
+    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/phones.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        $scope.phones = data;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -852,13 +852,13 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phones"</span>&gt;
-  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"phone in phones | filter:query | orderBy:orderProp"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumbnail"</span>&gt;
-    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumb"</span>&gt;&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;
-    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;
-    &lt;<span style="color: #b58900;">p</span>&gt;&lt;/<span style="color: #b58900;">p</span>&gt;
-  &lt;/<span style="color: #b58900;">li</span>&gt;
-&lt;/<span style="color: #b58900;">ul</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phones"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"phone in phones | filter:query | orderBy:orderProp"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumbnail"</span>&gt;&#57344;&#57345;
+    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"thumb"</span>&gt;&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;&#57344;&#57345;
+    &lt;<span style="color: #b58900;">a</span> <span style="color: #6c71c4;">href</span>=<span style="color: #2aa198;">"#/phones/"</span>&gt;&lt;/<span style="color: #b58900;">a</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">p</span>&gt;&lt;/<span style="color: #b58900;">p</span>&gt;&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -877,21 +877,21 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">phonecatApp.config<span style="color: #657b83;">(</span><span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$routeProvider'</span>,
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$routeProvider</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    $routeProvider.
-      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones'</span>, <span style="color: #268bd2;">{</span>
-        templateUrl: <span style="color: #2aa198;">'partials/phone-list.html'</span>,
-        controller: <span style="color: #2aa198;">'PhoneListCtrl'</span>
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.
-      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones/:phoneId'</span>, <span style="color: #268bd2;">{</span>
-        templateUrl: <span style="color: #2aa198;">'partials/phone-detail.html'</span>,
-        controller: <span style="color: #2aa198;">'PhoneDetailCtrl'</span>
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.
-      otherwise<span style="color: #859900;">(</span><span style="color: #268bd2;">{</span>
-        redirectTo: <span style="color: #2aa198;">'/phones'</span>
-      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">phonecatApp.config<span style="color: #657b83;">(</span><span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$routeProvider'</span>,&#57344;&#57345;&#57345;
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$routeProvider</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    $routeProvider.&#57344;&#57345;&#57345;
+      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones'</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        templateUrl: <span style="color: #2aa198;">'partials/phone-list.html'</span>,&#57344;&#57345;&#57345;
+        controller: <span style="color: #2aa198;">'PhoneListCtrl'</span>&#57344;&#57345;&#57345;
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.&#57344;&#57345;&#57345;
+      when<span style="color: #859900;">(</span><span style="color: #2aa198;">'/phones/:phoneId'</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        templateUrl: <span style="color: #2aa198;">'partials/phone-detail.html'</span>,&#57344;&#57345;&#57345;
+        controller: <span style="color: #2aa198;">'PhoneDetailCtrl'</span>&#57344;&#57345;&#57345;
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>.&#57344;&#57345;&#57345;
+      otherwise<span style="color: #859900;">(</span><span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+        redirectTo: <span style="color: #2aa198;">'/phones'</span>&#57344;&#57345;&#57345;
+      <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -924,11 +924,11 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatFilters'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'checkmark'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>
-  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    <span style="color: #859900;">return</span> input ? <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2713'</span> : <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2718'</span>;
-  <span style="color: #b58900;">}</span>;
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatFilters'</span>, <span style="color: #2aa198;">[]</span><span style="color: #657b83;">)</span>.filter<span style="color: #657b83;">(</span><span style="color: #2aa198;">'checkmark'</span>, <span style="color: #859900;">function</span><span style="color: #2aa198;">()</span> <span style="color: #2aa198;">{</span>&#57345;
+  <span style="color: #859900;">return</span> <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">input</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> input ? <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2713'</span> : <span style="color: #2aa198;">'</span><span style="color: #6c71c4;">\u</span><span style="color: #2aa198;">2718'</span>;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>;&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -950,17 +950,17 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">phonecatControllers.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneDetailCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$routeParams'</span>, <span style="color: #2aa198;">'$http'</span>,
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$routeParams</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>
-    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/'</span> + $routeParams.phoneId + <span style="color: #2aa198;">'.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>
-      $scope.phone = data;
-      $scope.mainImageUrl = data.images<span style="color: #657b83;">[</span>0<span style="color: #657b83;">]</span>;
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-
-    $scope.setImage = <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">imageUrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>
-      $scope.mainImageUrl = imageUrl;
-    <span style="color: #859900;">}</span>
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript">phonecatControllers.controller<span style="color: #657b83;">(</span><span style="color: #2aa198;">'PhoneDetailCtrl'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$scope'</span>, <span style="color: #2aa198;">'$routeParams'</span>, <span style="color: #2aa198;">'$http'</span>,&#57344;&#57345;
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$scope</span>, <span style="color: #6c71c4;">$routeParams</span>, <span style="color: #6c71c4;">$http</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+    $http.get<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/'</span> + $routeParams.phoneId + <span style="color: #2aa198;">'.json'</span><span style="color: #859900;">)</span>.success<span style="color: #859900;">(</span><span style="color: #859900;">function</span><span style="color: #268bd2;">(</span><span style="color: #6c71c4;">data</span><span style="color: #268bd2;">)</span> <span style="color: #268bd2;">{</span>&#57344;&#57345;
+      $scope.phone = data;&#57344;&#57345;&#57345;
+      $scope.mainImageUrl = data.images<span style="color: #657b83;">[</span>0<span style="color: #657b83;">]</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    $scope.setImage = <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">imageUrl</span><span style="color: #859900;">)</span> <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+      $scope.mainImageUrl = imageUrl;&#57344;&#57345;&#57345;
+    <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -968,15 +968,15 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-html">&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone"</span>&gt;
-
-...
-
-&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone-thumbs"</span>&gt;
-  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"img in phone.images"</span>&gt;
-    &lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"setImage(img)"</span>&gt;
-  &lt;/<span style="color: #b58900;">li</span>&gt;
-&lt;/<span style="color: #b58900;">ul</span>&gt;
+<pre class="src src-html">&lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone"</span>&gt;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+...&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+&lt;<span style="color: #b58900;">ul</span> <span style="color: #6c71c4;">class</span>=<span style="color: #2aa198;">"phone-thumbs"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;<span style="color: #b58900;">li</span> <span style="color: #6c71c4;">ng-repeat</span>=<span style="color: #2aa198;">"img in phone.images"</span>&gt;&#57344;&#57345;&#57345;
+    &lt;<span style="color: #b58900;">img</span> <span style="color: #6c71c4;">ng-src</span>=<span style="color: #2aa198;">""</span> <span style="color: #6c71c4;">ng-click</span>=<span style="color: #2aa198;">"setImage(img)"</span>&gt;&#57344;&#57345;&#57345;
+  &lt;/<span style="color: #b58900;">li</span>&gt;&#57344;&#57345;&#57345;
+&lt;/<span style="color: #b58900;">ul</span>&gt;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -997,14 +997,14 @@ JS中给每个数据加上 <i>age</i> 这个属性,同时设定
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">phonecatServices</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatServices'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'ngResource'</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
-
-phonecatServices.factory<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Phone'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$resource'</span>,
-  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$resource</span><span style="color: #b58900;">){</span>
-    <span style="color: #859900;">return</span> $resource<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/:phoneId.json'</span>, <span style="color: #268bd2;">{}</span>, <span style="color: #268bd2;">{</span>
-      query: <span style="color: #657b83;">{</span>method:<span style="color: #2aa198;">'GET'</span>, params:<span style="color: #2aa198;">{</span>phoneId:<span style="color: #2aa198;">'phones'</span><span style="color: #2aa198;">}</span>, isArray:<span style="color: #268bd2;">true</span><span style="color: #657b83;">}</span>
-    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;
-  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">phonecatServices</span> = angular.module<span style="color: #657b83;">(</span><span style="color: #2aa198;">'phonecatServices'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'ngResource'</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;
+&#57344;&#57345;&#57345;
+phonecatServices.factory<span style="color: #657b83;">(</span><span style="color: #2aa198;">'Phone'</span>, <span style="color: #2aa198;">[</span><span style="color: #2aa198;">'$resource'</span>,&#57344;&#57345;&#57345;
+  <span style="color: #859900;">function</span><span style="color: #b58900;">(</span><span style="color: #6c71c4;">$resource</span><span style="color: #b58900;">){</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> $resource<span style="color: #859900;">(</span><span style="color: #2aa198;">'phones/:phoneId.json'</span>, <span style="color: #268bd2;">{}</span>, <span style="color: #268bd2;">{</span>&#57344;&#57345;&#57345;
+      query: <span style="color: #657b83;">{</span>method:<span style="color: #2aa198;">'GET'</span>, params:<span style="color: #2aa198;">{</span>phoneId:<span style="color: #2aa198;">'phones'</span><span style="color: #2aa198;">}</span>, isArray:<span style="color: #268bd2;">true</span><span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">}</span><span style="color: #859900;">)</span>;&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span><span style="color: #2aa198;">]</span><span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>

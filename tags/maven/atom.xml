@@ -3,7 +3,7 @@
 <title><![CDATA[Tag: Maven | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/maven/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2015-03-04T23:12:55+01:00</updated>
+<updated>2015-12-10T22:17:02+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
@@ -176,19 +176,19 @@ You can get access to these configurations through many ways
 <li>You can also inject <code>Environment</code> object.
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">This line is not about get the property, but about define</span>
-<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">property and let it accessible by somewhere else.</span>
-<span style="color: #268bd2;">@Configuration</span>
-<span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">AppConfig</span> {
-    <span style="color: #268bd2;">@Inject</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;
-
-    <span style="color: #268bd2;">@Bean</span>
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">MyBean</span> <span style="color: #b58900;">myBean</span>() {
-        <span style="color: #268bd2;">MyBean</span> <span style="color: #6c71c4;">myBean</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">MyBean</span>();
-        myBean.setName(env.getProperty(<span style="color: #2aa198;">"bean.name"</span>));
-        <span style="color: #859900;">return</span> myBean;
-    }
-}
+<pre class="src src-java"><span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">This line is not about get the property, but about define</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">property and let it accessible by somewhere else.</span>&#57344;&#57345;&#57345;
+<span style="color: #268bd2;">@Configuration</span>&#57344;&#57345;&#57345;
+<span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">AppConfig</span> {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Inject</span> <span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">env</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Bean</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">MyBean</span> <span style="color: #b58900;">myBean</span>() {&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">MyBean</span> <span style="color: #6c71c4;">myBean</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">MyBean</span>();&#57344;&#57345;&#57345;
+        myBean.setName(env.getProperty(<span style="color: #2aa198;">"bean.name"</span>));&#57344;&#57345;&#57345;
+        <span style="color: #859900;">return</span> myBean;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
@@ -196,11 +196,11 @@ You can get access to these configurations through many ways
 an environment object to get the property.
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {
-        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);
-    }
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">MailConfiguration</span> <span style="color: #859900;">implements</span> <span style="color: #268bd2;">EnvironmentAware</span> {&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">setEnvironment</span>(<span style="color: #268bd2;">Environment</span> <span style="color: #6c71c4;">environment</span>) {&#57344;&#57345;&#57345;
+        <span style="color: #859900;">this</span>.propertyResolver = <span style="color: #859900;">new</span> <span style="color: #268bd2;">RelaxedPropertyResolver</span>(environment, ENV_SPRING_MAIL);&#57344;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
@@ -214,8 +214,8 @@ should be active by default.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java">env.acceptsProfiles(<span style="color: #268bd2;">String</span>... <span style="color: #6c71c4;">profiles</span>)
-env.getActiveProfiles() <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">return an array of strings</span>
+<pre class="src src-java">env.acceptsProfiles(<span style="color: #268bd2;">String</span>... <span style="color: #6c71c4;">profiles</span>)&#57344;&#57345;&#57345;
+env.getActiveProfiles() <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">return an array of strings</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -236,10 +236,10 @@ can set the default additional property file by
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #268bd2;">SimpleCommandLinePropertySource</span> <span style="color: #6c71c4;">source</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">SimpleCommandLinePropertySource</span>(args);
-<span style="color: #859900;">if</span> (<span style="color: #268bd2;">!</span>source.containsProperty(<span style="color: #2aa198;">"spring.profiles.active"</span>)){
-    app.setAdditionalProfiles([profile_name])
-}
+<pre class="src src-java"><span style="color: #268bd2;">SimpleCommandLinePropertySource</span> <span style="color: #6c71c4;">source</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">SimpleCommandLinePropertySource</span>(args);&#57344;&#57345;
+<span style="color: #859900;">if</span> (<span style="color: #268bd2;">!</span>source.containsProperty(<span style="color: #2aa198;">"spring.profiles.active"</span>)){&#57344;&#57345;&#57345;
+    app.setAdditionalProfiles([profile_name])&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -258,14 +258,14 @@ else.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">ConfigurationTest</span> {
-    <span style="color: #268bd2;">@Test</span>
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">testHelloworld</span> () {
-        <span style="color: #268bd2;">AnnotationConfigApplicationContext</span> <span style="color: #6c71c4;">ctx</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">AnnotationConfigApplicationContext</span>(AppConfig.<span style="color: #859900;">class</span>);
-        Assert.assertEquals(<span style="color: #2aa198;">"hello"</span>, ctx.getBean(<span style="color: #2aa198;">"message"</span>)); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">message is the name of the Bean method in configuration class</span>
-        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it can also be used to get any kind of object</span>
-    }
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">ConfigurationTest</span> {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Test</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">testHelloworld</span> () {&#57344;&#57345;&#57345;
+        <span style="color: #268bd2;">AnnotationConfigApplicationContext</span> <span style="color: #6c71c4;">ctx</span> = <span style="color: #859900;">new</span> <span style="color: #268bd2;">AnnotationConfigApplicationContext</span>(AppConfig.<span style="color: #859900;">class</span>);&#57344;&#57345;
+        Assert.assertEquals(<span style="color: #2aa198;">"hello"</span>, ctx.getBean(<span style="color: #2aa198;">"message"</span>)); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">message is the name of the Bean method in configuration class</span>&#57344;&#57345;
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it can also be used to get any kind of object</span>&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -309,67 +309,67 @@ and configured in method of class that extends
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityConfig</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">WebSecurityConfigurerAdapter</span> {
-    <span style="color: #268bd2;">@Inject</span>
-    <span style="color: #859900;">private</span> <span style="color: #268bd2;">UserDetailsService</span> <span style="color: #6c71c4;">userDetailsService</span>;
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">class access to the user database</span>
-
-    <span style="color: #268bd2;">@Value</span>(<span style="color: #2aa198;">"${drill.security.rememberme.key}"</span>)
-    <span style="color: #859900;">private</span> <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">remerberMeKey</span>;
-    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">key for cookies</span>
-
-    <span style="color: #268bd2;">@Inject</span>
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configureGlobal</span>(<span style="color: #268bd2;">AuthenticationManagerBuilder</span> <span style="color: #6c71c4;">auth</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
-        auth
-            .userDetailsService(userDetailsService) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">the point that connect the authentication module and user database</span>
-            .passwordEncoder(passwordEncoder());
-    }
-
-    <span style="color: #268bd2;">@Override</span>
-    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">WebSecurity</span> <span style="color: #6c71c4;">web</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
-        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Spring security ignore following URL</span>
-        web.ignoring()
-            .antMatchers(<span style="color: #2aa198;">"/bower_components/**"</span>)
-            .antMatchers(<span style="color: #2aa198;">"/fonts/**"</span>)
-            .antMatchers(<span style="color: #2aa198;">"/images/**"</span>)
-            ...;
-    }
-
-    <span style="color: #268bd2;">@Override</span>
-    <span style="color: #859900;">protected</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">HttpSecurity</span> <span style="color: #6c71c4;">http</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {
-        http.authorizeRequests()
-                .antMatchers(<span style="color: #2aa198;">"/app/**"</span>).authenticated()
-                .antMatchers(<span style="color: #2aa198;">"/app/rest/register"</span>).permitAll()
-                .antMatchers(<span style="color: #2aa198;">"/app/rest/logs/**"</span>).hasAuthority(<span style="color: #268bd2;">Authority</span>.ADMIN)
-                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">set authorities</span>
-            .and()
-                .formLogin()
-                .usernameParameter(<span style="color: #2aa198;">"username"</span>)
-                .passwordParameter(<span style="color: #2aa198;">"password"</span>)
-                .loginProcessingUrl(<span style="color: #2aa198;">"/app/authentication"</span>)
-                .successHandler(ajaxAuthenticationSuccessHandler)
-                .failureHandler(ajaxAuthenticationFailureHandler)
-                .permitAll()
-                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">set login service url</span>
-            .and()
-                .logout()
-                .logoutUrl(<span style="color: #2aa198;">"/app/logout"</span>)
-                .logoutSuccessHandler(ajaxLogoutSuccessHandler)
-                .deleteCookies(<span style="color: #2aa198;">"JSESSIONID"</span>)
-                .permitAll()
-            .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint)
-            .and()
-                .rememberMe()
-                .rememberMeServices(rememberMeServices)
-                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it is not persistent token</span>
-                .key(remerberMeKey)
-            .and()
-                .csrf().disable()  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">not clear</span>
-                .headers().cacheControl(); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">not clear</span>
-    }
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">class</span> <span style="color: #268bd2;">SecurityConfig</span> <span style="color: #859900;">extends</span> <span style="color: #268bd2;">WebSecurityConfigurerAdapter</span> {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Inject</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">UserDetailsService</span> <span style="color: #6c71c4;">userDetailsService</span>;&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">class access to the user database</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Value</span>(<span style="color: #2aa198;">"${drill.security.rememberme.key}"</span>)&#57344;&#57345;&#57345;
+    <span style="color: #859900;">private</span> <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">remerberMeKey</span>;&#57344;&#57345;&#57345;
+    <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">key for cookies</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Inject</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configureGlobal</span>(<span style="color: #268bd2;">AuthenticationManagerBuilder</span> <span style="color: #6c71c4;">auth</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {&#57344;&#57345;
+        auth&#57344;&#57345;&#57345;
+            .userDetailsService(userDetailsService) <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">the point that connect the authentication module and user database</span>&#57344;&#57345;
+            .passwordEncoder(passwordEncoder());&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Override</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">public</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">WebSecurity</span> <span style="color: #6c71c4;">web</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {&#57344;&#57345;&#57345;
+        <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">Spring security ignore following URL</span>&#57344;&#57345;&#57345;
+        web.ignoring()&#57344;&#57345;&#57345;
+            .antMatchers(<span style="color: #2aa198;">"/bower_components/**"</span>)&#57344;&#57345;&#57345;
+            .antMatchers(<span style="color: #2aa198;">"/fonts/**"</span>)&#57344;&#57345;&#57345;
+            .antMatchers(<span style="color: #2aa198;">"/images/**"</span>)&#57344;&#57345;&#57345;
+            ...;&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">@Override</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">protected</span> <span style="color: #268bd2;">void</span> <span style="color: #b58900;">configure</span>(<span style="color: #268bd2;">HttpSecurity</span> <span style="color: #6c71c4;">http</span>) <span style="color: #859900;">throws</span> <span style="color: #268bd2;">Exception</span> {&#57344;&#57345;&#57345;
+        http.authorizeRequests()&#57344;&#57345;&#57345;
+                .antMatchers(<span style="color: #2aa198;">"/app/**"</span>).authenticated()&#57344;&#57345;&#57345;
+                .antMatchers(<span style="color: #2aa198;">"/app/rest/register"</span>).permitAll()&#57344;&#57345;&#57345;
+                .antMatchers(<span style="color: #2aa198;">"/app/rest/logs/**"</span>).hasAuthority(<span style="color: #268bd2;">Authority</span>.ADMIN)&#57344;&#57345;
+                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">set authorities</span>&#57344;&#57345;&#57345;
+            .and()&#57344;&#57345;&#57345;
+                .formLogin()&#57344;&#57345;&#57345;
+                .usernameParameter(<span style="color: #2aa198;">"username"</span>)&#57344;&#57345;&#57345;
+                .passwordParameter(<span style="color: #2aa198;">"password"</span>)&#57344;&#57345;&#57345;
+                .loginProcessingUrl(<span style="color: #2aa198;">"/app/authentication"</span>)&#57344;&#57345;&#57345;
+                .successHandler(ajaxAuthenticationSuccessHandler)&#57344;&#57345;&#57345;
+                .failureHandler(ajaxAuthenticationFailureHandler)&#57344;&#57345;&#57345;
+                .permitAll()&#57344;&#57345;&#57345;
+                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">set login service url</span>&#57344;&#57345;&#57345;
+            .and()&#57344;&#57345;&#57345;
+                .logout()&#57344;&#57345;&#57345;
+                .logoutUrl(<span style="color: #2aa198;">"/app/logout"</span>)&#57344;&#57345;&#57345;
+                .logoutSuccessHandler(ajaxLogoutSuccessHandler)&#57344;&#57345;&#57345;
+                .deleteCookies(<span style="color: #2aa198;">"JSESSIONID"</span>)&#57344;&#57345;&#57345;
+                .permitAll()&#57344;&#57345;&#57345;
+            .and()&#57344;&#57345;&#57345;
+                .exceptionHandling()&#57344;&#57345;&#57345;
+                .authenticationEntryPoint(authenticationEntryPoint)&#57344;&#57345;&#57345;
+            .and()&#57344;&#57345;&#57345;
+                .rememberMe()&#57344;&#57345;&#57345;
+                .rememberMeServices(rememberMeServices)&#57344;&#57345;&#57345;
+                <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">it is not persistent token</span>&#57344;&#57345;&#57345;
+                .key(remerberMeKey)&#57344;&#57345;&#57345;
+            .and()&#57344;&#57345;&#57345;
+                .csrf().disable()  <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">not clear</span>&#57344;&#57345;&#57345;
+                .headers().cacheControl(); <span style="color: #93a1a1; font-style: italic;">// </span><span style="color: #93a1a1; font-style: italic;">not clear</span>&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 
@@ -386,23 +386,23 @@ information by:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {
-    <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();
-    <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();
-    <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;
-    <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;
-
-    <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {
-        <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {
-            springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();
-            userName = springSecurityUser.getUsername();
-        } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {
-            userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();
-        }
-    }
-
-    <span style="color: #859900;">return</span> userName;
-}
+<pre class="src src-java"><span style="color: #859900;">public</span> <span style="color: #859900;">static</span> <span style="color: #268bd2;">String</span> <span style="color: #b58900;">getCurrentLogin</span>() {&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">SecurityContext</span> <span style="color: #6c71c4;">securityContext</span> = SecurityContextHolder.getContext();&#57344;&#57345;
+    <span style="color: #268bd2;">Authentication</span> <span style="color: #6c71c4;">authentication</span> = securityContext.getAuthentication();&#57344;&#57345;
+    <span style="color: #268bd2;">UserDetails</span> <span style="color: #6c71c4;">springSecurityUser</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+    <span style="color: #268bd2;">String</span> <span style="color: #6c71c4;">userName</span> = <span style="color: #268bd2;">null</span>;&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">if</span>(authentication != <span style="color: #268bd2;">null</span>) {&#57344;&#57345;&#57345;
+        <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> UserDetails) {&#57344;&#57345;&#57345;
+            springSecurityUser = (<span style="color: #268bd2;">UserDetails</span>) authentication.getPrincipal();&#57344;&#57345;
+            userName = springSecurityUser.getUsername();&#57344;&#57345;&#57345;
+        } <span style="color: #859900;">else</span> <span style="color: #859900;">if</span> (authentication.getPrincipal() <span style="color: #859900;">instanceof</span> String) {&#57344;&#57345;&#57345;
+            userName = (<span style="color: #268bd2;">String</span>) authentication.getPrincipal();&#57344;&#57345;&#57345;
+        }&#57344;&#57345;&#57345;
+    }&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+    <span style="color: #859900;">return</span> userName;&#57344;&#57345;&#57345;
+}&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>

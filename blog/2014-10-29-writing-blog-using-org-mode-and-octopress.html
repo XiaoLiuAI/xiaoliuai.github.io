@@ -180,9 +180,9 @@ You can following the instructions on the <a href="http://octopress.org/docs/set
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>
-git clone git://github.com/sstephenson/rbenv.git .rbenv
-git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
+<pre class="src src-sh"><span style="color: #6c71c4;">cd</span> <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">go to home</span>&#57344;&#57345;&#57345;
+git clone git://github.com/sstephenson/rbenv.git .rbenv&#57344;&#57345;&#57345;
+git clone git://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build&#57344;&#57345;
 </pre>
 </div>
 <p>
@@ -190,8 +190,8 @@ Add two lines into the end of shell profile (.zshrc in my case).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>
-<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>
+<pre class="src src-sh"><span style="color: #6c71c4;">export</span> <span style="color: #6c71c4;">PATH</span>=$<span style="color: #6c71c4;">HOME</span>/.rbenv/bin:$<span style="color: #6c71c4;">PATH</span>&#57344;&#57345;&#57345;
+<span style="color: #6c71c4;">eval</span> <span style="color: #2aa198;">"$(rbenv init -)"</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -201,9 +201,9 @@ The installation of rbenv and ruby-build can be replaced by
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">brew update
-brew install rbenv
-brew install ruby-build
+<pre class="src src-sh">brew update&#57344;&#57345;&#57345;
+brew install rbenv&#57344;&#57345;&#57345;
+brew install ruby-build&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -216,9 +216,9 @@ Then install ruby 1.9.3, which is required by octopress.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rbenv install 1.9.3-p0
-rbenv local 1.9.3-p0
-rbenv rehash
+<pre class="src src-sh">rbenv install 1.9.3-p0&#57344;&#57345;&#57345;
+rbenv local 1.9.3-p0&#57344;&#57345;&#57345;
+rbenv rehash&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -246,8 +246,8 @@ beginning.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress
-<span style="color: #6c71c4;">cd</span> octopress
+<pre class="src src-sh">git clone git://github.com/imathis/octopress.git octopress&#57344;&#57345;&#57345;
+<span style="color: #6c71c4;">cd</span> octopress&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -258,9 +258,9 @@ beginning.
 <div class="outline-text-4" id="text-1-2-2">
 <div class="org-src-container">
 
-<pre class="src src-sh">gem install bundler
-rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>
-bundle install
+<pre class="src src-sh">gem install bundler&#57344;&#57345;&#57345;
+rbenv rehash    <span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">If you use rbenv, rehash to be able to run the bundle command</span>&#57344;&#57345;
+bundle install&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -275,7 +275,7 @@ bundle install
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake install
+<pre class="src src-sh">rake install&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -309,8 +309,8 @@ jekyll format (concatenate date and the title as the file name).
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]
-<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>
+<pre class="src src-sh">rake new_post[<span style="color: #2aa198;">"My first blog"</span>]&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;"># </span><span style="color: #93a1a1; font-style: italic;">create source/_posts/2014-10-28-my-first-blog.markdown</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -332,7 +332,7 @@ site to the github.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake setup_github_pages
+<pre class="src src-sh">rake setup_github_pages&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -347,7 +347,7 @@ Run command:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">rake deploy
+<pre class="src src-sh">rake deploy&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -357,9 +357,9 @@ settings and sources tracked, run
 </p>
 <div class="org-src-container">
 
-<pre class="src src-sh">git add .
-git commit -m<span style="color: #2aa198;">'Your message'</span>
-git push origin source
+<pre class="src src-sh">git add .&#57344;&#57345;&#57345;
+git commit -m<span style="color: #2aa198;">'Your message'</span>&#57344;&#57345;&#57345;
+git push origin source&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -402,12 +402,12 @@ script following the <a href="https://github.com/juanre/org-jekyll/issues/11">is
 </p>
 <div class="org-src-container">
 
-<pre class="src src-elisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">change</span>
-<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span>
-                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">))</span>
-<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">to</span>
-<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-show-subtree<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">)))</span>
+<pre class="src src-elisp"><span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">change</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span>&#57344;&#57345;&#57345;
+                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">))</span>&#57344;&#57345;&#57345;
+<span style="color: #93a1a1; font-style: italic;">;; </span><span style="color: #93a1a1; font-style: italic;">to</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">(</span>org-map-entries <span style="color: #2aa198;">(</span><span style="color: #859900;">lambda</span> <span style="color: #b58900;">()</span> <span style="color: #b58900;">(</span>org-show-subtree<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>org-jekyll-export-entry project<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>&#57344;&#57345;
+                               <span style="color: #2aa198;">"blog|BLOG"</span><span style="color: #657b83;">)</span><span style="color: #dc322f;">)))</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </div>
@@ -530,15 +530,15 @@ study into it when I have time.
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015-12-10-summary-and-task-list.html">Summary and Task List</a>
+    
+    <a class="list-group-item " href="/blog/2015-03-13-akka.html">Akka</a>
+    
     <a class="list-group-item " href="/blog/2015-03-04-spring-tutorial.html">Spring Tutorial</a>
     
     <a class="list-group-item " href="/blog/2015-03-04-spring-guide-examples.html">Spring Guide Examples</a>
     
     <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
-    
-    <a class="list-group-item " href="/blog/2015-02-28-pom-configuration.html">POM Configuration</a>
     
   </div>
 </section>
@@ -612,7 +612,7 @@ study into it when I have time.
     
     
     <a class="list-group-item " href="/blog/categories/language/index.html">
-        <span class="badge">2</span>
+        <span class="badge">3</span>
         language
       </a>
     
@@ -620,6 +620,12 @@ study into it when I have time.
     <a class="list-group-item " href="/blog/categories/management/index.html">
         <span class="badge">2</span>
         management
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jushan/index.html">
+        <span class="badge">1</span>
+        jushan
       </a>
     
   </div>
@@ -630,17 +636,17 @@ study into it when I have time.
     </div>
     <ul class="list-group">
         <li class="tag-cloud list-group-item">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 152%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 152%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 173%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 173%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 135%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 135%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -649,22 +655,23 @@ study into it when I have time.
 <a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </li>
     </ul>
     <!-- <div class="list-group">
         <ul class="tag-cloud">
-                <a style="font-size: 200%" href="/tags/spring/">Spring<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/maven/">maven<sup>3</sup></a>
-<a style="font-size: 200%" href="/tags/java/">Java<sup>3</sup></a>
-<a style="font-size: 145%" href="/tags/scala/">Scala<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/github/">GitHub<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 145%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
-<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+                <a style="font-size: 200%" href="/tags/maven/">maven<sup>4</sup></a>
+<a style="font-size: 169%" href="/tags/spring/">Spring<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/java/">Java<sup>3</sup></a>
+<a style="font-size: 169%" href="/tags/scala/">Scala<sup>3</sup></a>
+<a style="font-size: 125%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/github/">GitHub<sup>2</sup></a>
+<a style="font-size: 125%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
 <a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -673,6 +680,7 @@ study into it when I have time.
 <a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/maven/">Maven<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </ul>
     </div> &#8211;>

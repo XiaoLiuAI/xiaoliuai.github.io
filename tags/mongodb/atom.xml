@@ -3,7 +3,7 @@
 <title><![CDATA[Tag: Mongodb | 记往开来]]></title>
 <link href="http://xiaoliuai.github.io/tags/mongodb/atom.xml" rel="self"/>
 <link href="http://xiaoliuai.github.io/"/>
-<updated>2015-03-04T23:12:55+01:00</updated>
+<updated>2015-12-10T22:17:02+01:00</updated>
 <id>http://xiaoliuai.github.io/</id>
 <author>
 <name><![CDATA[Xiao Liu]]></name>
@@ -74,19 +74,19 @@ not updated.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myDoc</span> = db.COLLECTION.findOne<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>;
-<span style="color: #859900;">if</span><span style="color: #657b83;">(</span>myDoc<span style="color: #657b83;">){</span>
-   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">oldValue</span> = myDoc.value;
-   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">results</span> = db.COLLECTION.update<span style="color: #2aa198;">(</span>
-       <span style="color: #b58900;">{</span>
-           _id: myDoc._id,
-           value: oldValue
-       <span style="color: #b58900;">}</span>,
-       <span style="color: #b58900;">{</span>
-           $inc:<span style="color: #859900;">{</span>value: -fee<span style="color: #859900;">}</span>
-       <span style="color: #b58900;">}</span>
-       <span style="color: #2aa198;">)</span>
-<span style="color: #657b83;">}</span>
+<pre class="src src-javascript"><span style="color: #859900;">var</span> <span style="color: #6c71c4;">myDoc</span> = db.COLLECTION.findOne<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>;&#57344;&#57345;&#57345;
+<span style="color: #859900;">if</span><span style="color: #657b83;">(</span>myDoc<span style="color: #657b83;">){</span>&#57344;&#57345;&#57345;
+   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">oldValue</span> = myDoc.value;&#57344;&#57345;&#57345;
+   <span style="color: #859900;">var</span> <span style="color: #6c71c4;">results</span> = db.COLLECTION.update<span style="color: #2aa198;">(</span>&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+           _id: myDoc._id,&#57344;&#57345;&#57345;
+           value: oldValue&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">}</span>,&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+           $inc:<span style="color: #859900;">{</span>value: -fee<span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+       <span style="color: #b58900;">}</span>&#57344;&#57345;&#57345;
+       <span style="color: #2aa198;">)</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">}</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -96,7 +96,7 @@ you can use following commands:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>_id: id, value: <span style="color: #b58900;">{</span>$gte: fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$inc:<span style="color: #b58900;">{</span>value: -fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>_id: id, value: <span style="color: #b58900;">{</span>$gte: fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$inc:<span style="color: #b58900;">{</span>value: -fee<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
 </pre>
 </div>
 <p>
@@ -207,15 +207,15 @@ indicate the relative nodes.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"> db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Books"</span>, parent: 0, left: 1, right: 12 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
- db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Programming"</span>, parent: <span style="color: #2aa198;">"Books"</span>, left: 2, right: 11 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
- db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Languages"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 3, right: 4 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
- db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 5, right: 10 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
-&#65532;db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"MongoDB"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 6, right: 7 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>
- db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"dbm"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 8, right: 9<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
-
- <span style="color: #859900;">var</span> <span style="color: #6c71c4;">databaseCategory</span> = db.categories.findOne<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span> <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>;
- db.categories.find<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> left: <span style="color: #b58900;">{</span> $gt: databaseCategory.left <span style="color: #b58900;">}</span>, right: <span style="color: #b58900;">{</span> $lt: databaseCategory.right <span style="color: #b58900;">}</span> <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript"> db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Books"</span>, parent: 0, left: 1, right: 12 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Programming"</span>, parent: <span style="color: #2aa198;">"Books"</span>, left: 2, right: 11 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Languages"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 3, right: 4 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span>, parent: <span style="color: #2aa198;">"Programming"</span>, left: 5, right: 10 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+&#65532;db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"MongoDB"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 6, right: 7 <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>&#57344;&#57345;
+ db.categories.insert<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"dbm"</span>, parent: <span style="color: #2aa198;">"Databases"</span>, left: 8, right: 9<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
+&#57344;&#57345;&#57345;
+ <span style="color: #859900;">var</span> <span style="color: #6c71c4;">databaseCategory</span> = db.categories.findOne<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> _id: <span style="color: #2aa198;">"Databases"</span> <span style="color: #2aa198;">}</span> <span style="color: #657b83;">)</span>;&#57345;
+ db.categories.find<span style="color: #657b83;">(</span> <span style="color: #2aa198;">{</span> left: <span style="color: #b58900;">{</span> $gt: databaseCategory.left <span style="color: #b58900;">}</span>, right: <span style="color: #b58900;">{</span> $lt: databaseCategory.right <span style="color: #b58900;">}</span> <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
 </pre>
 </div>
 <p>
@@ -241,7 +241,7 @@ ordered indices very quickly
       Note that if one set compound index by
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.ensureIndex<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>key1: 1, key2: -1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.ensureIndex<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>key1: 1, key2: -1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -375,7 +375,7 @@ database name).
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.insert<span style="color: #657b83;">(</span>doc/docs<span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.insert<span style="color: #657b83;">(</span>doc/docs<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -396,7 +396,7 @@ documents.
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>name: value, <span style="color: #2aa198;">'name1.name2.name3'</span>:value/condition<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span>name: value, <span style="color: #2aa198;">'name1.name2.name3'</span>:value/condition<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57345;
 </pre>
 </div>
 <p>
@@ -445,14 +445,14 @@ Elements in array can be retrieved by index
 <li>get attribute
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
 <li>get elements in array
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span><span style="color: #2aa198;">'name1.name2'</span>:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span><span style="color: #2aa198;">'name1.name2'</span>:1<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -462,7 +462,7 @@ This projection will returns all the elments with the path
 
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name1: <span style="color: #b58900;">{</span>$elemMatch: <span style="color: #859900;">{</span>name2:value<span style="color: #859900;">}</span><span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.find<span style="color: #657b83;">(</span>***, <span style="color: #2aa198;">{</span>name1: <span style="color: #b58900;">{</span>$elemMatch: <span style="color: #859900;">{</span>name2:value<span style="color: #859900;">}</span><span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -509,7 +509,7 @@ that matches, for example, the nested element attributes.
 <li>update attribute:
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$set: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$set: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -520,24 +520,24 @@ does not exist in collection.
 <li>update array:
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$push/$pull: value<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find condition, <span style="color: #2aa198;">{</span>$push/$pull: value<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.students.update<span style="color: #657b83;">(</span>
-  <span style="color: #2aa198;">{</span> _id: 1 <span style="color: #2aa198;">}</span>,
-  <span style="color: #2aa198;">{</span>
-  $push: <span style="color: #b58900;">{</span>
-          scores: <span style="color: #859900;">{</span>
-             $each: <span style="color: #268bd2;">[</span> <span style="color: #657b83;">{</span> attempt: 3, score: 7 <span style="color: #657b83;">}</span>, <span style="color: #657b83;">{</span> attempt: 4, score: 4 <span style="color: #657b83;">}</span> <span style="color: #268bd2;">]</span>,
-             $sort: <span style="color: #268bd2;">{</span> score: 1 <span style="color: #268bd2;">}</span>,
-             $slice: -3
-          <span style="color: #859900;">}</span>
-  <span style="color: #b58900;">}</span>
-
-<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.students.update<span style="color: #657b83;">(</span>&#57344;&#57345;&#57345;
+  <span style="color: #2aa198;">{</span> _id: 1 <span style="color: #2aa198;">}</span>,&#57344;&#57345;&#57345;
+  <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+  $push: <span style="color: #b58900;">{</span>&#57344;&#57345;&#57345;
+          scores: <span style="color: #859900;">{</span>&#57344;&#57345;&#57345;
+             $each: <span style="color: #268bd2;">[</span> <span style="color: #657b83;">{</span> attempt: 3, score: 7 <span style="color: #657b83;">}</span>, <span style="color: #657b83;">{</span> attempt: 4, score: 4 <span style="color: #657b83;">}</span> <span style="color: #268bd2;">]</span>,&#57344;&#57345;
+             $sort: <span style="color: #268bd2;">{</span> score: 1 <span style="color: #268bd2;">}</span>,&#57344;&#57345;&#57345;
+             $slice: -3&#57344;&#57345;&#57345;
+          <span style="color: #859900;">}</span>&#57344;&#57345;&#57345;
+  <span style="color: #b58900;">}</span>&#57344;&#57345;&#57345;
+&#57344;&#57345;&#57345;
+<span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -548,7 +548,7 @@ The command above append 2 elements, then sort them by ascending
 <li>update element in array:
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$set:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2:value}})</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$set:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2:value}})</span>&#57344;&#57345;
 </pre>
 </div>
 <p>
@@ -560,20 +560,20 @@ If you want to update multiple elments, use forEach function.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.Projects.find<span style="color: #657b83;">()</span>.forEach<span style="color: #657b83;">(</span>
-    <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">pj</span><span style="color: #2aa198;">){</span>
-        pj.groups.forEach<span style="color: #b58900;">(</span>
-            <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">gp</span><span style="color: #859900;">){</span>
-                gp.tasks.forEach<span style="color: #268bd2;">(</span>
-                    <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">task</span><span style="color: #657b83;">){</span>
-                        <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>task.name.match<span style="color: #b58900;">(</span><span style="color: #2aa198;">/update/</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">){</span>
-                            task.weight=5;
-                        <span style="color: #2aa198;">}</span>
-                    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;
-            <span style="color: #859900;">}</span><span style="color: #b58900;">)</span>;
-        db.Projects.save<span style="color: #b58900;">(</span>pj<span style="color: #b58900;">)</span>;
-    <span style="color: #2aa198;">}</span>
-<span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.Projects.find<span style="color: #657b83;">()</span>.forEach<span style="color: #657b83;">(</span>&#57344;&#57345;&#57345;
+    <span style="color: #859900;">function</span><span style="color: #2aa198;">(</span><span style="color: #6c71c4;">pj</span><span style="color: #2aa198;">){</span>&#57344;&#57345;&#57345;
+        pj.groups.forEach<span style="color: #b58900;">(</span>&#57344;&#57345;&#57345;
+            <span style="color: #859900;">function</span><span style="color: #859900;">(</span><span style="color: #6c71c4;">gp</span><span style="color: #859900;">){</span>&#57344;&#57345;&#57345;
+                gp.tasks.forEach<span style="color: #268bd2;">(</span>&#57344;&#57345;&#57345;
+                    <span style="color: #859900;">function</span><span style="color: #657b83;">(</span><span style="color: #6c71c4;">task</span><span style="color: #657b83;">){</span>&#57344;&#57345;&#57345;
+                        <span style="color: #859900;">if</span> <span style="color: #2aa198;">(</span>task.name.match<span style="color: #b58900;">(</span><span style="color: #2aa198;">/update/</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">){</span>&#57344;&#57345;&#57345;
+                            task.weight=5;&#57344;&#57345;&#57345;
+                        <span style="color: #2aa198;">}</span>&#57344;&#57345;&#57345;
+                    <span style="color: #657b83;">}</span><span style="color: #268bd2;">)</span>;&#57344;&#57345;&#57345;
+            <span style="color: #859900;">}</span><span style="color: #b58900;">)</span>;&#57344;&#57345;&#57345;
+        db.Projects.save<span style="color: #b58900;">(</span>pj<span style="color: #b58900;">)</span>;&#57344;&#57345;&#57345;
+    <span style="color: #2aa198;">}</span>&#57344;&#57345;&#57345;
+<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
@@ -610,7 +610,7 @@ Functional key words:
 <li>remove document
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.remove<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.remove<span style="color: #657b83;">(</span>condition<span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -620,22 +620,22 @@ remove all documents when condition is not provided.
 <li>remove colleciton
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.drop<span style="color: #657b83;">()</span>
+<pre class="src src-javascript">db.COLLECTION.drop<span style="color: #657b83;">()</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
 <li>remove database
 <div class="org-src-container">
 
-<pre class="src src-javascript">use DATABASE
-db.dropDatabase<span style="color: #657b83;">()</span>
+<pre class="src src-javascript">use DATABASE&#57344;&#57345;&#57345;
+db.dropDatabase<span style="color: #657b83;">()</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 </li>
 <li>remove attribute
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find, <span style="color: #2aa198;">{</span>$unset: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span>find, <span style="color: #2aa198;">{</span>$unset: <span style="color: #b58900;">{</span>name: value<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
@@ -645,7 +645,7 @@ value can be 1, &#8220;&#8221;, true/false.
 <li>remove element in array
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$unset:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2'</span>:1<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.update<span style="color: #657b83;">(</span><span style="color: #2aa198;">{</span><span style="color: #2aa198;">"name1.name2"</span>:value<span style="color: #2aa198;">}</span>, <span style="color: #2aa198;">{</span>$unset:<span style="color: #b58900;">{</span><span style="color: #2aa198;">'name1.$.name2'</span>:1<span style="color: #b58900;">}</span><span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;
 </pre>
 </div>
 </li>
@@ -703,13 +703,13 @@ value can be 1, &#8220;&#8221;, true/false.
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 
-<pre class="src src-javascript">db.COLLECTION.mapReduce<span style="color: #657b83;">(</span>mapFunction,
-                        reduceFunction,
-                        <span style="color: #2aa198;">{</span>
-                            query: <span style="color: #2aa198;">"query performed at the beginning"</span>,
-                            out: <span style="color: #2aa198;">"out collection name"</span>,
-                            finalize: finalizeFunction
-                        <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>
+<pre class="src src-javascript">db.COLLECTION.mapReduce<span style="color: #657b83;">(</span>mapFunction,&#57344;&#57345;&#57345;
+                        reduceFunction,&#57344;&#57345;&#57345;
+                        <span style="color: #2aa198;">{</span>&#57344;&#57345;&#57345;
+                            query: <span style="color: #2aa198;">"query performed at the beginning"</span>,&#57345;
+                            out: <span style="color: #2aa198;">"out collection name"</span>,&#57344;&#57345;&#57345;
+                            finalize: finalizeFunction&#57344;&#57345;&#57345;
+                        <span style="color: #2aa198;">}</span><span style="color: #657b83;">)</span>&#57344;&#57345;&#57345;
 </pre>
 </div>
 <p>
