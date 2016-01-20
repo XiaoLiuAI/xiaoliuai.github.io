@@ -114,165 +114,6 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-30T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015-01-30-javascript-overview.html" itemprop="url">JavaScript Overview</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. 后端</a></li>
-<li><a href="#sec-2">2. 前端</a></li>
-</ul>
-</div>
-</div>
-<p>
-在工具描述中,主要介绍经常用到的库,框架,前后端开发用到的平台.
-</p>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a href="xiaoliuai.github.io/blog/2015-01-30-javascript-overview.html"><span class="section-number-2">1</span> 后端</a></h2>
-<div class="outline-text-2" id="text-1">
-<p>
-<b>Node.js</b> 是一个JavaScript的平台,它提供了一个脱离浏览器的JavaScript运
-行环境,同时也提供了一系列运行库和各种包. npm(nodejs package
-manager)则是这各平台的包管理系统.它通过读取package.json文件来安装项
-目所需的依赖(就跟maven的pom.xml一样).
-</p>
-
-<p>
-<b>bower</b> ,是nodejs之中的一个组件,本身用来专门管理前端开发所需要的包
-(JavaScript,CSS).它与npm的区别在于管理对象的不同以及bower使用的是扁
-平化的依赖关系而npm使用树形依赖.bower读取bower.json来安装依赖.
-</p>
-
-<p>
-<b>yoeman</b> , 安装时叫做 <b>yo</b>,是一个用来创建项目骨架的工具.它根据
-yeoman-generator,也就是模板来创建文件架结构.模板需要用npm来安装,比
-方说
-</p>
-<div class="org-src-container">
-
-<pre class="src src-bash">npm install -g generator-gulp-angular
-</pre>
-</div>
-<p>
-模板名字以 <code>generator</code> 开头.
-使用时运行
-</p>
-<div class="org-src-container">
-
-<pre class="src src-bash">mkdir [app-name] &amp;&amp; cd $_
-yo gulp-angular [app-name]
-</pre>
-</div>
-<p>
-来生成一个以generator-gulp-angular为模板的项目骨架,项目名字为
-<code>[app-name]</code>. 就刚刚使用的这个模板为例,它在创建的时候会询问你需要什
-么样的angular版本,哪一种CSS样式库(bootstrap, material),哪种angular
-的实现方式(angular-strap),等等.
-</p>
-
-<p>
-<b>grunt</b> / <b>gulp</b> 用来运行打包,压缩,发布等任务.在刚刚的例子中,我们使
-用的是基于gulp的模板,所以要用gulp来运行以上任务.生成模板的事后,已经
-在项目目录下建立了一个名为gulp的目录以及一个叫做gulpfile.js的文
-件.gulp目录下面包含一系列js文件. gulpfile.js里面引入gulp库,定义一些
-目录(src)的路径,并引入gulp目录,从而使得gulp目录下的js文件被gulp用来
-进行相应的操作.这个模板的<a href="https://github.com/Swiip/generator-gulp-angular">github</a>说明上还指出一系列可选的特性,但是目
-前看不出来在哪里定义的.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 前端</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li>Javascript
-<ul class="org-ul">
-<li><b>AngularJS</b>
-</li>
-<li><b>UI-Route</b>
-</li>
-</ul>
-</li>
-
-<li>UI Framework
-<ul class="org-ul">
-<li><b>Bootstrap</b>
-</li>
-<li><b>Angular Material</b>
-</li>
-</ul>
-</li>
-
-<li>CSS Preprocessor
-<ul class="org-ul">
-<li>Sass(Node.js)
-</li>
-<li>Less
-</li>
-</ul>
-</li>
-
-<li>JS Preprocessor
-<ul class="org-ul">
-<li>ES6
-</li>
-<li>TypeScript
-</li>
-<li>CoffeeScript
-</li>
-<li>AtScript
-</li>
-</ul>
-</li>
-
-<li>HTML template
-<ul class="org-ul">
-<li><code>.jade</code>
-</li>
-<li><code>.haml</code>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-25T00:00:00+01:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -2844,8 +2685,6 @@ name, description, email address, etc.
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2015-12-10-summary-and-task-list.html">Summary and Task List</a>
-    
     <a class="list-group-item " href="/blog/2015-03-13-akka.html">Akka</a>
     
     <a class="list-group-item " href="/blog/2015-03-04-spring-tutorial.html">Spring Tutorial</a>
@@ -2853,6 +2692,8 @@ name, description, email address, etc.
     <a class="list-group-item " href="/blog/2015-03-04-spring-guide-examples.html">Spring Guide Examples</a>
     
     <a class="list-group-item " href="/blog/2015-02-28-start-maven-example.html">Start Maven Example</a>
+    
+    <a class="list-group-item " href="/blog/2015-02-28-principles-of-reactive-programming-on-coursera.html">Principles of Reactive Programming on Coursera</a>
     
   </div>
 </section>
@@ -2898,12 +2739,6 @@ name, description, email address, etc.
         management
       </a>
     
-    
-    <a class="list-group-item " href="/blog/categories/jushan/index.html">
-        <span class="badge">1</span>
-        jushan
-      </a>
-    
   </div>
 </section>
 <section class="panel panel-default">
@@ -2917,12 +2752,12 @@ name, description, email address, etc.
 <a style="font-size: 173%" href="/tags/java/">Java<sup>3</sup></a>
 <a style="font-size: 173%" href="/tags/scala/">Scala<sup>3</sup></a>
 <a style="font-size: 135%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 135%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
 <a style="font-size: 135%" href="/tags/github/">GitHub<sup>2</sup></a>
 <a style="font-size: 135%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 135%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
 <a style="font-size: 70%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 70%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -2931,7 +2766,6 @@ name, description, email address, etc.
 <a style="font-size: 70%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 70%" href="/tags/maven/">Maven<sup>1</sup></a>
-<a style="font-size: 70%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </li>
     </ul>
@@ -2942,12 +2776,12 @@ name, description, email address, etc.
 <a style="font-size: 169%" href="/tags/java/">Java<sup>3</sup></a>
 <a style="font-size: 169%" href="/tags/scala/">Scala<sup>3</sup></a>
 <a style="font-size: 125%" href="/tags/mongodb/">Mongodb<sup>2</sup></a>
-<a style="font-size: 125%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
 <a style="font-size: 125%" href="/tags/github/">GitHub<sup>2</sup></a>
 <a style="font-size: 125%" href="/tags/org-mode/">Org-mode<sup>2</sup></a>
-<a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 125%" href="/tags/angularjs/">AngularJS<sup>2</sup></a>
 <a style="font-size: 50%" href="/tags/matlab/">Matlab<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/octave/">Octave<sup>1</sup></a>
+<a style="font-size: 50%" href="/tags/javascript/">JavaScript<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/nodejs/">NodeJS<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/bower/">bower<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/yoeman/">yoeman<sup>1</sup></a>
@@ -2956,7 +2790,6 @@ name, description, email address, etc.
 <a style="font-size: 50%" href="/tags/octopress/">Octopress<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/jekyll/">Jekyll<sup>1</sup></a>
 <a style="font-size: 50%" href="/tags/maven/">Maven<sup>1</sup></a>
-<a style="font-size: 50%" href="/tags/jushan/">Jushan<sup>1</sup></a>
 
         </ul>
     </div> &#8211;>
@@ -3006,7 +2839,7 @@ name, description, email address, etc.
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2015 - Xiao Liu<br>
+  Copyright &copy; 2016 - Xiao Liu<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
